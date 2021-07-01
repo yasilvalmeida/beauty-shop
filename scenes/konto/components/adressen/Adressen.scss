@@ -1,0 +1,306 @@
+.zuruck_back_body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .zuruck_back{
+    font-size: 2.2rem;
+    background: black;
+    color: white;
+    border: none;
+    outline: none;
+    text-transform: uppercase;
+    padding: 1rem 3rem;
+    width: fit-content;
+    height: fit-content;
+    margin-top: 7rem;
+    @media screen and (min-width: 1024px){
+      display: none;
+    }
+  }
+}
+
+.zuruck_back_body_white{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .zuruck_back{
+    font-size: 2.2rem;
+    background: white;
+    color: black;
+    border: 1px solid black;
+    outline: none;
+    text-transform: uppercase;
+    padding: 1rem 3rem;
+    width: fit-content;
+    height: fit-content;
+    margin-top: 7rem;
+    @media screen and (min-width: 1024px){
+      display: none;
+    }
+  }
+}
+
+.konto__adressen__container {
+  .page_name {
+    @media screen and (min-width: 1024px) {
+      display: none;
+    }
+    text-align: center;
+    font-size: 3rem;
+    font-weight: bolder;
+    text-transform: uppercase;
+    margin-top: 32px;
+  }
+
+  &__top {
+    display: flex;
+    flex-direction: column;
+    @media screen and (max-width: 1024px){
+      margin-bottom: 12rem;
+    }
+    &__add {
+     @media screen and (max-width: 1024px){
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+     }
+
+      &__elem {
+        border: 1px solid #A7A7A7;
+        width: 26rem;
+        height: 26rem;
+        position: relative;
+        cursor:pointer;
+        p {
+          position: absolute;
+          width: fit-content;
+          height: fit-content;
+          font-size: 18rem;
+          margin: 0;
+          top: 43%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          color: #A7A7A7;
+          font-weight: 350;
+        }
+      }
+
+      &__link {
+        font-weight: 350;
+        margin-top: 1.5rem;
+        font-size: 2.2rem;
+        text-transform: uppercase;
+        text-decoration: underline;
+        color: #707070;
+        cursor: pointer;
+      }
+    }
+
+    h2 {
+      font-size: 8rem;
+      font-weight: 300;
+      text-transform: uppercase;
+      @media screen and (max-width: 1024px) {
+        text-align: center;
+        font-size: 3rem;
+        font-weight: normal;
+        margin-bottom: 20px;
+      }
+    }
+
+    &__container {
+      display: grid;
+      gap: 20rem;
+      grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
+
+      @media screen and(max-width: 836px) {
+        grid-template-columns: repeat(auto-fit, minmax(50rem, 1fr));
+        gap: 2rem;
+      }
+      @media screen and(max-width: 400px) {
+        grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+        gap: 2rem;
+      }
+
+
+      &__elem {
+        font-size: 3rem;
+        text-transform: capitalize;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.25;
+        letter-spacing: 1.4px;
+        text-align: left;
+        color: #2e2e2e;
+
+
+
+        &__item {
+          display: flex;
+          flex-direction: column;
+          &--edit,&--delete {
+            text-transform: uppercase;
+            font-size: 2rem;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.94;
+            letter-spacing: 2.34px;
+            text-align: left;
+            color: #7b7b7b;
+            text-decoration: underline;
+          }
+          &--titlebot {
+            margin-bottom: 3rem !important;
+          }
+
+          &--title {
+            font-weight: bold;
+            font-size: 3rem;
+            margin: 0;
+          }
+
+          p {
+            margin: 0;
+          }
+
+        }
+      }
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+
+    &__add {
+      @media screen and (max-width: 1024px){
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      &__elem {
+        border: 1px solid #A7A7A7;
+        width: 26rem;
+        height: 26rem;
+        position: relative;
+
+        p {
+          position: absolute;
+          width: fit-content;
+          height: fit-content;
+          font-size: 18rem;
+          margin: 0;
+          top: 43%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          color: #A7A7A7;
+          font-weight: 350;
+        }
+      }
+
+      &__link {
+        font-weight: 350;
+        margin-top: 1.5rem;
+        font-size: 2.2rem;
+        text-transform: uppercase;
+        text-decoration: underline;
+        color: #707070;
+      }
+    }
+
+    h2 {
+      font-size: 8rem;
+      font-weight: 300;
+      text-transform: uppercase;
+      @media screen and (max-width: 1024px) {
+        text-align: center;
+        font-size: 3rem;
+        font-weight: normal;
+        margin-bottom: 20px;
+      }
+    }
+
+    .konto__adressen__container__top__containerbot {
+      display: grid;
+      gap: 20rem;
+      grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
+      @media screen and(max-width: 1780px) {
+        grid-template-columns: repeat(auto-fit, minmax(34rem, 1fr));
+        gap: 10rem;
+      }
+      @media screen and(max-width: 1735px) {
+        grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+        gap: 6rem;
+      }
+      @media screen and(max-width: 1290px) {
+        grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+        gap: 2rem;
+      }
+      @media screen and(max-width: 1100px) {
+        grid-template-columns: repeat(auto-fit, minmax(29rem, 1fr));
+        gap: 2rem;
+      }
+      @media screen and(max-width: 1024px) {
+        grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+        gap: 2rem;
+      }
+      @media screen and(max-width: 836px) {
+        grid-template-columns: repeat(auto-fit, minmax(50rem, 1fr));
+        gap: 2rem;
+      }
+      @media screen and(max-width: 400px) {
+        grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+        gap: 2rem;
+      }
+
+      &__elem {
+        font-size: 3rem;
+        text-transform: capitalize;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.25;
+        letter-spacing: 1.4px;
+        text-align: left;
+        color: #2e2e2e;
+
+        a {
+          text-transform: uppercase;
+          font-size: 2rem;
+          font-weight: normal;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: 1.94;
+          letter-spacing: 2.34px;
+          text-align: left;
+          color: #7b7b7b;
+          text-decoration: underline;
+        }
+
+        &__item {
+          display: flex;
+          flex-direction: column;
+
+          &--titlebot {
+            margin-bottom: 3rem !important;
+          }
+
+          &--title {
+            font-weight: bold;
+            font-size: 3rem;
+            margin: 0;
+          }
+
+          p {
+            margin: 0;
+          }
+
+        }
+      }
+    }
+  }
+}
+
+@import "form/AddressenForm";

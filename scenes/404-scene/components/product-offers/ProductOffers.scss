@@ -1,0 +1,99 @@
+.offers__container {
+  width: 90.5%;
+  margin: 14rem auto;
+
+  &__title {
+    text-align: center;
+    h2 {
+      font-size: 4.3rem;
+      font-weight: 600;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.38;
+      letter-spacing: 1.6px;
+      text-align: left;
+      color: #3e3e3e;
+      text-align: center;
+      @media screen and(max-width: 1024px) {
+        font-size: 4.2rem;
+      }
+    }
+    p {
+      font-size: 2.5rem;
+      font-weight: 600;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.74;
+      letter-spacing: 0.92px;
+      text-align: center;
+      color: #3e3e3e;
+      margin-top: 4rem;
+      margin-bottom: 10rem;
+      @media screen and(max-width: 1024px) {
+        font-size: 2rem;
+      }
+    }
+  }
+
+  &__cards {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 4rem;
+    @media screen and(max-width: 1024px) {
+      grid-template-columns: 6fr 6fr;
+    }
+    @media screen and(max-width: 678px) {
+      grid-template-columns: 12fr;
+      justify-content: center;
+    }
+
+    &__card {
+      h2 {
+        font-size: 5.4rem;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1;
+        letter-spacing: 1.5px;
+        text-align: left;
+        color: #000000;
+        margin-top: 3rem;
+        margin-bottom: 4rem;
+
+        @media screen and(max-width: 1024px) {
+          font-size: 4.4rem;
+        }
+      }
+      p {
+        // width: 51.5rem;
+        font-size: 2.4rem;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.59;
+        letter-spacing: 0.55px;
+        text-align: left;
+        color: #2e2e2e;
+        margin-bottom: 3rem;
+        @media screen and(max-width: 1024px) {
+          font-size: 2rem;
+        }
+      }
+      a {
+        font-size: 2.2rem;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.75;
+        letter-spacing: 1px;
+        text-align: left;
+        color: #a12224;
+        text-decoration: underline;
+        @media screen and(max-width: 1024px) {
+          font-size: 1.8rem;
+        }
+      }
+    }
+  }
+}

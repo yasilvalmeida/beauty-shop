@@ -1,0 +1,75 @@
+.video-body {
+  position: relative;
+  overflow: hidden;
+  height: 633px;
+  div {
+    height: unset;
+  }
+  p {
+    color: #ffffff;
+    font-size: 4.8rem;
+    font-weight: 200;
+    font-style: normal;
+    letter-spacing: 2.25px;
+    text-align: center;
+    /* Text style for "Entdecken" */
+    font-style: normal;
+
+    text-transform: uppercase;
+    position: absolute;
+    top: 53%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    @media screen and(max-width: 1669px) {
+      top: 61%;
+      transform: translate(-50%,-61%);
+      white-space:nowrap;
+    }
+    @media screen and(max-width: 643px) {
+      top: 73%;
+      transform: translate(-50%,-73%);
+      white-space:unset;
+      word-break: break-word;
+      width: 90%;
+    }
+    @media screen and(max-width: 419px){
+      font-size: 4rem;
+      top: 63%;
+      transform: translate(-50%,-63%);
+    }
+  }
+  .playvideohome {
+    position: absolute;
+    top: 34.5%;
+    left: 47.5%;
+    cursor: pointer;
+    width: 73px;
+
+    @media screen and (max-width: 1024px) {
+      top: 37% !important;
+    }
+    @media screen and(max-width: 419px){
+      top: 40% !important;
+    }
+  }
+  .pausevideohome {
+    position: absolute;
+    top: 33%;
+    left: 47%;
+    cursor: pointer;
+    width: 73px;
+  }
+}
+@media (min-aspect-ratio: 16/9) {
+  #videoBG {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-aspect-ratio: 16/9) {
+  #videoBG {
+    width: auto;
+    height: 110vh;
+  }
+}

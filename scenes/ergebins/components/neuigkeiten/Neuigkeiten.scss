@@ -1,0 +1,17 @@
+.neuigkeiten__block {
+  &>h2 {
+    width: 83rem;
+    font-size: 7rem;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 0.89;
+    letter-spacing: 2.64px;
+    text-align: center;
+    color: #3e3e3e;
+    margin: 16rem auto;
+    @media screen and(max-width: 1024px) {
+      display: none;
+    }
+  }
+}

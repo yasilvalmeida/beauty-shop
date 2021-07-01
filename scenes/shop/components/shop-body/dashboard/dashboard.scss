@@ -1,0 +1,58 @@
+.dashboard__container {
+  padding-left: 8.5rem;
+  width: 45rem;
+  @media screen and (max-width: 1024px) {
+    display: none;
+  }
+  .ant-collapse {
+    .ant-collapse-item-active {
+      .ant-collapse-header {
+        border-bottom: 1px solid transparent !important;
+        .anticon {
+          svg {
+            transform: rotate(180deg) !important;
+          }
+        }
+      }
+    }
+    .ant-collapse-item {
+      .ant-collapse-header {
+        font-size: 2.9rem;
+        color: #3e3e3e;
+        border-bottom: 1px solid #949494;
+        padding: 1.2rem 4rem 1.2rem 0;
+        .anticon {
+          font-size: 3rem;
+          right: 0;
+          transform: rotate(90deg);
+        }
+      }
+      .ant-collapse-content {
+        border-top: 0;
+        border-bottom: 1px solid;
+        .ant-collapse-content-box {
+          padding-top: 2rem;
+          padding-bottom: 4rem;
+          .ant-radio-group {
+            display: grid;
+            gap: 4rem;
+            .ant-radio-wrapper {
+              .ant-radio {
+                top: -0.5rem;
+                .ant-radio-inner {
+                  border-color: #3e3e3e;
+                  &::after {
+                    background-color: #000000;
+                  }
+                }
+              }
+              .radio__text {
+                font-size: 2.5rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

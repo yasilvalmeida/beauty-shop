@@ -1,0 +1,5 @@
+export const ADD_TO_BASKET = "ADD_TO_BASKET"
+export const GET_BASKET_DATA = "GET_BASKET_DATA"
+export const SET_BASKET_DATA = "SET_BASKET_DATA"
+export const DELETE_FROM_BASKET = "DELETE_FROM_BASKET"
+export const SET_ERROR = "SET_ERROR"

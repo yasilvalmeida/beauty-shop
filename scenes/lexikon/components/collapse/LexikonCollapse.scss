@@ -1,0 +1,36 @@
+.lexikon__collapse__container{
+  width: 90.5%;
+  margin: 0 auto;
+  .ant-collapse-content-box{
+    padding: 0;
+  }
+  .ant-collapse-item {
+    margin-top: 4rem;
+    .ant-collapse-header {
+      font-size: 4rem;
+      background: black;
+      text-transform: uppercase;
+      color: white;
+      padding: 1.2rem 4rem 1.2rem 4rem;
+      .anticon {
+        font-size: 3rem;
+        right: 3vw;
+        top: 1.5vw;
+        transform: rotate(90deg);
+      }
+    }
+  }
+  .ant-collapse {
+    .ant-collapse-item-active {
+      .ant-collapse-header {
+        background: black;
+        .anticon {
+          svg {
+            transform: rotate(180deg) !important;
+          }
+        }
+      }
+    }
+  }
+}
+@import "components/only-left-text/OnlyLeftText";

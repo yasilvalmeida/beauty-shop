@@ -1,0 +1,21 @@
+.brands__products{
+  width: 68%;
+  margin: 0 auto;
+  margin-top: 15rem;
+  .prod-items-bod {
+    justify-content: space-between;
+    display: grid;
+    grid-auto-flow: column;
+    margin-top: 15px;
+
+    @media screen and(max-width: 1300px){
+      grid-auto-flow: unset;
+      grid-template-columns: repeat(auto-fit,minmax(15rem,1fr));
+    }
+    @media screen and(max-width: 1070px){
+      grid-auto-flow: unset;
+      grid-template-columns: repeat(auto-fit,minmax(26rem,1fr));
+      gap: 5rem;
+    }
+  }
+}

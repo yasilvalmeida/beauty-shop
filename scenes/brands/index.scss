@@ -1,0 +1,16 @@
+@import "components/header/Header";
+@import "components/summary-adds/SummaryAdds";
+@import "components/products/Products";
+@import "components/brand-portrait/BrandPortrait";
+@import "components/active-ingredients/ActiveIngredients";
+@import "components/care-products/CareProducts";
+@import "components/application/Application";
+@import "components/points/Points";
+@import "components/press-reviews/PressReviews";
+@import "components/partners/Partners";
+
+.brands__page__body{
+  .newsLetter__container{
+    margin-top: 15rem;
+  }
+}

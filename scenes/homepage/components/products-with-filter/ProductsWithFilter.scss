@@ -1,0 +1,496 @@
+.filtered-products-body {
+  width: 90.5%;
+  //height: 100vh;
+  margin: 0 auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 85px;
+  .products-with-filter-list {
+    .first-prod-items {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      justify-content: flex-end;
+      button {
+        font-size: 2rem;
+      }
+      .picture-body-prod {
+        position: relative;
+        margin-bottom: 5rem;
+        .item-picture {
+          max-width: 275px;
+          height: 41rem;
+          object-fit: contain;
+          width: 100%;
+        }
+
+        .circled-txt {
+          cursor: pointer;
+          position: absolute;
+          bottom: 0%;
+          left: -20px;
+          @media screen and(max-width:1024px) {
+            left: 0;
+          }
+        }
+      }
+      .item-new {
+        color: #ffffff;
+        margin: 0;
+        font-size: 1.3rem;
+        padding: 0.4rem 1.7rem;
+        font-weight: 300;
+        font-style: normal;
+        letter-spacing: 2.4px;
+        text-align: center;
+        font-style: normal;
+        text-transform: uppercase;
+        background-color: #000000;
+      }
+
+      .item-notNew {
+        font-size: 1.3rem;
+        padding: 4px 15px;
+        font-weight: 300;
+        font-style: normal;
+        letter-spacing: 2.4px;
+        text-align: center;
+        font-style: normal;
+        text-transform: uppercase;
+        opacity: 0;
+      }
+
+      .heart-icon-item {
+        position: absolute;
+        top: 0vh;
+        right: 0;
+        margin-right: -1vw;
+        stroke: #7b7b7b;
+        cursor: pointer;
+      }
+
+      button {
+        margin-top: 15px;
+        width: 182px;
+        padding: 10px;
+        border: 1px solid #707070;
+        background: white;
+        transition: 0.5s;
+        display: flex;
+        align-items: center;
+
+        p {
+          color: #2e2e2e;
+          font-size: 2rem;
+          font-weight: 300;
+          font-style: normal;
+          letter-spacing: 2px;
+          text-align: left;
+          font-style: normal;
+          text-transform: uppercase;
+          text-align: center;
+          margin: 0;
+          padding: 0;
+        }
+
+        .letter-svg {
+          stroke: #7b7b7b !important;
+          transition: 0.5s !important;
+        }
+
+        &:hover {
+          border: 1px solid #707070;
+          background-color: #000000;
+          transition: 0.5s;
+          cursor: pointer;
+
+          p {
+            transition: 0.5s;
+            color: #ffffff;
+          }
+
+          .letter-svg {
+            transition: 0.5s;
+            stroke: white !important;
+          }
+        }
+      }
+
+      .prod-txt-head {
+        color: #7b7b7b;
+        font-size: 2rem;
+        font-weight: 300;
+        font-style: normal;
+        letter-spacing: 2.6px;
+        //line-height: 35px;
+        text-align: center;
+        /* Text style for "Clean prod" */
+        font-style: normal;
+        margin-top: 20px;
+        text-transform: uppercase;
+      }
+
+      .prod-txt-head2 {
+        margin: 10px auto;
+        color: #7b7b7b;
+        font-size: 1.7rem;
+        font-weight: 500;
+        font-style: normal;
+        letter-spacing: 0.34px;
+        //line-height: 35px;
+        text-align: center;
+        /* Text style for "Limited ed" */
+        font-style: normal;
+
+        text-transform: uppercase;
+      }
+
+      .prod-txt-name {
+        margin-top: 1.5rem;
+        color: #2e2e2e;
+        margin-bottom: 0;
+        font-size: 3.6rem;
+        font-weight: 300;
+        font-style: normal;
+        letter-spacing: 3.5px;
+        text-align: center;
+        text-transform: uppercase;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+      }
+
+      .prod-txt-foot {
+        color: #2e2e2e;
+        font-size: 2.5rem;
+        font-weight: 300;
+        font-style: normal;
+        letter-spacing: 1.25px;
+        line-height: 35px;
+        text-align: center;
+        /* Text style for "Energy Kap" */
+        font-style: normal;
+      }
+
+      .prod-txt-foot2 {
+        color: #7b7b7b;
+        font-size: 2rem;
+        font-weight: 300;
+        font-style: normal;
+        letter-spacing: 2.34px;
+        line-height: 35px;
+        text-align: center;
+        font-style: normal;
+        text-decoration: underline;
+        text-transform: uppercase;
+      }
+
+      .prod-txt-price {
+        color: #2e2e2e;
+        font-size: 2.8rem;
+        font-weight: 600;
+        font-style: normal;
+        letter-spacing: 1.4px;
+        line-height: 35px;
+        text-align: center;
+        /* Text style for "28,00 \88" */
+        font-style: normal;
+      }
+    }
+
+    .firstprod-left-text {
+      display: flex;
+      flex-direction: column;
+      grid-gap: 10px;
+      gap: 45px;
+      div {
+        p {
+          color: #5c5c5c;
+          font-size: 2.2rem;
+          font-weight: 300;
+          font-style: normal;
+          letter-spacing: 1.38px;
+          text-align: left;
+          font-style: normal;
+          text-transform: uppercase;
+          margin: 0;
+          margin-bottom: 22px;
+        }
+
+        h2 {
+          color: #3e3e3e;
+          font-size: 6rem;
+          font-weight: 400;
+          font-style: normal;
+          text-align: left;
+          letter-spacing: 2.4px;
+          margin: 0;
+          //line-height: 55px;
+          text-align: left;
+          /* Text style for "Exklusive" */
+          font-style: normal;
+          margin-top: 0px;
+          text-transform: uppercase;
+          line-height: 55px;
+        }
+
+        span {
+          // margin-top: 57px;
+          margin-top: 7px;
+          display: inline-block;
+          color: #2e2e2e;
+          font-size: 22px;
+          font-weight: 300;
+          font-style: normal;
+          letter-spacing: 0.55px;
+          line-height: 35px;
+          width: 82%;
+          text-align: left;
+        }
+      }
+
+      button {
+        border: none;
+        width: 58.5%;
+        min-height: 50px;
+        background-color: #080808;
+        color: #ffffff;
+        font-size: 2.6rem;
+        font-weight: 400;
+        letter-spacing: 5px;
+        text-align: center;
+        font-style: normal;
+        text-transform: uppercase;
+        margin-top: 17px;
+        padding: 15px;
+        @media screen and(max-width: 1024px){
+          align-self: end;
+        }
+      }
+    }
+  }
+  .products-with-filter-list {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 2rem;
+  }
+  .products-filter-head-home {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    flex: 1;
+    h2 {
+      color: #3e3e3e;
+      font-size: 6.6rem;
+      font-weight: 400;
+      font-style: normal;
+      letter-spacing: 3.3px;
+      text-align: center;
+      /* Text style for "Von uns fu" */
+      font-style: normal;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+    }
+    button {
+      color: #3e3e3e;
+      font-size: 2.6rem;
+      font-weight: 400;
+      font-style: normal;
+      letter-spacing: 2.5px;
+      text-align: center;
+      font-style: normal;
+      text-transform: uppercase;
+      font-style: normal;
+      text-transform: uppercase;
+      border: none;
+      outline: none;
+      background: transparent;
+      cursor: pointer;
+    }
+    .filter-btns {
+      justify-content: space-between;
+      width: 30%;
+      margin-bottom: 100px;
+      display: flex;
+      @media screen and(max-width: 1268px) {
+        width: 40%;
+      }
+      .active-filter {
+        text-decoration: underline;
+      }
+    }
+  }
+  .first-prod-items {
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+    .heart-icon-item {
+      position: absolute;
+      top: 0vh;
+      right: 0;
+      width: 30px;
+      height: 30px;
+      stroke: #7b7b7b;
+      cursor: pointer;
+    }
+
+    .picture-body-prod {
+      position: relative;
+      margin-bottom: 5rem;
+      .item-picture {
+        max-width: 275px;
+        height: 41rem;
+        object-fit: contain;
+        width: 100%;
+      }
+      .circled-txt {
+        cursor: pointer;
+        position: absolute;
+        bottom: 10%;
+        left: -20px;
+        @media screen and(max-width:1024px) {
+          left: 0;
+        }
+      }
+    }
+    .item-new {
+      color: #ffffff;
+      margin: 0;
+      font-size: 0.7rem;
+      padding: 5px 10px;
+      font-weight: 300;
+      font-style: normal;
+      letter-spacing: 2.4px;
+      text-align: center;
+      font-style: normal;
+      text-transform: uppercase;
+      background-color: #000000;
+    }
+
+    button {
+      /* Style for "Rechteck 1" */
+      width: 192px;
+      padding: 10px;
+      border: 1px solid #707070;
+      background: white;
+      transition: 0.5s;
+      color: #2e2e2e;
+      font-size: 0.9rem;
+      font-weight: 300;
+      font-style: normal;
+      letter-spacing: 2px;
+      text-align: left;
+      /* Text style for "Quick shop" */
+      font-style: normal;
+
+      text-transform: uppercase;
+      text-align: center;
+      .letter-svg {
+        stroke: #7b7b7b !important;
+        transition: 0.5s !important;
+      }
+      &:hover {
+        border: 1px solid #707070;
+        background-color: #000000;
+        transition: 0.5s;
+        color: #ffffff;
+        .letter-svg {
+          transition: 0.5s;
+          stroke: white !important;
+        }
+      }
+    }
+    .prod-txt-head {
+      margin-top: 20px;
+      color: #7b7b7b;
+      font-size: 0.9rem;
+      font-weight: 300;
+      font-style: normal;
+      letter-spacing: 2.6px;
+      line-height: 35px;
+      text-align: center;
+      /* Text style for "Clean prod" */
+      font-style: normal;
+
+      text-transform: uppercase;
+    }
+    .prod-txt-head2 {
+      color: #7b7b7b;
+      font-size: 0.7rem;
+      //margin: 10px auto;
+      font-weight: 600;
+      font-style: normal;
+      letter-spacing: 0.34px;
+      line-height: 35px;
+      text-align: center;
+      /* Text style for "Limited ed" */
+      font-style: normal;
+
+      text-transform: uppercase;
+    }
+    .prod-txt-name {
+      color: #2e2e2e;
+      margin-top: 10px;
+      margin-bottom: 0;
+      font-size: 1.5rem;
+      font-weight: 300;
+      font-style: normal;
+      letter-spacing: 3.5px;
+      text-align: center;
+      /* Text style for "Ylumi" */
+      text-transform: uppercase;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+    }
+    .prod-txt-foot {
+      color: #2e2e2e;
+      font-size: 1rem;
+      font-weight: 300;
+      font-style: normal;
+      letter-spacing: 1.25px;
+      line-height: 35px;
+      text-align: center;
+      /* Text style for "Energy Kap" */
+      font-style: normal;
+    }
+    .prod-txt-foot2 {
+      color: #7b7b7b;
+      font-size: 0.9rem;
+      //margin-top: 10px;
+      font-weight: 300;
+      font-style: normal;
+      letter-spacing: 2.34px;
+      line-height: 35px;
+      text-align: center;
+      /* Text style for "Kapseln" */
+      font-style: normal;
+
+      text-decoration: underline;
+      text-transform: uppercase;
+    }
+    .prod-txt-price {
+      color: #2e2e2e;
+      font-size: 1.3rem;
+      //margin:10px auto ;
+      font-weight: 600;
+      font-style: normal;
+      letter-spacing: 1.4px;
+      line-height: 35px;
+      text-align: center;
+      /* Text style for "28,00 \88" */
+      font-style: normal;
+    }
+  }
+}

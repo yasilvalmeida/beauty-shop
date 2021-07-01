@@ -1,0 +1,64 @@
+.lexikon__collapse__left__container{
+  margin-top: 3rem;
+  display: grid;
+  grid-auto-flow: column;
+  @media screen and(max-width: 1024px){
+    grid-auto-flow: row;
+  }
+  &__image{
+    width: 25.364583vw;
+    height: 31.25vw;
+    @media screen and(max-width: 1024px){
+      width: 100%;
+      height: unset;
+    }
+    &--mobile{
+      @media screen and(min-width: 1024px) {
+        display: none;
+      }
+    }
+    img{
+      width: 100%;
+      height: 100%;
+      @media screen and(max-width: 1024px){
+        display: none;
+      }
+    }
+  }
+  &__text{
+    align-self: center;
+    padding-left: 10rem;
+    @media screen and(max-width: 1024px){
+      padding-left: 0;
+    }
+    .el1{
+      //width: 100%;
+      //overflow: hidden;
+      //text-overflow: ellipsis;
+      //display: -webkit-box;
+      //-webkit-line-clamp: 15;
+      //-webkit-box-orient: vertical;
+    }
+    h2{
+      font-size: 4.5rem;
+      text-transform: uppercase;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.38;
+      letter-spacing: 1.6px;
+      text-align: left;
+      color: #3e3e3e;
+    }
+    p{
+      font-size: 2.5rem;
+      font-weight: 300;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.59;
+      letter-spacing: 0.55px;
+      text-align: left;
+      color: #2e2e2e;
+    }
+  }
+}

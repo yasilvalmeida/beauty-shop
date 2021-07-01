@@ -1,0 +1,24 @@
+.mediatek__container {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: center;
+  margin: 3rem 0 5rem 0;
+  gap: 5rem;
+  @media screen and (max-width: 475px) {
+    gap: 1rem;
+  }
+  &__option {
+    cursor: pointer;
+    background-color: #000000;
+    text-align: center;
+    width: max-content;
+    padding: 0.45rem 0.65rem;
+    letter-spacing: .4rem;
+    border: 1px solid black;
+    &--text {
+      font-size: 1.9rem;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+  }
+}

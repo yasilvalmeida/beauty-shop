@@ -1,0 +1,93 @@
+$shooting-time: 1s;
+.loader-body{
+  width: 90%;
+  margin: 0 auto;
+  .loader-top{
+    display: flex;
+    justify-content: space-between;
+    div{
+      background-color: #606060;
+      height: 18vh;
+      width: 18%;
+      &:nth-child(1){
+        animation:  anim $shooting-time infinite 1s alternate;
+
+      } &:nth-child(2){
+        animation:  anim $shooting-time infinite 1s alternate;
+
+      } &:nth-child(3){
+        animation:  anim $shooting-time infinite 1s alternate;
+
+      } &:nth-child(4){
+        animation:  anim $shooting-time infinite 1s alternate;
+
+      }
+
+      //&:nth-child(2){
+      //  animation: anim 1.5s linear infinite ;
+      //}
+      //&:nth-child(3){
+      //  animation: anim 1.5s linear infinite;
+      //}
+      //&:nth-child(4){
+      //  animation: anim 1.5s linear infinite;
+      //}
+    }
+  }
+  .loader-middle{
+    justify-content: space-between;
+    margin: 10vh auto;
+    display: flex;
+    div{
+      background-color: #000000;
+      opacity: .5;
+      width: 25%;
+      height: 23vh;
+      &:nth-child(1){
+        animation:  anim $shooting-time infinite 1s alternate ;
+
+      } &:nth-child(2){
+          animation:  anim $shooting-time infinite 1s alternate;
+
+        } &:nth-child(3){
+            animation:  anim $shooting-time infinite 1s alternate;
+
+          } &:nth-child(4){
+              animation:  anim $shooting-time infinite 1s alternate;
+
+            }
+    }
+  }
+  .loader-bottom{
+    justify-content: space-between;
+    display: flex;
+    div{
+      background-color: #606060;
+      width: 45%;
+      height: 23vh;
+      &:nth-child(1){
+        animation:  anim $shooting-time infinite 1s alternate;
+
+      } &:nth-child(2){
+          animation:  anim $shooting-time infinite 1s alternate;
+
+        } &:nth-child(3){
+            animation:  anim $shooting-time infinite 1s alternate;
+
+          } &:nth-child(4){
+              animation:  anim $shooting-time infinite  1s alternate;
+
+            }
+    }
+  }
+}
+@keyframes anim {
+  0%{
+    opacity: .2;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+

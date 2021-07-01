@@ -1,0 +1,178 @@
+.first-prod-items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  .picture-body-prod {
+    position: relative;
+    margin-bottom: 5rem;
+    cursor: pointer;
+    .item-picture {
+      max-width: 275px;
+      height: 41rem;
+      object-fit: contain;
+      width: 100%;
+    }
+    .circled-txt {
+      cursor: pointer;
+      position: absolute;
+      bottom: 0%;
+      left: 0%;
+    }
+  }
+  .item-new {
+    color: #ffffff;
+    font-size: 1.3rem;
+    padding: 4px 15px;
+    font-weight: 300;
+    font-style: normal;
+    letter-spacing: 2.4px;
+    text-align: center;
+    font-style: normal;
+    text-transform: uppercase;
+    background-color: #000000;
+  }
+  .item-notNew{
+    font-size: 1.3rem;
+    padding: 4px 15px;
+    font-weight: 300;
+    font-style: normal;
+    letter-spacing: 2.4px;
+    text-align: center;
+    font-style: normal;
+    text-transform: uppercase;
+    opacity: 0;
+  }
+  .heart-icon-item {
+    position: absolute;
+    top: 0vh;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    margin-right: -1vw;
+    stroke: #7b7b7b;
+    cursor: pointer;
+  }
+
+  button {
+    margin-top: 15px;
+    width: 182px;
+    padding: 10px;
+    border: 1px solid #707070;
+    background: white;
+    transition: 0.5s;
+    display: flex;
+    align-items: center;
+    p {
+      color: #2e2e2e;
+      font-size: 2rem;
+      font-weight: 300;
+      font-style: normal;
+      letter-spacing: 2px;
+      text-align: left;
+      font-style: normal;
+      text-transform: uppercase;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .letter-svg {
+      stroke: #7b7b7b !important;
+      transition: 0.5s !important;
+    }
+    &:hover {
+      border: 1px solid #707070;
+      background-color: #000000;
+      transition: 0.5s;
+      cursor: pointer;
+      p {
+        transition: 0.5s;
+        color: #ffffff;
+      }
+      .letter-svg {
+        transition: 0.5s;
+        stroke: white !important;
+      }
+    }
+  }
+  .prod-txt-head {
+    color: #7b7b7b;
+    font-size: 2rem;
+    font-weight: 300;
+    font-style: normal;
+    letter-spacing: 2.6px;
+    //line-height: 35px;
+    text-align: center;
+    /* Text style for "Clean prod" */
+    font-style: normal;
+    margin-top: 20px;
+    text-transform: uppercase;
+  }
+  .prod-txt-head2 {
+    margin: 10px auto;
+    color: #7b7b7b;
+    font-size: 1.7rem;
+    font-weight: 500;
+    font-style: normal;
+    letter-spacing: 0.34px;
+    //line-height: 35px;
+    text-align: center;
+    /* Text style for "Limited ed" */
+    font-style: normal;
+
+    text-transform: uppercase;
+  }
+  .prod-txt-name {
+    margin-top: 1.5rem;
+    color: #2e2e2e;
+    margin-bottom: 0;
+    font-size: 3.6rem;
+    font-weight: 300;
+    font-style: normal;
+    letter-spacing: 3.5px;
+    text-align: center;
+    /* Text style for "Ylumi" */
+    text-transform: uppercase;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+  .prod-txt-foot {
+    color: #2e2e2e;
+    font-size: 2.5rem;
+    font-weight: 300;
+    font-style: normal;
+    letter-spacing: 1.25px;
+    line-height: 35px;
+    text-align: center;
+    /* Text style for "Energy Kap" */
+    font-style: normal;
+  }
+  .prod-txt-foot2 {
+    color: #7b7b7b;
+    font-size: 2rem;
+    font-weight: 300;
+    font-style: normal;
+    letter-spacing: 2.34px;
+    line-height: 35px;
+    text-align: center;
+    font-style: normal;
+    text-decoration: underline;
+    text-transform: uppercase;
+  }
+  .prod-txt-price {
+    color: #2e2e2e;
+    font-size: 2.8rem;
+    font-weight: 600;
+    font-style: normal;
+    letter-spacing: 1.4px;
+    line-height: 35px;
+    text-align: center;
+    /* Text style for "28,00 €" */
+    font-style: normal;
+  }
+}

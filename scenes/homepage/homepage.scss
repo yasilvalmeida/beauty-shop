@@ -1,0 +1,33 @@
+.homepage-body {
+  display: flex;
+  flex-direction: column;
+  display: grid;
+  grid-auto-flow: row;
+  gap: 4rem;
+
+  .inspiration-bottom-left {
+    margin-bottom: 15rem;
+  }
+  .product__with__filter {
+    margin-top: 15rem;
+    margin-bottom: 15rem;
+  }
+  .neuigkeiten {
+    margin-bottom: 15rem;
+    @media screen and (max-width: 1650px) {
+     margin-bottom: 0;
+    }
+  }
+}
+@import "components/first-intro/FirstIntro";
+@import "components/second-section/SecondSection";
+@import "components/inspiration/InspirationSection";
+@import "components/inpiration-bottom-one/InspirationBottomOne";
+@import "components/products-with-filter/ProductsWithFilter";
+@import "components/services/Services";
+@import "components/video/VideoPart";
+@import "components/bottom-videos/BottomVideos";
+@import "components/dpab-bottom/DpabBottom";
+@import "components/dpab-magazine/DpabMagazine";
+@import "components/filtered-product-bottom/FilteredProductBottom";
+@import "components/render-modal/RenderModal";

@@ -1,0 +1,55 @@
+.dpab-bottom-body {
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+  .dpab-bot-img {
+    width: 100%;
+    min-height: 607px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .dpab-bot-txt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5vh;
+    h2 {
+      width: 55%;
+      color: #3e3e3e;
+      font-family: 'Freight Sans Pro', system-ui,inherit;
+      font-size: 6rem;
+      font-weight: 400;
+      font-style: normal;
+      letter-spacing: 2.4px;
+      line-height: 70px;
+      text-align: center;
+      font-style: normal;
+      text-transform: uppercase;
+      margin-bottom: 5vh;
+    }
+    p, p > a {
+      color: #3e3e3e;
+      font-family: 'Freight Sans Pro', system-ui,inherit;
+      font-size: 2.5rem;
+      font-weight: 300;
+      font-style: normal;
+      letter-spacing: 0.55px;
+      text-align: center;
+      /* Text style for "Friedrich-" */
+      font-style: normal;
+      text-transform: uppercase;
+    }
+    .dpab-bot-head-bot {
+      margin-bottom: 25px;
+    }
+    .dpab-bot-head-other {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}

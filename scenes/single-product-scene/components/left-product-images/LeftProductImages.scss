@@ -1,0 +1,106 @@
+.about-product-left-img-body-all{
+  .social__container{
+    margin: 0;
+    justify-content: unset;
+    width: 50%;
+    @media screen and(max-width: 1491px){
+      width: 55%;
+    }
+    @media screen and(max-width: 1252px){
+      width: 60%;
+    }
+    @media screen and(max-width: 1150px){
+      width: 70%;
+    }
+    .social__container__title{
+      h4{
+        font-size: 2.5rem;
+        margin-bottom: 0;
+        text-transform: uppercase;
+      }
+    }
+    .social__container__icons{
+      justify-content: unset;
+    }
+  }
+  .about-product-left-img-body{
+    .bottom_three-images-body{
+      width: 90%;
+      margin: 30px auto;
+      display: grid;
+      grid-auto-flow: column;
+      justify-content: center;
+      .bottom-three-images{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        img{
+          width: 85%;
+          cursor: pointer;
+        }
+      }
+    }
+    .headtxt-one{
+      font-size: 2.2rem;
+      color: #707070;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin: 0;
+      margin-bottom: 10px;
+    }
+    .headtxt-two{
+      color: #7b7b7b;
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 1.7rem;
+      letter-spacing: .6px;
+      margin: 0;
+    }
+    .go-back{
+      font-size: 20px;
+      color: #707070;
+      font-size: 3rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .about-product-main-img-body{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      min-height: 36vw;
+      .product-page-image-head{
+        min-height: 36vw;
+        width: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .main-pic{
+          width: 75%;
+          max-height: 60rem;
+          object-fit: contain;
+          cursor: pointer;
+
+        }
+        .circled-txt{
+          cursor: pointer;
+          position: absolute;
+          bottom: 9rem;
+          left: 7rem;
+          width: 8rem;
+        }
+        .new-icon{
+          margin-top: 10px;
+          background: black;
+          color: white;
+          text-transform: uppercase;
+          font-size: 1.5rem;
+          letter-spacing: 2px;
+          padding: 0px 15px;
+        }
+      }
+
+    }
+  }
+}

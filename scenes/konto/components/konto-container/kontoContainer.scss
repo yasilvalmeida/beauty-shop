@@ -1,0 +1,8 @@
+.kontoContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+  gap: 4rem;
+  @media screen and (min-width: 540px) and (max-width: 1024px) {
+    grid-template-columns: repeat(auto-fit, minmax(60rem, 1fr));
+  }
+}

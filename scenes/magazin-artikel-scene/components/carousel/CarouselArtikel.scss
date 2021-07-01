@@ -1,0 +1,22 @@
+@import "components/centered/CenteredElement";
+@import "components/first/FirstElement";
+@import "components/last/LastElement";
+@import "components/left-sided/LeftSided";
+@import "components/right-sided/RightSided";
+.ant-carousel{
+  .slick-slider{
+    .slick-dots {
+      display: none !important;
+    }
+    .slick-dots-bottom{
+      display: none !important;
+    }
+  }
+}
+.backto{
+  a{
+    color: white;
+    border-bottom: 1px solid white;
+    width: fit-content;
+  }
+}

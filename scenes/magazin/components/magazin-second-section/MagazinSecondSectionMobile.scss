@@ -1,0 +1,20 @@
+.magazin__second__section__mobile__container{
+  @media screen and(min-width: 1024px){
+    display: none;
+  }
+
+  background: url("/magazin/magaz2sect.png") no-repeat;
+  background-size: cover;
+  width: 100%;
+  margin: 0 auto;
+  padding: 15rem;
+  @media screen and(max-width: 525px){
+    padding: 15rem 7.5rem;
+  }
+  .magazin__second__section__container__righttxt{
+    padding: 3rem;
+  }
+  .magazin__second__section__container__righttxt--title{
+    font-size: 4.5vw;
+  }
+}

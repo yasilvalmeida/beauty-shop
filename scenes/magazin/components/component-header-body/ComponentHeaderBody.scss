@@ -1,0 +1,8 @@
+@import "component-header/ComponentHeader";
+@import "component-header/component-header-bottom/ComponentHeaderBottom";
+@import "component-header/component-header-bottom/ComponentHeaderBottomMobile";
+.component__header__body__all{
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-bottom: 10rem;
+}

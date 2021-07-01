@@ -1,0 +1,45 @@
+.about-two-head-text{
+    width: 90.5%;
+    margin: 0 auto;
+  margin-top: 10rem;
+  display: grid;
+  justify-content: center;
+  .text-one{
+    font-size: 2.5rem;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.4;
+    letter-spacing: 3.25px;
+    text-align: center;
+    color: #000000;
+    margin: 0;
+    text-transform: uppercase;
+  }
+  .text-two-big{
+    text-transform: uppercase;
+    font-size: 9rem;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 0.89;
+    letter-spacing: 3.6px;
+    text-align: center;
+    color: #000000;
+  }
+  .text-three-long{
+    margin-top: 5rem;
+    text-transform: uppercase;
+    justify-self: center;
+    display: inline-block;
+    width: 80%;
+    font-size: 3.5rem;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.43;
+    letter-spacing: 1.4px;
+    text-align: center;
+    color: #3e3e3e;
+  }
+}

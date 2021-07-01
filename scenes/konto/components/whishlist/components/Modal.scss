@@ -1,0 +1,119 @@
+.whishlist__modal__container{
+  position: absolute;
+  left: 0;
+  top: 110%;
+  width: 100%;
+  border: 1px solid black;
+  z-index: 3;
+  padding: 5rem 2.5rem;
+  background: white;
+  &__body{
+    .close {
+      position: absolute;
+      right: 32px;
+      top: 32px;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+    }
+
+    .close:before, .close:after {
+      position: absolute;
+      left: 15px;
+      content: ' ';
+      height: 33px;
+      width: 2px;
+      background-color: #3e3e3e;
+    }
+    .close:before {
+      transform: rotate(35deg);
+    }
+    .close:after {
+      transform: rotate(-35deg);
+    }
+
+    &__copy{
+      display: grid;
+      grid-template-columns: 70% 30%;
+      @media screen and(max-width: 1665px) {
+        grid-template-columns: 67% 33%;
+
+      }
+      @media screen and(max-width: 1530px) {
+        grid-template-columns: 65% 35%;
+
+      }
+      @media screen and(max-width: 1235px) {
+        grid-template-columns: 62% 38%;
+      }
+      @media screen and(max-width: 1024px) {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+      }
+      input{
+        padding: 0 20px;
+        border: solid 1px #b5b5b5;
+        font-size: 2.5rem;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.35;
+        letter-spacing: 1.38px;
+        text-align: left;
+        color: #5c5c5c;
+        text-transform: uppercase;
+        @media screen and(max-width: 1024px) {
+         padding: 10px 20px;
+        }
+      }
+      button{
+        padding: 10px 30px !important;
+        justify-self: end;
+        @media screen and(max-width: 1470px) {
+          padding: 10px 20px !important;
+          font-size: 2.5rem !important;
+        }
+        @media screen and(max-width: 1150px) {
+          padding: 5px 15px !important;
+          font-size: 2.3rem !important;
+        }
+        @media screen and(max-width: 1070px) {
+          padding: 5px 10px !important;
+          font-size: 2.1rem !important;
+        }
+        @media screen and(max-width: 1024px) {
+          padding: 10px 20px !important;
+          font-size: 2.5rem;
+        }
+      }
+    }
+    .social__container {
+      display: grid;
+      justify-content: flex-start;
+      margin: 0;
+      margin-top: 5rem;
+      &__icons{
+        justify-content: unset;
+      }
+      &__title{
+
+        h4{
+          text-transform: uppercase;
+          margin-bottom: 0;
+          font-size: 2.5rem;
+        }
+      }
+    }
+    p{
+      font-size: 2.5rem;
+      text-transform: uppercase;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.35;
+      letter-spacing: 1.38px;
+      text-align: left;
+      color: #5c5c5c;
+    }
+  }
+}

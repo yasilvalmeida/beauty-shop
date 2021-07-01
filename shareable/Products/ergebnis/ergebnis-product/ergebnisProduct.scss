@@ -1,0 +1,248 @@
+.ergebnis__product {
+  width: 90.5%;
+  margin: 5.3rem auto;
+
+  @media screen and(max-width: 1024px) {
+    width: 100%;
+    margin: 0rem auto;
+  }
+  &__title {
+    .mobile__text {
+      display: none;
+      font-size: 1.4rem;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.33;
+      letter-spacing: 0.54px;
+      text-align: center;
+      color: #5c5c5c;
+      @media screen and(max-width: 1024px) {
+        display: block;
+      }
+    }
+    h2 {
+      font-size: 7.1rem;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 0.89;
+      letter-spacing: 2.64px;
+      text-align: center;
+      color: #3e3e3e;
+      @media screen and(max-width: 1024px) {
+        font-size: 6rem;
+      }
+    }
+
+    .text {
+      font-size: 2.5rem;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.35;
+      letter-spacing: 1.38px;
+      text-align: center;
+      color: #5c5c5c;
+      margin-top: 5rem;
+      @media screen and(max-width: 1024px) {
+        display: none;
+      }
+    }
+    &--parfumTypes {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      text-align: center;
+      margin-top: 6rem;
+
+      span {
+        padding: 4.6px 25px 6.6px;
+        border: solid 1px #707070;
+        background-color: #ffffff;
+        font-size: 2rem;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.37;
+        letter-spacing: 3.8px;
+        text-align: center;
+        color: #000000;
+        margin: 0 2rem 2rem 2rem;
+        cursor: pointer;
+
+        @media screen and(max-width: 1024px) {
+          font-size: 1.7rem;
+          padding: 3.6px 17px 5.6px;
+          margin: 0 1.5rem 2rem 1.5rem;
+        }
+        @media screen and(max-width: 500px) {
+          display: inline-block;
+          font-size: 1.5rem;
+          padding: 3px 10px 5px;
+          margin: 0 1rem 2rem 1rem;
+        }
+      }
+    }
+  }
+
+  &__parfum {
+    margin-top: 5rem;
+    position: relative;
+    margin-bottom: 21rem;
+
+    .product__card__left {
+      position: absolute;
+      bottom: 0rem;
+      transform: translate(5rem, 5rem);
+      @media screen and(max-width: 1024px) {
+        left: 50%;
+        transform: translate(-50%, 2.8rem);
+      }
+    }
+
+    .product__card__right {
+      position: absolute;
+      bottom: 0rem;
+      transform: translate(-6rem, 5rem);
+      right: 0rem;
+      @media screen and(max-width: 1024px) {
+        right: 50%;
+        transform: translate(50%, 2.8rem);
+      }
+    }
+
+    &__card {
+      width: 62rem;
+      text-align: center;
+      background-color: #ffffff;
+      @media screen and(max-width: 1024px) {
+        width: 42rem;
+      }
+
+      h4 {
+        font-size: 3.7rem;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.34;
+        letter-spacing: 3.5px;
+        text-align: center;
+        color: #000000;
+        text-decoration: underline;
+        margin-bottom: 0.5rem;
+        margin-top: 4.8rem;
+        @media screen and(max-width: 1024px) {
+          font-size: 2.5rem;
+          margin-top: 2.8rem;
+        }
+        @media screen and(max-width: 500px) {
+          margin-top: 1rem;
+          margin-bottom: 0;
+        }
+      }
+      p {
+        font-size: 2.7rem;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.32;
+        letter-spacing: 1.5px;
+        text-align: center;
+        color: #151515;
+        margin-top: 2.7rem;
+        padding: 1rem;
+        @media screen and(max-width: 1024px) {
+          font-size: 1.8rem;
+          margin-top: 1rem;
+        }
+        @media screen and(max-width: 500px) {
+          font-size: 1.6rem;
+          margin-top: 0;
+          margin-bottom: 0;
+          padding-bottom: 0;
+          padding-top: 0;
+        }
+      }
+      span {
+        font-size: 2.7rem;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.4;
+        letter-spacing: 1.25px;
+        text-align: center;
+        color: #000000;
+        @media screen and(max-width: 1024px) {
+          font-size: 1.8rem;
+        }
+        @media screen and(max-width: 500px) {
+          font-size: 1.5rem;
+        }
+      }
+      h5 {
+        font-size: 3rem;
+        font-weight: 600;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.25;
+        letter-spacing: 1.4px;
+        text-align: center;
+        color: #000000;
+        @media screen and(max-width: 1024px) {
+          font-size: 2.1rem;
+        }
+        @media screen and(max-width: 500px) {
+          font-size: 1.7rem;
+        }
+      }
+      button {
+        padding: 11px 18.5px 13px 18px;
+        border: solid 1px #707070;
+        background-color: #ffffff;
+        font-size: 2.1rem;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.35;
+        letter-spacing: 2px;
+        text-align: left;
+        color: #2e2e2e;
+        margin-top: 2rem;
+
+        .bag {
+          width: 2rem;
+          margin-left: 0.9rem;
+          display: none;
+          @media screen and(max-width: 1024px) {
+            display: inline-block;
+          }
+
+          @media screen and(max-width: 500px) {
+           width: 1.7rem;
+          }
+        }
+
+        .letter-svg {
+          stroke: #2e2e2e;
+          margin-left: -4px;
+          margin-bottom: -5px;
+          @media screen and(max-width: 1024px) {
+            display: none;
+          }
+        }
+
+        @media screen and(max-width: 1024px) {
+          font-size: 1.4rem;
+          padding: 5px 4.5px 4px 11px;
+          margin-top: 0.5rem;
+        }
+        @media screen and(max-width: 500px) {
+          font-size: 1.1rem;
+          padding: 4px 4.5px 3px 11px;
+          margin-top: 0.5rem;
+        }
+      }
+    }
+  }
+}

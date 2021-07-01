@@ -1,0 +1,212 @@
+.prodbotbodall {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  button {
+    color: #ffffff;
+    font-size: 2.5rem;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 5px;
+    text-align: center;
+    font-style: normal;
+    text-transform: uppercase;
+    width: 18%;
+    padding: 15px 0;
+    border: none;
+    margin: 100px 0 0 0;
+    background-color: #080808;
+    @media screen and (max-width: 1650px) {
+      width: fit-content;
+      padding: 1.5rem;
+    }
+    @media screen and (max-width: 500px) {
+      margin-top: 5rem;
+    }
+  }
+
+  .first-product-bottom-body {
+    width: 90.5%;
+    margin: 0 auto;
+    display: flex;
+    .product-bottom-left {
+      flex-direction: column;
+      display: flex;
+      flex: 1;
+      justify-content: space-between;
+      img{
+        width: 100%;
+      }
+      .prod-bot-left-img {
+        flex: 1;
+        width: 100%;
+        position: relative;
+        div{
+          height: 100%;
+          img{
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+        h2 {
+          color: #3e3e3e;
+          font-family: 'Ivy Presto Display', system-ui,inherit;
+          font-size: 5.8vw;
+          font-weight: 400;
+          font-style: normal;
+          letter-spacing: 11px;
+          text-align: left;
+          /* Text style for "Neuigkeite" */
+          font-style: normal;
+          text-transform: uppercase;
+          position: absolute;
+          top: -5vw;
+          left: 0px;
+          z-index: 99;
+        }
+      }
+      .prod-bod-left-txt {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        p {
+          width: 100%;
+          word-wrap: break-word;
+          margin: 18px auto;
+          margin-top: 25px;
+          color: #5c5c5c;
+          font-family: 'Freight Sans Pro', system-ui,inherit;
+          font-size: 2.5rem;
+          font-weight: 300;
+          font-style: normal;
+          letter-spacing: 1.38px;
+          text-align: center;
+          font-style: normal;
+          text-transform: uppercase;
+        }
+        h2 {
+          color: #3e3e3e;
+          margin: 0px 0 12px 0;
+          font-family: 'Freight Sans Pro', system-ui,inherit;
+          font-size: 6.5rem;
+          font-weight: 400;
+          font-style: normal;
+          letter-spacing: 2.4px;
+          text-align: center;
+          /* Text style for "Parfum des" */
+          font-style: normal;
+
+          text-transform: uppercase;
+        }
+        span {
+          color: #2e2e2e;
+          font-family: 'Freight Sans Pro', system-ui,inherit;
+          font-size: 2.4rem;
+          font-weight: 300;
+          font-style: normal;
+          letter-spacing: 0.55px;
+          line-height: 35px;
+          text-align: center;
+          /* Text style for "Lorem ipsu" */
+          font-style: normal;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          word-break: break-word;
+          -webkit-line-clamp: 5;
+          -webkit-box-orient: vertical;
+          margin-bottom: 15px;
+        }
+        a {
+          color: #a12224;
+          font-family: 'Freight Sans Pro', system-ui,inherit;
+          font-size: 2.2rem;
+          font-weight: 300;
+          font-style: normal;
+          letter-spacing: 1px;
+          line-height: 35px;
+          text-align: center;
+          /* Text style for "Mehr lesen" */
+          font-style: normal;
+
+          text-decoration: underline;
+          text-transform: uppercase;
+        }
+      }
+    }
+    .product-bottom-middle{
+      width: 20px;
+    }
+    .product-bottom-right {
+      align-self: flex-end;
+      display: flex;
+      flex-direction: column;
+      margin: 12vw 0 0rem 0;
+      width: 100%;
+      flex: 1;
+      .prod-bot-right-img {
+        margin-top: 5rem;
+        img{
+          width: 100%;
+        }
+      }
+      p {
+        color: #5c5c5c;
+        font-family: 'Freight Sans Pro', system-ui,inherit;
+        font-size: 2.5rem;
+        font-weight: 300;
+        font-style: normal;
+        letter-spacing: 1.38px;
+        text-align: center;
+        font-style: normal;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+      }
+      h2 {
+        color: #3e3e3e;
+        margin: 0px 0 10px 0;
+        font-family: 'Freight Sans Pro', system-ui,inherit;
+        font-size: 6.5rem;
+        font-weight: 400;
+        font-style: normal;
+        letter-spacing: 2.4px;
+        text-align: center;
+        font-style: normal;
+        text-transform: uppercase;
+      }
+      span {
+        color: #2e2e2e;
+        font-family: 'Freight Sans Pro', system-ui,inherit;
+        font-size: 2.4rem;
+        font-weight: 300;
+        font-style: normal;
+        letter-spacing: 0.55px;
+        line-height: 35px;
+        text-align: center;
+        /* Text style for "Lorem ipsu" */
+        font-style: normal;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        word-break: break-word;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+        margin-bottom: 15px;
+      }
+      a {
+        color: #a12224;
+        font-family: 'Freight Sans Pro', system-ui,inherit;
+        font-size: 2.2rem;
+        font-weight: 300;
+        font-style: normal;
+        letter-spacing: 1px;
+        line-height: 35px;
+        text-align: center;
+        font-style: normal;
+        text-decoration: underline;
+        text-transform: uppercase;
+        padding: 20px 0 0 0;
+      }
+    }
+  }
+}

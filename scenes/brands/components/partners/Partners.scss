@@ -1,0 +1,33 @@
+.partners{
+  width: 90.5%;
+  margin: 0 auto;
+  padding: 15rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(35rem,1fr));
+  &__items{
+    justify-self: center;
+    display: grid;
+    gap: 3.5rem;
+    align-items: center;
+    img{
+      width: 100%;
+    }
+    a{
+      justify-self: center;
+      font-size: 2.2rem;
+      font-weight: 500;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.75;
+      letter-spacing: 1px;
+      color: #a12224;
+      text-transform: uppercase;
+      text-decoration: underline;
+      align-self: end;
+      &:hover{
+        color: #a12224;
+        text-decoration: underline;
+      }
+    }
+  }
+}

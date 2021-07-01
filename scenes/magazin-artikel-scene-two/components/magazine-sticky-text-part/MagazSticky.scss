@@ -1,0 +1,127 @@
+.magaz__artikel__sticky__container__second{
+  width: 90.5%;
+  margin: 10rem auto;
+  display: grid;
+  grid-auto-flow: column;
+  @media screen and(max-width: 1024px) {
+    grid-auto-flow: row;
+  }
+  &__image2{
+    @media screen and(min-width: 1024px) {
+      display: none;
+    }
+    p{
+
+      font-size: 2.2rem;
+      font-weight: 400;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.35;
+      letter-spacing: 1.2px;
+      text-align: left;
+      color: #5c5c5c;
+      margin: 0;
+    }
+    a{
+      font-size: 2.2rem;
+      font-weight: 400;
+      text-transform: uppercase;
+      text-decoration: underline;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.75;
+      letter-spacing: 1px;
+      text-align: left;
+      color: #a12224;
+      &:hover{
+        color: #a12224;
+        text-decoration: underline;
+      }
+    }
+  }
+  &__image{
+    @media screen and(max-width: 1024px){
+      display: none;
+    }
+    .magaz__artikel__two__sticky{
+      position: sticky;
+      top: 3rem;
+    }
+    p{
+
+      font-size: 2.2rem;
+      font-weight: 400;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.35;
+      letter-spacing: 1.2px;
+      text-align: left;
+      color: #5c5c5c;
+      margin: 0;
+      }
+    a{
+      font-size: 2.2rem;
+      font-weight: 400;
+      text-transform: uppercase;
+      text-decoration: underline;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.75;
+      letter-spacing: 1px;
+      text-align: left;
+      color: #a12224;
+      &:hover{
+        color: #a12224;
+        text-decoration: underline;
+      }
+    }
+  }
+  &__text{
+    .first__section__short__text{
+      margin-top: 10rem;
+    }
+    .magazin__sticky__text__contain{
+      margin-top: 10rem;
+    }
+    padding-left: 10rem;
+    @media screen and(max-width: 1024px){
+      padding-left: 0;
+      margin-top: 5rem;
+    }
+    h3{
+      text-transform: uppercase;
+      font-size: 4.2rem;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.38;
+      letter-spacing: 1.6px;
+      text-align: left;
+      color: #3e3e3e;
+    }
+    p{
+      font-size: 2.5rem;
+      font-weight: 400;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.59;
+      letter-spacing: 0.55px;
+      text-align: left;
+      color: #2e2e2e;
+      margin: 0;
+    }
+    i{
+      font-size: 4.2rem;
+      font-weight: 300;
+      font-stretch: normal;
+      font-style: italic;
+      line-height: 1.38;
+      letter-spacing: 1.6px;
+      text-align: center;
+      color: #3e3e3e;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-bottom: 6rem;
+    }
+  }
+}

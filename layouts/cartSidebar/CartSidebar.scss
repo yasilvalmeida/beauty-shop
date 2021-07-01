@@ -1,0 +1,33 @@
+.shopping__cart__drawer{
+  .anticon-close{
+    width: 2.5rem;
+    height: 2.5rem;
+    svg{
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .ant-drawer-body{
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    padding: 3rem;
+    padding-top: 0;
+  }
+  .ant-drawer-header{
+    border-bottom: none;
+    .ant-drawer-title{
+      width: 95%;
+      text-transform: uppercase;
+      font-size: 3.2rem;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.17;
+      letter-spacing: 1.5px;
+      text-align: left;
+      color: #838383;
+    }
+  }
+
+}

@@ -1,0 +1,246 @@
+.payment__section__container {
+  border-top: 1px solid #000000;
+  .footerpaymentbod {
+    display: flex;
+    gap: 3rem;
+    width: 60%;
+    margin: 0 auto;
+    align-items: center;
+
+    @media screen and(max-width: 1440px) {
+      .zahlungitem {
+        width: 28vw;
+      }
+      .mastercarditem {
+        width: 10vw;
+      }
+      .versandartenitem {
+        width: 28vw;
+      }
+      .vorkasseitem {
+        width: 16vw;
+      }
+      div {
+        width: 14vw;
+      }
+    }
+    @media screen and(max-width: 1024px) {
+      flex-wrap: wrap;
+      justify-content: center;
+      div {
+        width: 6vw;
+      }
+      .zahlungitem {
+        width: 14vw;
+      }
+      .mastercarditem {
+        width: 5vw;
+      }
+      .vorkasseitem {
+        width: 6vw;
+      }
+      .versandartenitem {
+        width: 14vw;
+      }
+    }
+    @media screen and(max-width: 607px) {
+      flex-wrap: wrap;
+      justify-content: center;
+      div {
+        width: 14vw;
+      }
+      .zahlungitem {
+        width: 25vw;
+      }
+      .mastercarditem {
+        width: 5vw;
+      }
+      .vorkasseitem {
+        width: 15vw;
+      }
+      .versandartenitem {
+        width: 25vw;
+      }
+    }
+  }
+
+  .mastercarditem {
+    width: 7vw;
+    @media screen and(max-width: 1440px) {
+      div {
+        width: 11vw;
+      }
+    }
+  }
+  .dhlitem {
+    width: 10vw;
+  }
+  img {
+    width: 100%;
+  }
+}
+.nav-footer-body {
+  width: 100%;
+  margin: 0 auto;
+  background: #efefef;
+  .footer-nav-all {
+    width: 90%;
+    margin: 0 auto;
+    flex-direction: column;
+    .footer-circled-bod {
+      display: flex;
+      justify-content: space-evenly;
+      padding: 7.8vh 0;
+      @media screen and(max-width: 900px) {
+        flex-wrap: wrap;
+      }
+      .nav-top-items {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .footer-nav-title {
+          font-weight: 700;
+        }
+        p {
+          color: #000000;
+          font-size: 2.2rem;
+          font-style: normal;
+          letter-spacing: 0.66px;
+          line-height: 34px;
+          text-align: center;
+          font-style: normal;
+          margin: 0%;
+          width: 37rem;
+          @media screen and (max-width: 1024px) {
+            width: unset;
+          }
+        }
+        .footer-circled-persons {
+          width: 78px;
+          height: 78px;
+          border-radius: 50%;
+          background: #000000;
+          margin-bottom: 1.5rem;
+          clip-path: circle(51% at 50% 50%);
+        }
+      }
+    }
+  }
+  .footer-navbar-all {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 40px;
+    position: relative;
+    padding-bottom: 40px;
+    @media screen and (max-width: 1024px) {
+      display: none;
+    }
+  }
+  .footer-main-nav {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex: 1 1 auto;
+    position: relative;
+    li {
+      list-style: none;
+      margin: 0 20px;
+      &:hover {
+        -webkit-text-stroke: 1px black;
+      }
+      &:first-child {
+        margin-left: 0;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+    a {
+      display: inline-block;
+      //height: 15px;
+      color: #000000;
+      font-family: "Freight Sans Pro", system-ui, inherit;
+      font-size: 2.2rem;
+      font-weight: 300;
+      font-style: normal;
+      letter-spacing: 0.9px;
+      text-align: center;
+      /* Text style for "PARFUM" */
+      font-style: normal;
+      letter-spacing: normal;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+  }
+}
+.footer-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: black;
+  padding: 2.5vh 0;
+  border-bottom: 3vh solid white;
+  img {
+    max-width: 188px;
+    max-height: 46px;
+  }
+}
+
+.footer__navigation__container {
+  background: black;
+  &__body {
+    width: 90.5%;
+    margin: 0 auto;
+    padding: 10rem 0;
+    color: white;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
+    gap: 5rem;
+    @media screen and(max-width: 1024px) {
+      grid-template-columns: repeat(auto-fit, minmax(33rem, 1fr));
+    }
+    h2 {
+      color: white;
+      text-transform: uppercase;
+      font-size: 2.2rem;
+      font-weight: bolder;
+      margin-bottom: 3rem;
+      @media screen and(max-width: 1024px) {
+        font-size: 2.5rem;
+      }
+    }
+    p {
+      text-transform: uppercase;
+      font-size: 2.2rem;
+      font-weight: 300;
+    }
+    a {
+      text-transform: uppercase;
+      color: white;
+      font-size: 2.2rem;
+      font-weight: 300;
+    }
+    li {
+      list-style: none;
+      font-size: 2.2rem;
+    }
+  }
+}
+.footer__copyright {
+  background: black;
+
+  margin: 0 auto;
+  padding: 5rem 10rem;
+  p {
+    text-align: center;
+    color: white;
+    text-transform: uppercase;
+    font-size: 2.3rem;
+    @media screen and(max-width: 1200px) {
+      font-size: 2rem;
+    }
+    @media screen and(max-width: 768px) {
+      font-size: 1.6rem;
+    }
+  }
+}

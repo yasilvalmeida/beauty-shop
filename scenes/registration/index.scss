@@ -1,0 +1,23 @@
+@import "components/registration-header/RegistrationHeader";
+@import "components/registration-form/RegistrationForm";
+@import "components/registration-info/RegistrationInfo";
+.registration__page__body{
+  margin: 6rem auto;
+  padding-bottom: 6rem;
+  &__formandtext{
+    width: 63.5%;
+    margin: 7.5rem auto;
+    display: grid;
+    grid-auto-flow: column;
+    gap: 5rem;
+    grid-template-columns: 48% 48%;
+    @media screen and(max-width: 1024px) {
+      grid-template-columns: unset;
+      grid-auto-flow: unset;
+      width: 85%;
+    }
+    @media screen and(max-width: 768px){
+      width: 90.5%;
+    }
+  }
+}

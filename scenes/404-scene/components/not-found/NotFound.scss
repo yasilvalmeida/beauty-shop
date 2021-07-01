@@ -1,0 +1,130 @@
+.container {
+  width: 90.5%;
+  margin: 5.3rem auto;
+  display: flex;
+
+  @media screen and(max-width: 1024px) {
+    display: none;
+  }
+
+  &__notFound__text {
+    margin-right: 12.3rem;
+    h2 {
+      font-size: 4.4rem;
+      font-weight: 450;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.38;
+      letter-spacing: 1.6px;
+      text-align: left;
+      color: #3e3e3e;
+
+      @media screen and(max-width: 1478px) {
+        font-size: 3.5rem;
+      }
+
+      @media screen and(max-width: 1178px) {
+        font-size: 3rem;
+      }
+    }
+    span {
+      font-size: 10.5rem;
+      font-weight: 300;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 0.8;
+      letter-spacing: 4px;
+      text-align: left;
+      color: #3e3e3e;
+
+      @media screen and(max-width: 1478px) {
+        font-size: 8rem;
+      }
+      @media screen and(max-width: 1178px) {
+        font-size: 6rem;
+      }
+    }
+    p {
+      margin-top: 3.5rem;
+      font-size: 2.5rem;
+      font-weight: 500;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.74;
+      letter-spacing: 0.92px;
+      text-align: left;
+      color: #7e7d7d;
+
+      @media screen and(max-width: 1478px) {
+        font-size: 2rem;
+      }
+      @media screen and(max-width: 1178px) {
+        font-size: 1.8rem;
+      }
+    }
+
+    div {
+      position: relative;
+      margin-top: 6rem;
+      display: inline-block;
+
+      .search-icon {
+        position: absolute;
+        top: 1.2rem;
+        left: 10px;
+        font-size: 3.2rem;
+        color: #7b7b7b;
+
+        @media screen and(max-width: 1478px) {
+          font-size: 2rem;
+        }
+        @media screen and(max-width: 1178px) {
+          font-size: 1.8rem;
+        }
+      }
+      input {
+        width: fit-content;
+        border: solid 1px #707070;
+        background-color: #ffffff;
+        font-size: 3.2rem;
+        padding-right: 8px;
+        padding-left: 70px;
+        font-weight: 450;
+        text-align: left;
+        margin-right: 4rem;
+        
+
+        @media screen and(max-width: 1478px) {
+          font-size: 2.5rem;
+          padding-left: 60px;
+        }
+        @media screen and(max-width: 1178px) {
+          font-size: 2.2rem;
+          padding-left: 40px;
+        }
+      }
+    }
+    button {
+      padding: 6px 11px 4px 19px;
+      background-color: #080808;
+      color: #ffffff;
+      font-style: normal;
+      letter-spacing: 5px;
+      font-size: 2.6rem;
+      border: none;
+
+      @media screen and(max-width: 1478px) {
+        font-size: 2rem;
+      }
+      @media screen and(max-width: 1178px) {
+        font-size: 1.8rem;
+      }
+    }
+  }
+  & > div {
+    width: 100%;
+    @media screen and(max-width: 1478px) {
+      margin-top: 4rem;
+    }
+  }
+}

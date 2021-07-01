@@ -1,0 +1,58 @@
+.collapse-listed-body{
+  h2{
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    font-weight: 300;
+    color: black;
+  }
+  ul {
+    list-style: none;
+    margin-left: 2.2rem;
+    li{
+      font-size: 2.3rem;
+      letter-spacing: .5px;
+      font-weight: 300;
+    }
+  }
+
+  ul li::before {
+    content: "\2022";
+    color: #2e2e2e;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+  }
+
+}
+.collapse-simple-text{
+font-size: 2.3rem;
+  color: #2e2e2e;
+  font-weight: 300;
+}
+.right-product-collapse-body{
+  .videos__container{
+    margin: 0;
+    max-width: 53rem;
+  }
+}
+.swiper-element-main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .swiper-images-body{
+    height: 31rem;
+    img{
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+  p{
+    margin-top: 2.5rem;
+    font-size: 2.3rem;
+    color: #7b7b7b;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+}

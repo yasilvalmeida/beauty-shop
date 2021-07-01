@@ -1,0 +1,75 @@
+.carousel__body__artikel__first{
+  animation: anim .5s;
+  width: 100%;
+  height: 100vh;
+  background: url("/ArtikelCarousel/firstElement")  no-repeat;
+  background-size: cover;
+  position: relative;
+  text-align: center;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  &__mid{
+    &--txt1{
+      color: white;
+      font-size: 1.5rem;
+    }
+    &--txt2{
+      font-size: 6.2rem;
+      color: white;
+    }
+    &--txt3{
+      font-size: 3.2rem;
+      color: white;
+    }
+  }
+
+  &__leftbtn{
+    position: absolute;
+    left: 2%;
+    top: 48%;
+    background: transparent;
+    border: none;
+    outline: none;
+    svg{
+      width: 3.5rem;
+      height: 3.5rem;
+      g{
+        color: white;
+      }
+    }
+  }
+  &__bot{
+    p{
+      color: white;
+      font-size: 1.5rem;
+      margin-bottom: 0;
+    }
+  }
+  &__rightbtn{
+    position: absolute;
+    right: 2%;
+    border: none;
+    top: 48%;
+    transform: rotate(180deg);
+    outline: none;
+    background: transparent;
+    svg{
+      width: 3.5rem;
+      height: 3.5rem;
+      g{
+        color: white;
+      }
+    }
+  }
+}
+@keyframes anim {
+  0%{
+    transform: scale(0);
+  }
+  100%{
+    transform: scale(1);
+  }
+}

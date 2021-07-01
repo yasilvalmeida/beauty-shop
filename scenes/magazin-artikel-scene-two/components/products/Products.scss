@@ -1,0 +1,105 @@
+.magaz__artikel__two__products__container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(10rem,1fr));
+    @media screen and(max-width: 1024px) {
+        grid-template-columns: repeat(auto-fit,minmax(31rem,1fr));
+    }
+    @media screen and(max-width: 700px){
+        .productdivmartop{
+            margin: 7rem auto;
+        }
+    }
+    .magazin__single__item__body__white{
+        &__text{
+            @media screen and(max-width: 1680px){
+                &--nohover{
+                    h3{
+                        font-size: 3.5rem;
+                    }
+                    p{
+                        font-size: 2rem;
+                    }
+                    .plusik{
+                        font-size: 6rem;
+                    }
+                }
+                &__hover{
+                    &--name{
+                        font-size: 3.5rem;
+                    }
+                    &--type{
+                        font-size: 2rem;
+                    }
+                    &--type2{
+                        font-size: 2rem;
+                    }
+                    &--price{
+                        font-size: 2rem;
+                    }
+                    &--button{
+                        p{
+                            font-size: 2rem;
+                        }
+                    }
+                }
+            }
+            @media screen and(max-width: 1480px){
+                &--nohover{
+                    h3{
+                        font-size: 3rem;
+                    }
+                    p{
+                        font-size: 1.5rem;
+                    }
+                    .plusik{
+                        font-size: 6rem;
+                    }
+                }
+
+            }
+            @media screen and(max-width: 1100px){
+                &__hover{
+
+                    &--button{
+                        p{
+                            font-size: 1.8rem;
+                        }
+                    }
+                }
+            }
+            @media screen and(max-width: 1024px){
+                &--nohover{
+                    h3{
+                        font-size: 3.5rem;
+                    }
+                    p{
+                        font-size: 2rem;
+                    }
+                    .plusik{
+                        font-size: 6rem;
+                    }
+                }
+                &__hover{
+                    &--name{
+                        font-size: 4.5rem;
+                    }
+                    &--type{
+                        font-size: 2.5rem;
+                    }
+                    &--type2{
+                        font-size: 2.5rem;
+                    }
+                    &--price{
+                        font-size: 2.5rem;
+                    }
+                    &--button{
+                        p{
+                            font-size: 2.5rem;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}

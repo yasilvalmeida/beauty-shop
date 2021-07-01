@@ -1,0 +1,63 @@
+.bestellungen__single {
+  &__bottom {
+    padding: 4rem 0;
+    display: flex;
+    justify-content: space-between;
+
+    &__left {
+      font-size: 3.3rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    &__right {
+      display: flex;
+      flex-direction: column;
+
+      &__info {
+        display: grid;
+        gap: 3rem;
+        margin-top: 2.5rem;
+        &__block {
+          display: flex;
+          flex-direction: column;
+          .inkl{
+            margin: 0;
+            color: #2e2e2e;
+            font-weight: 350;
+            font-size: 3rem;
+          }
+          .item {
+            display: grid;
+            grid-auto-flow: column;
+            gap: 5rem;
+            justify-content: space-between;
+            align-items: center;
+            p {
+              margin: 0;
+              color: #2e2e2e;
+              font-weight: 550;
+              font-size: 3rem;
+            }
+
+            .left {
+              color: #2e2e2e;
+              font-size: 3rem;
+              font-weight: 350;
+              text-transform: capitalize;
+            }
+          }
+        }
+      }
+
+      &__title {
+        text-align: right;
+        text-transform: uppercase;
+        font-size: 2.2rem;
+        font-weight: 600;
+        color: #838383;
+
+      }
+    }
+  }
+}

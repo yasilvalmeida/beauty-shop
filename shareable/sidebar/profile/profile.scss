@@ -1,0 +1,57 @@
+%listProps {
+  font-size: 3rem;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: 1.5px;
+}
+
+.profile__container {
+  border-bottom: 1px solid #707070;
+  padding-bottom: 4rem;
+  @media screen and (max-width: 1024px) {
+    border: none;
+    text-align: center;
+    padding-bottom: 0;
+  }
+  &--mobile {
+    display: none;
+    @media screen and (max-width: 1024px) {
+      display: block;
+      text-transform: uppercase;
+      font-size: 5.2rem;
+      font-weight: 300;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.48;
+      letter-spacing: 1.6px;
+      text-align: center;
+      color: #3e3e3e;
+      margin-bottom: 0;
+    }
+  }
+
+  &__list {
+    list-style-type: none;
+    margin-bottom: 0;
+    &--username {
+      margin: 1rem 0;
+      @extend %listProps;
+      font-weight: bold;
+      color: #000000;
+    }
+    &--logged {
+      @extend %listProps;
+      
+    }
+    &--logout {
+      font-size: 2rem;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.75;
+      letter-spacing: 1px;
+      color: #797979;
+      cursor: pointer;
+    }
+  }
+}

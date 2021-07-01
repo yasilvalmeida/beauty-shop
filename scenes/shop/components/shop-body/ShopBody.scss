@@ -1,0 +1,215 @@
+.shop-all-elements {
+  .newsLetter__container{
+    margin-top: 14rem;
+  }
+  @media screen and (max-width: 1024px) {
+    padding: 0 4rem;
+  }
+}
+
+%titleProps {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: #5c5c5c;
+  text-transform: uppercase;
+  @media screen and (max-width: 500px) {
+    font-size: 2rem;
+  }
+}
+%containerProps {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  justify-items: center;
+
+}
+
+%textProps {
+  display: block;
+  color: #3e3e3e;
+  font-size: 5vw;
+  font-weight: 300;
+  font-style: normal;
+  text-transform: uppercase;
+  line-height: 1;
+  align-self: center;
+  @media screen and(max-width: 1690px) {
+    font-size: 4vw;
+  }
+  @media screen and (min-width: 1230px) and (max-width: 1440px) {
+    font-size: 3.5vw;
+  }
+  @media screen and (min-width: 1024px) and (max-width: 1230px) {
+    font-size: 3vw;
+  }
+  @media screen and (max-width: 1024px) {
+    font-size: 9rem;
+  }
+  @media screen and (max-width: 500px) {
+    font-size: 6rem;
+  }
+}
+%descriptionProps {
+  display: block;
+  color: #2e2e2e;
+  line-height: 30px;
+  font-size: 2.1rem;
+  font-style: normal;
+  margin-top: 3rem;
+  font-weight: 300;
+  width: 25vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  @media screen and (min-width: 1024px) and (max-width: 1440px) {
+    width: 30vw;
+  }
+  @media screen and (max-width: 1024px) {
+    font-size: 3rem;
+    width: unset;
+  }
+  @media screen and (max-width: 500px) {
+    font-size: 2rem;
+  }
+}
+
+.shop__body {
+  &__content {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 2.5rem;
+    grid-template-columns: auto 1fr;
+    margin: 5rem 10rem 0 0;
+    align-self: center;
+    @media screen and(max-width: 1024px) {
+      margin: 5rem 0 0 0;
+      grid-template-columns: unset;
+    }
+  }
+  .__products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(27%, 1fr));
+    @media screen and(min-width: 1024px) and (max-width: 1440px){
+      gap: 2.3rem;
+    }
+    gap: 10rem;
+    @media screen and(max-width: 1024px) {
+      grid-template-columns: repeat(auto-fill, minmax(38rem, 1fr));
+      gap: 7rem;
+    }
+    @media screen and(min-width: 624px) and (max-width: 1024px) {
+      grid-template-columns: repeat(auto-fill, minmax(38rem, 1fr));
+    }
+   
+
+    .middleInfoContainer {
+      @extend %containerProps;
+      grid-area: 4 / 1 /4 / 4;
+      @media screen and (max-width: 1024px) {
+        grid-auto-flow: unset;
+        grid-template-columns: unset;
+        grid-area: 5 / span 2 / 5 / span 4;
+      }
+      @media screen and (max-width: 624px) {
+        grid-area: 5 / 1 / 5 / 1
+      }
+      &__content {
+        align-self: center;
+        &--title {
+          @extend %titleProps;
+        }
+        &--text {
+          width: 30vw;
+          @extend %textProps;
+          @media screen and (max-width: 1024px) {
+            width: unset;
+          }
+        }
+        &--description {
+          @extend %descriptionProps;
+          @media screen and(max-width: 1024px) {
+            text-overflow: unset;
+            display: inline-block;
+          }
+        }
+      }
+      &__image {
+        grid-column: 1;
+        width: 100%;
+        height: 100%;
+        img{
+          width: 100%;
+          height: 100%;
+        }
+        @media screen and (max-width: 1024px) {
+          grid-row: 1;
+          min-height: unset;
+        }
+      }
+    }
+    .bottomInfoContainer {
+      align-items: center;
+      @extend %containerProps;
+      grid-area: 7 / 1 /7 / 4;
+      @media screen and (max-width: 1024px) {
+        grid-auto-flow: unset;
+        grid-template-columns: unset;
+        grid-area: 9 / span 2 / 9 / span 4;
+      }
+      @media screen and (max-width: 624px) {
+        grid-area: 9 / 1 / 9 / 1
+      }
+      &__content {
+        align-self: center;
+        &--title {
+          @extend %titleProps;
+        }
+        &--text {
+          width: 30vw;
+          @extend %textProps;
+          @media screen and (max-width: 1024px) {
+            width: unset;
+          }
+        }
+        &--description {
+          @extend %descriptionProps;
+          @media screen and(max-width: 1024px) {
+            text-overflow: unset;
+            display: inline-block;
+          }
+        }
+      }
+      &__image {
+        width: 100%;
+        height: 100%;
+        img{
+          height: 100%;
+          width: 100%;
+        }
+        @media screen and (max-width: 1024px) {
+          grid-row: 1;
+          min-height: unset;
+        }
+      }
+    }
+  }
+}
+
+.shop-desc-body {
+  display: grid;
+  .shop__description {
+    &--title {
+      color:#929292;
+      font-size: 3.8rem;
+      text-transform: uppercase;
+    }
+    &--text {
+      color:#929292;
+      font-size: 1.8rem;
+    }
+  }
+}

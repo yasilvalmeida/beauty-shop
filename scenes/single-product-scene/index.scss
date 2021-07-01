@@ -1,0 +1,104 @@
+@import "components/right-product-text/RightProductText";
+@import "components/left-product-images/LeftProductImages";
+@import "components/right-product-text/collapse-components/CollapseComponents";
+@import "~swiper/swiper-bundle.css";
+@import "components/single-product-bottom/SingleProductBottom";
+@import "components/single-product-header/SingleProductHeader";
+@import '~swiper/components/pagination/pagination';
+@import "components/picture-modal/PictureModal";
+.product__details__container__top{
+  @media screen and(max-width: 1024px) {
+    display: unset !important;
+  }
+}
+.about-product-left-img-body-all{
+  @media screen and (max-width:1024px ) {
+    display: none;
+  }
+  @media screen and (min-width:1024px ) {
+    display: block;
+  }
+}
+.swiper-mobile{
+  @media screen and (min-width:1024px ) {
+    display: none;
+  }
+  @media screen and (max-width:1024px ) {
+    display: block;
+    .swiper-images-body{
+      width: 50rem;
+      height: 55rem;
+    }
+    .swiper-element-main {
+      p{
+        margin: 1rem auto;
+        font-size: 2.5rem;
+        min-height: 2.5rem;
+      }
+      .new-swiper-el{
+        color: white;
+        font-size: 1.5rem;
+        background: black;
+        text-align: center;
+        padding: 0 5px;
+        min-height: 1.5rem;
+      }
+      .swiper-limited{
+        color: #5c5c5c;
+        font-size: 2rem;
+        font-weight: 500;
+        min-height: 2rem;
+      }
+    }
+  }
+}
+.product__details__container{
+  width: 90.5%;
+  margin: 50px auto;
+  @media screen and(max-width: 1024px){
+    margin: 0 auto;
+  }
+  .swiper-mobile{
+    .swiper-images-body{
+      height: 60rem !important;
+      @media screen and(max-width: 620px){
+        height: 55rem !important;
+      }
+    }
+  }
+  &__top{
+    display: grid;
+    grid-template-columns: 35% 65%;
+  }
+}
+.swiper-button-next {
+  background-image: url("/arrownext.png");
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: center;
+  top: 36%;
+}
+.swiper-button-next::after {
+  display: none;
+}
+.swiper-button-prev::after {
+  display: none;
+}
+.swiper-button-prev{
+  background-image: url("/arrowprev.png");
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: center;
+  top: 36%;
+}
+.product-bottom-prod-w-filter{
+  padding: 15rem 0;
+}
+.swiper-pagination-bullet-active{
+  background: black !important;
+}
+.swiper-pagination-bullet{
+  border:1px solid black;
+  background: white;
+  opacity: 1 !important;
+}

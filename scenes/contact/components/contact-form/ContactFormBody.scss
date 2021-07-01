@@ -1,0 +1,14 @@
+@import "form/ContactForm";
+@import "header/ContactHeader";
+
+.contact__form__body{
+  width: 48%;
+  margin: 0 auto;
+  margin-top:4.5rem;
+  @media screen and (max-width: 768px){
+    width: 85%;
+  }
+  @media screen and (max-width: 400px){
+    width: 90.5%;
+  }
+}

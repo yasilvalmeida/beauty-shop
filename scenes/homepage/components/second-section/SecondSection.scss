@@ -1,0 +1,74 @@
+.second-section-home {
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 15rem;
+  .sec-sect-all {
+    width: 90.5%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    @media screen and(max-width: 1024px) {
+      grid-template-columns: unset;
+    }
+
+    gap: 40px;
+    .sec-sec-el {
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      .sec-sec-el-text {
+        p {
+          margin: 3.1rem 0 1rem 0;
+          color: #5c5c5c;
+          font-family: 'Freight Sans Pro', system-ui,inherit;
+          font-size: 2.5rem;
+          font-weight: 300;
+          font-style: normal;
+          letter-spacing: 0.5px;
+          text-align: left;
+          /* Text style for "Gemutliche" */
+          font-style: normal;
+          text-transform: uppercase;
+          @media screen and(max-width: 1225px) {
+            font-size: 2rem;
+          }
+          //letter-spacing: normal;
+        }
+        h3 {
+          line-height: 6.7rem;
+          color: #3e3e3e;
+          font-size: 5rem;
+          font-weight: 300;
+          font-weight: normal;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: 1.34;
+          text-transform: uppercase;
+          margin: -1.5rem 0 1rem 0;
+          @media screen and(max-width: 1365px) {
+            min-height: 133px;
+          }
+        }
+      }
+      .sec-sec-el-link {
+        margin-top: 5px;
+        height: 100%;
+        display: flex;
+        a {
+          align-self: flex-end;
+          color: #a12224;
+          font-size: 2rem;
+          font-weight: 300;
+          font-style: normal;
+          letter-spacing: 1px;
+          line-height: 35px;
+          text-align: left;
+          /* Text style for "Kollektion" */
+          font-style: normal;
+          text-decoration: underline;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+}

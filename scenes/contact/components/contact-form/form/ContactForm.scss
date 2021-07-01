@@ -1,0 +1,28 @@
+.contact__Form__form{
+  &__header{
+    margin-bottom: 7rem;
+    h3{
+      font-size: 4.4rem;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      letter-spacing: 0.88px;
+      text-align: center;
+      color: #3e3e3e;
+      margin: 0;
+      text-transform: uppercase;
+    }
+    p{
+      font-size: 2.4rem;
+      font-weight: 400;
+      font-stretch: normal;
+      font-style: normal;
+      letter-spacing: 0.88px;
+      text-align: center;
+      color: #3e3e3e;
+      text-transform: uppercase;
+    }
+  }
+}
+@import "form-body/FormBody";
+

@@ -1,0 +1,37 @@
+%listProps {
+    font-size: 2.8rem;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: 1.5px;
+  }
+  
+  .mainAccount__container {
+      margin-top: 4rem;
+
+      @media screen and (max-width:1024px){
+      display: none;
+      }
+    .activekonto{
+      a{
+        color:black;
+        @extend %listProps;
+        border-bottom: 1px solid black;
+      }
+    }
+    &__list {
+      list-style-type: none;
+      &--item{
+          @extend %listProps;
+          cursor: pointer;
+          a{
+            color: black;
+            border-bottom: 1px solid transparent;
+          }
+        &:first-child{
+          font-weight: bold;
+        }
+      }
+    }
+  }
+  

@@ -1,0 +1,262 @@
+%socialButtonProps {
+  color: #ffffff;
+  outline: 0;
+  border: 0;
+  display: grid;
+  grid-template-columns: 20% 60%;
+  align-items: center;
+}
+
+.login-scene {
+  display: grid;
+  width: 90.5%;
+  margin: 0 auto;
+  padding: 55px 0 95px 0;
+  @media screen and (max-width: 1024px){
+    padding: 0px 0 95px 0;
+  }
+  .login-scene-head {
+    h2 {
+      text-align: center;
+      font-size: 7.1rem;
+      font-weight: 200;
+      text-transform: uppercase;
+    }
+    a {
+      color: #838383;
+      font-size: 3rem;
+      font-weight: 300;
+      font-style: normal;
+      letter-spacing: 1.5px;
+      line-height: 35px;
+      text-align: left;
+      /* Text style for "Zurück" */
+      text-transform: uppercase;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  .login-scene-form-and-else {
+    width: 72%;
+    margin: 30px auto;
+    display: grid;
+    grid-template-columns: 39.5% 61.5% 1fr;
+    gap: 220px;
+    @media screen and (max-width:1024px){
+      grid-template-columns: unset;
+      gap: 5rem;
+    }
+    @media screen and (max-width:400px){
+      width: 85%;
+    }
+    .login-right-form {
+      display: grid;
+      grid-template-rows: 20% 20% 20% 20%;
+      @media screen and (max-width: 1024px){
+        grid-template-rows: unset;
+      }
+      .login-right-two {
+        margin-top: 10px;
+        display: grid;
+        gap: 10px;
+        button {
+          width: 36rem;
+          color: #ffffff;
+          font-size: 3rem;
+          background: black;
+          font-weight: 300;
+          font-style: normal;
+          letter-spacing: 1.5px;
+          line-height: 35px;
+          text-transform: uppercase;
+          border: 1px solid #707070;
+          padding: 8px 10px;
+        }
+        a {
+          width: 26.4vw;
+          color: #7b7b7b;
+          font-size: 2rem;
+          font-weight: 300;
+          font-style: normal;
+          letter-spacing: 2.34px;
+          line-height: 35px;
+          text-align: left;
+          text-decoration: underline;
+          @media screen and(max-width: 1024px) {
+            width: unset;
+          }
+        }
+      }
+      .login-right-three {
+        margin-top: 10px;
+        @media screen and(max-width: 600px) {
+          div{
+            margin: 3rem auto;
+          }
+        }
+        @media screen and(max-width: 600px) {
+          div{
+            width: 100%;
+            img{
+              width: 100%;
+            }
+          }
+        }
+        img {
+          margin: 0;
+          padding: 0;
+        }
+      }
+      .login-right-mid-txt {
+        margin: 40px 0;
+        color: #000000;
+        font-size: 2.3rem;
+        font-weight: 300;
+        font-style: normal;
+        letter-spacing: 0.55px;
+        line-height: 35px;
+        text-align: left;
+        text-transform: uppercase;
+        @media screen and(max-width: 1024px) {
+          margin: 30px 0;
+        }
+      }
+      .login-right-one {
+        display: grid;
+        h2 {
+          width: 28.4vw;
+          color: #000000;
+          font-size: 3rem !important;
+          font-weight: 700;
+          font-style: normal;
+          letter-spacing: 1.5px;
+          line-height: 35px;
+          text-align: left;
+          text-transform: uppercase;
+          @media screen and(max-width: 1024px){
+            width: unset;
+          }
+        }
+        button {
+          border: 1px solid #707070;
+          background-color: #000000;
+          color: #ffffff;
+          width: 36rem;
+          font-size: 3rem;
+          padding: 3px 10px;
+          font-weight: 300;
+          font-style: normal;
+          letter-spacing: 1.5px;
+          line-height: 35px;
+          text-transform: uppercase;
+        }
+      }
+    }
+    .left-of-login-form {
+      display: grid;
+      gap: 20px;
+      h2 {
+        color: #000000;
+        font-size: 3rem;
+        font-weight: 700;
+        font-style: normal;
+        letter-spacing: 1.5px;
+        line-height: 35px;
+        text-align: left;
+        /* Text style for "Kunden Log" */
+        text-transform: uppercase;
+        margin-bottom: 15px;
+      }
+      .left-login-form-three {
+        margin-top: 20px;
+        display: grid;
+        gap: 40px;
+        .facebook-button {
+          @extend %socialButtonProps;
+          background-color: #415a93;
+          &--text {
+            display: block;
+            font-size: 2.4rem;
+          }
+          &--icon {
+            display: block;
+            font-size: 6.4rem;
+          }
+        }
+        .google-button {
+          @extend %socialButtonProps;
+          background-color: #5086ec;
+          &--text {
+            display: block;
+            font-size: 2.4rem;
+          }
+          &--icon {
+            display: block;
+            font-size: 6.4rem;
+          }
+        }
+      }
+      form {
+        display: grid;
+        gap: 20px;
+        flex-direction: column;
+        .forgot-pass-and-submit {
+          display: grid;
+          gap: 10px;
+          a {
+            color: #7b7b7b;
+            font-size: 2rem;
+            font-weight: 300;
+            font-style: normal;
+            letter-spacing: 2.34px;
+            line-height: 35px;
+            text-align: left;
+            /* Text style for "Passwort v" */
+            text-decoration: underline;
+            text-transform: uppercase;
+          }
+        }
+        button {
+          margin-top: 30px;
+          width: 25rem;
+          border: 1px solid #707070;
+          background-color: #000000;
+          padding: 9px 10px;
+          color: #ffffff;
+          font-size: 3rem;
+          font-weight: 400;
+          font-style: normal;
+          letter-spacing: 1.5px;
+          line-height: 35px;
+          text-transform: uppercase;
+          outline: none;
+        }
+        .input-error{
+          &:focus{
+            outline: none;
+          }
+          border:1px solid red !important;
+        }
+        input {
+          border: 1px solid #b5b5b5;
+          background-color: #ffffff;
+          padding: 5px 10px;
+          height: 55px;
+          font-size: 2.6rem;
+          outline: none;
+          &::placeholder {
+            color: #000000;
+            font-size: 2.6rem;
+
+            font-weight: 300;
+            font-style: normal;
+            letter-spacing: 0.55px;
+            text-align: left;
+          }
+        }
+      }
+    }
+  }
+}

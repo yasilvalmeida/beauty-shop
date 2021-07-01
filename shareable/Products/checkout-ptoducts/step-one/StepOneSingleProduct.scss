@@ -1,0 +1,108 @@
+.checkoutstep__single__product{
+  display: flex;
+
+  &:last-child{
+    border-bottom: 1px solid #3e3e3e !important;
+  }
+  &__left{
+    display: flex;
+    @media screen and(max-width: 450px){
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+    &--img{
+      @media screen and (max-width: 450px){
+        display: contents;
+      }
+    }
+    img{
+      width: 80%;
+      @media screen and(max-width: 450px){
+        width: 60%;
+      }
+    }
+    &__text{
+      align-self: center;
+      @media screen and (max-width: 450px){
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      &--name{
+        text-transform: uppercase;
+        font-size: 3.8rem;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.34;
+        letter-spacing: 3.5px;
+        text-align: left;
+        color: #2e2e2e;
+        margin-bottom: .8rem;
+        @media screen and(max-width: 700px) {
+          font-size: 3.5rem;
+        }
+      }
+      &--type{
+        font-size: 2.7rem;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.4;
+        letter-spacing: 1.25px;
+        text-align: left;
+        color: #2e2e2e;
+        margin-bottom: .8rem;
+        @media screen and(max-width: 700px) {
+          font-size: 2.4rem;
+        }
+      }
+      &--quantity{
+        font-size: 2.7rem;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.4;
+        letter-spacing: 1.25px;
+        text-align: left;
+        color: #2e2e2e;
+        text-transform: capitalize;
+        margin-bottom: .8rem;
+        @media screen and(max-width: 700px) {
+          font-size: 2.4rem;
+        }
+      }
+      &--price{
+        font-size: 3.05rem;
+        font-weight: 600;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.25;
+        letter-spacing: 1.4px;
+        text-align: left;
+        color: #2e2e2e;
+        margin-bottom: 1.4rem;
+        @media screen and(max-width: 700px) {
+          font-size: 2.75rem;
+        }
+      }
+      &--delete{
+        text-decoration: underline;
+        text-transform: uppercase;
+        font-size: 2.5rem;
+        font-weight: 300;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 2.57;
+        letter-spacing: 0.92px;
+        text-align: left;
+        color: #3e3e3e;
+        @media screen and(max-width: 700px) {
+          font-size: 2.2rem;
+        }
+      }
+    }
+  }
+}

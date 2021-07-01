@@ -1,0 +1,83 @@
+.artikel__first__container{
+  width: 90.5%;
+  margin: 10rem auto;
+  display: flex;
+  @media screen and(max-width: 1024px){
+    flex-direction: column;
+  }
+  &__text{
+    display: flex;
+      .bookmarksvg{
+        display: none;
+        @media screen and(max-width: 1024px) {
+          display: block;
+          width: 220px;
+          height: 35px;
+        }
+      }
+  }
+  &__social{
+    @media screen and(max-width: 1024px){
+      flex-direction: row;
+    }
+    display: flex;
+    flex-direction: column;
+    font-size: 33px;
+    color: #3e3e3e;
+    align-items: center;
+    p{
+      color: #7b7b7b;
+      font-size: 2.2rem;
+      text-transform: uppercase;
+      margin-bottom: 0;
+      text-align: center;
+    }
+    .date-dufte{
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+      @media screen and(max-width: 1024px) {
+        margin: 0 2rem;
+
+      }
+    }
+    svg{
+      margin-top: 6px;
+      @media screen and(max-width: 1024px){
+       margin-top: 0;
+       margin: 0 10px;
+      }
+    }
+    .bookmarksvg{
+      width: 33px;
+      height: 33px;
+      stroke: #3e3e3e;
+      margin-top: 1.5rem;
+      @media screen and(max-width: 1024px){
+        display: none;
+      }
+    }
+  }
+  &--text1{
+    font-size: 4rem;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.43;
+    letter-spacing: 1.4px;
+    text-align: left;
+    color: #3e3e3e;
+    width: 70%;
+    text-transform: uppercase;
+  }
+  &--text2{
+    text-transform: uppercase;
+    font-size: 2.2rem;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.35;
+    letter-spacing: 1.2px;
+    text-align: left;
+    color: #5c5c5c;
+  }
+}

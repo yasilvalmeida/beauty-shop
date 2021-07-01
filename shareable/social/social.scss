@@ -1,0 +1,21 @@
+.social__container {
+  display: grid;
+  justify-content: center;
+  margin: 28rem 0 15rem 0;
+  &__title {
+    h4 {
+      font-size: 4rem;
+      font-weight: 300;
+      font-style: normal;
+      letter-spacing: 1.6px;
+      line-height: 5.5rem;
+      // word-spacing: 5px;
+    }
+  }
+  &__icons {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: space-between;
+    margin-top: 1.2rem;
+  }
+}

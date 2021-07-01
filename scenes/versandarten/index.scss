@@ -1,0 +1,9 @@
+@import "components/head-img/HeadImg";
+@import "components/text-box-one/TextBoxOne";
+@import "components/text-box-two/TextBoxTwo";
+
+.versandarten__scene__body{
+  &__newsletter{
+    margin-top: 16rem;
+  }
+}

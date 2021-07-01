@@ -1,0 +1,125 @@
+.contact__form__body__container__all{
+  &__form{
+    display: grid;
+    gap: 3.3rem;
+    margin: 0 auto;
+    width: 90.5%;
+    align-items: center;
+
+    &__textarea{
+      display: flex;
+      flex-direction: column;
+      &--reqtxt{
+        font-size: 2rem;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        letter-spacing: 0.45px;
+        text-align: right;
+        color: #2e2e2e;
+      }
+    }
+    input{
+      font-size: 3.3rem;
+      font-weight: 300;
+      padding: 1rem;
+      font-stretch: normal;
+      font-style: normal;
+      letter-spacing: 0.75px;
+      color: #2b2b2b;
+      outline-color: black;
+      border: solid 1px #707070;
+      &::placeholder{
+        font-size: 3.3rem;
+        font-weight: 300;
+        font-stretch: normal;
+        font-style: normal;
+        letter-spacing: 0.75px;
+        color: #707070;
+        text-transform: uppercase;
+      }
+    }
+    textarea{
+      font-size: 3.3rem;
+      padding: 2.5rem 1rem;
+      font-weight: 300;
+      font-stretch: normal;
+      font-style: normal;
+      letter-spacing: 0.75px;
+      color: #2b2b2b;
+      border: solid 1px #707070;
+      outline-color: black;
+      &::placeholder{
+        font-size: 3.3rem;
+        font-weight: 300;
+        font-stretch: normal;
+        font-style: normal;
+        letter-spacing: 0.75px;
+        color: #707070;
+        text-transform: uppercase;
+      }
+    }
+    &__submit{
+      font-size: 2.8rem;
+      font-weight: 500;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.32;
+      letter-spacing: 5px;
+      text-align: center;
+      text-transform: uppercase;
+      background: black;
+      color: #ffffff !important;
+      width: fit-content;
+      padding: 1rem 2rem !important;
+      justify-self: center;
+      margin-top: 5rem;
+      border-color: black;
+      cursor: pointer;
+    }
+    &__checkbox{
+      display: grid;
+      gap: 1.2rem;
+      .registration__form__container__form__newsletter__item__body{
+        display: flex;
+        align-items: center;
+        label{
+          font-size: 2.4rem;
+          font-weight: 300;
+          font-stretch: normal;
+          font-style: normal;
+          letter-spacing: 0.55px;
+          text-align: left;
+          color: #2e2e2e;
+          span{
+            margin-left: 1rem;
+            text-decoration: underline;
+          }
+        }
+        input{
+          box-sizing: border-box;
+          appearance: none;
+          background: white;
+          outline: 2px solid #333;
+          width: 2.8rem;
+          height: 2.8rem;
+          outline: none;
+          cursor: pointer;
+          border: solid 1px #707070;
+          margin-right: 1.7rem;
+          &:checked{
+            background: black;
+            border: solid 1px black;
+          }
+        }
+      }
+    }
+  }
+}
+.input-error{
+  &:focus{
+    outline: red auto 1px;
+  }
+  border:1px solid red !important;
+}
+

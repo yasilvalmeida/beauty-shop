@@ -1,0 +1,106 @@
+.artikel__two__images__container{
+  width: 58%;
+  margin:10rem auto;
+  display: flex;
+  flex-direction: column;
+  @media screen and(max-width: 1024px) {
+    width: 90.5%;
+  }
+  &__text2{
+    margin-top: 11rem;
+
+    i{
+      font-size: 4.2rem;
+      font-weight: 300;
+      font-stretch: normal;
+      font-style: italic;
+      line-height: 1.38;
+      letter-spacing: 1.6px;
+      text-align: center;
+      color: #3e3e3e;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-bottom: 8rem;
+    }
+    p{
+      font-size: 2.2rem;
+      font-weight: 400;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.35;
+      letter-spacing: 1.2px;
+      text-align: left;
+      color: #5c5c5c;
+      margin: 0;
+      margin-top: 2rem;
+    }
+  }
+  &__images{
+    margin-top: 5rem;
+    &__image{
+      display: grid;
+      grid-auto-flow: column;
+      gap: 4rem;
+      &--item1{
+        margin-top: 13rem;
+        @media screen and(max-width: 1024px) {
+          margin-top: 8rem;
+        }
+      }
+    }
+    &__text{
+      p{
+        font-size: 2.2rem;
+        font-weight: 400;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.35;
+        letter-spacing: 1.2px;
+        text-align: left;
+        color: #5c5c5c;
+        margin: 0;
+        margin-top: 2rem;
+      }
+      a{
+        font-size: 2.2rem;
+        text-transform: uppercase;
+        font-weight: 400;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.75;
+        letter-spacing: 1px;
+        text-align: left;
+        color: #a12224;
+        text-decoration: underline;
+        &:hover{
+          color: #a12224;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  &__text{
+    h2{
+      font-size: 4.4rem;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.38;
+      letter-spacing: 1.6px;
+      text-align: left;
+      color: #3e3e3e;
+      text-transform: uppercase;
+      margin-bottom: 5rem;
+    }
+    p{
+      font-size: 2.5rem;
+      font-weight: 300;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.59;
+      letter-spacing: 0.55px;
+      text-align: left;
+      color: #2e2e2e;
+    }
+  }
+}

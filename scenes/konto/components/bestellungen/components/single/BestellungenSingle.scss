@@ -1,0 +1,12 @@
+.bestellungen__single {
+  &__title{
+    font-size: 6.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #3e3e3e;
+    font-weight: 300;
+  }
+}
+@import "components/middle/BestellungSingleMiddle";
+@import "components/top/BestellungSingleTop";
+@import "components/bottom/BestellungSingleBottom";

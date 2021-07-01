@@ -1,0 +1,35 @@
+@import "components/checkout-products/CheckoutProducts";
+@import "components/checkout-products-data/CheckoutProductsData";
+@import "components/checkout-modal/CheckoutModal";
+@import "checkout-steps-scene/CheckoutStepScene";
+.checkout__scene__container{
+  display: grid;
+  gap: 2rem;
+  &--title{
+    h2{
+      text-transform: uppercase;
+      margin-top: 7rem;
+      font-size: 7.2rem;
+      font-weight: 300;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 0.89;
+      letter-spacing: 2.64px;
+      text-align: center;
+      color: #3e3e3e;
+    }
+  }
+  &__body{
+    width: 90.5%;
+    margin: 0 auto;
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: 69% 29%;
+  }
+}
+.checkout__scene__container__body{
+  display: flex;
+  @media screen and(max-width: 1024px) {
+    flex-wrap: wrap;
+  }
+}

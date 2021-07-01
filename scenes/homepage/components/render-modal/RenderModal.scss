@@ -1,0 +1,270 @@
+.on__render__modal {
+  .ant-modal {
+    .ant-modal-content {
+      background: black;
+
+      .ant-modal-close {
+        .ant-modal-close-x {
+          .anticon {
+            svg {
+              fill: white;
+            }
+          }
+        }
+      }
+
+      .ant-modal-header {
+        background: transparent;
+
+        .ant-modal-title {
+          color: white;
+          font-size: 7.5rem;
+          @media screen and(max-width: 1600px) {
+            font-size: 6.8rem;
+          }
+          @media screen and(max-width: 1200px) {
+            font-size: 6rem;
+            width: 90%;
+          }
+          @media screen and(max-width: 742px) {
+            font-size: 5rem;
+            width: 90%;
+          }
+          @media screen and(max-width: 640px) {
+            font-size: 4.5rem;
+            width: 90%;
+          }
+          @media screen and(max-width: 400px) {
+            font-size: 3.2rem;
+            width: 90%;
+          }
+        }
+      }
+
+      .ant-modal-body {
+        .render__modal__content {
+          &__toptxt {
+            font-size: 2.7rem;
+            font-weight: 400;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.32;
+            letter-spacing: 1.5px;
+            text-align: left;
+            color: #ffffff;
+            text-transform: uppercase;
+            margin-bottom: 3.2rem;
+            @media screen and(max-width: 400px) {
+              font-size: 2.3rem;
+            }
+          }
+
+          &__img {
+            width: 100%;
+            height: 55rem;
+            margin-bottom: 3.2rem;
+            @media screen and (max-width: 1024px) {
+              height: 35vw;
+            }
+
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+
+          &__subscribe {
+            width: 100%;
+
+            form {
+              display: grid;
+              gap: 2rem;
+
+              .email__subscription__popup {
+                display: grid;
+                width: 90.5%;
+                grid-template-columns: 53% 44%;
+                gap: 3.2rem;
+                @media screen and(max-width: 450px) {
+                  width: 100%;
+                  grid-template-columns: unset;
+                }
+
+                button {
+                  font-size: 2.7rem;
+                  font-weight: 500;
+                  font-stretch: normal;
+                  font-style: normal;
+                  line-height: 1.32;
+                  letter-spacing: 5px;
+                  text-align: center;
+                  color: #000000;
+                  text-transform: uppercase;
+                  @media screen and(max-width: 450px) {
+                    width: fit-content;
+                    justify-self: center;
+                    padding: 1.4rem;
+                  }
+                }
+
+                input {
+                  background-color: rgba(255, 255, 255, 0.64);
+                  border: none;
+                  font-size: 2.5rem;
+                  font-weight: 500;
+                  font-stretch: normal;
+                  font-style: normal;
+                  line-height: 1.35;
+                  letter-spacing: 2.3px;
+                  text-align: left;
+                  color: #000000;
+                  padding: 1.8rem;
+                  outline: none;
+                  &::placeholder {
+                    font-size: 2.5rem;
+                    font-weight: 500;
+                    font-stretch: normal;
+                    font-style: normal;
+                    line-height: 1.35;
+                    letter-spacing: 2.3px;
+                    text-align: left;
+                    color: #000000;
+                    text-transform: uppercase;
+                  }
+                }
+                .no-valid{
+                  border: 1px solid #a12224;
+                  &::placeholder{
+                    color: #a12224;
+                  }
+                }
+                .valid{
+                  border: 1px solid black;
+                }
+              }
+
+              .container {
+                display: block;
+                position: relative;
+                padding-left: 2.2rem;
+                cursor: pointer;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+              }
+
+              .container input {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+                height: 0;
+                width: 0;
+              }
+
+              .checkmark {
+                position: absolute;
+                top: 4px;
+                left: 0;
+                height: 2.2rem;
+                width: 2.2rem;
+                background-color: white;
+                border: 1px solid white;
+              }
+
+
+              .container input:checked ~ .checkmark {
+                background-color: black;
+                border: 1px solid white;
+              }
+
+              .checkmark:after {
+                content: "";
+                position: absolute;
+                display: none;
+              }
+
+              .container input:checked ~ .checkmark:after {
+                display: block;
+              }
+
+              .container .checkmark:after {
+                left: 25%;
+                top: 50%;
+                width: 5px;
+                height: 10px;
+                border: solid white;
+                border-width: 0 3px 3px 0;
+
+                transform: rotate(
+                                45deg
+                ) translate(-50%, -50%);
+              }
+
+              .privacy_popup {
+                display: flex;
+                color: white;
+                align-items: center;
+                width: 100%;
+
+                label {
+                  margin-left: 1rem;
+                  font-size: 2.2rem;
+                  font-weight: normal;
+                  font-stretch: normal;
+                  font-style: normal;
+                  line-height: 1.35;
+                  letter-spacing: 1.2px;
+                  text-align: left;
+                  color: #ffffff;
+                  text-transform: uppercase;
+
+                  span {
+                    margin-left: 1rem;
+                    text-decoration: underline;
+                  }
+                }
+
+                .checkmark {
+                  position: absolute;
+                  top: 4px;
+                  left: 0;
+                  height: 2.2rem;
+                  width: 2.2rem;
+                  background-color: white;
+                }
+
+                input:checked ~ .checkmark {
+                  background-color: black;
+                }
+
+                input {
+                  width: 2.2rem;
+                  height: 2.2rem;
+                  border: solid 1px #707070;
+                }
+              }
+            }
+          }
+
+          &__bottom {
+            margin-top: 5rem;
+
+            p {
+              font-size: 2rem;
+              font-weight: normal;
+              font-stretch: normal;
+              font-style: normal;
+              line-height: 1.33;
+              letter-spacing: 1.08px;
+              text-align: left;
+              color: #ffffff;
+              text-transform: uppercase;
+            }
+          }
+        }
+      }
+    }
+  }
+}

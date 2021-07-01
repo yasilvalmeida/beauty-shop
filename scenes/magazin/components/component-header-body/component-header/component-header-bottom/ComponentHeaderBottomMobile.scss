@@ -1,0 +1,21 @@
+.component__header__bottom__mobile{
+  width: 85.5%;
+  margin: 0 auto;
+  margin-top: 10rem;
+  padding: 10rem 7rem;
+  &__white{
+    background: white;
+    padding: 3rem;
+
+    .component__header__bottom__body__white__text--title{
+      margin: 5rem auto;
+      font-size: 4.5vw;
+    }
+  }
+  background: url("/magazin/magazin2.png") no-repeat ;  background-size: cover;
+
+  @media screen and(min-width: 1024px) {
+    display: none;
+
+  }
+}

@@ -1,0 +1,28 @@
+.checkout__products__container{
+  display: flex;
+  flex-direction: column;
+  &__sales{
+    h3{
+      font-size: 3.3rem;
+      font-weight: 300;
+      font-stretch: normal;
+      font-style: normal;
+      letter-spacing: 1.5px;
+      text-align: left;
+      color: #a12224;
+      text-transform: uppercase;
+    }
+  }
+  &__products{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 7rem;
+    &:last-child{
+      border-bottom: 1px solid #707070;
+    }
+    &__body{
+      padding: 5rem 0;
+      border-top: 1px solid #707070;
+    }
+  }
+}

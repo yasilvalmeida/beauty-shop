@@ -1,0 +1,93 @@
+.videos__container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(45rem, 1fr));
+  gap: 13rem;
+  margin: 10rem;
+  @media screen and (max-width: 475px) {
+    margin: 3rem;
+  }
+  .video-small-body-only{
+    position: relative;
+    display: grid;
+    grid-auto-flow: column;
+    button{
+      position: absolute;
+      top: 40%;
+      left: 45%;
+      width: 40px;
+      height: 47px;
+    }
+    img{
+      position: absolute;
+      top: 38%;
+      left: 47%;
+      width: 37px;
+      height: 49px;
+      cursor: pointer;
+    }
+  }
+  .small-vid-bod{
+    display: flex;
+    flex-direction: column;
+    .small-vid-text{
+      display: flex;
+      flex-direction: column;
+      p{
+        margin-top: 30px;
+        margin-bottom: 0;
+        color: #000000;
+        font-size: 2.2rem;
+        font-weight: 300;
+        font-style: normal;
+        letter-spacing: 1.38px;
+        text-align: left;
+        /* Text style for "Review" */
+        font-style: normal;
+
+        text-transform: uppercase;
+      }
+      h2{
+        margin-top: 10px;
+        color: #000000;
+        font-family: "Freight Sans Pro",system-ui;
+        font-size: 5rem;
+        font-weight: 300;
+        font-style: normal;
+        letter-spacing: 1.5px;
+        line-height: 55px;
+        text-align: left;
+        font-style: normal;
+        text-transform: uppercase;
+        margin-bottom: 50px;
+      }
+      span{
+        color: #2e2e2e;
+        font-size: 2.2rem;
+        font-weight: 300;
+        font-style: normal;
+        letter-spacing: 0.55px;
+        line-height: 40px;
+        text-align: left;
+        font-style: normal;
+        margin-top: 0px;
+      }
+      a{
+        margin-top: 10px;
+        color: #a12224;
+        font-family: "Freight Sans Pro",system-ui;
+        font-size: 2rem;
+        font-weight: 300;
+        font-style: normal;
+        letter-spacing: 1px;
+        line-height: 35px;
+        text-align: left;
+        /* Text style for "Produkt sh" */
+        font-style: normal;
+
+        text-decoration: underline;
+        text-transform: uppercase;
+      }
+    }
+
+  }
+}

@@ -1,0 +1,19 @@
+.single-product-carousel-popup {
+  display: flex !important;
+  justify-content: center;
+  //max-height: 4000px !important;
+  height: 40vw;
+  width: 40% !important;
+  margin: 0 auto;
+  img {
+    width: 100%;
+    object-fit: contain;
+    max-height: 85rem;
+  }
+}
+
+@media screen and(max-width: 1024px) {
+  .antd-dpab-modal {
+    display: none;
+  }
+}

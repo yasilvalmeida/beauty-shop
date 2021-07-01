@@ -1,0 +1,40 @@
+.carousel__artikel__right{
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-right: 15rem;
+  .backto{
+    a{
+      font-size: 1.5rem;
+      color: black;
+      border-color: black;
+    }
+    margin-bottom: 2rem;
+  }
+  &__mainimg{
+    height: 90vh;
+    width: 40%;
+    align-self: flex-end;
+    overflow: hidden;
+    .closed{
+      transform: scaleY(0);
+    }
+    .opened{
+      transform: scaleY(1);
+
+    }
+    .closedimg{
+      transform: translateY(0);
+      transition: .8s;
+    }
+    .openedimg{
+      transform: translateY(-20%);
+      transition: .8s;
+    }
+    img{
+      width: 100%;
+      height: 95%;
+    }
+  }
+}

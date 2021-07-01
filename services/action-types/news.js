@@ -1,0 +1,5 @@
+export const GET_NEWS_REPORT = 'GET_NEWS_REPORT';
+export const SET_NEWS_REPORT = 'SET_NEWS_REPORT';
+export const SET_ERROR = 'SET_ERROR';
+export const SET_SHOP_LGTXT = "SET_SHOP_LGTXT";
+export const SET_MAGAZIN_STAIR_ADD = "SET_MAGAZIN_STAIR_ADD"
