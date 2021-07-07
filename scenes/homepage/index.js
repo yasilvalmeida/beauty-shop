@@ -98,40 +98,40 @@ const Homepage = () => {
  
   return (
     <>
-      {homeLoader  && (
+      {homeLoader && (
         <div className={"loader__body"}>
-        <Space size="middle">
-          <Spin size="large" />
-        </Space>
-      </div> 
+          <Space size="middle">
+            <Spin size="large" />
+          </Space>
+        </div>
       )}
-        <>
-          <Header />
-          <MobileHeader />
-          <RenderModal
-            isModalVisible={isModalVisible}
-            setIsModalVisible={setIsModalVisible}
-          />
-          <div className={"homepage-body"}>
-            <FirstIntro />
-            <FirstIntroMobile />
-            <FirstProducts getFour={getProductsWithFilter} />
-            <SecondSection firstData={firstData} secondData={secondData} />
-            <InspirationSection inspiration={inspiration} />
-            <InspirationBottomOne />
-            <InspirationBottomTwo />
-            <SecondProducts getFour={getProductsWithFilter} />
-            <ProductsWithFilterHomepage />
-            <FilteredProductBottom />
-            <VideoPart />
-            <BottomVideo />
-            <DpabMagazine />
-            <DpabBottom />
-            <Services />
-            <NewsletterRep />
-          </div>
-          <Footer />
-        </>
+      <>
+        <Header />
+        <MobileHeader />
+        <RenderModal
+          isModalVisible={isModalVisible}
+          setIsModalVisible={setIsModalVisible}
+        />
+        <div className={"homepage-body"}>
+          <FirstIntro />
+          <FirstIntroMobile />
+          <FirstProducts getFour={getProductsWithFilter} />
+          <SecondSection firstData={firstData} secondData={secondData} />
+          <InspirationSection inspiration={inspiration} />
+          <InspirationBottomOne />
+          <InspirationBottomTwo />
+          <SecondProducts getFour={getProductsWithFilter} />
+          <ProductsWithFilterHomepage />
+          <FilteredProductBottom />
+          <VideoPart />
+          <BottomVideo />
+          <DpabMagazine />
+          <DpabBottom />
+          <Services />
+          <NewsletterRep />
+        </div>
+        <Footer />
+      </>
     </>
   );
 };

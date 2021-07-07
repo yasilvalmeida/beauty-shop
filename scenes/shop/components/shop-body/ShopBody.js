@@ -10,7 +10,7 @@ const ShopBody = () => {
     const [sortByPrice, setSortByPrice] = useState("PRIES")
     const [sortByName, setSortByName] = useState("NAME")
     const [sortByNew, setSortByNew] = useState("blank")
-    const [selected,setSelected] = useState("")
+    const [selected, setSelected] = useState("")
     useEffect(()=>{
         setSortByName("NAME")
         setSortByNew("blank")
@@ -39,5 +39,3 @@ const ShopBody = () => {
 };
 
 export default ShopBody;
-
-
