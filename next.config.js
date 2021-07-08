@@ -1,5 +1,7 @@
 module.exports = {
+  distDir: "build",
   env: {
+    NEXT_PUBLIC_API_URL: "https://207.154.241.233:1337",
     PLENTY_MARKET_API_URL: "https://www.dasparfum-beauty.de/rest",
     PLENTY_MARKET_USERNAME: "API-Webshop",
     PLENTY_MARKET_PASSWORD: "Api-Webshop123!",

@@ -27,13 +27,15 @@ export const getProducts = () => {
         const plentyMarketAuthData = JSON.parse(
           localStorage.getItem("plentyMarketAuthData")
         );
-        const { accessToken } = plentyMarketAuthData;
+        const { accessToken, access_token } = plentyMarketAuthData;
         axios
           .get(
             `${process.env.PLENTY_MARKET_API_URL}/items?page=1&itemsPerPage=3`,
             {
               headers: {
-                Authorization: `Bearer ${accessToken}`,
+                Authorization: `Bearer ${
+                  accessToken ? accessToken : access_token
+                }`,
               },
             }
           )
@@ -151,10 +153,10 @@ export const getProducts = () => {
                 keywords,
               });
               if (i === entries.length - 1) {
-                  dispatch({
-                    type: SET_PRODUCTS,
-                    payload: products,
-                  });
+                dispatch({
+                  type: SET_PRODUCTS,
+                  payload: products,
+                });
               }
             });
           })
