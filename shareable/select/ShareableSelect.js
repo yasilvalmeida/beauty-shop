@@ -21,7 +21,7 @@ const ShareableSelect = ({defaultValue, value, data, setBottleId, product}) => {
     }
     return (
         <Select
-            defaultValue={defaultVariant?.length > 0 ? defaultVariant[0]?.bottle_sizes: 0}
+            defaultValue={defaultVariant[0]?.bottle_sizes}
             value={defaultValue}
             size={value}
             style={{width: 120}}

@@ -67,14 +67,11 @@ const ProductsWithLeftText = ({ products, leftText, addToWishList }) => {
                       src={
                         e.variants_of_a_products?.find(
                           (item) => item.main === true
-                        )?.images &&
-                        e.variants_of_a_products?.find(
-                          (item) => item.main === true
                         )?.images[0]?.url
                           ? e.variants_of_a_products?.find(
                               (item) => item.main === true
                             )?.images[0]?.url
-                          : "footerlogo.png"
+                          : e.images[0]?.url
                       }
                       className={"item-picture"}
                       alt=""
@@ -155,28 +152,22 @@ const ProductsWithLeftText = ({ products, leftText, addToWishList }) => {
                   {e?.brand?.name ? (
                     <h3 className={"prod-txt-name"}>{e?.brand?.name}</h3>
                   ) : (
-                    <h3
-                      className={"prod-txt-name"} /* style={{ opacity: "0" }} */
-                    >
-                      No Brand
+                    <h3 className={"prod-txt-name"} style={{ opacity: "0" }}>
+                      jdfbhsbh
                     </h3>
                   )}
                   {e?.name ? (
                     <span className={"prod-txt-foot"}>{e?.name}</span>
                   ) : (
-                    <span
-                      className={"prod-txt-foot"} /* style={{ opacity: 0 }} */
-                    >
-                      No Name
+                    <span className={"prod-txt-foot"} style={{ opacity: 0 }}>
+                      Energy Kapseln
                     </span>
                   )}
                   {e?.kind ? (
                     <span className={"prod-txt-foot2"}>Kapseln</span>
                   ) : (
-                    <span
-                      className={"prod-txt-foot2"} /* style={{ opacity: 0 }} */
-                    >
-                      No Kind
+                    <span className={"prod-txt-foot2"} style={{ opacity: 0 }}>
+                      Kapseln
                     </span>
                   )}
                   <h3 className={"prod-txt-price"}>
@@ -184,26 +175,18 @@ const ProductsWithLeftText = ({ products, leftText, addToWishList }) => {
                       e.variants_of_a_products?.find(
                         (item) => item.main === true
                       )?.price || 0
-                    )}{" "}
-                    /{" "}
-                    {
-                      e?.variants_of_a_products?.find(
-                        (item) => item.main === true
-                      ).quantity
-                    }
+                    )} / {e?.variants_of_a_products?.find(item => item.main === true).bottle_sizes}
                   </h3>
 
-                  <button
-                    onClick={() => {
-                      addProductToBasket(
+                  <button  onClick={() => {
+                    addProductToBasket(
                         e.id,
                         e?.variants_of_a_products?.find(
-                          (item) => item.main === true
+                            (item) => item.main === true
                         )?.id,
                         1
-                      );
-                    }}
-                  >
+                    );
+                  }}>
                     <p>Quick shop </p>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
