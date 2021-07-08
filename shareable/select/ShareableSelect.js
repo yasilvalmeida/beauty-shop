@@ -20,21 +20,21 @@ const ShareableSelect = ({defaultValue, value, data, setBottleId, product}) => {
         })[0].id)
     }
     return (
-        <Select
-            defaultValue={defaultVariant[0]?.bottle_sizes}
-            value={defaultValue}
-            size={value}
-            style={{width: 120}}
-            onChange={handleChange}
-        >
-            {data?.variants_of_a_products?.map((e, i) => {
-                return (
-                    <Option key={i} value={e?.id}>
-                        {e?.bottle_sizes}
-                    </Option>
-                );
-            })}
-        </Select>
+      <Select
+        defaultValue={defaultVariant?.length > 0 ? defaultVariant[0]?.bottle_sizes : 0}
+        value={defaultValue}
+        size={value}
+        style={{ width: 120 }}
+        onChange={handleChange}
+      >
+        {data?.variants_of_a_products?.map((e, i) => {
+          return (
+            <Option key={i} value={e?.id}>
+              {e?.bottle_sizes}
+            </Option>
+          );
+        })}
+      </Select>
     );
 };
 export default ShareableSelect;
