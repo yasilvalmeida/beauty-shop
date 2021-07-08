@@ -25,7 +25,8 @@ const shopPageReducer = (state = initialState, {type, payload}) => {
                 ...state,
                 shopProductsLoaded: false,
                 shopProducts: payload,
-                staticShopProducts: payload
+                staticShopProducts: payload,
+                count: payload.length
             };
         case SORT_SHOP_PRODUCTS:
             return {

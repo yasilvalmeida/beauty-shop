@@ -172,7 +172,7 @@ export const getProductsTwo = () => {
         const { accessToken } = plentyMarketAuthData;
         axios
           .get(
-            `${process.env.PLENTY_MARKET_API_URL}/items?page=1&itemsPerPage=3`,
+            `${process.env.PLENTY_MARKET_API_URL}/items?page=3&itemsPerPage=3`,
             {
               headers: {
                 Authorization: `Bearer ${accessToken}`,

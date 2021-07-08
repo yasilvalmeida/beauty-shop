@@ -11,14 +11,14 @@ const LexikonScene = () =>{
     useEffect(() => {
         dispatch(getUserDataFromLocalStorage());
     }, []);
-    return(
-        <div className={"lexikon__body__for__all"}>
-            <HeadTextLexikon/>
-            <LexikonFilter/>
-            <LexikonCollapse/>
-            <NewsletterRep/>
-        </div>
-    )
+    return (
+      <div className={"lexikon__body__for__all"}>
+        <HeadTextLexikon />
+        <LexikonFilter />
+        <LexikonCollapse />
+        <NewsletterRep />
+      </div>
+    );
 }
 
 export default LexikonScene
