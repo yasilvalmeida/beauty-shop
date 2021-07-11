@@ -1,0 +1,9 @@
+{
+  "apps": [
+      {
+          "name": "beauty-shop",
+          "script": "npm",
+          "args" : "start"
+      }
+  ]
+}

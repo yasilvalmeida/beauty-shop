@@ -1,7 +1,6 @@
 import React from "react";
 import SingleProductScene from "../../scenes/single-product-scene";
 const ProductDetail = () => {
-
   return (
     <>
       <SingleProductScene/>
@@ -16,9 +15,7 @@ export async function getStaticProps() {
 
 
 export async function getStaticPaths(params) {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`,
-
-    )
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`)
     const data = await res.json()
     console.log(data)
     return {

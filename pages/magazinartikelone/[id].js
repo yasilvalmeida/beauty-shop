@@ -2,7 +2,7 @@ import CarouselArtikel from "../../scenes/magazin-artikel-scene/components/carou
 const MagazinElement = () => {
     return (
         <>
-           <CarouselArtikel/>
+            <CarouselArtikel/>
         </>
     );
 }
