@@ -17,26 +17,28 @@ import addressReducer from "./reducers/address";
 import markenReducer from "./reducers/marken";
 import basketReducer from "./reducers/basket";
 import videoReducer from "./reducers/video";
+import categoriesReducer from "./reducers/categories";
 
 const rootReducer = combineReducers({
-    navbar: homeReducer,
-    newsletter: newsletterReducer,
-    auth: authReducer,
-    products: productsReducer,
-    news: newsReportReducer,
-    footer: footerReducer,
-    singleProdPage: singleProductPageReducer,
-    konto: kontoPageReducer,
-    registration: RegistrationReducer,
-    versandarten: versandartenReducer,
-    contact: ContactReducer,
-    notFoundReducer: notFoundReducer,
-    shop: shopPageReducer,
-    brand: brandsProductsReducer,
-    address: addressReducer,
-    marken: markenReducer,
-    basket: basketReducer,
-    video: videoReducer
+  navbar: homeReducer,
+  newsletter: newsletterReducer,
+  auth: authReducer,
+  products: productsReducer,
+  news: newsReportReducer,
+  footer: footerReducer,
+  singleProdPage: singleProductPageReducer,
+  konto: kontoPageReducer,
+  registration: RegistrationReducer,
+  versandarten: versandartenReducer,
+  contact: ContactReducer,
+  notFoundReducer: notFoundReducer,
+  shop: shopPageReducer,
+  brand: brandsProductsReducer,
+  address: addressReducer,
+  marken: markenReducer,
+  basket: basketReducer,
+  video: videoReducer,
+  category: categoriesReducer,
 });
 
 export default rootReducer;

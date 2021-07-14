@@ -9,7 +9,7 @@ import {
 } from "../action-types/shop";
 import { backendLogin } from "../actions/plenty_market_auth";
 
-export const getShopProducts = () => {
+export const getShopProducts = (currentPage, maxPerPage) => {
     return (dispatch) => {
         dispatch(backendLogin());
         dispatch({ type: GET_SHOP_PRODUCTS });
@@ -17,18 +17,19 @@ export const getShopProducts = () => {
         const plentyMarketAuthData = JSON.parse(
           localStorage.getItem("plentyMarketAuthData")
         );
-        const { accessToken } = plentyMarketAuthData;
+        const { accessToken, access_token } = plentyMarketAuthData;
         axios
           .get(
-            `${process.env.PLENTY_MARKET_API_URL}/items?page=1&itemsPerPage=20`,
+            `${process.env.PLENTY_MARKET_API_URL}/items?page=${currentPage}&itemsPerPage=${maxPerPage}`,
             {
               headers: {
-                Authorization: `Bearer ${accessToken}`,
+                Authorization: `Bearer ${accessToken ? accessToken : access_token}`,
               },
             }
           )
           .then(async (res) => {
             const { data } = res;
+            const { totalsCount } = data;
             const { entries } = data;
             const products = [];
             await entries.map(async (product, i) => {
@@ -136,6 +137,7 @@ export const getShopProducts = () => {
                 manufacturerId,
                 images,
                 variants_of_a_products,
+                New_Date_Limit: createdAt,
                 created_at: createdAt,
                 updated_at: updatedAt,
                 keywords,
@@ -145,75 +147,16 @@ export const getShopProducts = () => {
                   type: SET_SHOP_PRODUCTS,
                   payload: products,
                 });
+                
+                dispatch({
+                  type: SET_PRODUCTS_COUNT,
+                  payload: totalsCount,
+                });
               }
             });
           })
           .catch((err) => dispatch({ type: SET_ERROR, payload: err }));
-        /* dispatch({type: GET_SHOP_PRODUCTS});
-        dispatch({type:SET_LOADED})
-        axios
-            .get(`${process.env.NEXT_PUBLIC_API_URL}/products`, {
-                headers: {
-                    Authorization: JSON.parse(localStorage.getItem("userData") || "{}")
-                        .jwt
-                        ? `Bearer ${
-                            JSON.parse(localStorage.getItem("userData") || "{}").jwt || ""
-                        }`
-                        : "",
-                },
-            })
-            .then((res) => {
-                const {data} = res;
-
-                dispatch({
-                    type: SET_SHOP_PRODUCTS,
-                    payload: data,
-                });
-            })
-            .catch((err) => dispatch({type: SET_ERROR, payload: err})); */
     };
-};
-
-
-export const getProductsCount = () => {
-    return dispatch => {
-        dispatch(backendLogin());
-        const plentyMarketAuthData = JSON.parse(
-          localStorage.getItem("plentyMarketAuthData")
-        );
-        const { accessToken } = plentyMarketAuthData;
-        axios
-          .get(
-            `${process.env.PLENTY_MARKET_API_URL}/items?page=1&itemsPerPage=20`,
-            {
-              headers: {
-                Authorization: `Bearer ${accessToken}`,
-              },
-            }
-          )
-          .then(async (res) => {
-            const { data } = res;
-            const { totalsCount } = data;
-            dispatch({
-              type: SET_PRODUCTS_COUNT,
-              payload: totalsCount,
-            });
-          })
-          .catch((err) => dispatch({ type: SET_ERROR, payload: err }));
-    };
-    /* return dispatch => {
-
-        axios.get(`${process.env.NEXT_PUBLIC_API_URL}/products/count`)
-            .then(res => {
-                const {data} = res;
-
-                dispatch({
-                    type: SET_PRODUCTS_COUNT,
-                    payload: data
-                });
-            })
-            .catch(err => dispatch({type: SET_ERROR, payload: err}));
-    }; */
 };
 
 export const sortShopProducts = (data) =>{

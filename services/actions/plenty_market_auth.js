@@ -22,18 +22,24 @@ export const getPlentyMarketAuthDataFromLocalStorage = () => {
 
 export const backendLogin = () => {
     return dispatch => {
-        dispatch({ type: PLENTY_MARKET_TOKEN })
-        
+        dispatch({ type: PLENTY_MARKET_TOKEN });
+        const headers = {
+          "Content-type": "application/json",
+          "Access-Control-Allow-Headers": "*",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,POST",
+        };
         axios
           .post(
             `${process.env.PLENTY_MARKET_API_URL}/login`,
             {
               username: process.env.PLENTY_MARKET_USERNAME,
               password: process.env.PLENTY_MARKET_PASSWORD,
-            },
+            }, 
             {
-              "Content-Type": "text/plain; charset=UTF-8",
-            }
+              headers: headers
+            },
+            /* { crossdomain: true }, */
           )
           .then((res) => {
             localStorage.setItem(

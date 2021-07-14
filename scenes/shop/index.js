@@ -12,7 +12,6 @@ import Footer from "../../layouts/footer/Footer";
 import {getNavbar} from "../../services/actions/homepage__stable";
 import {Space, Spin} from "antd";
 import {getUserDataFromLocalStorage} from "../../services/actions/auth";
-import {getShopProducts} from "../../services/actions/shop";
 
 const ShopScene = () => {
 
@@ -22,7 +21,6 @@ const ShopScene = () => {
         dispatch(getNewsReport());
         dispatch(getShopLgText());
         dispatch(getNavbar());
-        dispatch(getShopProducts())
     }, []);
     const headLoaded = useSelector(state => state.news.newsReportLoading)
     const navlistloaded = useSelector((state) => state.navbar.navListLoaded)
@@ -52,4 +50,3 @@ const ShopScene = () => {
 }
 
 export default ShopScene
-

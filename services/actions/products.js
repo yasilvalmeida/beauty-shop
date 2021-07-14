@@ -27,13 +27,13 @@ export const getProducts = () => {
         const plentyMarketAuthData = JSON.parse(
           localStorage.getItem("plentyMarketAuthData")
         );
-        const { accessToken } = plentyMarketAuthData;
+        const { accessToken, access_token } = plentyMarketAuthData;
         axios
           .get(
             `${process.env.PLENTY_MARKET_API_URL}/items?page=1&itemsPerPage=3`,
             {
               headers: {
-                Authorization: `Bearer ${accessToken}`,
+                Authorization: `Bearer ${accessToken ? accessToken : access_token}`,
               },
             }
           )
@@ -58,7 +58,9 @@ export const getProducts = () => {
                 `${process.env.PLENTY_MARKET_API_URL}/items/${id}/variations`,
                 {
                   headers: {
-                    Authorization: `Bearer ${accessToken}`,
+                    Authorization: `Bearer ${
+                      accessToken ? accessToken : access_token
+                    }`,
                   },
                 }
               );
@@ -66,7 +68,9 @@ export const getProducts = () => {
                 `${process.env.PLENTY_MARKET_API_URL}/items/${id}/images`,
                 {
                   headers: {
-                    Authorization: `Bearer ${accessToken}`,
+                    Authorization: `Bearer ${
+                      accessToken ? accessToken : access_token
+                    }`,
                   },
                 }
               );
@@ -146,6 +150,7 @@ export const getProducts = () => {
                 manufacturerId,
                 images,
                 variants_of_a_products,
+                New_Date_Limit: createdAt,
                 created_at: createdAt,
                 updated_at: updatedAt,
                 keywords,
@@ -161,6 +166,7 @@ export const getProducts = () => {
           .catch((err) => dispatch({ type: SET_ERROR, payload: err }));
     };
 };
+
 export const getProductsTwo = () => {
     return (dispatch) => {
         dispatch(backendLogin());
@@ -169,13 +175,15 @@ export const getProductsTwo = () => {
         const plentyMarketAuthData = JSON.parse(
           localStorage.getItem("plentyMarketAuthData")
         );
-        const { accessToken } = plentyMarketAuthData;
+        const { accessToken, access_token } = plentyMarketAuthData;
         axios
           .get(
-            `${process.env.PLENTY_MARKET_API_URL}/items?page=1&itemsPerPage=3`,
+            `${process.env.PLENTY_MARKET_API_URL}/items?page=3&itemsPerPage=3`,
             {
               headers: {
-                Authorization: `Bearer ${accessToken}`,
+                Authorization: `Bearer ${
+                  accessToken ? accessToken : access_token
+                }`,
               },
             }
           )
@@ -200,7 +208,9 @@ export const getProductsTwo = () => {
                 `${process.env.PLENTY_MARKET_API_URL}/items/${id}/variations`,
                 {
                   headers: {
-                    Authorization: `Bearer ${accessToken}`,
+                    Authorization: `Bearer ${
+                      accessToken ? accessToken : access_token
+                    }`,
                   },
                 }
               );
@@ -208,7 +218,9 @@ export const getProductsTwo = () => {
                 `${process.env.PLENTY_MARKET_API_URL}/items/${id}/images`,
                 {
                   headers: {
-                    Authorization: `Bearer ${accessToken}`,
+                    Authorization: `Bearer ${
+                      accessToken ? accessToken : access_token
+                    }`,
                   },
                 }
               );
@@ -288,6 +300,7 @@ export const getProductsTwo = () => {
                 manufacturerId,
                 images,
                 variants_of_a_products,
+                New_Date_Limit: createdAt,
                 created_at: createdAt,
                 updated_at: updatedAt,
                 keywords,
@@ -301,30 +314,9 @@ export const getProductsTwo = () => {
             });
           })
           .catch((err) => dispatch({ type: SET_ERROR, payload: err }));
-        
-        /* 
-        dispatch({type: GET_PRODUCTS});
-        axios
-            .get(`${process.env.NEXT_PUBLIC_API_URL}/findByLimit/3`, {
-                headers: {
-                    Authorization: JSON.parse(localStorage.getItem("userData") || "{}")
-                        .jwt
-                        ? `Bearer ${
-                            JSON.parse(localStorage.getItem("userData") || "{}").jwt || ""
-                        }`
-                        : "",
-                },
-            })
-            .then((res) => {
-                const {data} = res;
-                dispatch({
-                    type: SET_PRODUCTS_TWO,
-                    payload: data,
-                });
-            })
-            .catch((err) => dispatch({type: SET_ERROR, payload: err})); */
     };
 };
+
 export const addToWishList = (product, variantId, array) => {
     return (dispatch) => {
         return axios
@@ -512,16 +504,13 @@ export const getSingleProduct = (id) => {
       const plentyMarketAuthData = JSON.parse(
         localStorage.getItem("plentyMarketAuthData")
       );
-      const { accessToken } = plentyMarketAuthData;
+      const { accessToken, access_token } = plentyMarketAuthData;
       axios
-        .get(
-          `${process.env.PLENTY_MARKET_API_URL}/items/${id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }
-        )
+        .get(`${process.env.PLENTY_MARKET_API_URL}/items/${id}`, {
+          headers: {
+            Authorization: `Bearer ${accessToken ? accessToken : access_token}`,
+          },
+        })
         .then(async (res) => {
           const { data } = res;
           const images = [];
@@ -539,7 +528,9 @@ export const getSingleProduct = (id) => {
             `${process.env.PLENTY_MARKET_API_URL}/items/${id}/variations`,
             {
               headers: {
-                Authorization: `Bearer ${accessToken}`,
+                Authorization: `Bearer ${
+                  accessToken ? accessToken : access_token
+                }`,
               },
             }
           );
@@ -547,7 +538,9 @@ export const getSingleProduct = (id) => {
             `${process.env.PLENTY_MARKET_API_URL}/items/${id}/images`,
             {
               headers: {
-                Authorization: `Bearer ${accessToken}`,
+                Authorization: `Bearer ${
+                  accessToken ? accessToken : access_token
+                }`,
               },
             }
           );
@@ -629,6 +622,7 @@ export const getSingleProduct = (id) => {
               manufacturerId,
               images,
               variants_of_a_products,
+              New_Date_Limit: createdAt,
               created_at: createdAt,
               updated_at: updatedAt,
               keywords,
@@ -637,35 +631,13 @@ export const getSingleProduct = (id) => {
         })
         .catch((err) => dispatch({ type: SET_ERROR, payload: err }));
     };
-    /* return (dispatch) => {
-        dispatch({type: SET_PRODUCT_SINGLE_LOADED});
-        axios
-            .get(`${process.env.NEXT_PUBLIC_API_URL}/products/${id}`, {
-                headers: {
-                    Authorization: JSON.parse(localStorage.getItem("userData") || "{}")
-                        .jwt
-                        ? `Bearer ${
-                            JSON.parse(localStorage.getItem("userData") || "{}").jwt || ""
-                        }`
-                        : "",
-                },
-            })
-            .then((res) => {
-                const {data} = res;
-                dispatch({
-                    type: GET_SINGLE_PRODUCT_DATA,
-                    payload: data,
-                });
-            })
-            .catch((err) => dispatch({type: SET_ERROR, payload: err}));
-    }; */
 };
 
-// export const setSingleProductSelected = (id) => {
-//     return (dispatch) => {
-//         dispatch({
-//             type: SET_SINGLE_PRODUCT_SELECTED,
-//             payload: id
-//         })
-//     }
-// }
+export const setSingleProductSelected = (id) => {
+    return (dispatch) => {
+        dispatch({
+            type: SET_SINGLE_PRODUCT_SELECTED,
+            payload: id
+        })
+    }
+}

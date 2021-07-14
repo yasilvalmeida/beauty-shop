@@ -23,16 +23,11 @@ const ShopBody = () => {
 
     return (
         <div className='shop__body'>
-            <ShopBodyHeader
-
-                setSelected={setSelected}
-            />
+            <ShopBodyHeader setSelected={setSelected} />
             <div className='shop__body__content'>
                 <Dashboard/>
                 <MobileFilter/>
-                <ShopBodyContainer
-                    selected={selected}
-                />
+                <ShopBodyContainer selected={selected} />
             </div>
         </div>
     );

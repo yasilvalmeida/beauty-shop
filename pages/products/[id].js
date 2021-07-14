@@ -1,5 +1,6 @@
 import React from "react";
 import SingleProductScene from "../../scenes/single-product-scene";
+
 const ProductDetail = () => {
   return (
     <>
@@ -7,27 +8,27 @@ const ProductDetail = () => {
     </>
   );
 };
+
 export async function getStaticProps() {
     return {
-        props:{}
+        props: {}
     };
 }
-
 
 export async function getStaticPaths(params) {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`)
-    const data = await res.json()
-    console.log(data)
-    return {
-        paths: data.map(e=>{
-            return{
-                params:{id:`${e.id}`}
-            }
-        }),
-        fallback:false
-
-    };
+  const max = 3000;
+  const data = [];
+  for (let i = 1; i <= max; i++) {
+    data.push(i);
+  }
+  return {
+    paths: data.map((e) => {
+      return {
+        params: { id: `${e}` },
+      };
+    }),
+    fallback: false,
+  };
 }
-
 
 export default ProductDetail;

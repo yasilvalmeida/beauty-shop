@@ -1,58 +1,46 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import DashboardMenu from './dashboard-menu/DashboardMenu';
+import {
+  getCategories
+} from "../../../../../services/actions/categories";
+import { useDispatch, useSelector } from "react-redux";
 
 const Dashboard = () => {
-  const [value, setValue] = useState([]);
+  const dispatch = useDispatch();
+  let categoriesData = useSelector((state) => state.category.categories);
 
+  const [categoriesLoaded, setCategoriesLoaded] = useState(false);
+  /* 
+  const [value, setValue] = useState([]);
   const onChange = (e) => {
-    // setValue([...value,e.target.value]);
+    setValue([...value, e.target.value]);
+    //console.log('onChange', value);
   };
   
   function callback(key) {
     console.log(key);
-  }
+  } */
+
+  useEffect(() => {
+    dispatch(getCategories());
+  }, [categoriesLoaded]);
+
   const data = {
     titles: [
-      { title: 'KATEGORIEN:' },
-      { title: 'SHOP BY' },
-      { title: 'MARKEN' },
-      { title: 'WIRKSTOFFE' },
-      { title: 'DUFT ANLASS' },
-      { title: 'DUFTNOTEN' },
-      { title: 'DUFTRICHTUNG' },
-      { title: 'SONNENSCHUTZ' },
+      { title: "KATEGORIEN", data: categoriesData },
+      { title: "SHOP BY", data: [] },
+      { title: "MARKEN", data: [] },
+      { title: "WIRKSTOFFE", data: [] },
+      { title: "DUFT ANLASS", data: [] },
+      { title: "DUFTNOTEN", data: [] },
+      { title: "DUFTRICHTUNG", data: [] },
+      { title: "SONNENSCHUTZ", data: [] },
     ],
-    category: [
-      {
-        name: 'ALLES',
-      },
-      {
-        name: 'PERFUMS',
-      },
-      {
-        name: 'BEAUTY',
-      },
-      {
-        name: 'HARREN',
-      },
-      {
-        name: 'INTERIERUR',
-      },
-      {
-        name: 'ACCESSOIRES',
-      },
-    ],
-
   };
-  
+
   return (
-    <div className='dashboard__container'>
-        <DashboardMenu
-          onChange={onChange}
-          value={value}
-          callback={callback}
-          data={data}
-        />
+    <div className="dashboard__container">
+      <DashboardMenu data={data} />
     </div>
   );
 };

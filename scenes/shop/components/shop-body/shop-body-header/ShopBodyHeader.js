@@ -2,7 +2,6 @@ import {Select} from 'antd';
 import React, {useEffect,useState} from 'react';
 import ShareableShopSelect from "../../../../../shareable/select/ShareableShopSelect";
 import {useDispatch, useSelector} from "react-redux";
-import {getProductsCount} from "../../../../../services/actions/shop";
 
 const {Option} = Select;
 const priceData = ["PRIES","Ascending", 'Descending'];
@@ -32,10 +31,10 @@ const ShopBodyHeader = ({ setSelected}) => {
         setNor(value)
         setSelected(value)
     };
-    const dispatch = useDispatch()
+    //const dispatch = useDispatch()
     const count = useSelector(state => state.shop.count);
     useEffect(() => {
-        dispatch(getProductsCount())
+        //dispatch(getProductsCount())
     }, [])
 
     return (
