@@ -22,18 +22,15 @@ import axios from "axios";
 export const getProducts = () => {
     return (dispatch) => {
         dispatch(backendLogin())
-        //dispatch({ type: PLENTY_MARKET_LOGIN });
         dispatch({ type: GET_PRODUCTS });
-        const plentyMarketAuthData = JSON.parse(
-          localStorage.getItem("plentyMarketAuthData")
-        );
-        const { accessToken, access_token } = plentyMarketAuthData;
+        const plentyMarketAuthData = JSON.parse(localStorage.getItem("plentyMarketAuthData"));
+        const { accessToken } = plentyMarketAuthData;
         axios
           .get(
-            `${process.env.PLENTY_MARKET_API_URL}/items?page=1&itemsPerPage=3`,
+            `${process.env.PLENTY_MARKET_API_URL}/items?with=variations,itemImages&page=1&itemsPerPage=3`,
             {
               headers: {
-                Authorization: `Bearer ${accessToken ? accessToken : access_token}`,
+                Authorization: `Bearer ${accessToken}`,
               },
             }
           )
@@ -44,8 +41,15 @@ export const getProducts = () => {
             await entries.map(async (product, i) => {
               const images = [];
               const variants_of_a_products = [];
-              const { id, manufacturerId, createdAt, updatedAt, texts } =
-                product;
+              const {
+                id,
+                manufacturerId,
+                createdAt,
+                updatedAt,
+                texts,
+                variations,
+                itemImages,
+              } = product;
               const {
                 name1,
                 shortDescription,
@@ -54,28 +58,7 @@ export const getProducts = () => {
                 technicalData,
                 keywords,
               } = texts[0];
-              const variationsFetchData = await axios.get(
-                `${process.env.PLENTY_MARKET_API_URL}/items/${id}/variations`,
-                {
-                  headers: {
-                    Authorization: `Bearer ${
-                      accessToken ? accessToken : access_token
-                    }`,
-                  },
-                }
-              );
-              const imagesFetchData = await axios.get(
-                `${process.env.PLENTY_MARKET_API_URL}/items/${id}/images`,
-                {
-                  headers: {
-                    Authorization: `Bearer ${
-                      accessToken ? accessToken : access_token
-                    }`,
-                  },
-                }
-              );
-              const imagesData = imagesFetchData?.data;
-              await imagesData.map((image, j) => {
+              await itemImages.map((image, j) => {
                 const formats = [];
                 const {
                   cleanImageName,
@@ -125,8 +108,7 @@ export const getProducts = () => {
                   updated_at: lastUpdate,
                 });
               });
-              const variationsData = variationsFetchData?.data?.entries;
-              await variationsData.map((variation, v) => {
+              await variations.map((variation, v) => {
                 const { isMain, purchasePrice, availability } = variation;
                 //if (purchasePrice > price) price = purchasePrice;
                 variants_of_a_products.push({
@@ -156,10 +138,10 @@ export const getProducts = () => {
                 keywords,
               });
               if (i === entries.length - 1) {
-                  dispatch({
-                    type: SET_PRODUCTS,
-                    payload: products,
-                  });
+                dispatch({
+                  type: SET_PRODUCTS,
+                  payload: products,
+                });
               }
             });
           })
@@ -170,20 +152,15 @@ export const getProducts = () => {
 export const getProductsTwo = () => {
     return (dispatch) => {
         dispatch(backendLogin());
-        //dispatch({ type: PLENTY_MARKET_LOGIN });
         dispatch({ type: GET_PRODUCTS });
-        const plentyMarketAuthData = JSON.parse(
-          localStorage.getItem("plentyMarketAuthData")
-        );
-        const { accessToken, access_token } = plentyMarketAuthData;
+        const plentyMarketAuthData = JSON.parse(localStorage.getItem("plentyMarketAuthData"));
+        const { accessToken } = plentyMarketAuthData;
         axios
           .get(
-            `${process.env.PLENTY_MARKET_API_URL}/items?page=3&itemsPerPage=3`,
+            `${process.env.PLENTY_MARKET_API_URL}/items?with=variations,itemImages&page=3&itemsPerPage=3`,
             {
               headers: {
-                Authorization: `Bearer ${
-                  accessToken ? accessToken : access_token
-                }`,
+                Authorization: `Bearer ${accessToken}`,
               },
             }
           )
@@ -194,8 +171,15 @@ export const getProductsTwo = () => {
             await entries.map(async (product, i) => {
               const images = [];
               const variants_of_a_products = [];
-              const { id, manufacturerId, createdAt, updatedAt, texts } =
-                product;
+              const {
+                id,
+                manufacturerId,
+                createdAt,
+                updatedAt,
+                texts,
+                variations,
+                itemImages,
+              } = product;
               const {
                 name1,
                 shortDescription,
@@ -204,28 +188,7 @@ export const getProductsTwo = () => {
                 technicalData,
                 keywords,
               } = texts[0];
-              const variationsFetchData = await axios.get(
-                `${process.env.PLENTY_MARKET_API_URL}/items/${id}/variations`,
-                {
-                  headers: {
-                    Authorization: `Bearer ${
-                      accessToken ? accessToken : access_token
-                    }`,
-                  },
-                }
-              );
-              const imagesFetchData = await axios.get(
-                `${process.env.PLENTY_MARKET_API_URL}/items/${id}/images`,
-                {
-                  headers: {
-                    Authorization: `Bearer ${
-                      accessToken ? accessToken : access_token
-                    }`,
-                  },
-                }
-              );
-              const imagesData = imagesFetchData?.data;
-              await imagesData.map((image, j) => {
+              await itemImages.map((image, j) => {
                 const formats = [];
                 const {
                   cleanImageName,
@@ -275,8 +238,7 @@ export const getProductsTwo = () => {
                   updated_at: lastUpdate,
                 });
               });
-              const variationsData = variationsFetchData?.data?.entries;
-              await variationsData.map((variation, v) => {
+              await variations.map((variation, v) => {
                 const { isMain, purchasePrice, availability } = variation;
                 //if (purchasePrice > price) price = purchasePrice;
                 variants_of_a_products.push({
@@ -501,21 +463,30 @@ export const getSingleProduct = (id) => {
     return (dispatch) => {
       dispatch(backendLogin());
       dispatch({ type: SET_PRODUCT_SINGLE_LOADED });
-      const plentyMarketAuthData = JSON.parse(
-        localStorage.getItem("plentyMarketAuthData")
-      );
-      const { accessToken, access_token } = plentyMarketAuthData;
+      const plentyMarketAuthData = JSON.parse(localStorage.getItem("plentyMarketAuthData"));
+      const { accessToken } = plentyMarketAuthData;
       axios
-        .get(`${process.env.PLENTY_MARKET_API_URL}/items/${id}`, {
-          headers: {
-            Authorization: `Bearer ${accessToken ? accessToken : access_token}`,
-          },
-        })
+        .get(
+          `${process.env.PLENTY_MARKET_API_URL}/items/${id}?with=variations,itemImages`,
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        )
         .then(async (res) => {
           const { data } = res;
           const images = [];
           const variants_of_a_products = [];
-          const { id, manufacturerId, createdAt, updatedAt, texts } = data;
+          const {
+            id,
+            manufacturerId,
+            createdAt,
+            updatedAt,
+            texts,
+            variations,
+            itemImages,
+          } = data;
           const {
             name1,
             shortDescription,
@@ -524,28 +495,7 @@ export const getSingleProduct = (id) => {
             technicalData,
             keywords,
           } = texts[0];
-          const variationsFetchData = await axios.get(
-            `${process.env.PLENTY_MARKET_API_URL}/items/${id}/variations`,
-            {
-              headers: {
-                Authorization: `Bearer ${
-                  accessToken ? accessToken : access_token
-                }`,
-              },
-            }
-          );
-          const imagesFetchData = await axios.get(
-            `${process.env.PLENTY_MARKET_API_URL}/items/${id}/images`,
-            {
-              headers: {
-                Authorization: `Bearer ${
-                  accessToken ? accessToken : access_token
-                }`,
-              },
-            }
-          );
-          const imagesData = imagesFetchData?.data;
-          await imagesData.map((image, j) => {
+          await itemImages.map((image, j) => {
             const formats = [];
             const {
               cleanImageName,
@@ -595,8 +545,7 @@ export const getSingleProduct = (id) => {
               updated_at: lastUpdate,
             });
           });
-          const variationsData = variationsFetchData?.data?.entries;
-          await variationsData.map((variation, v) => {
+          await variations.map((variation, v) => {
             const { isMain, purchasePrice, availability } = variation;
             //if (purchasePrice > price) price = purchasePrice;
             variants_of_a_products.push({
