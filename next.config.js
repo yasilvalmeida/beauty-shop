@@ -1,8 +1,8 @@
 module.exports = {
   env: {
-    PLENTY_MARKET_API_URL: "https://www.dasparfum-beauty.de/rest",
-    PLENTY_MARKET_USERNAME: "API-Webshop",
-    PLENTY_MARKET_PASSWORD: "Developer2020!!",
+    PLENTY_MARKET_API_URL: process.env.PLENTY_MARKET_API_URL,
+    PLENTY_MARKET_USERNAME: process.env.PLENTY_MARKET_USERNAME,
+    PLENTY_MARKET_PASSWORD: process.env.PLENTY_MARKET_PASSWORD,
   },
   images: {
     domains: ["ik.imagekit.io"],
