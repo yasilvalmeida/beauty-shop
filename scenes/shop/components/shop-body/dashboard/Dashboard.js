@@ -6,14 +6,23 @@ import {
 import { getManufactories } from "../../../../../services/actions/manufactories";
 import { useDispatch, useSelector } from "react-redux";
 
-const Dashboard = () => {
+const Dashboard = ({
+  setFilterType,
+  setFilterId,
+  maxItemAllowed,
+  setCurrent,
+  current,
+  scrollToref,
+  }) => {
   const dispatch = useDispatch();
   let categoriesData = useSelector((state) => state.category.categories);
-  let manufactoriesData = useSelector((state) => state.manufactory.manufactories);
+  let manufactoriesData = useSelector(
+    (state) => state.manufactory.manufactories
+  );
 
   const [categoriesLoaded, setCategoriesLoaded] = useState(false);
   const [manufactoriesLoaded, setManufactoriesLoaded] = useState(false);
-  
+
   useEffect(() => {
     dispatch(getCategories());
   }, [categoriesLoaded]);
@@ -37,7 +46,15 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard__container">
-      <DashboardMenu data={data} />
+      <DashboardMenu
+        data={data}
+        setFilterType={setFilterType}
+        setFilterId={setFilterId}
+        maxItemAllowed={maxItemAllowed}
+        setCurrent={setCurrent}
+        current={current}
+        scrollToref={scrollToref}
+      />
     </div>
   );
 };

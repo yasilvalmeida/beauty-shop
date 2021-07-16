@@ -28,7 +28,7 @@ export const getManufactories = () => {
             const manufactories = [];
             manufactories.push({
               id: 0,
-              name: "None",
+              name: "Keiner",
             });
             await entries.map(async (manufactory, i) => {
               const { id, name } = manufactory;

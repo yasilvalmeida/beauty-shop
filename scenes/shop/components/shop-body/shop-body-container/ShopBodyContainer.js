@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import PagePagination from '../../../../../shareable/pagination/Pagination';
 import InfoContainer from '../../../../../shareable/info-container/InfoContainer';
 import ShopDescription from './shop-description/ShopDescription';
@@ -12,7 +12,15 @@ import {
   sortShopProducts,
 } from "../../../../../services/actions/shop";
 
-const ShopBodyContainer = ({selected}) => {
+const ShopBodyContainer = ({
+  selected,
+  filterType,
+  filterId,
+  maxItemAllowed,
+  setCurrent,
+  current,
+  scrollToref
+}) => {
   const dispatch = useDispatch();
   const router = useRouter();
   let productsData = useSelector((state) => state.shop.shopProducts);
@@ -20,8 +28,12 @@ const ShopBodyContainer = ({selected}) => {
   const count = useSelector((state) => state.shop.count);
   const news = useSelector(({ news }) => news);
 
-  const shopHeadTwo = news.newsReports.find((n) => n.position === "ShopPageTwo");
-  const shopHeadThree = news.newsReports.find((n) => n.position === "ShopPageThree");
+  const shopHeadTwo = news.newsReports.find(
+    (n) => n.position === "ShopPageTwo"
+  );
+  const shopHeadThree = news.newsReports.find(
+    (n) => n.position === "ShopPageThree"
+  );
   const { isAuthenticated } = useSelector((state) => state.auth);
   const favouriteClickHandler = (id, variantId) => {
     if (!isAuthenticated) {
@@ -29,12 +41,10 @@ const ShopBodyContainer = ({selected}) => {
     }
     dispatch(addToWishList(id, variantId));
   };
-  const maxItemAllowed = 22;
+  
   const [minValue, setMinValue] = useState(0);
   const [maxValue, setMaxValue] = useState(maxItemAllowed);
-  const [current, setCurrent] = useState(1);
-  const scrollToref = useRef();
-
+  
   const handlePrev = () => {
     setCurrent((prev) => prev - 1);
     if (current <= 1) {
@@ -42,12 +52,12 @@ const ShopBodyContainer = ({selected}) => {
     }
   };
   const handleNext = () => {
-      console.log(
-        "handleNext",
-        current,
-        Math.ceil(count / maxItemAllowed),
-        current >= Math.ceil(count / maxItemAllowed)
-      );
+    console.log(
+      "handleNext",
+      current,
+      Math.ceil(count / maxItemAllowed),
+      current >= Math.ceil(count / maxItemAllowed)
+    );
     if (current >= Math.ceil(count / maxItemAllowed)) {
       setCurrent(Math.ceil(count / maxItemAllowed));
     }
@@ -64,7 +74,14 @@ const ShopBodyContainer = ({selected}) => {
       setMaxValue(current * maxItemAllowed);
     }
     scrollToref.current.scrollIntoView();
-    dispatch(getShopProducts(current === 1 ? current : (current - 1) * maxItemAllowed, maxItemAllowed), null, 0);
+    dispatch(
+      getShopProducts(
+        current,
+        maxItemAllowed,
+        filterType,
+        filterId
+      )
+    );
   }, [current]);
 
   useEffect(() => {
@@ -131,7 +148,7 @@ const ShopBodyContainer = ({selected}) => {
   }, [selected]);
 
   return (
-    <div className="shop-right-body" ref={scrollToref}>
+    <div className="shop-right-body">
       <div className="__products">
         {productsData &&
           productsData.length > 0 &&

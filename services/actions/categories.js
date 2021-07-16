@@ -28,7 +28,7 @@ export const getCategories = () => {
             const categories = [];
             categories.push({
               id: 0,
-              name: "None",
+              name: "Keiner",
             });
             await entries.map(async (category, i) => {
               const { details } = category;
