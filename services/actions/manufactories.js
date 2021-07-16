@@ -1,21 +1,21 @@
 import {
-  GET_CATEGORIES,
-  SET_CATEGORIES,
+  GET_MANUFACTORIES,
+  SET_MANUFACTORIES,
   SET_ERROR,
-} from "../action-types/categories";
+} from "../action-types/manufactories";
 import { backendLogin } from "./plenty_market_auth";
 
 import axios from "axios";
 
-export const getCategories = () => {
+export const getManufactories = () => {
     return (dispatch) => {
         dispatch(backendLogin())
-        dispatch({ type: GET_CATEGORIES });
+        dispatch({ type: GET_MANUFACTORIES });
         const plentyMarketAuthData = JSON.parse(localStorage.getItem("plentyMarketAuthData"));
         const { accessToken } = plentyMarketAuthData;
         axios
           .get(
-            `${process.env.PLENTY_MARKET_API_URL}/categories?type=item&itemsPerPage=200`,
+            `${process.env.PLENTY_MARKET_API_URL}/items/manufacturers?itemsPerPage=200`,
             {
               headers: {
                 Authorization: `Bearer ${accessToken}`,
@@ -25,24 +25,21 @@ export const getCategories = () => {
           .then(async (res) => {
             const { data } = res;
             const { entries } = data;
-            const categories = [];
-            categories.push({
+            const manufactories = [];
+            manufactories.push({
               id: 0,
               name: "None",
             });
-            await entries.map(async (category, i) => {
-              const { details } = category;
-              if (details.length > 0) {
-                const { categoryId, name } = details[0];
-                categories.push({
-                  id: categoryId,
-                  name,
-                });
-              }
+            await entries.map(async (manufactory, i) => {
+              const { id, name } = manufactory;
+              manufactories.push({
+                id,
+                name,
+              });
               if (i === entries.length - 1) {
                 dispatch({
-                  type: SET_CATEGORIES,
-                  payload: categories,
+                  type: SET_MANUFACTORIES,
+                  payload: manufactories,
                 });
               }
             });

@@ -3,33 +3,30 @@ import DashboardMenu from './dashboard-menu/DashboardMenu';
 import {
   getCategories
 } from "../../../../../services/actions/categories";
+import { getManufactories } from "../../../../../services/actions/manufactories";
 import { useDispatch, useSelector } from "react-redux";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
   let categoriesData = useSelector((state) => state.category.categories);
+  let manufactoriesData = useSelector((state) => state.manufactory.manufactories);
 
   const [categoriesLoaded, setCategoriesLoaded] = useState(false);
-  /* 
-  const [value, setValue] = useState([]);
-  const onChange = (e) => {
-    setValue([...value, e.target.value]);
-    //console.log('onChange', value);
-  };
+  const [manufactoriesLoaded, setManufactoriesLoaded] = useState(false);
   
-  function callback(key) {
-    console.log(key);
-  } */
-
   useEffect(() => {
     dispatch(getCategories());
   }, [categoriesLoaded]);
+
+  useEffect(() => {
+    dispatch(getManufactories());
+  }, [manufactoriesLoaded]);
 
   const data = {
     titles: [
       { title: "KATEGORIEN", data: categoriesData },
       { title: "SHOP BY", data: [] },
-      { title: "MARKEN", data: [] },
+      { title: "MARKEN", data: manufactoriesData },
       { title: "WIRKSTOFFE", data: [] },
       { title: "DUFT ANLASS", data: [] },
       { title: "DUFTNOTEN", data: [] },

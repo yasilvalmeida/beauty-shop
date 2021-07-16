@@ -64,7 +64,7 @@ const ShopBodyContainer = ({selected}) => {
       setMaxValue(current * maxItemAllowed);
     }
     scrollToref.current.scrollIntoView();
-    dispatch(getShopProducts(current === 1 ? current : (current - 1) * maxItemAllowed, maxItemAllowed));
+    dispatch(getShopProducts(current === 1 ? current : (current - 1) * maxItemAllowed, maxItemAllowed), null, 0);
   }, [current]);
 
   useEffect(() => {

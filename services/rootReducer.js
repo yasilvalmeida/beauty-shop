@@ -18,6 +18,7 @@ import markenReducer from "./reducers/marken";
 import basketReducer from "./reducers/basket";
 import videoReducer from "./reducers/video";
 import categoriesReducer from "./reducers/categories";
+import manufactoriesReducer from "./reducers/manufactories";
 
 const rootReducer = combineReducers({
   navbar: homeReducer,
@@ -39,6 +40,7 @@ const rootReducer = combineReducers({
   basket: basketReducer,
   video: videoReducer,
   category: categoriesReducer,
+  manufactory: manufactoriesReducer,
 });
 
 export default rootReducer;

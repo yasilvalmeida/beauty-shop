@@ -25,11 +25,11 @@ export const backendLogin = () => {
         dispatch({ type: PLENTY_MARKET_TOKEN });
         const plentyMarketAuthData = JSON.parse(localStorage.getItem("plentyMarketAuthData"));
         const { expiresDate } = plentyMarketAuthData;
-        const today = new Date()
+        const today = new Date()/* 
           .toISOString()
           .slice(0, 19)
-          .replace("T", " ");
-        if (expiresDate > today) {
+          .replace("T", " ") */;
+        if (expiresDate >= today) {
           const headers = {
             "Content-type": "application/json",
             "Access-Control-Allow-Headers": "*",
@@ -51,16 +51,16 @@ export const backendLogin = () => {
             .then((res) => {
               const { data } = res;
               const { accessToken, refreshToken, expiresIn } = data;
-              const today = new Date(Date.now() + expiresIn)
+              const expiresDate = new Date(Date.now() + expiresIn)/* 
                 .toISOString()
                 .slice(0, 19)
-                .replace("T", " ");
+                .replace("T", " "); */
               localStorage.setItem(
                 "plentyMarketAuthData",
                 JSON.stringify({
                   accessToken,
                   refreshToken,
-                  expiresIn,
+                  expiresDate,
                 })
               );
               return dispatch({
@@ -68,8 +68,7 @@ export const backendLogin = () => {
                 payload: {
                   accessToken,
                   refreshToken,
-                  expiresIn,
-                  expiresDate: today,
+                  expiresDate
                 },
               });
             })
