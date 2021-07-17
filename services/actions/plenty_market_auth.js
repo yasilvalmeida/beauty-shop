@@ -29,7 +29,7 @@ export const backendLogin = () => {
           .toISOString()
           .slice(0, 19)
           .replace("T", " ") */;
-        if (expiresDate >= today) {
+        if (/* expiresDate < today */ true) {
           const headers = {
             "Content-type": "application/json",
             "Access-Control-Allow-Headers": "*",

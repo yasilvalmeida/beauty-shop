@@ -16,9 +16,7 @@ const Dashboard = ({
   }) => {
   const dispatch = useDispatch();
   let categoriesData = useSelector((state) => state.category.categories);
-  let manufactoriesData = useSelector(
-    (state) => state.manufactory.manufactories
-  );
+  let manufactoriesData = useSelector((state) => state.manufactory.manufactories);
 
   const [categoriesLoaded, setCategoriesLoaded] = useState(false);
   const [manufactoriesLoaded, setManufactoriesLoaded] = useState(false);
