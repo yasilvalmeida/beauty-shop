@@ -46,7 +46,7 @@ const SingleProductHeader = () => {
         setproductQuantity(
             singleProduct?.variants_of_a_products?.filter((item) => {
                 return item.id === bottleId;
-            })[0]?.uantity
+            })[0]?.quantity
         );
         setValue(1);
     }, [bottleId]);
@@ -118,122 +118,163 @@ const SingleProductHeader = () => {
             dispatch(addToBasket(id, variantId, quantity))
         }
     }
+    console.log("singleProduct", singleProduct);
+    console.log("defaultVariant", defaultVariant);
 
     return (
-        <>
-            <div className={"single-product-header"}>
-                <div className={"left-side"}>
-                    <p>{singleProduct?.brand?.name}</p>
-                    <h2>{singleProduct?.name.toUpperCase()}</h2>
-                    <a href="#">{singleProduct?.kind}</a>
-                    <div className="left-side-select-body">
-                        <div className={"left-side-select"}>
-                            <span>Inhalt</span>
-                            <ShareableSelect
-                                product={singleProduct}
-                                defaultValue={defaultVariant[0]?.bottle_sizes}
-                                value={"large"}
-                                data={singleProduct}
-                                setBottleId={setBottleId}
-                            />
-                        </div>
-                        <div className={"left-side-select"}>
-                            <span>menge</span>
-                            <div
-                                className={"cart__sidebar__product__body__text--quantityinp"}
-                            >
-                                <input
-                                    type="number"
-                                    min={"1"}
-                                    onChange={onChanges}
-                                    value={value < 10 ? `0${value}` : value}
-                                />
-                                <div>
-                                    <button className={"btnplus"} onClick={() => onIncHandler(singleProduct)}>
-                                        <FontAwesomeIcon icon={faPlus}/>
-                                    </button>
-                                    <button className={"btnminus"} onClick={onDecHandler}>
-                                        <FontAwesomeIcon icon={faMinus}/>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+      <>
+        <div className={"single-product-header"}>
+          <div className={"left-side"}>
+            <p>{singleProduct?.manufacturer}</p>
+            <h2>{singleProduct?.name.toUpperCase()}</h2>
+            <a href="#">{singleProduct?.kind}</a>
+            <div className="left-side-select-body">
+              <div className={"left-side-select"}>
+                <span>Inhalt</span>
+                <ShareableSelect
+                  product={singleProduct}
+                  defaultValue={defaultVariant[0]?.bottle_sizes}
+                  value={"large"}
+                  data={singleProduct}
+                  setBottleId={setBottleId}
+                />
+              </div>
+              <div className={"left-side-select"}>
+                <span>menge</span>
+                <div
+                  className={"cart__sidebar__product__body__text--quantityinp"}
+                >
+                  <input
+                    type="number"
+                    min={"1"}
+                    onChange={onChanges}
+                    value={value < 10 ? `0${value}` : value}
+                  />
+                  <div>
+                    <button
+                      className={"btnplus"}
+                      onClick={() => onIncHandler(singleProduct)}
+                    >
+                      <FontAwesomeIcon icon={faPlus} />
+                    </button>
+                    <button className={"btnminus"} onClick={onDecHandler}>
+                      <FontAwesomeIcon icon={faMinus} />
+                    </button>
+                  </div>
                 </div>
-                <div className={"right-side"}>
-                    <div className={"select-number"} style={{cursor:"pointer"}} onClick={() => {
-                        addProductToBasket(singleProduct.id, !bottleId ? defaultVariant[0]?.id : bottleId, variantId, value)
-                    }}>
-                        <p>in den warenkorb</p>
-                    </div>
-                    <div className={"bot-text-right"}>
-                        <p>
-                            {formatter.format(
-                                value * singleProduct?.variants_of_a_products?.filter(item => item.id === singleProductVariantId)[0]?.price ||
-                                singleProduct?.variants_of_a_products?.find((item) => {
-                                    return item.main === true;
-                                }).price
-                            )}
-                        </p>
-                        <div className={"r-first"}>
-                            <span>$ 416,67 / 100ML</span>
-                            <span>Versandkostenfrei*</span>
-                        </div>
-                        <div className={"r-second"}>
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="512"
-                                height="512"
-                                viewBox="0 0 512 512"
-                                className={"letter-svg heart-icon-item"}
-                                style={
-                                    !singleProduct?.variants_of_a_products?.find(item => item.id === singleProductVariantId) ?
-                                        singleProduct?.variants_of_a_products?.find(item => item.id === variantId[0].id).favorite ?
-                                            {stroke: "#000000"}
-                                            : {stroke: "#7b7b7b"} :
-                                        singleProduct?.variants_of_a_products?.find(item => item.id === singleProductVariantId)?.favorite ?
-                                            {stroke: "#000000"}
-                                            : {stroke: "#7b7b7b"}
-                                }
-                                onClick={() => {
-                                    toggleVariantAsfavourite(singleProduct.id, !bottleId ? defaultVariant[0]?.id : bottleId, variantId)
-                                }}
-                            >
-                                <path
-                                    d="M352.92,80C288,80,256,144,256,144s-32-64-96.92-64C106.32,80,64.54,124.14,64,176.81c-1.1,109.33,86.73,187.08,183,252.42a16,16,0,0,0,18,0c96.26-65.34,184.09-143.09,183-252.42C447.46,124.14,405.68,80,352.92,80Z"
-                                    style={
-                                        !singleProduct?.variants_of_a_products?.find(item => item.id === singleProductVariantId) ?
-                                            singleProduct?.variants_of_a_products?.find(item => item.id === variantId[0].id).favorite ?
-                                                {
-                                                    fill: "#000000",
-                                                    strokeMiterlimit: "10",
-                                                    strokeWidth: "32px",
-                                                }
-                                                : {
-                                                    fill: "none",
-                                                    strokeMiterlimit: "10",
-                                                    strokeWidth: "32px",
-                                                } :
-                                            singleProduct?.variants_of_a_products?.find(item => item.id === singleProductVariantId)?.favorite
-                                                ? {
-                                                    fill: "#000000",
-                                                    strokeMiterlimit: "10",
-                                                    strokeWidth: "32px",
-                                                }
-                                                : {
-                                                    fill: "none",
-                                                    strokeMiterlimit: "10",
-                                                    strokeWidth: "32px",
-                                                }
-                                    }
-                                />
-                            </svg>
-                            <p>auf meine wunchliste</p>
-                        </div>
-                    </div>
-                </div>
+              </div>
             </div>
-        </>
+          </div>
+          <div className={"right-side"}>
+            <div
+              className={"select-number"}
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                addProductToBasket(
+                  singleProduct.id,
+                  !bottleId ? defaultVariant[0]?.id : bottleId,
+                  variantId,
+                  value
+                );
+              }}
+            >
+              <p>in den warenkorb</p>
+            </div>
+            <div className={"bot-text-right"}>
+              <p>
+                {formatter.format(
+                  value *
+                    singleProduct?.variants_of_a_products?.filter(
+                      (item) => item.id === singleProductVariantId
+                    )[0]?.price ||
+                    singleProduct?.variants_of_a_products?.find((item) => {
+                      return item.main === true;
+                    }).price
+                )}
+              </p>
+              <div className={"r-first"}>
+                <span>{formatter.format(
+                  value *
+                    singleProduct?.variants_of_a_products?.filter(
+                      (item) => item.id === singleProductVariantId
+                    )[0]?.price ||
+                    singleProduct?.variants_of_a_products?.find((item) => {
+                      return item.main === true;
+                    }).price
+                )} / 100ML</span>
+                <span>Versandkostenfrei*</span>
+              </div>
+              <div className={"r-second"}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="512"
+                  height="512"
+                  viewBox="0 0 512 512"
+                  className={"letter-svg heart-icon-item"}
+                  style={
+                    !singleProduct?.variants_of_a_products?.find(
+                      (item) => item.id === singleProductVariantId
+                    )
+                      ? singleProduct?.variants_of_a_products?.find(
+                          (item) => item.id === variantId[0].id
+                        ).favorite
+                        ? { stroke: "#000000" }
+                        : { stroke: "#7b7b7b" }
+                      : singleProduct?.variants_of_a_products?.find(
+                          (item) => item.id === singleProductVariantId
+                        )?.favorite
+                      ? { stroke: "#000000" }
+                      : { stroke: "#7b7b7b" }
+                  }
+                  onClick={() => {
+                    toggleVariantAsfavourite(
+                      singleProduct.id,
+                      !bottleId ? defaultVariant[0]?.id : bottleId,
+                      variantId
+                    );
+                  }}
+                >
+                  <path
+                    d="M352.92,80C288,80,256,144,256,144s-32-64-96.92-64C106.32,80,64.54,124.14,64,176.81c-1.1,109.33,86.73,187.08,183,252.42a16,16,0,0,0,18,0c96.26-65.34,184.09-143.09,183-252.42C447.46,124.14,405.68,80,352.92,80Z"
+                    style={
+                      !singleProduct?.variants_of_a_products?.find(
+                        (item) => item.id === singleProductVariantId
+                      )
+                        ? singleProduct?.variants_of_a_products?.find(
+                            (item) => item.id === variantId[0].id
+                          ).favorite
+                          ? {
+                              fill: "#000000",
+                              strokeMiterlimit: "10",
+                              strokeWidth: "32px",
+                            }
+                          : {
+                              fill: "none",
+                              strokeMiterlimit: "10",
+                              strokeWidth: "32px",
+                            }
+                        : singleProduct?.variants_of_a_products?.find(
+                            (item) => item.id === singleProductVariantId
+                          )?.favorite
+                        ? {
+                            fill: "#000000",
+                            strokeMiterlimit: "10",
+                            strokeWidth: "32px",
+                          }
+                        : {
+                            fill: "none",
+                            strokeMiterlimit: "10",
+                            strokeWidth: "32px",
+                          }
+                    }
+                  />
+                </svg>
+                <p>auf meine wunchliste</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
     );
 };
 

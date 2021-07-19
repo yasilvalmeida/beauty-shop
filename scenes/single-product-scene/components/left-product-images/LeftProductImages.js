@@ -40,9 +40,9 @@ const LeftProductImages = ({elem}) => {
         <>
             <div className={"about-product-left-img-body-all"}>
                 <div className={"about-product-left-img-body"}>
-          <span className={"go-back"} onClick={() => router.back()}>
-            Zuruck
-          </span>
+                    <span className={"go-back"} onClick={() => router.back()}>
+                        Zuruck
+                    </span>
                     <div className={"about-product-main-img-body"}>
                         <div className={"product-page-image-head"}>
                             <img
@@ -56,11 +56,7 @@ const LeftProductImages = ({elem}) => {
                             <PictureModal
                                 setIsmodalVisible={setIsModalVisible}
                                 isModalVisible={isModalVisible}
-                                dataImages={
-                                    productVariant[0]?.images?.length > 0
-                                        ? productVariant[0]?.images
-                                        : elem?.images
-                                }
+                                dataImages={elem?.images}
                             />
                             <p
                                 className={"new-icon"}

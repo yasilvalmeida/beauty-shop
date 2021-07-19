@@ -2,19 +2,18 @@ import ReactPlayer from "react-player";
 import Image from "next/image";
 import {useState} from "react"
 
-const VideoCollapse = () =>{
+const VideoCollapse = (product) =>{
+    const { elem } = product;
     const [play1, setPlay1] = useState(false);
     return (
-        <div className='videos__container'>
+        elem?.video? <div className='videos__container'>
             <div className={"col-lg-4 small-vid-bod"}>
                 <div className={"video-small-body-only"}>
-                    <ReactPlayer url='/video.webm'  muted={true}
+                    <ReactPlayer url={elem.video}  muted={true}
                                  width='100%'
                                  height='100%'
                                  playing={play1}
                                  id={"videoBG"}
-
-
                         // light="https://i.stack.imgur.com/zw9Iz.png"
                     />
                     <img src="/play.png" alt="play" onClick={()=>setPlay1(true)} style={play1 ? {display:"none"} : null}/>
@@ -58,11 +57,11 @@ const VideoCollapse = () =>{
                         <p> Review </p>
                     </div>
                     <h2>
-                        Notorious Oud von D.S. & Durga
+                        {elem?.name}
                     </h2>
                 </div>
             </div>
-        </div>
+        </div>: ""
     )
 }
 

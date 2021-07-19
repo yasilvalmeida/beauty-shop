@@ -29,38 +29,41 @@ const SingleProductScene = () => {
     }, []);
 
     return (
-        <>
-            {
-                loaded ?
-                    <div className={"loader__body"}>
-                        <Space size="middle">
-                            <Spin size="large"/>
-                        </Space>
-                    </div> :
-                    <>
-                        <Header/>
-                        <MobileHeader/>
-                        <div className={"product-single-details-body"}>
-                            <div className={"product__details__container"}>
-                                <div className={"product__details__container__top"}>
-                                    <MobileSwipeableCarousel imagesData={productData?.images} elem={productData}/>
-                                    <LeftProductImages elem={productData}/>
-                                    <RightProductText elem={productData}/>
-                                </div>
-                            </div>
-                            <SingleProductBottom textData={styles}/>
-                            <div className={"product-bottom-prod-w-filter"}>
-                                <ProductsWithFilter headtext={headtext}
-                                                    position={"ProductPage"}
-                                                    getProductsWithFilter={getProductsWithFilter}
-                                />
-                            </div>
-                        </div>
-                        <Footer/>
-                    </>
-            }
-
-        </>
-    )
+      <>
+        {loaded ? (
+          <div className={"loader__body"}>
+            <Space size="middle">
+              <Spin size="large" />
+            </Space>
+          </div>
+        ) : (
+          <>
+            <Header />
+            <MobileHeader />
+            <div className={"product-single-details-body"}>
+              <div className={"product__details__container"}>
+                <div className={"product__details__container__top"}>
+                  <MobileSwipeableCarousel
+                    imagesData={productData?.images}
+                    elem={productData}
+                  />
+                  <LeftProductImages elem={productData} />
+                  <RightProductText elem={productData} />
+                </div>
+              </div>
+              <SingleProductBottom textData={styles} />
+              <div className={"product-bottom-prod-w-filter"}>
+                <ProductsWithFilter
+                  headtext={headtext}
+                  position={"ProductPage"}
+                  getProductsWithFilter={getProductsWithFilter}
+                />
+              </div>
+            </div>
+            <Footer />
+          </>
+        )}
+      </>
+    );
 }
 export default SingleProductScene

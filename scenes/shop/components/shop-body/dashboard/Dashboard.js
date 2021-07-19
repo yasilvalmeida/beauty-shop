@@ -32,13 +32,13 @@ const Dashboard = ({
   const data = {
     titles: [
       { title: "KATEGORIEN", data: categoriesData },
-      { title: "SHOP BY", data: [] },
+      /* { title: "SHOP BY", data: [] }, */
       { title: "MARKEN", data: manufactoriesData },
-      { title: "WIRKSTOFFE", data: [] },
+      /* { title: "WIRKSTOFFE", data: [] },
       { title: "DUFT ANLASS", data: [] },
       { title: "DUFTNOTEN", data: [] },
       { title: "DUFTRICHTUNG", data: [] },
-      { title: "SONNENSCHUTZ", data: [] },
+      { title: "SONNENSCHUTZ", data: [] }, */
     ],
   };
 
@@ -57,4 +57,4 @@ const Dashboard = ({
   );
 };
 
-export default Dashboard;
+export default Dashboard; 

@@ -30,7 +30,7 @@ const ShareableSelect = ({defaultValue, value, data, setBottleId, product}) => {
         {data?.variants_of_a_products?.map((e, i) => {
           return (
             <Option key={i} value={e?.id}>
-              {e?.bottle_sizes}
+              {e?.number}
             </Option>
           );
         })}

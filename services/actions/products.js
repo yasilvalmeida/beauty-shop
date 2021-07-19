@@ -495,6 +495,15 @@ export const getSingleProduct = (id) => {
             technicalData,
             keywords,
           } = texts[0];
+          const manufactoryData = await axios.get(
+            `${process.env.PLENTY_MARKET_API_URL}/items/manufacturers/${manufacturerId}`,
+            {
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
+            }
+          );
+          const { name } = manufactoryData?.data;
           await itemImages.map((image, j) => {
             const formats = [];
             const {
@@ -546,13 +555,14 @@ export const getSingleProduct = (id) => {
             });
           });
           await variations.map((variation, v) => {
-            const { isMain, purchasePrice, availability } = variation;
+            const { isMain, purchasePrice, availability, number } = variation;
             //if (purchasePrice > price) price = purchasePrice;
             variants_of_a_products.push({
               main: v === 0 ? true : false,
               images: images.length > 0 ? [images[0]] : [],
               price: purchasePrice,
               quantity: availability,
+              number
             });
           });
           await variants_of_a_products.map((vop, v) => {
@@ -568,8 +578,10 @@ export const getSingleProduct = (id) => {
             payload: {
               id,
               name: name1,
-              manufacturerId,
+              manufacturer: name,
               images,
+              description,
+              technicalData,
               variants_of_a_products,
               New_Date_Limit: createdAt,
               created_at: createdAt,

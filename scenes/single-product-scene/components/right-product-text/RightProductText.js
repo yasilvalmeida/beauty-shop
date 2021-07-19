@@ -1,27 +1,49 @@
 import {Collapse} from 'antd';
 import SingleProductHeader from "../single-product-header/SingleProductHeader";
 import SimpleText from "./collapse-components/SimpleText";
-import ListedText from "./collapse-components/ListedText";
+import DescriptionCollapse from "./collapse-components/DescriptionCollapse";
+import IngredientsCollapse from "./collapse-components/IngredientsCollapse";
 import VideoCollapse from "./collapse-components/Video";
 import SwipeableCarousel from "./collapse-components/SwipeableCarousel";
 import TextComponent from "./text-components/TextComponent";
 import SingleProductHeaderMobile from "../single-product-header/SingleProductHeaderMobile";
 
-const RightProductText = () => {
+const RightProductText = (product) => {
+    const { elem } = product;
     const {Panel} = Collapse;
     const dataofCollapse = [
-        {type: "list", title: "beschreibung", component: <ListedText/>},
-        {type: "text", title: "inhaltsstoffe", component: <SimpleText/>},
-        {type: "list", title: "inhaltsstoffe", component: <ListedText/>},
-        {type: "text", title: "duftanlasse", component: <SimpleText/>},
-        {type: "video", title: "video", component: <VideoCollapse/>},
-        {type: "carousel", title: "kollektion", component: <SwipeableCarousel/>},
-    ]
+      {
+        type: "list",
+        title: "beschreibung",
+        component: <DescriptionCollapse elem={elem} />,
+      },
+      {
+        type: "text",
+        title: "inhaltsstoffe",
+        component: <IngredientsCollapse elem={elem} />,
+      },
+      /* { type: "list", title: "inhaltsstoffe", component: <ListedText /> }, */
+      /* {
+        type: "text",
+        title: "duftanlasse",
+        component: <SimpleText elem={elem} />,
+      }, */
+      {
+        type: "video",
+        title: "video",
+        component: <VideoCollapse elem={elem} />,
+      },
+      {
+        type: "carousel",
+        title: "kollektion",
+        component: <SwipeableCarousel elem={elem} />,
+      },
+    ];
     return (
         <>
             <div className={"right-product-body-all"}>
-                <SingleProductHeader/>
-                <SingleProductHeaderMobile/>
+                <SingleProductHeader />
+                <SingleProductHeaderMobile />
                 <div className={"right-product-collapse-body"}>
                     {dataofCollapse.map((e, i) => {
                         return (
