@@ -152,8 +152,8 @@ const ProductsWithLeftText = ({ products, leftText, addToWishList }) => {
                       Limited edition
                     </span>
                   )}
-                  {e?.brand?.name ? (
-                    <h3 className={"prod-txt-name"}>{e?.brand?.name}</h3>
+                  {e?.brand ? (
+                    <h3 className={"prod-txt-name"}>{e?.brand}</h3>
                   ) : (
                     <h3
                       className={"prod-txt-name"} /* style={{ opacity: "0" }} */

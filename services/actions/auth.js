@@ -6,7 +6,8 @@ export const getUserDataFromLocalStorage = () => {
         const userData = localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : null;
     
         if (userData) {
-            return dispatch({ type: SET_LOGIN_DATA, payload: userData });
+            //localStorage.removeItem("userData");
+            return dispatch({ type: GET_LOGIN_DATA, payload: userData });
         }
     };
 };
@@ -14,14 +15,18 @@ export const getUserDataFromLocalStorage = () => {
 export const login = data => {
     return dispatch => {
         dispatch({ type: GET_LOGIN_DATA })
-        
-        axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/local`, data)
-            .then(res => {
-                localStorage.setItem('userData', JSON.stringify(res.data));
-
-                return dispatch({ type: SET_LOGIN_DATA, payload: res.data });
-            })
-            .catch(err => dispatch({ type: SET_LOGIN_ERROR, payload: err }))
+        axios
+          .post(`${process.env.PLENTY_MARKET_API_URL}/account/login`, data)
+          .then((res) => {
+            localStorage.setItem("userData", JSON.stringify(res.data));
+            return dispatch({ type: SET_LOGIN_DATA, payload: {auth: res.data, body: data} });
+          })
+          .catch((err) => {
+                return dispatch({ 
+                    type: SET_LOGIN_ERROR, 
+                    payload: { error: "Login failed!" }
+                });
+          });
     };
 };
 

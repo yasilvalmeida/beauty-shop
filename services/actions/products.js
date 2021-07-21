@@ -58,6 +58,18 @@ export const getProducts = () => {
                 technicalData,
                 keywords,
               } = texts[0];
+              let brand = "No Brand";
+              if (manufacturerId !== 0) {
+                const manufactoryData = await axios.get(
+                  `${process.env.PLENTY_MARKET_API_URL}/items/manufacturers/${manufacturerId}`,
+                  {
+                    headers: {
+                      Authorization: `Bearer ${accessToken}`,
+                    },
+                  }
+                );
+                brand = manufactoryData?.data?.name;
+              } 
               await itemImages.map((image, j) => {
                 const formats = [];
                 const {
@@ -129,7 +141,7 @@ export const getProducts = () => {
               products.push({
                 id,
                 name: name1,
-                manufacturerId,
+                brand,
                 images,
                 variants_of_a_products,
                 New_Date_Limit: createdAt,
@@ -188,6 +200,18 @@ export const getProductsTwo = () => {
                 technicalData,
                 keywords,
               } = texts[0];
+              let brand = 'No Brand';
+              if (manufacturerId !== 0) {
+                const manufactoryData = await axios.get(
+                  `${process.env.PLENTY_MARKET_API_URL}/items/manufacturers/${manufacturerId}`,
+                  {
+                    headers: {
+                      Authorization: `Bearer ${accessToken}`,
+                    },
+                  }
+                );
+                brand = manufactoryData?.data?.name;
+              } 
               await itemImages.map((image, j) => {
                 const formats = [];
                 const {
@@ -259,7 +283,7 @@ export const getProductsTwo = () => {
               products.push({
                 id,
                 name: name1,
-                manufacturerId,
+                brand,
                 images,
                 variants_of_a_products,
                 New_Date_Limit: createdAt,
@@ -495,15 +519,18 @@ export const getSingleProduct = (id) => {
             technicalData,
             keywords,
           } = texts[0];
-          const manufactoryData = await axios.get(
-            `${process.env.PLENTY_MARKET_API_URL}/items/manufacturers/${manufacturerId}`,
-            {
-              headers: {
-                Authorization: `Bearer ${accessToken}`,
-              },
-            }
-          );
-          const { name } = manufactoryData?.data;
+          let brand = "No Brand";
+          if (manufacturerId !== 0) {
+            const manufactoryData = await axios.get(
+              `${process.env.PLENTY_MARKET_API_URL}/items/manufacturers/${manufacturerId}`,
+              {
+                headers: {
+                  Authorization: `Bearer ${accessToken}`,
+                },
+              }
+            );
+            brand = manufactoryData?.data?.name;
+          }
           await itemImages.map((image, j) => {
             const formats = [];
             const {
@@ -578,7 +605,7 @@ export const getSingleProduct = (id) => {
             payload: {
               id,
               name: name1,
-              manufacturer: name,
+              brand,
               images,
               description,
               technicalData,

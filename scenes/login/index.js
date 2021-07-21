@@ -10,7 +10,7 @@ const LoginScene = () =>{
     }, []);
     return(
         <>
-            <LoginForm/>
+            <LoginForm />
         </>
     )
 }

@@ -3,13 +3,11 @@ import Header from "../../layouts/header/Header";
 import MobileHeader from "../../layouts/mobile-header/MobileHeader";
 import RegistrationForm from "./components/registration-form/RegistrationForm";
 import RegistrationInfo from "./components/registration-info/RegistrationInfo";
-import {useEffect} from "react"
-import {useDispatch, useSelector} from "react-redux";
-import {
-    getRegisterCountries,
-    getRegisterTextData
-} from "../../services/actions/registration";
-import {getUserDataFromLocalStorage} from "../../services/actions/auth";
+import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux";
+import { getRegisterCountries, getRegisterTextData } from "../../services/actions/registration";
+import { getUserDataFromLocalStorage } from "../../services/actions/auth";
+
 const RegistrationScene = () => {
     const dispatch = useDispatch()
 

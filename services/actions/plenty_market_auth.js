@@ -29,7 +29,7 @@ export const backendLogin = () => {
           .toISOString()
           .slice(0, 19)
           .replace("T", " ") */;
-        if (/* expiresDate < today */ true) {
+        if (true) {
           const headers = {
             "Content-type": "application/json",
             "Access-Control-Allow-Headers": "*",
@@ -42,11 +42,11 @@ export const backendLogin = () => {
               {
                 username: process.env.PLENTY_MARKET_USERNAME,
                 password: process.env.PLENTY_MARKET_PASSWORD,
-              }
-              /* {
-              headers: headers
-            },
-            { crossdomain: true }, */
+              },
+              {
+                headers: headers
+              },
+              { crossdomain: true },
             )
             .then((res) => {
               const { data } = res;
@@ -75,6 +75,27 @@ export const backendLogin = () => {
             .catch((err) =>
               dispatch({ type: PLENTY_MARKET_ERROR, payload: err })
             );
+        } else {
+          /* const options = {
+            method: "POST",
+            mode: 'cors',
+            headers: {
+              "Access-Control-Allow-Headers": "*",
+              "Access-Control-Allow-Origin": "*",
+              "Access-Control-Allow-Methods": "GET,POST",
+              Accept: "text/html",
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: {
+              username: process.env.PLENTY_MARKET_USERNAME,
+              password: process.env.PLENTY_MARKET_PASSWORD,
+            },
+          };
+
+          fetch(`${process.env.PLENTY_MARKET_API_URL}/login`, options)
+            .then((response) => response.json())
+            .then((response) => console.log(response))
+            .catch((err) => console.error(err)); */
         }
     };
 };

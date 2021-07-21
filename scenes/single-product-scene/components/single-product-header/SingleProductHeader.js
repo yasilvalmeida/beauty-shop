@@ -118,14 +118,12 @@ const SingleProductHeader = () => {
             dispatch(addToBasket(id, variantId, quantity))
         }
     }
-    console.log("singleProduct", singleProduct);
-    console.log("defaultVariant", defaultVariant);
 
     return (
       <>
         <div className={"single-product-header"}>
           <div className={"left-side"}>
-            <p>{singleProduct?.manufacturer}</p>
+            <p>{singleProduct?.brand}</p>
             <h2>{singleProduct?.name.toUpperCase()}</h2>
             <a href="#">{singleProduct?.kind}</a>
             <div className="left-side-select-body">
@@ -201,7 +199,7 @@ const SingleProductHeader = () => {
                     singleProduct?.variants_of_a_products?.find((item) => {
                       return item.main === true;
                     }).price
-                )} / 100ML</span>
+                )} </span>
                 <span>Versandkostenfrei*</span>
               </div>
               <div className={"r-second"}>

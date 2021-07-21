@@ -8,28 +8,30 @@ import { useRouter } from 'next/router';
 import {notification, Tooltip} from "antd";
 
 const LoginForm = () => {
+
   const router = useRouter();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const authData = useSelector(state => state.auth);
+  const authData = useSelector(state => state?.auth);
   const dispatch = useDispatch();
-  const success = useSelector(state=>state.auth.loginError)
+  const success = useSelector(state => state.auth.loginError);
   useEffect(() => {
-    if (success?.response?.data?.message[0]?.messages[0]?.message !== undefined &&
-        success?.response?.data?.message[0]?.messages[0]?.message !== null) {
-      openNotificationWithIcon("error")
-    } else if (success) {
-      setEmail("")
-      setPassword("")
-      openNotificationWithIcon("success")
+    if (success === null) {
+
+    } else if (success?.error) {
+      openNotificationWithIcon("error");
+    } else {
+      setEmail("");
+      setPassword("");
+      openNotificationWithIcon("success");
     }
   }, [success])
   const openNotificationWithIcon = type => {
     notification[type]({
       message: '',
-      description: type === "success" ? "Logged in successfully" : "Please provide your email or password"
+      description: type === "success" ? "Logged in successfully" : "Please provide a correct email and password"
     });
   };
   useEffect(() => {
@@ -43,28 +45,27 @@ const LoginForm = () => {
   const [passwordErrorMessage,setPasswordErrorMessage] = useState("Please insert a valid email password.")
   const handleLogin = e => {
     e.preventDefault();
-    if(email.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/) &&
-    password.length >= 8){
+    if (email.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/) &&
+    password.length >= 8) {
       dispatch(login({
-        identifier: email,
+        email,
         password
       }));
       setEmailError("")
       setPasswordError("")
-
-    }else {
-      if(password.length <8){
+    } else {
+      if (password.length <8) {
         setPasswordError(true)
         setPasswordErrorMessage("Password must be at least 8 characters")
       }
-      if(password.length === 0){
+      if (password.length === 0) {
         setPasswordErrorMessage("Password is required")
-      }
-      if(!email.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)){
+      } 
+      if (!email.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
         setEmailError(true)
         setEmailErrorMessage("Please insert a valid email address.")
       }
-      if(email.length === 0){
+      if (email.length === 0) {
         setEmailErrorMessage("Email is required")
       }
     }
@@ -95,9 +96,9 @@ const LoginForm = () => {
                       value={email}
                       onChange={e => {
                         setEmail(e.target.value)
-                        if(e.target.value.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)){
+                        if (e.target.value.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
                           setEmailError(false)
-                        }else setEmailError(true)
+                        } else setEmailError(true)
                       }}
                   />
                 </Tooltip>
@@ -147,9 +148,8 @@ const LoginForm = () => {
             <div className={'login-right-one'}>
               <h2>Noch kein Konto? Registrieren</h2>
               <Link href="/registrieren">
-              <button>Konto erstellen</button>
+                <button>Konto erstellen</button>
               </Link>
-              
             </div>
             <p className={'login-right-mid-txt'}>ODER</p>
             <div className={'login-right-two'}>
@@ -173,7 +173,6 @@ const LoginForm = () => {
                     className={'col-lg-6'}
                 />
               </div>
-
             </div>
           </div>
         </div>

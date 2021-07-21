@@ -174,13 +174,13 @@ const ProductsWithFilter = ({
                                     <span className={"prod-txt-head"}>Clean product</span>
                                 ) : (
                                     <span className={"prod-txt-head"} style={{opacity: "0"}}>
-                        Clean product
-                    </span>
+                                        Clean product
+                                    </span>
                                 )}
                                 {elem?.limited_edition ? <span className={'prod-txt-head2'}>Limited edition</span> :
                                     <span style={{opacity: "0"}} className={'prod-txt-head2'}>Limited edition</span>}
-                                {elem?.brand?.name ? (
-                                    <h3 className={"prod-txt-name"}>{elem?.brand?.name}</h3>
+                                {elem?.brand ? (
+                                    <h3 className={"prod-txt-name"}>{elem?.brand}</h3>
                                 ) : (
                                     <h3 className={"prod-txt-name"} style={{opacity: 0}}>
                                         Ylumi
@@ -295,8 +295,8 @@ const ProductsWithFilter = ({
                                 )}
                                 {elem?.limited_edition ? <span className={'prod-txt-head2'}>Limited edition</span> :
                                     <span style={{opacity: "0"}} className={'prod-txt-head2'}>Limited edition</span>}
-                                {elem?.brand?.name ? (
-                                    <h3 className={"prod-txt-name"}>{elem?.brand?.name}</h3>
+                                {elem?.brand ? (
+                                    <h3 className={"prod-txt-name"}>{elem?.brand}</h3>
                                 ) : (
                                     <h3 className={"prod-txt-name"} style={{opacity: 0}}>
                                         Ylumi
@@ -411,8 +411,8 @@ const ProductsWithFilter = ({
                                 )}
                                 {elem?.limited_edition ? <span className={'prod-txt-head2'}>Limited edition</span> :
                                     <span style={{opacity: "0"}} className={'prod-txt-head2'}>Limited edition</span>}
-                                {elem?.brand?.name ? (
-                                    <h3 className={"prod-txt-name"}>{elem?.brand?.name}</h3>
+                                {elem?.brand ? (
+                                    <h3 className={"prod-txt-name"}>{elem?.brand}</h3>
                                 ) : (
                                     <h3 className={"prod-txt-name"} style={{opacity: 0}}>
                                         Ylumi

@@ -4,9 +4,9 @@ import {useState,useEffect} from "react"
 import CartSidebarFooter from "../../shareable/cart-sidebar/footer/CartSidebarFooter";
 import {useSelector} from "react-redux";
 const CartSidebar = ({visible,onClose}) => {
-        const [products,setProducts] = useState([1,2])
-        const productsData = useSelector(state=>state.basket.products)
-        const [cartWidth,setCartWidth] = useState(488)
+        const [products, setProducts] = useState([1,2])
+        const productsData = useSelector(state => state.basket.products)
+        const [cartWidth, setCartWidth] = useState(488)
         const [windowSize, setWindowSize] = useState({
             width: undefined,
             height: undefined,
@@ -58,7 +58,7 @@ const CartSidebar = ({visible,onClose}) => {
                         {productsData?.products?.map((e,i)=>{
                             return(
                                 <div key={i}>
-                                    <CartSidebarProduct key={i} elem={e}/>
+                                    <CartSidebarProduct key={i} elem={e} />
                                 </div>
                             )
                         })}
