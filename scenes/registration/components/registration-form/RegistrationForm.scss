@@ -1,5 +1,5 @@
-.registration__form__container{
-  &--title{
+.registration__form__container {
+  &__title {
     font-size: 3.3rem;
     font-weight: bold;
     font-stretch: normal;
@@ -13,14 +13,14 @@
       text-align: center;
     }
   }
-  &__form{
+  &__form {
     display: grid;
     gap: 1.8rem;
     width: 100%;
     @media screen and(max-width: 1024px) {
       width: 100%;
     }
-    input{
+    input {
       border: solid 1px #b5b5b5;
       font-size: 2.4rem;
       padding: 1rem ;
@@ -29,8 +29,8 @@
         color: black;
       }
     }
-    &__newsletter{
-      p{
+    &__newsletter {
+      p {
         font-size: 2.4rem;
         font-weight: normal;
         font-stretch: normal;
@@ -39,7 +39,7 @@
         letter-spacing: 0.55px;
         text-align: left;
         color: #797979;
-        span{
+        span {
           text-decoration: underline;
         }
         @media screen and (max-width: 1024px){

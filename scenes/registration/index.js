@@ -17,16 +17,17 @@ const RegistrationScene = () => {
         dispatch(getRegisterTextData())
     },[])
 
-    const textData = useSelector(state => state.registration.textData)
+    const textData = useSelector(state => state.registration.textData);
+
     return (
         <>
             <Header/>
             <MobileHeader/>
             <div className={"registration__page__body"}>
-                <RegistrationHeader textData={textData}/>
+                <RegistrationHeader textData={textData} />
                 <div className={"registration__page__body__formandtext"}>
-                    <RegistrationForm textData={textData}/>
-                    <RegistrationInfo textData={textData}/>
+                    <RegistrationForm textData={textData} />
+                    <RegistrationInfo textData={textData} />
                 </div>
             </div>
 

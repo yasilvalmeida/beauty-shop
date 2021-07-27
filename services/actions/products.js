@@ -16,7 +16,6 @@ import {
     SWITCH_TO_FAVOURITE_TWO,
 } from "../action-types/products";
 import { backendLogin } from "../actions/plenty_market_auth";
-
 import axios from "axios";
 
 export const getProducts = () => {
