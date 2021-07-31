@@ -3,24 +3,15 @@ import {
   SET_MANUFACTORIES,
   SET_ERROR,
 } from "../action-types/manufactories";
-import { backendLogin } from "./plenty_market_auth";
 
 import axios from "axios";
 
 export const getManufactories = () => {
     return (dispatch) => {
-        dispatch(backendLogin())
         dispatch({ type: GET_MANUFACTORIES });
-        const plentyMarketAuthData = JSON.parse(localStorage.getItem("plentyMarketAuthData"));
-        const { accessToken } = plentyMarketAuthData;
         axios
           .get(
-            `${process.env.PLENTY_MARKET_API_URL}/items/manufacturers?itemsPerPage=200`,
-            {
-              headers: {
-                Authorization: `Bearer ${accessToken}`,
-              },
-            }
+            `${process.env.PLENTY_MARKET_API_URL}?action=fetchManufactorers&page=1&itemsPerPage=200`
           )
           .then(async (res) => {
             const { data } = res;

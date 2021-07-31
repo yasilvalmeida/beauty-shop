@@ -3,24 +3,15 @@ import {
   SET_CATEGORIES,
   SET_ERROR,
 } from "../action-types/categories";
-import { backendLogin } from "./plenty_market_auth";
 
 import axios from "axios";
 
 export const getCategories = () => {
     return (dispatch) => {
-        dispatch(backendLogin())
         dispatch({ type: GET_CATEGORIES });
-        const plentyMarketAuthData = JSON.parse(localStorage.getItem("plentyMarketAuthData"));
-        const { accessToken } = plentyMarketAuthData;
         axios
           .get(
-            `${process.env.PLENTY_MARKET_API_URL}/categories?type=item&itemsPerPage=200`,
-            {
-              headers: {
-                Authorization: `Bearer ${accessToken}`,
-              },
-            }
+            `${process.env.PLENTY_MARKET_API_URL}?action=fetchCategories&page=1&itemsPerPage=200`
           )
           .then(async (res) => {
             const { data } = res;

@@ -15,29 +15,20 @@ import {
     GET_PRODUCTS_WITH_FILTER_TWO, 
     SWITCH_TO_FAVOURITE_TWO,
 } from "../action-types/products";
-import { backendLogin } from "../actions/plenty_market_auth";
 import axios from "axios";
 
 export const getProducts = () => {
     return (dispatch) => {
-        dispatch(backendLogin())
         dispatch({ type: GET_PRODUCTS });
-        const plentyMarketAuthData = JSON.parse(localStorage.getItem("plentyMarketAuthData"));
-        const { accessToken } = plentyMarketAuthData;
         axios
           .get(
-            `${process.env.PLENTY_MARKET_API_URL}/items?with=variations,itemImages&page=1&itemsPerPage=3`,
-            {
-              headers: {
-                Authorization: `Bearer ${accessToken}`,
-              },
-            }
+            `${process.env.PLENTY_MARKET_API_URL}?action=fetchItem&page=1&itemsPerPage=3&with=variations,itemImages`
           )
           .then(async (res) => {
             const { data } = res;
             const { entries } = data;
             const products = [];
-            await entries.map(async (product, i) => {
+            await entries?.map(async (product, i) => {
               const images = [];
               const variants_of_a_products = [];
               const {
@@ -60,12 +51,7 @@ export const getProducts = () => {
               let brand = "No Brand";
               if (manufacturerId !== 0) {
                 const manufactoryData = await axios.get(
-                  `${process.env.PLENTY_MARKET_API_URL}/items/manufacturers/${manufacturerId}`,
-                  {
-                    headers: {
-                      Authorization: `Bearer ${accessToken}`,
-                    },
-                  }
+                  `${process.env.PLENTY_MARKET_API_URL}?action=fetchManufactorers&id=${manufacturerId}`
                 );
                 brand = manufactoryData?.data?.name;
               } 
@@ -162,18 +148,10 @@ export const getProducts = () => {
 
 export const getProductsTwo = () => {
     return (dispatch) => {
-        dispatch(backendLogin());
         dispatch({ type: GET_PRODUCTS });
-        const plentyMarketAuthData = JSON.parse(localStorage.getItem("plentyMarketAuthData"));
-        const { accessToken } = plentyMarketAuthData;
         axios
           .get(
-            `${process.env.PLENTY_MARKET_API_URL}/items?with=variations,itemImages&page=3&itemsPerPage=3`,
-            {
-              headers: {
-                Authorization: `Bearer ${accessToken}`,
-              },
-            }
+            `${process.env.PLENTY_MARKET_API_URL}?action=fetchItem&page=3&itemsPerPage=3&with=variations,itemImages`
           )
           .then(async (res) => {
             const { data } = res;
@@ -202,12 +180,7 @@ export const getProductsTwo = () => {
               let brand = 'No Brand';
               if (manufacturerId !== 0) {
                 const manufactoryData = await axios.get(
-                  `${process.env.PLENTY_MARKET_API_URL}/items/manufacturers/${manufacturerId}`,
-                  {
-                    headers: {
-                      Authorization: `Bearer ${accessToken}`,
-                    },
-                  }
+                  `${process.env.PLENTY_MARKET_API_URL}?action=fetchManufactorers&id=${manufacturerId}`
                 );
                 brand = manufactoryData?.data?.name;
               } 
@@ -431,6 +404,7 @@ export const getProductsWithFilter = (position) => {
             .catch((err) => dispatch({type: SET_ERROR, payload: err}));
     };
 };
+
 export const getProductsWithFilterSecond = (position) => {
     return (dispatch) => {
         dispatch({type: GET_PRODUCTS_WITH_LEFT_TEXT});
@@ -456,6 +430,7 @@ export const getProductsWithFilterSecond = (position) => {
             .catch((err) => dispatch({type: SET_ERROR, payload: err}));
     };
 };
+
 export const getEightProductsWithFilter = (position) => {
     return (dispatch) => {
         dispatch({type: GET_PRODUCTS_WITH_LEFT_TEXT});
@@ -484,21 +459,14 @@ export const getEightProductsWithFilter = (position) => {
 
 export const getSingleProduct = (id) => {
     return (dispatch) => {
-      dispatch(backendLogin());
       dispatch({ type: SET_PRODUCT_SINGLE_LOADED });
-      const plentyMarketAuthData = JSON.parse(localStorage.getItem("plentyMarketAuthData"));
-      const { accessToken } = plentyMarketAuthData;
       axios
         .get(
-          `${process.env.PLENTY_MARKET_API_URL}/items/${id}?with=variations,itemImages`,
-          {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }
+          `${process.env.PLENTY_MARKET_API_URL}?action=fetchItem&id=${id}&with=variations,itemImages`
         )
         .then(async (res) => {
           const { data } = res;
+          const { entries } = data;
           const images = [];
           const variants_of_a_products = [];
           const {
@@ -509,7 +477,7 @@ export const getSingleProduct = (id) => {
             texts,
             variations,
             itemImages,
-          } = data;
+          } = entries[0];
           const {
             name1,
             shortDescription,
@@ -521,12 +489,7 @@ export const getSingleProduct = (id) => {
           let brand = "No Brand";
           if (manufacturerId !== 0) {
             const manufactoryData = await axios.get(
-              `${process.env.PLENTY_MARKET_API_URL}/items/manufacturers/${manufacturerId}`,
-              {
-                headers: {
-                  Authorization: `Bearer ${accessToken}`,
-                },
-              }
+              `${process.env.PLENTY_MARKET_API_URL}?action=fetchManufactorers&id=${manufacturerId}`
             );
             brand = manufactoryData?.data?.name;
           }
@@ -588,7 +551,7 @@ export const getSingleProduct = (id) => {
               images: images.length > 0 ? [images[0]] : [],
               price: purchasePrice,
               quantity: availability,
-              number
+              number,
             });
           });
           await variants_of_a_products.map((vop, v) => {

@@ -7,27 +7,15 @@ import {
     SET_PRODUCTS_COUNT,
     SORT_SHOP_PRODUCTS
 } from "../action-types/shop";
-import { backendLogin } from "../actions/plenty_market_auth";
 
 export const getShopProducts = (currentPage, maxPerPage, filterType, filterId) => {
-    //currentPage = parseInt(currentPage / maxPerPage);
     return (dispatch) => {
-        dispatch(backendLogin());
         dispatch({ type: GET_SHOP_PRODUCTS });
         dispatch({ type: SET_LOADED });
-        const plentyMarketAuthData = JSON.parse(
-          localStorage.getItem("plentyMarketAuthData")
-        );
-        const { accessToken } = plentyMarketAuthData;
         if (filterId === 0) {
           axios
             .get(
-              `${process.env.PLENTY_MARKET_API_URL}/items?with=variations,itemImages&page=${currentPage}&itemsPerPage=${maxPerPage}`,
-              {
-                headers: {
-                  Authorization: `Bearer ${accessToken}`,
-                },
-              }
+              `${process.env.PLENTY_MARKET_API_URL}?action=fetchItem&page=${currentPage}&itemsPerPage=${maxPerPage}&with=variations,itemImages`
             )
             .then(async (res) => {
               const { data } = res;
@@ -150,12 +138,7 @@ export const getShopProducts = (currentPage, maxPerPage, filterType, filterId) =
         } else if (filterType === "MARKEN") {
           axios
             .get(
-              `${process.env.PLENTY_MARKET_API_URL}/items?with=variations,itemImages&page=${currentPage}&itemsPerPage=${maxPerPage}&manufacturerId=${filterId}`,
-              {
-                headers: {
-                  Authorization: `Bearer ${accessToken}`,
-                },
-              }
+              `${process.env.PLENTY_MARKET_API_URL}?action=fetchItem&page=${currentPage}&itemsPerPage=${maxPerPage}&manufacturerId=${filterId}&with=variations,itemImages`
             )
             .then(async (res) => {
               const { data } = res;
@@ -278,12 +261,7 @@ export const getShopProducts = (currentPage, maxPerPage, filterType, filterId) =
         } else if (filterType === "KATEGORIEN") {
           axios
             .get(
-              `${process.env.PLENTY_MARKET_API_URL}/items/variations?with=variationCategories,itemImages,item&page=${currentPage}&itemsPerPage=${maxPerPage}&categoryId=${filterId}`,
-              {
-                headers: {
-                  Authorization: `Bearer ${accessToken}`,
-                },
-              }
+              `${process.env.PLENTY_MARKET_API_URL}?action=fetchVariation&page=${currentPage}&itemsPerPage=${maxPerPage}&categoryId=${filterId}&with=variationCategories,itemImages,item`
             )
             .then(async (res) => {
               const { data } = res;
@@ -295,24 +273,14 @@ export const getShopProducts = (currentPage, maxPerPage, filterType, filterId) =
                 const variants_of_a_products = [];
                 const {
                   isMain,
-                  purchasePrice, 
+                  purchasePrice,
                   availability,
                   item,
                   itemImages,
                 } = variation;
-                const { 
-                id,
-                manufacturerId,
-                createdAt,
-                updatedAt,
-                } = item;
+                const { id, manufacturerId, createdAt, updatedAt } = item;
                 const itemData = await axios.get(
-                  `${process.env.PLENTY_MARKET_API_URL}/items/${id}`,
-                  {
-                    headers: {
-                      Authorization: `Bearer ${accessToken}`,
-                    },
-                  }
+                  `${process.env.PLENTY_MARKET_API_URL}?action=fetchItem&id=${id}`
                 );
                 const { data } = itemData;
                 const { texts } = data;
@@ -374,7 +342,7 @@ export const getShopProducts = (currentPage, maxPerPage, filterType, filterId) =
                     updated_at: lastUpdate,
                   });
                 });
-                variants_of_a_products.push({
+                await variants_of_a_products.push({
                   main: isMain,
                   images: images.length > 0 ? [images[0]] : [],
                   price: purchasePrice,

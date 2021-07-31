@@ -23,8 +23,7 @@ let foo = () => {
       });
   }
 };
-
-
+  
 store.subscribe(foo);
 
 const instance = axios.create({

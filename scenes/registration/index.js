@@ -13,7 +13,7 @@ const RegistrationScene = () => {
 
     useEffect(()=>{
         dispatch(getUserDataFromLocalStorage());
-        dispatch(getRegisterCountries())
+        //dispatch(getRegisterCountries())
         dispatch(getRegisterTextData())
     },[])
 

@@ -7,25 +7,13 @@ import {
     SET_LOADED, 
     SET_REGISTRATION_DATA
 } from "../action-types/registration";
-import { backendLogin } from "../actions/plenty_market_auth";
 
 export const getRegisterCountries = () => {
     return dispatch => {
         dispatch({ type: SET_LOADED });
-        dispatch(backendLogin());
-        const plentyMarketAuthData = JSON.parse(
-          localStorage.getItem("plentyMarketAuthData")
-        );
-        const { accessToken } = plentyMarketAuthData;
-
         axios
           .get(
-            `${process.env.PLENTY_MARKET_API_URL}/orders/shipping/countries`,
-            {
-              headers: {
-                Authorization: `Bearer ${accessToken}`,
-              },
-            }
+            `${process.env.PLENTY_MARKET_API_URL}?action=fetchCountries`
           )
           .then((data) => {
             dispatch({
@@ -57,11 +45,7 @@ export const getRegisterTextData = () => {
 };
 
 export const postRegistration = (formData) => {
-  console.log('form', formData);
   return function (dispatch) {
-    dispatch(backendLogin());
-    const plentyMarketAuthData = JSON.parse(localStorage.getItem("plentyMarketAuthData"));
-    const { accessToken } = plentyMarketAuthData;
     dispatch({
       type: SET_REGISTRATION_DATA,
     });
@@ -79,49 +63,29 @@ export const postRegistration = (formData) => {
       },
     ];
     axios
-      .post(
-        `${process.env.PLENTY_MARKET_API_URL}/accounts/contacts`,
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        },
-      )
+      .post(`${process.env.PLENTY_MARKET_API_URL}?action=createCustomer`, formData)
       .then(async (response) => {
         const { data, status } = response;
         if (status === 200) {
           if (formData.subscribe) {
             const { id } = data;
             const { email, firstName, lastName } = formData;
-            const emailConfirmationData = await axios.post(
-              `${process.env.PLENTY_MARKET_API_URL}/rest​/newsletters​/double_opt_in​/${id}`,
-              {
-                headers: {
-                  Authorization: `Bearer ${accessToken}`,
-                },
-              }
+            await axios.get(
+              `${process.env.PLENTY_MARKET_API_URL}?action=sendRegistrationEmail&id=${id}`
             );
-            const newsletterData = await axios.post(
-              `${process.env.PLENTY_MARKET_API_URL}/rest/newsletters/recipients`,
+            await axios.post(
+              `${process.env.PLENTY_MARKET_API_URL}?action=createNewsletter`,
               {
                 email,
                 firstName,
                 lastName,
                 folderIds: [process.env.PLENTY_MARKET_FOLDER_ID],
                 isFrontend: true,
-              },
-              {
-                headers: {
-                  Authorization: `Bearer ${accessToken}`,
-                },
               }
             );
-            console.log("newsletter", newsletterData);
           }
           dispatch({ type: POST_REGISTRATION_DATA, payload: data });
-        }
-        else {
+        } else {
           dispatch({ type: SET_ERROR, payload: "Customer not registered!" });
         }
       })

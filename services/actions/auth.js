@@ -6,7 +6,7 @@ export const getUserDataFromLocalStorage = () => {
         const userData = localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : null;
     
         if (userData) {
-            //localStorage.removeItem("userData");
+            localStorage.removeItem("userData");
             return dispatch({ type: GET_LOGIN_DATA, payload: userData });
         }
     };
@@ -16,10 +16,11 @@ export const login = data => {
     return dispatch => {
         dispatch({ type: GET_LOGIN_DATA })
         axios
-          .post(`${process.env.PLENTY_MARKET_API_URL}/account/login`, data)
+          .post(`${process.env.PLENTY_MARKET_API_URL}?action=login`, data)
           .then((res) => {
-            localStorage.setItem("userData", JSON.stringify(res.data));
-            return dispatch({ type: SET_LOGIN_DATA, payload: {auth: res.data, body: data} });
+              const { data } = res;
+            localStorage.setItem("userData", JSON.stringify(data));
+            return dispatch({ type: SET_LOGIN_DATA, payload: {auth: data, body: data} });
           })
           .catch((err) => {
                 return dispatch({ 
