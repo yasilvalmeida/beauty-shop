@@ -23,7 +23,7 @@ const RegistrationScene = () => {
         <>
             <Header/>
             <MobileHeader/>
-            <div className={"registration__page__body"}>
+            <div className={"registration__page__body"}>0
                 <RegistrationHeader textData={textData} />
                 <div className={"registration__page__body__formandtext"}>
                     <RegistrationForm textData={textData} />
