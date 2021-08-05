@@ -30,7 +30,6 @@ const Header = () => {
         </div>
         <div className="page-header-top-grey">
           <span className="col-lg-12" dangerouslySetInnerHTML={secondTextFunction()}>
-
           </span>
         </div>
         <HeaderSearch />

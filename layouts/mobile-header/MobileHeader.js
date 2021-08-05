@@ -87,12 +87,10 @@ const MobileHeader = () => {
           {navlinks?.map((e, i) => {
             return (
               <MobileCard
-                title={
-                  <Link href={e?.item_name.toLowerCase()}>{e?.item_name}</Link>
-                }
-                data={e.categories}
+                title={<Link href={e?.url}>{e?.name}</Link>}
+                /* data={e.categories} */
                 key={i}
-                classValue={e.categories.length === 0 && "without-body"}
+                classValue="without-body"
               />
             );
           })}

@@ -15,10 +15,10 @@ const  Home = () => {
 
   return (
     <>
-        {/*<PageHeader />*/}
-        {/*<MobilePageHeader />*/}
-        <Homepage/>
-        {/*<Footer/>*/}
+        {/* <PageHeader />
+        <MobilePageHeader /> */}
+        <Homepage />
+        {/* <Footer/> */}
     </>
   );
 }

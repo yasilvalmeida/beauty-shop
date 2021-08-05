@@ -3,7 +3,7 @@ import MarkenScene from "../scenes/marken";
 const Marken = () => {
     return (
         <>
-            <MarkenScene/>
+            <MarkenScene />
         </>
     );
 };

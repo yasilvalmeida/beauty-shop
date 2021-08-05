@@ -40,11 +40,11 @@
 .mobileHeader {
   display: none;
   
-  @media screen and (max-width: 1300px) {
+  @media screen and (max-width: 1080px) {
     display: block;
   }
   .mobileHeader__container {
-    @media screen and (max-width: 1300px) {
+    @media screen and (max-width: 1080px) {
       display: grid;
       grid-auto-flow: column;
       justify-content: space-between;
@@ -95,7 +95,7 @@
     visibility: visible;
     transform: translateY(-20%);
     transition: all .3s ease-in-out;
-    @media screen and (max-width: 1300px) {
+    @media screen and (max-width: 1080px) {
       display: block;
     }
     &--input {

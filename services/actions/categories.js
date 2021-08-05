@@ -11,7 +11,7 @@ export const getCategories = () => {
         dispatch({ type: GET_CATEGORIES });
         axios
           .get(
-            `${process.env.PLENTY_MARKET_API_URL}?action=fetchCategories&page=1&itemsPerPage=200`
+            `${process.env.PLENTY_MARKET_API_URL}?action=fetchCategories&page=1&itemsPerPage=200&type=item`
           )
           .then(async (res) => {
             const { data } = res;

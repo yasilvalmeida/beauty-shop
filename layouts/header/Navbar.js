@@ -29,48 +29,46 @@ const Navbar = () => {
                 return (
                   <li
                     key={i}
-                    className={`main-list ${
-                      e.categories.length > 0 ? 'main-list-with-hover' : ''
-                    }`}
+                    className={`main-list`}
                   >
                     <Link
                       exact
-                      href={ `/${e?.item_name.toLowerCase() || ''}`}
+                      href={ `/${e?.url || ''}`}
                     >
                       <a
                         href="#"
                         className={`hovered-top-link ${
-                          route.pathname === e.item_name.toLowerCase()
+                          route.pathname === e?.url
                             ? 'active-navbar'
                             : ''
                         }`}
-                        href={e?.item_name?.toLowerCase()}
+                        href={e?.url}
                         style={
                           route.pathname.substring(1) ===
-                          e?.item_name?.toLowerCase()
+                          e?.url
                             ? { WebkitTextStroke: '1px' }
                             : null
                         }
                       >
-                        {e.item_name}
+                        {e?.name}
                       </a>
                     </Link>
                     <div className={'relative-nav'}>
                       <div className={'absolute-white'}></div>
                     </div>
-                    {e.categories.length > 0 ? (
+                    {/* {e?.categories?.length > 0 ? (
                       <>
                         <div className={'hovered'}>
-                          {e.categories.map((category) => (
+                          {e?.categories.map((category) => (
                             <div
                               className={' nav-hov-links '}
-                              key={category.id}
+                              key={category?.id}
                             >
-                              <h2>{category.CategoryName}</h2>
-                              {category.subCategories.length
-                                ? category.subCategories.map((subC) => (
-                                    <Link href={'/a-z'} key={subC.id}>
-                                      {subC.SubCategoryName}
+                              <h2>{category?.CategoryName}</h2>
+                              {category?.subCategories?.length
+                                ? category?.subCategories.map((subC) => (
+                                    <Link href={'/a-z'} key={subC?.id}>
+                                      {subC?.SubCategoryName}
                                     </Link>
                                   ))
                                 : null}
@@ -94,7 +92,7 @@ const Navbar = () => {
                           )}
                         </div>
                       </>
-                    ) : null}
+                    ) : null} */}
                   </li>
                 );
               })}

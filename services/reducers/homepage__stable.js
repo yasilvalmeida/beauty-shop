@@ -16,7 +16,8 @@ import {
   SET_MIDFOOT,
   SET_NEWSLETTER_TEXT,
   HOMEPAGE_LOADER,
-  GET_RENDER_MODAL
+  GET_RENDER_MODAL,
+  SET_SELECTED_LANGUAGE
 } from "../action-types/homepage__stable";
 
 const initialState = {
@@ -43,6 +44,7 @@ const initialState = {
   x: false,
   loader: true,
   renderModalData: null,
+  selectedLanguage: "De"
 };
 
 const homeRedcucer = (state = initialState, action) => {
@@ -97,7 +99,7 @@ const homeRedcucer = (state = initialState, action) => {
         // loader: false,
 
       };
-    case "GET_HOMEPAGE_PRODWLTXT_ONE":
+    case GET_HOMEPAGE_PRODWLTXT_ONE:
       return {
         ...state,
         prodWLTxt: action.payload,
@@ -152,10 +154,15 @@ const homeRedcucer = (state = initialState, action) => {
 
       };
 
-      case GET_RENDER_MODAL:
+    case GET_RENDER_MODAL:
       return {
         ...state,
         renderModalData: action.payload,
+      };
+    case SET_SELECTED_LANGUAGE:
+      return {
+        ...state,
+        selectedLanguage: action.payload
       };
   }
   return state;

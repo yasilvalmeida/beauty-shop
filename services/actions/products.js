@@ -396,7 +396,7 @@ export const getProductsWithFilter = (position) => {
                 const {data} = res;
                 dispatch({
                     type: GET_PRODUCTS_WITH_FILTER,
-                    payload: data,
+                    payload: {data, position},
                 });
 
                 return data;
@@ -459,14 +459,13 @@ export const getEightProductsWithFilter = (position) => {
 
 export const getSingleProduct = (id) => {
     return (dispatch) => {
-      dispatch({ type: SET_PRODUCT_SINGLE_LOADED });
+      dispatch({ type: SET_PRODUCT_SINGLE_LOADED, payload: id });
       axios
         .get(
           `${process.env.PLENTY_MARKET_API_URL}?action=fetchItem&id=${id}&with=variations,itemImages`
         )
         .then(async (res) => {
           const { data } = res;
-          const { entries } = data;
           const images = [];
           const variants_of_a_products = [];
           const {
@@ -477,7 +476,7 @@ export const getSingleProduct = (id) => {
             texts,
             variations,
             itemImages,
-          } = entries[0];
+          } = data;
           const {
             name1,
             shortDescription,

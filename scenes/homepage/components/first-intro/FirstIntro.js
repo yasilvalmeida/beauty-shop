@@ -8,7 +8,6 @@ const FirstIntro = () =>{
     const HPFS = useSelector(state => state.navbar.homePageSctOne);
     const homepageIntro = HPFS.find(p => p.position === 'HomePage');
 
-
     return(
         <>
             <div className={"first-intro "}>
@@ -17,12 +16,14 @@ const FirstIntro = () =>{
                         <div>
                             <p className={"intro-small-txt"}>{homepageIntro?.header}</p>
 
-                            <Link href={`${homepageIntro?.url || ''}`}>
+                            <Link href={`${homepageIntro?.url}`}>
                                 <h2 className={"intro-big-txt"}>{homepageIntro?.title}</h2>
                             </Link>
                         </div>
                         
-                        <Link href={`${homepageIntro?.url || ''}`}><button>{homepageIntro?.button_text}</button></Link>
+                        <Link href={`${homepageIntro?.url}`}>
+                            <button>{homepageIntro?.button_text}</button>
+                        </Link>
                     </div>
                     <div className={"first-intro-bod-right "} >
                         {

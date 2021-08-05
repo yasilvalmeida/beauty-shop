@@ -16,8 +16,8 @@ import {getSingleProductText} from "../../services/actions/single-product";
 
 const SingleProductScene = () => {
     const headtext = "Männerpflege"
-    const dispatch = useDispatch()
-    const router = useRouter()
+    const dispatch = useDispatch();
+    const router = useRouter();
     const loaded = useSelector(state => state.products.singleProductLoaded)
     const productData = useSelector(state => state.products.singleProduct)
     const styles = useSelector(state => state.singleProdPage.styles)
@@ -25,7 +25,7 @@ const SingleProductScene = () => {
         // console.log(styles)
         dispatch(getSingleProductText())
         dispatch(getUserDataFromLocalStorage());
-        dispatch(getSingleProduct(router.query.id))
+        dispatch(getSingleProduct(router?.query?.id))
     }, []);
 
     return (

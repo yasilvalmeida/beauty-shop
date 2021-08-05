@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-const FirstShareableIntro = ({smalltxt,bigtext1,bigtext2,btntext,bg,color,padding,homepageIntro}) =>{
+const FirstShareableIntro = ({smalltxt, bigtext1, bigtext2, btntext, bg, color, padding, homepageIntro}) =>{
     return(
         <div style={{backgroundColor:bg}}>
             <div className={`mobile__firstintro__body ${padding}`} >
@@ -22,8 +22,8 @@ const FirstShareableIntro = ({smalltxt,bigtext1,bigtext2,btntext,bg,color,paddin
                 </div>
 
                 <div className={"button-body"}>
-                    <Link href={`${homepageIntro?.url || ''}`}>
-                        <a href={`${homepageIntro?.url || ''}`}>
+                    <Link href={`${homepageIntro?.url}`}>
+                        <a href={`${homepageIntro?.url}`}>
                             <button style={{color:bg,backgroundColor:color}}>{homepageIntro?.button_text}</button>
                         </a>
                     </Link>

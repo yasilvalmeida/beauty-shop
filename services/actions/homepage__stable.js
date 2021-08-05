@@ -16,6 +16,7 @@ import {
   SET_NEWSLETTER_TEXT,
   HOMEPAGE_LOADER,
   GET_RENDER_MODAL,
+  SET_SELECTED_LANGUAGE
 } from "../action-types/homepage__stable";
 import axios from "axios";
 
@@ -23,18 +24,57 @@ export const getNavbar = () => {
   return (dispatch) => {
     dispatch({ type: HOMEPAGE_LOADER });
     dispatch({ type: GET_NAVBAR_SETTINGS });
-
     return axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/navbaritems`)
-      .then((res) => {
+      .get(
+        `${process.env.PLENTY_MARKET_API_URL}?action=fetchCategories&page=1&itemsPerPage=200&type=item`
+      )
+      .then(async (res) => {
         const { data } = res;
-        dispatch({
-          type: SET_NAVBAR_SETTINGS,
-          payload: data,
+        const { entries } = data;
+        const categories = [];
+        await entries.map(async (category, i) => {
+          const { details } = category;
+          if (details.length > 0) {
+            const { categoryId, name, nameUrl } = details[0];
+            categories.push({
+              id: categoryId,
+              name,
+              url: `categories/${categoryId}`,
+            });
+          }
+          if (i === entries.length - 1) {
+            categories.push({
+              name: "Shop",
+              url: "shop"
+            });
+            categories.push({
+              name: "Magazin",
+              url: "magazine",
+            });
+            categories.push({
+              name: "Kontakt",
+              url: "contact"
+            });
+            dispatch({
+              type: SET_NAVBAR_SETTINGS,
+              payload: categories,
+            });
+            return categories;
+          }
         });
-        return data;
       })
-      .catch((err) => dispatch({ type: SET_ERROR }));
+      .catch((err) => dispatch({ type: SET_ERROR, payload: err }));
+  };
+};
+
+export const setSelectedLanguage = (language) => {
+  return (dispatch) => {
+    dispatch({ type: HOMEPAGE_LOADER });
+    dispatch({ type: GET_NAVBAR_SETTINGS });
+    return dispatch({
+      type: SET_SELECTED_LANGUAGE,
+      payload: language
+    })
   };
 };
 
@@ -152,6 +192,7 @@ export const getInspirations = () => {
       .catch((err) => dispatch({ type: SET_ERROR }));
   };
 };
+
 export const getFourIcons = () => {
   return (dispatch) => {
     dispatch({ type: HOMEPAGE_LOADER });
@@ -171,6 +212,7 @@ export const getFourIcons = () => {
       .catch((err) => dispatch({ type: SET_ERROR }));
   };
 };
+
 export const getMidFoot = () => {
   return (dispatch) => {
     dispatch({ type: HOMEPAGE_LOADER });
@@ -190,6 +232,7 @@ export const getMidFoot = () => {
       .catch((err) => dispatch({ type: SET_ERROR }));
   };
 };
+
 export const getNewsletterText = () => {
   return (dispatch) => {
     dispatch({ type: HOMEPAGE_LOADER });
@@ -210,7 +253,6 @@ export const getNewsletterText = () => {
   };
 };
 
-
 export const getRenderModal = () => {
     return (dispatch) => {
       dispatch({ type: HOMEPAGE_LOADER });
@@ -228,5 +270,4 @@ export const getRenderModal = () => {
         })
         .catch((err) => dispatch({ type: SET_ERROR }));
     };
-  };
-  
+};

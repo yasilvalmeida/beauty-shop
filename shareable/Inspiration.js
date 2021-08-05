@@ -23,7 +23,11 @@ const InspirationSection = ({ background, color, inspiration, padding }) => {
                 {inspiration?.header}
               </p>
               <Link href={inspiration?.url || ''}>
-                <a href="#"><h2 style={{ color: color, cursor: 'pointer' }}>{inspiration?.title}</h2></a>
+                <a href="#">
+                  <h2 style={{ color: color, cursor: 'pointer' }}>
+                    {inspiration?.title}
+                  </h2>
+                  </a>
               </Link>
             </div>
             <p className={'inspiration-right-bottxt'} style={{ color: color }}>

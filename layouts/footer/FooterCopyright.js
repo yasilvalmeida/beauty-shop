@@ -1,4 +1,5 @@
-import moment from "moment"
+import moment from "moment";
+
 const FooterCopyright = () =>{
     return(
         <div className={"footer__copyright"}>

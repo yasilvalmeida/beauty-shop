@@ -40,7 +40,6 @@
 @import "../scenes/login/login";
 @import "../scenes/herren/herren";
 @import "../scenes/herren/mediaherren";
-@import "../scenes/shop/components/shop-header/shopheader.scss";
 @import "../layouts/loader/loader";
 @import "../layouts/mobile-header/mobileHeader.scss";
 @import "../shareable/component-header/component-info/componentInfo.scss";
@@ -55,14 +54,22 @@
 @import "../shareable/Products/ProductsWithLeftText";
 @import "../shareable/Products/SingleProduct";
 @import "antd/dist/antd.css";
+
+@import "../scenes/search/components/search-header/SearchHeader.scss";
+@import "../scenes/search/components/search-body/SearchBody.scss";
+/* 
+@import "../scenes/search/components/search-body/SearchBody.scss";
+@import "../scenes/search/components/search-body/search-body-header/searchBodyHeader.scss"; */
+
+@import "../scenes/shop/components/shop-header/shopheader.scss";
 @import "../scenes/shop/components/shop-body/dashboard/dashboard.scss";
 @import "../scenes/shop/components/shop-body/ShopBody";
 @import "../scenes/shop/components/shop-body/dashboard/dashboard.scss";
 @import "../scenes/shop/components/shop-body/shop-body-header/shopBodyHeader.scss";
 @import "../scenes/shop/components/shop-body/shop-body-footer/ShopBodyFooter";
+@import "../scenes/shop/components/shop-body/mobile-filter/mobileFilter.scss";
 @import "../scenes/homepage/components/mobile/MobileChanged";
 @import "scenes/single-product-scene/index";
-@import "../scenes/shop/components/shop-body/mobile-filter/mobileFilter.scss";
 @import "scenes/abouttwo/index";
 @import "shareable/abouttwoproducts/AboutTwoProducts";
 @import "../shareable/sidebar/sidebar.scss";
