@@ -33,14 +33,34 @@
   }
 }
 
-@import "../layouts/header/header";
-@import "../scenes/homepage/homepage";
-@import "../layouts/footer/footer";
-@import "../layouts/header/mediaheader";
-@import "../scenes/login/login";
-@import "../scenes/herren/herren";
-@import "../scenes/herren/mediaherren";
-@import "../layouts/loader/loader";
+.loader__component {
+  z-index: 199;
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .ant-spin-lg {
+    font-size: 4rem !important;
+  }
+  .ant-spin-dot {
+    font-size: 4rem !important;
+  }
+  .ant-spin-dot-item {
+    background: black;
+    width: 2rem !important;
+    height: 2rem !important;
+  }
+}
+
+@import "../layouts/header/header.scss";
+@import "../scenes/homepage/homepage.scss";
+@import "../layouts/footer/footer.scss";
+@import "../layouts/header/mediaheader.scss";
+@import "../scenes/login/login.scss";
+@import "../scenes/herren/herren.scss";
+@import "../scenes/herren/mediaherren.scss";
+@import "../layouts/loader/loader.scss";
 @import "../layouts/mobile-header/mobileHeader.scss";
 @import "../shareable/component-header/component-info/componentInfo.scss";
 @import "../shareable/newsLetter/newsLetterRep.scss";
@@ -51,8 +71,9 @@
 @import "../scenes/video/components/video-container/videoContainer.scss";
 @import "../shareable/component-header/component-info/componentInfo.scss";
 @import "../shareable/social/social.scss";
-@import "../shareable/Products/ProductsWithLeftText";
-@import "../shareable/Products/SingleProduct";
+@import "../scenes/homepage/components/products-with-filter/ProductsWithFilter";
+@import "../shareable/Products/ProductsWithLeftText.scss";
+@import "../shareable/Products/SingleProduct.scss";
 @import "antd/dist/antd.css";
 
 @import "../scenes/search/components/search-header/SearchHeader.scss";
@@ -63,12 +84,12 @@
 
 @import "../scenes/shop/components/shop-header/shopheader.scss";
 @import "../scenes/shop/components/shop-body/dashboard/dashboard.scss";
-@import "../scenes/shop/components/shop-body/ShopBody";
+@import "../scenes/shop/components/shop-body/ShopBody.scss";
 @import "../scenes/shop/components/shop-body/dashboard/dashboard.scss";
 @import "../scenes/shop/components/shop-body/shop-body-header/shopBodyHeader.scss";
 @import "../scenes/shop/components/shop-body/shop-body-footer/ShopBodyFooter";
 @import "../scenes/shop/components/shop-body/mobile-filter/mobileFilter.scss";
-@import "../scenes/homepage/components/mobile/MobileChanged";
+@import "../scenes/homepage/components/mobile/MobileChanged.scss";
 @import "scenes/single-product-scene/index";
 @import "scenes/abouttwo/index";
 @import "shareable/abouttwoproducts/AboutTwoProducts";

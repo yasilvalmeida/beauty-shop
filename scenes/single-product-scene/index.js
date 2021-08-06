@@ -22,7 +22,6 @@ const SingleProductScene = () => {
     const productData = useSelector(state => state.products.singleProduct)
     const styles = useSelector(state => state.singleProdPage.styles)
     useEffect(() => {
-        // console.log(styles)
         dispatch(getSingleProductText())
         dispatch(getUserDataFromLocalStorage());
         dispatch(getSingleProduct(router?.query?.id))

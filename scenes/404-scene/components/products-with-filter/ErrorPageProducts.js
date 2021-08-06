@@ -2,7 +2,7 @@ import ProductsWithFilter from '../../../../shareable/ProductsWithFilter';
 import {getProducts, getProductsWithFilter} from "../../../../services/actions/products";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-import ProductsWithLeftText from "../../../../shareable/Products/PorductsWithLeftText";
+import ProductsWithLeftText from "../../../../shareable/Products/ProductsWithLeftText";
 import ProductsWithFilterHomepage from "../../../homepage/components/products-with-filter/ProductsWithFilter";
 
 const ErrorPageProducts = () => {

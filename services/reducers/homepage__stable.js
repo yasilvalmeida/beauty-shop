@@ -1,6 +1,6 @@
 import {
-  GET_NAVBAR_SETTINGS,
-  SET_NAVBAR_SETTINGS,
+  LOD_NAVBAR,
+  SET_NAVBAR,
   GET_HOMEPAGE_SECTIONONE,
   GET_HOMEPAGE_PRODWLTXT_ONE,
   GET_HEADER_CONTACTS,
@@ -63,7 +63,6 @@ const homeRedcucer = (state = initialState, action) => {
         newsletterText: action.payload,
         newsletterTextLoaded: false,
         // loader: false,
-
       };
     case SET_MIDFOOT:
       return {
@@ -71,7 +70,6 @@ const homeRedcucer = (state = initialState, action) => {
         midfoot: action.payload,
         midfootLoaded: false,
         loader: false,
-
       };
     case SET_HOMEPAGE_SECTIONONE:
       return {
@@ -79,16 +77,20 @@ const homeRedcucer = (state = initialState, action) => {
         homePageSctOne: action.payload,
         homePageSctOneLoaded: false,
         // loader: false,
-
       };
 
-    case SET_NAVBAR_SETTINGS:
+    case LOD_NAVBAR:
+      return {
+        ...state,
+        navListLoaded: true,
+      };
+    
+    case SET_NAVBAR:
       return {
         ...state,
         navListLoaded: false,
         navList: action.payload,
         // loader: false,
-
       };
 
     case SET_HEADER_CONTACTS:
@@ -97,7 +99,6 @@ const homeRedcucer = (state = initialState, action) => {
         headerContacts: action.payload,
         headerContactsLoaded: false,
         // loader: false,
-
       };
     case GET_HOMEPAGE_PRODWLTXT_ONE:
       return {
@@ -105,7 +106,6 @@ const homeRedcucer = (state = initialState, action) => {
         prodWLTxt: action.payload,
         loaded: false,
         // loader: false,
-
       };
     case SET_HOMEPAGE_HEADERTXTS:
       return {
@@ -114,7 +114,6 @@ const homeRedcucer = (state = initialState, action) => {
         headerText2: action.payload[1],
         loaded: false,
         // loader: false,
-
       };
     case GET_COLLECTION_SHOPS:
       return {
@@ -129,7 +128,6 @@ const homeRedcucer = (state = initialState, action) => {
         collectionShops: action.payload,
         loaded: false,
         // loader: false,
-
       };
     case GET_INSPIRATIONS:
       return {
@@ -143,7 +141,6 @@ const homeRedcucer = (state = initialState, action) => {
         inspirations: action.payload,
         loaded: false,
         // loader: false,
-
       };
     case SET_FOUR_ICONS:
       return {
@@ -151,7 +148,6 @@ const homeRedcucer = (state = initialState, action) => {
         fourIcons: action.payload,
         fourIconsLoaded: false,
         // loader: false,
-
       };
 
     case GET_RENDER_MODAL:
@@ -162,7 +158,7 @@ const homeRedcucer = (state = initialState, action) => {
     case SET_SELECTED_LANGUAGE:
       return {
         ...state,
-        selectedLanguage: action.payload
+        selectedLanguage: action.payload,
       };
   }
   return state;

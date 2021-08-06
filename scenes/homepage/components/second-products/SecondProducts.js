@@ -1,17 +1,23 @@
 import {useState, useEffect} from "react";
-import ProductsWithLeftText from "../../../../shareable/Products/PorductsWithLeftText";
-import { addToWishList, getProductsTwo} from '../../../../services/actions/products';
+import ProductsWithLeftText from "../../../../shareable/Products/ProductsWithLeftText";
+import { addToWishList, getSecondThreeProducts} from '../../../../services/actions/products';
 import {useDispatch, useSelector} from "react-redux";
 
 const SecondProducts = ({}) =>{
     const dispatch = useDispatch();
 
-    const prdcts = useSelector(state => state?.products?.products2);
+    const prdcts = useSelector(state => state?.products?.secondThreeProducts);
     const productsWithLeftText = useSelector(state => state?.products?.productsWithLeftText);
     const [leftText, setLeftText] = useState({});
+    const [products, setProducts] = useState([]);
+
     useEffect(()=>{
-        dispatch(getProductsTwo());
+        dispatch(getSecondThreeProducts());
     }, []);
+
+    useEffect(() => {
+      setProducts(prdcts);
+    }, [prdcts]);
 
     useEffect(() => {
         setLeftText(productsWithLeftText.find(pr => pr.position === 'HomePageTwo'));
@@ -20,7 +26,7 @@ const SecondProducts = ({}) =>{
     return(
         <>
             <ProductsWithLeftText
-                products = {prdcts}
+                products = {products}
                 leftText={leftText}
                 addToWishList={addToWishList}
             />

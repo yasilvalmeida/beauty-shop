@@ -57,16 +57,18 @@
       margin: 0;
     }
     .go-back{
-      color: #707070;
+      color: black;
+      //border: solid 1px black;
       font-size: 3rem;
       text-transform: uppercase;
       letter-spacing: 2px;
-    }
-    .go-back:hover {
-      background: black;
-      color: white;
-      width: max-content;
-      cursor: pointer;
+      width: 200px;
+      &:hover {
+        background: black;
+        color: white;
+        width: max-content;
+        cursor: pointer;
+      }
     }
     .about-product-main-img-body{
       display: flex;
