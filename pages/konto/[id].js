@@ -31,7 +31,7 @@ export async function getStaticPaths() {
             {params: {id: "meine"}},
             {params: {id: "lesezeichen"}},
         ],
-        fallback:false
+        fallback: false
     };
 }
 

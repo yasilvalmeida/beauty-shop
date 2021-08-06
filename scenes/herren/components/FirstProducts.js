@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import ProductsWithLeftText from "../../../shareable/Products/PorductsWithLeftText";
+import ProductsWithLeftText from "../../../shareable/Products/ProductsWithLeftText";
 import {useDispatch, useSelector} from "react-redux";
 import {getProducts,addToWishList} from "../../../services/actions/products";
 
