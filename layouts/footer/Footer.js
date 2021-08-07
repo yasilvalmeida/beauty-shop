@@ -10,10 +10,10 @@ import {getFooterData,getFooterTop} from "../../services/actions/footer";
 const Footer = () =>{
     const dispatch = useDispatch();
     const footerData = useSelector(state=>state.footer.footerData);
-useEffect(()=>{
-    dispatch(getFooterData())
-    dispatch(getFooterTop())
-},[])
+    useEffect(()=>{
+        dispatch(getFooterData())
+        dispatch(getFooterTop())
+    },[])
     return(
         <>
            <footer>

@@ -1,6 +1,5 @@
-import {useState} from "react";
 import Link from "next/link";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const FooterNavigation = ({footerData}) => {
     const navList = useSelector((state) => state.navbar.navList);

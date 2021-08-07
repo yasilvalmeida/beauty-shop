@@ -18,14 +18,12 @@ const DashboardMenu = ({
   useEffect(() => {
     if (category) {
       setKey(0);
-      console.log('aux', key)
     }
   }, [category]);
 
   useEffect(() => {
     if (brand) {
       setKey(1);
-      console.log("aux", key);
     }
   }, [brand]);
   return (
@@ -35,14 +33,14 @@ const DashboardMenu = ({
           expandIconPosition="right"
           defaultActiveKey={`${key}`}
           accordion
-          ghost="true"
+          ghost={true}
           key={i}
         >
-          <Panel key={i} header={`${item.title} (${item.data.length}):`}>
+          <Panel header={`${item.title} (${item.data.length}):`} key={`p-${i}`}>
             <DashboardMenuRadio
+              key={`d-${i}`}
               data={item.data}
               topic={item.title}
-              key={i}
               setFilterType={setFilterType}
               setFilterId={setFilterId}
               maxItemAllowed={maxItemAllowed}

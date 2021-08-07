@@ -75,8 +75,10 @@ const Homepage = () => {
   const [productsSecond, setProductsSecond] = useState([]);
 
   useEffect(() => {
+    setProductsFirst([]);
+    setProductsSecond([]);
     dispatch(getFirstAndSecondThreeProducts(defaultLanguage));
-  }, []);
+  }, [defaultLanguage]);
 
   useEffect(() => {
     setProductsFirst(prdctsFirst);

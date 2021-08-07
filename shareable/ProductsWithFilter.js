@@ -28,7 +28,7 @@ const ProductsWithFilter = ({
   const navListState = useSelector((state) => state.navbar.navList);
   const top3Categories = navListState.slice(0, 3);
   const [defaultCategory, setDefaultCategory] = useState(0);
-  const defaultLanguage = useSelector(
+  const lang = useSelector(
     (state) => state?.navbar?.selectedLanguage
   );
   const productsByCategoriesState = useSelector(
@@ -37,7 +37,20 @@ const ProductsWithFilter = ({
   const [productsByCategories, setProductsByCategories] = useState([])
 
   useEffect(() => {
-    dispatch(getProductsByCategories(1, 3, top3Categories));
+    const categoriesIds = [];
+    top3Categories?.map((elem, i) => {
+      const filter =
+        elem.filter((detail) => detail.lang === lang)?.length > 0
+          ? elem.filter((detail) => detail.lang === lang)
+          : elem;
+      const e = filter[0];
+      const { categoryId, name } = e
+      categoriesIds.push({
+        id: categoryId,
+        name
+      });
+    });
+    dispatch(getProductsByCategories(1, 3, categoriesIds, lang));
   }, [navListState]);
 
   useEffect(() => {
@@ -104,7 +117,12 @@ const ProductsWithFilter = ({
         <div className={"products-filter-head-home"}>
           <h2>{headtext}</h2>
           <div className={"d-flex filter-btns"}>
-            {top3Categories?.map((e, i) => {
+            {top3Categories?.map((elem, i) => {
+              const filter =
+                elem.filter((detail) => detail.lang === lang)?.length > 0
+                  ? elem.filter((detail) => detail.lang === lang)
+                  : elem;
+              const e = filter[0];
               return (
                 <button
                   key={i}

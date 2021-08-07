@@ -51,12 +51,6 @@ export const getFirstAndSecondThreeProducts = (lang) => {
             keywords,
           } = texts[0];
           let brand = "No Brand";
-          if (manufacturerId !== 0) {
-            const manufactoryData = await axios.get(
-              `${process.env.PLENTY_MARKET_API_URL}?action=fetchManufacturers&id=${manufacturerId}&lang=${lang}`
-            );
-            brand = manufactoryData?.data?.name;
-          }
           await itemImages.map((image, j) => {
             const formats = [];
             const {
@@ -186,12 +180,6 @@ export const getProducts = (currentPage, itemsPerPage) => {
             keywords,
           } = texts[0];
           let brand = "No Brand";
-          if (manufacturerId !== 0) {
-            const manufactoryData = await axios.get(
-              `${process.env.PLENTY_MARKET_API_URL}?action=fetchManufacturers&id=${manufacturerId}&lang=${lang}`
-            );
-            brand = manufactoryData?.data?.name;
-          }
           await itemImages.map((image, j) => {
             const formats = [];
             const {
@@ -288,7 +276,7 @@ export const getProductsByCategories = (
   currentPage,
   maxPerPage,
   categories,
-  lang = "de"
+  lang
 ) => {
   return async (dispatch) => {
     const products_by_category = [];
@@ -321,12 +309,6 @@ export const getProductsByCategories = (
               keywords,
             } = texts[0];
             let brand = "No Brand";
-            if (manufacturerId !== 0) {
-              const manufactoryData = await axios.get(
-                `${process.env.PLENTY_MARKET_API_URL}?action=fetchManufacturers&id=${manufacturerId}&lang=${lang}`
-              );
-              brand = manufactoryData?.data?.name;
-            }
             await itemImages.map((image, j) => {
               const formats = [];
               const {
@@ -632,12 +614,6 @@ export const getSingleProduct = (id, lang = "de") => {
           keywords,
         } = texts[0];
         let brand = "No Brand";
-        if (manufacturerId !== 0) {
-          const manufactoryData = await axios.get(
-            `${process.env.PLENTY_MARKET_API_URL}?action=fetchManufacturers&id=${manufacturerId}`
-          );
-          brand = manufactoryData?.data?.name;
-        }
         await itemImages.map((image, j) => {
           const formats = [];
           const {

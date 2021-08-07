@@ -8,7 +8,7 @@ import {
   SORT_SHOP_PRODUCTS,
 } from "../action-types/shop";
 
-export const getShopProducts = (currentPage, maxPerPage, filterType, filterId, lang = "de") => {
+export const getShopProducts = (currentPage, maxPerPage, filterType, filterId, lang) => {
     return (dispatch) => {
         dispatch({ type: GET_SHOP_PRODUCTS });
         dispatch({ type: SET_LOADED });
@@ -43,12 +43,6 @@ export const getShopProducts = (currentPage, maxPerPage, filterType, filterId, l
                   keywords,
                 } = texts[0];
                 let brand = "No Brand";
-                if (manufacturerId !== 0) {
-                  const manufactoryData = await axios.get(
-                    `${process.env.PLENTY_MARKET_API_URL}?action=fetchManufacturers&id=${manufacturerId}&lang=${lang}`
-                  );
-                  brand = manufactoryData?.data?.name;
-                }
                 await itemImages.map((image, j) => {
                   const formats = [];
                   const {
@@ -174,12 +168,6 @@ export const getShopProducts = (currentPage, maxPerPage, filterType, filterId, l
                   keywords,
                 } = texts[0];
                 let brand = "No Brand";
-                if (manufacturerId !== 0) {
-                  const manufactoryData = await axios.get(
-                    `${process.env.PLENTY_MARKET_API_URL}?action=fetchManufacturers&id=${manufacturerId}&lang=${lang}`
-                  );
-                  brand = manufactoryData?.data?.name;
-                }
                 await itemImages.map((image, j) => {
                   const formats = [];
                   const {
@@ -309,12 +297,6 @@ export const getShopProducts = (currentPage, maxPerPage, filterType, filterId, l
                   keywords,
                 } = texts[0];
                 let brand = "No Brand";
-                if (manufacturerId !== 0) {
-                  const manufactoryData = await axios.get(
-                    `${process.env.PLENTY_MARKET_API_URL}?action=fetchManufacturers&id=${manufacturerId}&lang=${lang}`
-                  );
-                  brand = manufactoryData?.data?.name;
-                }
                 await itemImages.map((image, j) => {
                   const formats = [];
                   const {
@@ -410,10 +392,6 @@ export const getShopProducts = (currentPage, maxPerPage, filterType, filterId, l
 
     };
 };
-
-const getAllProductsPerPage = () => {}
-
-
 
 export const sortShopProducts = (data) =>{
     return dispatch => {

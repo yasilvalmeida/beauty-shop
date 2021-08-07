@@ -25,6 +25,7 @@ const ShopBodyContainer = ({
   const dispatch = useDispatch();
   const router = useRouter();
   let productsData = useSelector((state) => state.shop.shopProducts);
+  const lang = useSelector((state) => state?.navbar?.selectedLanguage);
   const staticData = useSelector((state) => state.shop.staticShopProducts);
   const count = useSelector((state) => state.shop.count);
   const news = useSelector(({ news }) => news);
@@ -83,8 +84,8 @@ const ShopBodyContainer = ({
       setMaxValue(current * maxItemAllowed);
     }
     scrollToref.current.scrollIntoView();
-    dispatch(getShopProducts(current, maxItemAllowed, filterType, filterId));
-  }, [current, filterId]);
+    dispatch(getShopProducts(current, maxItemAllowed, filterType, filterId, lang));
+  }, [current, filterId, lang]);
 
   useEffect(() => {
     setProducts(productsData);

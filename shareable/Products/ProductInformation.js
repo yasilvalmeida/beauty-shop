@@ -1,13 +1,17 @@
-const ProductInformation = ({ 
-  e, 
-  moment, 
-  formatter, 
-  addToFavorites, 
-  addProductToBasket, 
-  toProductPage, 
+import { useSelector } from "react-redux";
+const ProductInformation = ({
+  e,
+  moment,
+  formatter,
+  addToFavorites,
+  addProductToBasket,
+  toProductPage,
   toApproved,
-  router
+  router,
 }) => {
+  const manufactories = useSelector((state) => state.manufactory.manufactories);
+  const filter = manufactories.filter((manufactory) => manufactory.id === e?.brandId);
+  e.brand = filter[0]?.name;
   return (
     <>
       <div className={"picture-body-prod"}>
@@ -99,7 +103,7 @@ const ProductInformation = ({
           className={"prod-txt-name"}
           onClick={() => router.push(`/shop?brand=${e?.brandId}`)}
         >
-          <h3>{e?.brand}</h3>
+          <h3> {e?.brand} </h3>
         </div>
       ) : (
         <h3 className={"prod-txt-name"} /* style={{ opacity: "0" }} */>
@@ -120,9 +124,7 @@ const ProductInformation = ({
           className={"prod-txt-name"}
           onClick={() => router.push(`/shop?category=${e?.categoryId}`)}
         >
-          <span className={"prod-txt-foot"}>
-            {e?.category}
-          </span>
+          <span className={"prod-txt-foot"}>{e?.category}</span>
         </div>
       ) : (
         <span className={"prod-txt-foot"} /* style={{ opacity: 0 }} */>

@@ -16,7 +16,7 @@ const ShopBody = ({ brand, category }) => {
     brand ? brand : category ? category : 0
   );
   const [current, setCurrent] = useState(1);
-  const maxItemAllowed = 9;
+  const maxItemAllowed = 22;
   const scrollToref = useRef();
   useEffect(() => {
     setSortByName("NAME");

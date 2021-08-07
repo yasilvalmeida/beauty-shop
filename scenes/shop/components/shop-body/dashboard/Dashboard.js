@@ -1,8 +1,6 @@
-import { useState, useEffect } from 'react';
-import DashboardMenu from './dashboard-menu/DashboardMenu';
-import {
-  getCategories
-} from "../../../../../services/actions/categories";
+import { useState, useEffect } from "react";
+import DashboardMenu from "./dashboard-menu/DashboardMenu";
+import { getCategories } from "../../../../../services/actions/categories";
 import { getManufactories } from "../../../../../services/actions/manufactories";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -14,23 +12,23 @@ const Dashboard = ({
   current,
   scrollToref,
   brand,
-  category
-  }) => {
-  const dispatch = useDispatch();
-  let categoriesData = useSelector((state) => state.category.categories);
-  let manufactoriesData = useSelector((state) => state.manufactory.manufactories);
-
-  const [categoriesLoaded, setCategoriesLoaded] = useState(false);
-  const [manufactoriesLoaded, setManufactoriesLoaded] = useState(false);
-
-  useEffect(() => {
-    dispatch(getCategories());
-  }, [categoriesLoaded]);
-
-  useEffect(() => {
-    dispatch(getManufactories());
-  }, [manufactoriesLoaded]);
-
+  category,
+}) => {
+  const navListState = useSelector((state) => state.navbar.navList);
+  const lang = useSelector((state) => state?.navbar?.selectedLanguage);
+  const categoriesData = [];
+  navListState?.map((item, i) => {
+    const filter =
+      item.filter((detail) => detail.lang === lang)?.length > 0
+        ? item.filter((detail) => detail.lang === lang)
+        : item;
+    const e = filter[0];
+    const { categoryId, name } = e;
+    categoriesData.push({ id: categoryId, name });
+  });
+  let manufactoriesData = useSelector(
+    (state) => state.manufactory.manufactories
+  );
   const data = {
     titles: [
       { title: "KATEGORIEN", data: categoriesData },
@@ -61,4 +59,4 @@ const Dashboard = ({
   );
 };
 
-export default Dashboard; 
+export default Dashboard;

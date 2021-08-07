@@ -33,32 +33,57 @@ export const getNavbar = (lang) => {
         const categories = [];
         await entries?.map(async (category, i) => {
           const { details } = category;
-          if (details.length > 0) {
-            const { categoryId, name, nameUrl } = details[0];
-            categories.push({
-              id: categoryId,
-              name,
-              url: `shop?category=${categoryId}`,
-            });
-          }
+          categories.push(details);
           if (i === entries.length - 1) {
-            categories.push({
-              name: "Shop",
-              url: "shop",
-            });
-            categories.push({
-              name: "Magazin",
-              url: "magazine",
-            });
-            categories.push({
-              name: "Kontakt",
-              url: "contact",
-            });
+            categories.push(
+              [
+                {
+                  id: 0,
+                  name: "Shop",
+                  url: "shop",
+                  lang: "de",
+                },
+                {
+                  id: 0,
+                  name: "Shop",
+                  url: "shop",
+                  lang: "en",
+                },
+              ],
+              [
+                {
+                  id: 0,
+                  name: "Magazin",
+                  url: "magazine",
+                  lang: "de",
+                },
+                {
+                  id: 0,
+                  name: "Magazine",
+                  url: "magazine",
+                  lang: "en",
+                },
+              ],
+              [
+                {
+                  id: 0,
+                  name: "Kontakt",
+                  url: "contact",
+                  lang: "de",
+                },
+                {
+                  id: 0,
+                  name: "Contact",
+                  url: "contact",
+                  lang: "en",
+                },
+              ]
+            );
             dispatch({
               type: SET_NAVBAR,
               payload: categories,
             });
-            return categories;
+            //return categories;
           }
         });
       })
