@@ -19,11 +19,12 @@ import {
 } from "../action-types/products";
 import axios from "axios";
 
-export const getFirstThreeProducts = (lang) => {
+
+export const getFirstAndSecondThreeProducts = (lang) => {
   return (dispatch) => {
     axios
       .get(
-        `${process.env.PLENTY_MARKET_API_URL}?action=fetchItem&page=1&itemsPerPage=3&with=variations,itemImages&lang=${lang}`
+        `${process.env.PLENTY_MARKET_API_URL}?action=fetchItem&page=200&itemsPerPage=6&with=variations,itemImages&lang=${lang}`
       )
       .then(async (res) => {
         const { data } = res;
@@ -137,137 +138,15 @@ export const getFirstThreeProducts = (lang) => {
             keywords,
           });
           if (i === entries.length - 1) {
+            const firstThree = products.splice(0, 3);
+            const secondThree = products;
             dispatch({
               type: SET_FIRST_THREE_PRODUCTS,
-              payload: products,
+              payload: firstThree,
             });
-          }
-        });
-      })
-      .catch((err) => dispatch({ type: SET_PRODUCTS_ERROR, payload: err }));
-  };
-};
-export const getSecondThreeProducts = (lang) => {
-  return (dispatch) => {
-    axios
-      .get(
-        `${process.env.PLENTY_MARKET_API_URL}?action=fetchItem&page=3&itemsPerPage=3&with=variations,itemImages&lang=${lang}`
-      )
-      .then(async (res) => {
-        const { data } = res;
-        const { entries } = data;
-        const products = [];
-        await entries?.map(async (product, i) => {
-          const images = [];
-          const variants_of_a_products = [];
-          const {
-            id,
-            manufacturerId,
-            createdAt,
-            updatedAt,
-            texts,
-            variations,
-            itemImages,
-          } = product;
-          const {
-            name1,
-            shortDescription,
-            metaDescription,
-            description,
-            technicalData,
-            keywords,
-          } = texts[0];
-          let brand = "No Brand";
-          if (manufacturerId !== 0) {
-            const manufactoryData = await axios.get(
-              `${process.env.PLENTY_MARKET_API_URL}?action=fetchManufacturers&id=${manufacturerId}&lang=${lang}`
-            );
-            brand = manufactoryData?.data?.name;
-          }
-          await itemImages.map((image, j) => {
-            const formats = [];
-            const {
-              cleanImageName,
-              fileType,
-              height,
-              width,
-              size,
-              url,
-              insert,
-              lastUpdate,
-              urlMiddle,
-              urlPreview,
-            } = image;
-            if (url) {
-              formats.push({
-                large: {
-                  url,
-                  mime: fileType,
-                },
-              });
-            }
-            if (urlMiddle) {
-              formats.push({
-                medium: {
-                  url: urlMiddle,
-                  mime: fileType,
-                },
-              });
-            }
-            if (urlPreview) {
-              formats.push({
-                thumbnail: {
-                  url: urlPreview,
-                  mime: fileType,
-                },
-              });
-            }
-            images.push({
-              name: cleanImageName,
-              mime: fileType,
-              height,
-              width,
-              size,
-              url,
-              formats,
-              created_at: insert,
-              updated_at: lastUpdate,
-            });
-          });
-          await variations.map((variation, v) => {
-            const { isMain, purchasePrice, availability } = variation;
-            //if (purchasePrice > price) price = purchasePrice;
-            variants_of_a_products.push({
-              main: v === 0 ? true : false,
-              images: images.length > 0 ? [images[0]] : [],
-              price: purchasePrice,
-              quantity: availability,
-            });
-          });
-          await variants_of_a_products.map((vop, v) => {
-            if (v === 0) {
-              vop.main = true;
-            } else {
-              vop.main = false;
-            }
-            //vop.price = price;
-          });
-          products.push({
-            id,
-            name: name1,
-            brand,
-            brandId: manufacturerId !== 0 ? manufacturerId : 0,
-            images,
-            variants_of_a_products,
-            New_Date_Limit: createdAt,
-            created_at: createdAt,
-            updated_at: updatedAt,
-            keywords,
-          });
-          if (i === entries.length - 1) {
             dispatch({
               type: SET_SECOND_THREE_PRODUCTS,
-              payload: products,
+              payload: secondThree,
             });
           }
         });

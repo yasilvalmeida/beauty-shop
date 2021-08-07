@@ -1,37 +1,29 @@
 import {useState, useEffect} from "react";
 import ProductsWithLeftText from "../../../../shareable/Products/ProductsWithLeftText";
-import { addToWishList, getSecondThreeProducts} from '../../../../services/actions/products';
-import {useDispatch, useSelector} from "react-redux";
+import { addToWishList } from '../../../../services/actions/products';
+import {useSelector} from "react-redux";
 
-const SecondProducts = ({}) =>{
-    const dispatch = useDispatch();
-    const defaultLanguage = useSelector((state) => state?.navbar?.selectedLanguage);
-    const prdcts = useSelector(state => state?.products?.secondThreeProducts);
-    const productsWithLeftText = useSelector(state => state?.products?.productsWithLeftText);
-    const [leftText, setLeftText] = useState({});
-    const [products, setProducts] = useState([]);
+const SecondProducts = ({ products }) => {
+  const productsWithLeftText = useSelector(
+    (state) => state?.products?.productsWithLeftText
+  );
+  const [leftText, setLeftText] = useState({});
 
-    useEffect(() => {
-      dispatch(getSecondThreeProducts(defaultLanguage));
-    }, []);
+  useEffect(() => {
+    setLeftText(
+      productsWithLeftText.find((pr) => pr.position === "HomePageTwo")
+    );
+  }, [productsWithLeftText]);
 
-    useEffect(() => {
-      setProducts(prdcts);
-    }, [prdcts]);
-
-    useEffect(() => {
-        setLeftText(productsWithLeftText.find(pr => pr.position === 'HomePageTwo'));
-    }, [productsWithLeftText]);
-
-    return(
-        <>
-            <ProductsWithLeftText
-                products = {products}
-                leftText={leftText}
-                addToWishList={addToWishList}
-            />
-        </>
-    )
-}
+  return (
+    <>
+      <ProductsWithLeftText
+        products={products}
+        leftText={leftText}
+        addToWishList={addToWishList}
+      />
+    </>
+  );
+};
 
 export default SecondProducts

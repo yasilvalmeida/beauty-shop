@@ -32,6 +32,7 @@ import Footer from "../../layouts/footer/Footer";
 import { Spin, Space } from "antd";
 import Services from "../../shareable/services/Services";
 import RenderModal from "./components/render-modal/RenderModal";
+import { getFirstAndSecondThreeProducts } from "../../services/actions/products";
 
 const Homepage = () => {
   // const htmltext = "<div><h1 style='color:red'>Alohha Bitches</h1></div>"
@@ -47,6 +48,11 @@ const Homepage = () => {
   const HPFS = useSelector((state) => state.navbar.homePageSctOne);
   const homepageIntro = HPFS.find((p) => p.position === "HomePage");
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const prdctsFirst = useSelector((state) => state?.products?.firstThreeProducts);
+  const prdctsSecond = useSelector((state) => state?.products?.secondThreeProducts);
+  const defaultLanguage = useSelector(
+    (state) => state?.navbar?.selectedLanguage
+  );
 
   const homePageSctOneLoaded = useSelector(
     (state) => state.navbar.homePageSctOneLoaded
@@ -65,13 +71,25 @@ const Homepage = () => {
   const newsletterTextLoaded = useSelector(
     (state) => state.navbar.newsletterTextLoaded
   );
+  const [productsFirst, setProductsFirst] = useState([]);
+  const [productsSecond, setProductsSecond] = useState([]);
+
+  useEffect(() => {
+    dispatch(getFirstAndSecondThreeProducts(defaultLanguage));
+  }, []);
+
+  useEffect(() => {
+    setProductsFirst(prdctsFirst);
+  }, [prdctsFirst]);
+  useEffect(() => {
+    setProductsSecond(prdctsSecond);
+  }, [prdctsSecond]);
 
   const showModal = () => {
     setIsModalVisible(true);
   };
 
-  const [homeLoader, setHomeLoader] = useState(true)
-
+  const [homeLoader, setHomeLoader] = useState(true);
 
   useEffect(() => {
     dispatch(getCollectionShops()).then((res) => {
@@ -93,11 +111,10 @@ const Homepage = () => {
     localStorage.setItem("popup", "shown");
   }, []);
 
-
   useEffect(() => {
-    setHomeLoader(loader)
-  },[loader])
- 
+    setHomeLoader(loader);
+  }, [loader]);
+
   return (
     <>
       {homeLoader && (
@@ -117,12 +134,12 @@ const Homepage = () => {
         <div className={"homepage-body"}>
           <FirstIntro />
           <FirstIntroMobile />
-          <FirstProducts getFour={getProductsWithFilter} />
+          <FirstProducts products={productsFirst} />
           <SecondSection firstData={firstData} secondData={secondData} />
           <InspirationSection inspiration={inspiration} />
           <InspirationBottomOne />
           <InspirationBottomTwo />
-          <SecondProducts getFour={getProductsWithFilter} />
+          <SecondProducts products={productsSecond} />
           <ProductsWithFilterHomepage />
           <FilteredProductBottom />
           <VideoPart />
