@@ -20,8 +20,10 @@ import {
   getInspirations,
   getMidFoot,
 } from "../../services/actions/homepage__stable";
-import { getProductsWithFilter } from "../../services/actions/products";
-import { getProductsWithLeftText } from "../../services/actions/products";
+import {
+  getProductsWithFilter,
+  getProductsWithLeftText,
+} from "../../services/actions/products";
 import { getNewsReport } from "../../services/actions/news";
 import { useEffect, useLayoutEffect, useState } from "react";
 import Header from "../../layouts/header/Header";

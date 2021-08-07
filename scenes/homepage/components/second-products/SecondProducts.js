@@ -5,14 +5,14 @@ import {useDispatch, useSelector} from "react-redux";
 
 const SecondProducts = ({}) =>{
     const dispatch = useDispatch();
-
+    const defaultLanguage = useSelector((state) => state?.navbar?.selectedLanguage);
     const prdcts = useSelector(state => state?.products?.secondThreeProducts);
     const productsWithLeftText = useSelector(state => state?.products?.productsWithLeftText);
     const [leftText, setLeftText] = useState({});
     const [products, setProducts] = useState([]);
 
-    useEffect(()=>{
-        dispatch(getSecondThreeProducts());
+    useEffect(() => {
+      dispatch(getSecondThreeProducts(defaultLanguage));
     }, []);
 
     useEffect(() => {

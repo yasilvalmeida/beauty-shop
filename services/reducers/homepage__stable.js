@@ -44,7 +44,7 @@ const initialState = {
   x: false,
   loader: true,
   renderModalData: null,
-  selectedLanguage: "De"
+  selectedLanguage: "de"
 };
 
 const homeRedcucer = (state = initialState, action) => {

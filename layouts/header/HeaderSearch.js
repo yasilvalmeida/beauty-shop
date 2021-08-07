@@ -18,9 +18,9 @@ import {getBasketData} from "../../services/actions/basket";
 
 const HeaderSearch = () => {
     const [languages, setLanguages] = useState([
-        { id: 1, name: 'De', active: true },
-        { id: 2, name: 'En', active: false },
-        { id: 3, name: 'Fr', active: false }
+        { id: 1, name: 'de', active: true },
+        { id: 2, name: 'en', active: false },
+        { id: 3, name: 'fr', active: false }
     ]);
 
     const dispatch = useDispatch()

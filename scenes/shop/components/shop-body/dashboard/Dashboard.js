@@ -13,6 +13,8 @@ const Dashboard = ({
   setCurrent,
   current,
   scrollToref,
+  brand,
+  category
   }) => {
   const dispatch = useDispatch();
   let categoriesData = useSelector((state) => state.category.categories);
@@ -52,6 +54,8 @@ const Dashboard = ({
         setCurrent={setCurrent}
         current={current}
         scrollToref={scrollToref}
+        brand={brand}
+        category={category}
       />
     </div>
   );

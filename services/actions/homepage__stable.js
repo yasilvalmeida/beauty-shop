@@ -4,7 +4,7 @@ import {
   GET_HOMEPAGE_SECTIONONE,
   SET_HOMEPAGE_SECTIONONE,
   GET_HEADER_CONTACTS,
-  SET_ERROR,
+  SET_HOME_ERROR,
   SET_HOMEPAGE_HEADERTXTS,
   GET_COLLECTION_SHOPS,
   SET_COLLECTION_SHOPS,
@@ -20,72 +20,25 @@ import {
 } from "../action-types/homepage__stable";
 import axios from "axios";
 
-export const getNavbar = () => {
+export const getNavbar = (lang) => {
   return (dispatch) => {
     dispatch({ type: LOD_NAVBAR });
     return axios
       .get(
-        `${process.env.PLENTY_MARKET_API_URL}?action=fetchCategories&page=1&itemsPerPage=200&type=item`
+        `${process.env.PLENTY_MARKET_API_URL}?action=fetchCategories&page=1&itemsPerPage=200&type=item&lang=${lang}`
       )
       .then(async (res) => {
         const { data } = res;
         const { entries } = data;
         const categories = [];
-        await entries.map(async (category, i) => {
+        await entries?.map(async (category, i) => {
           const { details } = category;
           if (details.length > 0) {
             const { categoryId, name, nameUrl } = details[0];
             categories.push({
               id: categoryId,
               name,
-              url: `categories/${categoryId}`,
-            });
-          }
-          if (i === entries.length - 1) {
-            categories.push({
-              name: "Shop",
-              url: "shop"
-            });
-            categories.push({
-              name: "Magazin",
-              url: "magazine",
-            });
-            categories.push({
-              name: "Kontakt",
-              url: "contact"
-            });
-            dispatch({
-              type: SET_NAVBAR,
-              payload: categories,
-            });
-            return categories;
-          }
-        });
-      })
-      .catch((err) => dispatch({ type: SET_ERROR, payload: err }));
-  };
-};
-
-/* export const getFirst3Categories = () => {
-  return (dispatch) => {
-    dispatch({ type: FIRST_THREE_CATEGORIES_LOADER });
-    dispatch({ type: GET_NAVBAR_SETTINGS });
-    return axios
-      .get(
-        `${process.env.PLENTY_MARKET_API_URL}?action=fetchCategories&page=1&itemsPerPage=200&type=item`
-      )
-      .then(async (res) => {
-        const { data } = res;
-        const { entries } = data;
-        const categories = [];
-        await entries.map(async (category, i) => {
-          const { details } = category;
-          if (details.length > 0) {
-            const { categoryId, name, nameUrl } = details[0];
-            categories.push({
-              id: categoryId,
-              name,
-              url: `categories/${categoryId}`,
+              url: `shop?category=${categoryId}`,
             });
           }
           if (i === entries.length - 1) {
@@ -102,16 +55,16 @@ export const getNavbar = () => {
               url: "contact",
             });
             dispatch({
-              type: SET_NAVBAR_SETTINGS,
+              type: SET_NAVBAR,
               payload: categories,
             });
             return categories;
           }
         });
       })
-      .catch((err) => dispatch({ type: SET_ERROR, payload: err }));
+      .catch((err) => dispatch({ type: SET_HOME_ERROR, payload: err }));
   };
-}; */
+};
 
 export const setSelectedLanguage = (language) => {
   return (dispatch) => {
@@ -141,7 +94,7 @@ export const getHomePageSctOne = () => {
 
         return data;
       })
-      .catch((err) => dispatch({ type: SET_ERROR }));
+      .catch((err) => dispatch({ type: SET_HOME_ERROR }));
   };
 };
 
@@ -163,12 +116,12 @@ export const getHeaderContacts = () => {
 
         return data;
       })
-      .catch((err) => dispatch({ type: SET_ERROR }));
+      .catch((err) => dispatch({ type: SET_HOME_ERROR }));
   };
   // return function (dispatch){
   //     axios.get('http://207.154.241.233:1337/contact-details')
   //         .then(response => dispatch({type: GET_HEADER_CONTACTS,payload: response.data}) )
-  //         .catch(err => dispatch({type: SET_ERROR}));
+  //         .catch(err => dispatch({type: SET_HOME_ERROR}));
   // }
 };
 
@@ -190,7 +143,7 @@ export const getHeaderTexts = () => {
           ],
         });
       })
-      .catch((err) => dispatch({ type: SET_ERROR }));
+      .catch((err) => dispatch({ type: SET_HOME_ERROR }));
   };
 };
 
@@ -212,7 +165,7 @@ export const getCollectionShops = () => {
 
         return data;
       })
-      .catch((err) => dispatch({ type: SET_ERROR }));
+      .catch((err) => dispatch({ type: SET_HOME_ERROR }));
   };
 };
 
@@ -234,7 +187,7 @@ export const getInspirations = () => {
 
         return data;
       })
-      .catch((err) => dispatch({ type: SET_ERROR }));
+      .catch((err) => dispatch({ type: SET_HOME_ERROR }));
   };
 };
 
@@ -254,7 +207,7 @@ export const getFourIcons = () => {
 
         return data;
       })
-      .catch((err) => dispatch({ type: SET_ERROR }));
+      .catch((err) => dispatch({ type: SET_HOME_ERROR }));
   };
 };
 
@@ -274,7 +227,7 @@ export const getMidFoot = () => {
 
         return data;
       })
-      .catch((err) => dispatch({ type: SET_ERROR }));
+      .catch((err) => dispatch({ type: SET_HOME_ERROR }));
   };
 };
 
@@ -294,7 +247,7 @@ export const getNewsletterText = () => {
 
         return data;
       })
-      .catch((err) => dispatch({ type: SET_ERROR }));
+      .catch((err) => dispatch({ type: SET_HOME_ERROR }));
   };
 };
 
@@ -313,6 +266,6 @@ export const getRenderModal = () => {
   
           return data;
         })
-        .catch((err) => dispatch({ type: SET_ERROR }));
+        .catch((err) => dispatch({ type: SET_HOME_ERROR }));
     };
 };

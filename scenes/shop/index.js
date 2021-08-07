@@ -8,18 +8,20 @@ import {getNewsReport, getShopLgText} from "../../services/actions/news";
 import PageHeader from "../../layouts/header/Header";
 import MobileHeader from "../../layouts/mobile-header/MobileHeader";
 import Footer from "../../layouts/footer/Footer";
-import {getNavbar} from "../../services/actions/homepage__stable";
 import {Space, Spin} from "antd";
 import {getUserDataFromLocalStorage} from "../../services/actions/auth";
+import { useRouter } from "next/router";
+import Router from "next/router";
 
 const ShopScene = () => {
-
+    const router = useRouter();
+    const { brand, category } = router?.query;
+    console.log('aux', brand, category)
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getUserDataFromLocalStorage());
         dispatch(getNewsReport());
         dispatch(getShopLgText());
-        //dispatch(getNavbar());
     }, []);
     const headLoaded = useSelector(state => state.news.newsReportLoading);
     return (
@@ -31,7 +33,7 @@ const ShopScene = () => {
             <div className={"shop-all-elements"}>
               <ShopHeader />
               <ShopHeaderMobile />
-              <ShopBody />
+              <ShopBody brand={brand} category={category} router={router} />
               <NewsletterRep />
             </div>
             <Footer />

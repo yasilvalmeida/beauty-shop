@@ -1,22 +1,24 @@
 import {
-    GET_PRODUCTS,
-    SET_PRODUCTS,
-    SET_FIRST_THREE_PRODUCTS,
-    SET_SECOND_THREE_PRODUCTS,
-    SET_ERROR,
-    SWITCH_TO_FAVOURITE,
-    GET_FAVOURITES_PRODUCTS,
-    SET_FAVOURITES_PRODUCTS,
-    GET_PRODUCTS_WITH_LEFT_TEXT,
-    SET_PRODUCTS_WITH_LEFT_TEXT,
-    GET_PRODUCTS_WITH_FILTER,
-    GET_PRODUCTS_PAGE_DATA,
-    GET_EIGHT_PRODUCTS_WITH_FILTER,
-    GET_SINGLE_PRODUCT_DATA,
-    SET_PRODUCT_SINGLE_LOADED,
-    GET_PRODUCTS_WITH_FILTER_TWO, 
-    SWITCH_TO_FAVOURITE_TWO,
-    SET_PRODUCTS_BY_CATEGORIES
+  GET_PRODUCTS,
+  SET_PRODUCTS,
+  SET_PRODUCTS_COUNT,
+  SET_PRODUCTS_LAST_PAGE_NUMBER,
+  SET_FIRST_THREE_PRODUCTS,
+  SET_SECOND_THREE_PRODUCTS,
+  SET_PRODUCTS_ERROR,
+  SWITCH_TO_FAVOURITE,
+  GET_FAVOURITES_PRODUCTS,
+  SET_FAVOURITES_PRODUCTS,
+  GET_PRODUCTS_WITH_LEFT_TEXT,
+  SET_PRODUCTS_WITH_LEFT_TEXT,
+  GET_PRODUCTS_WITH_FILTER,
+  GET_PRODUCTS_PAGE_DATA,
+  GET_EIGHT_PRODUCTS_WITH_FILTER,
+  GET_SINGLE_PRODUCT_DATA,
+  SET_PRODUCT_SINGLE_LOADED,
+  GET_PRODUCTS_WITH_FILTER_TWO,
+  SWITCH_TO_FAVOURITE_TWO,
+  SET_PRODUCTS_BY_CATEGORIES,
 } from "../action-types/products";
 
 const initialState = {
@@ -37,6 +39,8 @@ const initialState = {
   productsByCategories: [],
   singleProduct: {},
   singleProductLoaded: true,
+  totalsCount: 0,
+  lastPageNumber: 0
 };
 
 const productsReducer = (state = initialState, {type, payload}) => {
@@ -99,7 +103,7 @@ const productsReducer = (state = initialState, {type, payload}) => {
           productsPageDataLoaded: false,
           productsPageData: payload,
         };
-      case SET_ERROR:
+      case SET_PRODUCTS_ERROR:
         return {
           ...state,
           productLoading: false,

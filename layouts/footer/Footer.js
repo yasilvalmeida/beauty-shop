@@ -8,8 +8,8 @@ import {useEffect} from "react"
 import {getFooterData,getFooterTop} from "../../services/actions/footer";
 
 const Footer = () =>{
-    const dispatch = useDispatch()
-    const footerData = useSelector(state=>state.footer.footerData)
+    const dispatch = useDispatch();
+    const footerData = useSelector(state=>state.footer.footerData);
 useEffect(()=>{
     dispatch(getFooterData())
     dispatch(getFooterTop())

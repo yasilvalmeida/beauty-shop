@@ -5,15 +5,18 @@ import {getProducts,addToWishList} from "../../../services/actions/products";
 
 const FirstProducts = ({getFour}) =>{
     const dispatch = useDispatch();
-
+    const defaultLanguage = useSelector((state) => state?.navbar?.selectedLanguage);
     const prdcts = useSelector(state => state?.products?.products);
     const productsWithLeftText = useSelector(state => state?.products?.productsWithLeftText);
     const authData = useSelector(state => state.auth);
     const [leftText, setLeftText] = useState({});
-    useEffect(()=>{
-        dispatch(getProducts(3));
-    }, [authData?.isAuthenticated]);
-
+    const [products, setProducts] = useState([]);
+    useEffect(() => {
+      dispatch(getProducts(1, 3, defaultLanguage));
+    }, [authData?.isAuthenticated, defaultLanguage]);
+    useEffect(() => {
+      setProducts(prdcts);
+    }, [prdcts]);
     useEffect(() => {
         setLeftText(productsWithLeftText.find(pr => pr.position === 'HerrenPageOne'));
     }, [productsWithLeftText]);
@@ -22,7 +25,7 @@ const FirstProducts = ({getFour}) =>{
         <>
             <ProductsWithLeftText
                 leftText={leftText}
-                products = {prdcts}
+                products = {products}
                 addToWishList={addToWishList}
                 getFour={getFour}
             />

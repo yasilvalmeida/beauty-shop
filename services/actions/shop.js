@@ -1,21 +1,21 @@
 import axios from "axios";
 import {
-    SET_SHOP_PRODUCTS,
-    SET_ERROR,
-    SET_LOADED,
-    GET_SHOP_PRODUCTS,
-    SET_PRODUCTS_COUNT,
-    SORT_SHOP_PRODUCTS
+  SET_SHOP_PRODUCTS,
+  SET_ERROR,
+  SET_LOADED,
+  GET_SHOP_PRODUCTS,
+  SET_SHOP_PRODUCTS_COUNT,
+  SORT_SHOP_PRODUCTS,
 } from "../action-types/shop";
 
-export const getShopProducts = (currentPage, maxPerPage, filterType, filterId) => {
+export const getShopProducts = (currentPage, maxPerPage, filterType, filterId, lang = "de") => {
     return (dispatch) => {
         dispatch({ type: GET_SHOP_PRODUCTS });
         dispatch({ type: SET_LOADED });
         if (filterId === 0) {
           axios
             .get(
-              `${process.env.PLENTY_MARKET_API_URL}?action=fetchItem&page=${currentPage}&itemsPerPage=${maxPerPage}&with=variations,itemImages`
+              `${process.env.PLENTY_MARKET_API_URL}?action=fetchItem&page=${currentPage}&itemsPerPage=${maxPerPage}&with=variations,itemImages&lang=${lang}`
             )
             .then(async (res) => {
               const { data } = res;
@@ -42,6 +42,13 @@ export const getShopProducts = (currentPage, maxPerPage, filterType, filterId) =
                   technicalData,
                   keywords,
                 } = texts[0];
+                let brand = "No Brand";
+                if (manufacturerId !== 0) {
+                  const manufactoryData = await axios.get(
+                    `${process.env.PLENTY_MARKET_API_URL}?action=fetchManufacturers&id=${manufacturerId}&lang=${lang}`
+                  );
+                  brand = manufactoryData?.data?.name;
+                }
                 await itemImages.map((image, j) => {
                   const formats = [];
                   const {
@@ -113,7 +120,8 @@ export const getShopProducts = (currentPage, maxPerPage, filterType, filterId) =
                 products.push({
                   id,
                   name: name1,
-                  manufacturerId,
+                  brand,
+                  brandId: manufacturerId !== 0 ? manufacturerId : 0,
                   images,
                   variants_of_a_products,
                   New_Date_Limit: createdAt,
@@ -128,7 +136,7 @@ export const getShopProducts = (currentPage, maxPerPage, filterType, filterId) =
                   });
 
                   dispatch({
-                    type: SET_PRODUCTS_COUNT,
+                    type: SET_SHOP_PRODUCTS_COUNT,
                     payload: totalsCount,
                   });
                 }
@@ -138,7 +146,7 @@ export const getShopProducts = (currentPage, maxPerPage, filterType, filterId) =
         } else if (filterType === "MARKEN") {
           axios
             .get(
-              `${process.env.PLENTY_MARKET_API_URL}?action=fetchItem&page=${currentPage}&itemsPerPage=${maxPerPage}&manufacturerId=${filterId}&with=variations,itemImages`
+              `${process.env.PLENTY_MARKET_API_URL}?action=fetchItem&page=${currentPage}&itemsPerPage=${maxPerPage}&manufacturerId=${filterId}&with=variations,itemImages&lang=${lang}`
             )
             .then(async (res) => {
               const { data } = res;
@@ -165,6 +173,13 @@ export const getShopProducts = (currentPage, maxPerPage, filterType, filterId) =
                   technicalData,
                   keywords,
                 } = texts[0];
+                let brand = "No Brand";
+                if (manufacturerId !== 0) {
+                  const manufactoryData = await axios.get(
+                    `${process.env.PLENTY_MARKET_API_URL}?action=fetchManufacturers&id=${manufacturerId}&lang=${lang}`
+                  );
+                  brand = manufactoryData?.data?.name;
+                }
                 await itemImages.map((image, j) => {
                   const formats = [];
                   const {
@@ -236,7 +251,8 @@ export const getShopProducts = (currentPage, maxPerPage, filterType, filterId) =
                 products.push({
                   id,
                   name: name1,
-                  manufacturerId,
+                  brand,
+                  brandId: manufacturerId !== 0 ? manufacturerId : 0,
                   images,
                   variants_of_a_products,
                   New_Date_Limit: createdAt,
@@ -251,7 +267,7 @@ export const getShopProducts = (currentPage, maxPerPage, filterType, filterId) =
                   });
 
                   dispatch({
-                    type: SET_PRODUCTS_COUNT,
+                    type: SET_SHOP_PRODUCTS_COUNT,
                     payload: totalsCount,
                   });
                 }
@@ -261,7 +277,7 @@ export const getShopProducts = (currentPage, maxPerPage, filterType, filterId) =
         } else if (filterType === "KATEGORIEN") {
           axios
             .get(
-              `${process.env.PLENTY_MARKET_API_URL}?action=fetchVariation&page=${currentPage}&itemsPerPage=${maxPerPage}&categoryId=${filterId}&with=variationCategories,itemImages,item`
+              `${process.env.PLENTY_MARKET_API_URL}?action=fetchVariation&page=${currentPage}&itemsPerPage=${maxPerPage}&categoryId=${filterId}&with=variationCategories,itemImages,item&lang=${lang}`
             )
             .then(async (res) => {
               const { data } = res;
@@ -280,7 +296,7 @@ export const getShopProducts = (currentPage, maxPerPage, filterType, filterId) =
                 } = variation;
                 const { id, manufacturerId, createdAt, updatedAt } = item;
                 const itemData = await axios.get(
-                  `${process.env.PLENTY_MARKET_API_URL}?action=fetchItem&id=${id}`
+                  `${process.env.PLENTY_MARKET_API_URL}?action=fetchItem&id=${id}&lang=${lang}`
                 );
                 const { data } = itemData;
                 const { texts } = data;
@@ -292,6 +308,13 @@ export const getShopProducts = (currentPage, maxPerPage, filterType, filterId) =
                   technicalData,
                   keywords,
                 } = texts[0];
+                let brand = "No Brand";
+                if (manufacturerId !== 0) {
+                  const manufactoryData = await axios.get(
+                    `${process.env.PLENTY_MARKET_API_URL}?action=fetchManufacturers&id=${manufacturerId}&lang=${lang}`
+                  );
+                  brand = manufactoryData?.data?.name;
+                }
                 await itemImages.map((image, j) => {
                   const formats = [];
                   const {
@@ -359,7 +382,8 @@ export const getShopProducts = (currentPage, maxPerPage, filterType, filterId) =
                 products.push({
                   id,
                   name: name1,
-                  manufacturerId,
+                  brand,
+                  brandId: manufacturerId !== 0 ? manufacturerId : 0,
                   images,
                   variants_of_a_products,
                   New_Date_Limit: createdAt,
@@ -375,7 +399,7 @@ export const getShopProducts = (currentPage, maxPerPage, filterType, filterId) =
                   });
 
                   dispatch({
-                    type: SET_PRODUCTS_COUNT,
+                    type: SET_SHOP_PRODUCTS_COUNT,
                     payload: totalsCount,
                   });
                 }

@@ -8,11 +8,14 @@ import { Spin, Space } from "antd";
 const Navbar = () => {
   const navListLoaded = useSelector((state) => state.navbar.navListLoaded);
   const navlist = useSelector((state) => state.navbar.navList);
+  const defaultLanguage = useSelector(
+    (state) => state?.navbar?.selectedLanguage
+  );
   const dispatch = useDispatch();
   const [navList, setNavList] = useState([]);
 
   useEffect(() => {
-    dispatch(getNavbar());
+    dispatch(getNavbar(defaultLanguage));
   }, []);
 
   useEffect(() => {

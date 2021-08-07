@@ -5,7 +5,8 @@ const ProductInformation = ({
   addToFavorites, 
   addProductToBasket, 
   toProductPage, 
-  toApproved 
+  toApproved,
+  router
 }) => {
   return (
     <>
@@ -93,7 +94,7 @@ const ProductInformation = ({
           Limited edition
         </span>
       )}
-      {e?.brand ? (
+      {e?.brandId !== 0 ? (
         <div
           className={"prod-txt-name"}
           onClick={() => router.push(`/shop?brand=${e?.brandId}`)}
@@ -114,17 +115,24 @@ const ProductInformation = ({
           No Name
         </span>
       )}
-      {e?.kind ? (
-        <span className={"prod-txt-foot2"}>Kapseln</span>
+      {e?.categoryId !== 0 ? (
+        <div
+          className={"prod-txt-name"}
+          onClick={() => router.push(`/shop?category=${e?.categoryId}`)}
+        >
+          <span className={"prod-txt-foot"}>
+            {e?.category}
+          </span>
+        </div>
       ) : (
-        <span className={"prod-txt-foot2"} /* style={{ opacity: 0 }} */>
-          No Kind
+        <span className={"prod-txt-foot"} /* style={{ opacity: 0 }} */>
+          No Category
         </span>
       )}
       <h3 className={"prod-txt-price"}>
         {formatter?.format(
-          e?.variants_of_a_products?.find((item) => item?.main === true)?.price ||
-            0
+          e?.variants_of_a_products?.find((item) => item?.main === true)
+            ?.price || 0
         )}{" "}
         *
       </h3>

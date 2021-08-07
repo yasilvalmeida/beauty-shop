@@ -123,7 +123,6 @@ export const getBrandsProductsFour = () => {
     };
 };
 
-
 export const getBrandsProductsFive = () => {
     return (dispatch) => {
         dispatch({type: GET_BRANDS_PRODUCTS_FIVE});

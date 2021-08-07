@@ -6,11 +6,15 @@ const FooterNavigation = ({footerData}) => {
     const navList = useSelector((state) => state.navbar.navList);
     const top10Categories = navList.slice(0, 10);
     const dpab = ["Friedrich-Ebert-Straße 13 61476 Kronberg","Öffnungszeiten: Mo-fr 09-18 Uhr Sa 12-16 Uhr"]
-    const konto =  [
-        {name:"Registrieren",hovered:false,link:"/registrieren"},{name:"Login",hovered:false,link:"/login"},
-        {name:"Nutzerdaten",hovered:false,link:"/konto/nutzerdaten"},{name:"warenkorb",hovered:false,link:"/parfum"},
-        {name:"Zur Kasse",hovered:false,link:"/zurkasse"},{name:"Wishlist",hovered:false,link:"/konto/whishlist"},
-        {name:"Newsletter",hovered:false,link:"/newsletter"},{name:"Meine Lesezeichen",hovered:false,link:"/konto/lesezeichen"},
+    const kontoUrl =  [
+      "/registrieren", 
+      "/login", 
+      "/konto/nutzerdaten", 
+      "/parfum", 
+      "/zurkasse", 
+      "/konto/whishlist", 
+      "/newsletter", 
+      "/konto/lesezeichen"
     ]
 
     return (
@@ -74,7 +78,7 @@ const FooterNavigation = ({footerData}) => {
             {footerData[3]?.map((e, i) => {
               return (
                 <li key={i}>
-                  <Link exact href={`${e?.url}`}>
+                  <Link exact href={kontoUrl[i]}>
                     <a>{e?.title}</a>
                   </Link>
                 </li>

@@ -74,6 +74,7 @@ const ProductsWithLeftText = ({ products, leftText, addToWishList }) => {
                     addProductToBasket={addProductToBasket}
                     toProductPage={toProductPage}
                     toApproved={toApproved}
+                    router={router}
                   />
                 </div>
               );

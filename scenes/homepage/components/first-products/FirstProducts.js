@@ -8,15 +8,15 @@ import {
 
 const FirstProducts = ({getFour}) => {
     const dispatch = useDispatch();
-
     const prdcts = useSelector(state => state?.products?.firstThreeProducts);
     const productsWithLeftText = useSelector(state => state?.products?.productsWithLeftText);
+    const defaultLanguage = useSelector((state) => state?.navbar?.selectedLanguage);
     const authData = useSelector(state => state.auth);
     const [leftText, setLeftText] = useState({});
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        dispatch(getFirstThreeProducts());
+      dispatch(getFirstThreeProducts(defaultLanguage));
     }, []);
     useEffect(() => {
         setProducts(prdcts);

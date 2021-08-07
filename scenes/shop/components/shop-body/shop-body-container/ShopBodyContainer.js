@@ -11,6 +11,7 @@ import {
   getShopProducts,
   sortShopProducts,
 } from "../../../../../services/actions/shop";
+import { Spin, Space } from "antd";
 
 const ShopBodyContainer = ({
   selected,
@@ -19,7 +20,7 @@ const ShopBodyContainer = ({
   maxItemAllowed,
   setCurrent,
   current,
-  scrollToref
+  scrollToref,
 }) => {
   const dispatch = useDispatch();
   const router = useRouter();
@@ -27,6 +28,7 @@ const ShopBodyContainer = ({
   const staticData = useSelector((state) => state.shop.staticShopProducts);
   const count = useSelector((state) => state.shop.count);
   const news = useSelector(({ news }) => news);
+  const [products, setProducts] = useState([]);
 
   const shopHeadTwo = news.newsReports.find(
     (n) => n.position === "ShopPageTwo"
@@ -45,6 +47,9 @@ const ShopBodyContainer = ({
   const [minValue, setMinValue] = useState(0);
   const [maxValue, setMaxValue] = useState(maxItemAllowed);
   
+  const handleBegin = () => {
+    setCurrent(1)
+  };
   const handlePrev = () => {
     setCurrent((prev) => prev - 1);
     if (current <= 1) {
@@ -63,8 +68,12 @@ const ShopBodyContainer = ({
     }
     setCurrent((prev) => prev + 1);
   };
+  const handleEnd = () => {
+    setCurrent(Math.ceil(count / maxItemAllowed) - 1);
+  };
 
   useEffect(() => {
+    setProducts([]);
     if (current === 1) {
       setMinValue(0);
       setMaxValue(maxItemAllowed);
@@ -74,15 +83,12 @@ const ShopBodyContainer = ({
       setMaxValue(current * maxItemAllowed);
     }
     scrollToref.current.scrollIntoView();
-    dispatch(
-      getShopProducts(
-        current,
-        maxItemAllowed,
-        filterType,
-        filterId
-      )
-    );
-  }, [current]);
+    dispatch(getShopProducts(current, maxItemAllowed, filterType, filterId));
+  }, [current, filterId]);
+
+  useEffect(() => {
+    setProducts(productsData);
+  }, [productsData]);  
 
   useEffect(() => {
     if (selected === "A-Z") {
@@ -149,29 +155,42 @@ const ShopBodyContainer = ({
 
   return (
     <div className="shop-right-body">
-      <div className="__products">
-        {productsData &&
-          productsData.length > 0 &&
-          productsData.map((e, i) => {
-            return (
-              <div key={i}>
-                <ShopSingleProduct
-                  elem={e}
-                  favouriteClickHandler={favouriteClickHandler}
-                />
-              </div>
-            );
-          })}
-        <InfoContainer className="middleInfoContainer" textData={shopHeadTwo} />
-        <InfoContainer
-          className="bottomInfoContainer"
-          textData={shopHeadThree}
-        />
-      </div>
+      {products?.length === 0 ? (
+        <div className={"loader__component"}>
+          <Space size="middle">
+            <Spin size="large" />
+          </Space>
+        </div>
+      ) : (
+        <>
+          <div className="__products">
+            {productsData.map((e, i) => {
+              return (
+                <div key={i}>
+                  <ShopSingleProduct
+                    elem={e}
+                    favouriteClickHandler={favouriteClickHandler}
+                  />
+                </div>
+              );
+            })}
+            <InfoContainer
+              className="middleInfoContainer"
+              textData={shopHeadTwo}
+            />
+            <InfoContainer
+              className="bottomInfoContainer"
+              textData={shopHeadThree}
+            />
+          </div>
+        </>
+      )}
       <div className="shop-desc-body">
         <PagePagination
-          next={handleNext}
+          begin={handleBegin}
           prev={handlePrev}
+          next={handleNext}
+          end={handleEnd}
           totalSize={count}
           current={current}
           maxAllowed={maxItemAllowed}

@@ -17,7 +17,7 @@ export async function getStaticProps() {
 }
 
 export async function getStaticPaths(params) {
-  const initialItemsData = await axios.get(
+  /* const initialItemsData = await axios.get(
     `${process.env.PLENTY_MARKET_API_URL}?action=fetchItem&page=1&itemsPerPage=1`
   );
   const { lastPageNumber, entries } = initialItemsData?.data;
@@ -36,13 +36,10 @@ export async function getStaticPaths(params) {
   await finalEntries.map(async (product, i) => {
     const { id } = product;
     finalId = id;
-  });
-  const data = [];
-  for (let i = initialId; i <= finalId; i++) {
-    data.push(i);
-  }
+  }); */
+  const data = [...Array(10000).keys()];
   return {
-    paths: data.map((e) => {
+    paths: data?.map((e) => {
       return {
         params: { id: `${e}` },
       };

@@ -7,10 +7,15 @@ const Shop = () => {
   );
 }
 
-export async function getStaticProps() {
+/* export async function getStaticProps() {
     return {
         props: {},
     };
+} */
+export async function getServerSideProps(context) {
+  return {
+    props: {}, // will be passed to the page component as props
+  };
 }
 
 export default Shop

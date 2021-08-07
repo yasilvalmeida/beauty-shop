@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { Radio } from 'antd';
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -14,16 +14,32 @@ const DashboardMenuRadio = ({
   setCurrent,
   current,
   scrollToref,
+  brand,
+  category
 }) => {
   const dispatch = useDispatch();
 
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(
+    brand ? `MARKEN-${brand}` : category ? `KATEGORIEN-${category}` : 0
+  );
 
   const radioStyle = {
     display: "block",
     height: "20px",
     lineHeight: "30px",
   };
+
+  useEffect(() => {
+    if (category) {
+      setValue(`KATEGORIEN-${category}`);
+    }
+  }, [category]);
+
+  useEffect(() => {
+    if (brand) {
+      setValue(`MARKEN-${brand}`);
+    }
+  }, [brand]);
 
   const onChange = (e) => {
     const parts = e.target.value.split("-");

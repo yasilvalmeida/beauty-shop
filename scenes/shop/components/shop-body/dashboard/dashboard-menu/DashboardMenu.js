@@ -1,5 +1,6 @@
 import { Collapse } from 'antd';
 import DashboardMenuRadio from './dashboard-menu-panel/DashboardMenuRadio';
+import { useState, useEffect } from "react";
 
 const DashboardMenu = ({
   data,
@@ -9,12 +10,34 @@ const DashboardMenu = ({
   setCurrent,
   current,
   scrollToref,
+  brand, 
+  category
 }) => {
   const { Panel } = Collapse;
+  const [key, setKey] = useState(category ? 0 : brand ? 1 : "");
+  useEffect(() => {
+    if (category) {
+      setKey(0);
+      console.log('aux', key)
+    }
+  }, [category]);
+
+  useEffect(() => {
+    if (brand) {
+      setKey(1);
+      console.log("aux", key);
+    }
+  }, [brand]);
   return (
     <>
       {data?.titles.map((item, i) => (
-        <Collapse expandIconPosition="right" ghost="true" key={i}>
+        <Collapse
+          expandIconPosition="right"
+          defaultActiveKey={`${key}`}
+          accordion
+          ghost="true"
+          key={i}
+        >
           <Panel key={i} header={`${item.title} (${item.data.length}):`}>
             <DashboardMenuRadio
               data={item.data}
@@ -26,6 +49,8 @@ const DashboardMenu = ({
               setCurrent={setCurrent}
               current={current}
               scrollToref={scrollToref}
+              brand={brand}
+              category={category}
             />
           </Panel>
         </Collapse>

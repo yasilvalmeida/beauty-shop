@@ -6,21 +6,17 @@ import {
 
 import axios from "axios";
 
-export const getManufactories = () => {
+export const getManufactories = (lang = "de") => {
     return (dispatch) => {
         dispatch({ type: GET_MANUFACTORIES });
         axios
           .get(
-            `${process.env.PLENTY_MARKET_API_URL}?action=fetchManufactorers&page=1&itemsPerPage=200`
+            `${process.env.PLENTY_MARKET_API_URL}?action=fetchManufacturers&page=1&itemsPerPage=200&lang=${lang}`
           )
           .then(async (res) => {
             const { data } = res;
             const { entries } = data;
             const manufactories = [];
-            manufactories.push({
-              id: 0,
-              name: "Keiner",
-            });
             await entries.map(async (manufactory, i) => {
               const { id, name } = manufactory;
               manufactories.push({
@@ -28,9 +24,23 @@ export const getManufactories = () => {
                 name,
               });
               if (i === entries.length - 1) {
+                const sortManufacturers = manufactories.sort((a, b) => {
+                  if (a.name > b.name) {
+                    return 1;
+                  }
+                  if (a.name < b.name) {
+                    return -1;
+                  }
+                  // a must be equal to b
+                  return 0;;
+                });
+                manufactories.unshift({
+                  id: 0,
+                  name: "Keiner",
+                });
                 dispatch({
                   type: SET_MANUFACTORIES,
-                  payload: manufactories,
+                  payload: sortManufacturers,
                 });
               }
             });
