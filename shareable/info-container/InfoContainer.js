@@ -1,19 +1,18 @@
 
-const InfoContainer = ({
-  className,
-  textData
-}) => {
+const InfoContainer = ({ textData, className }) => {
   return (
     <div className={className}>
       <div className={`${className}__content`}>
-        <span className={`${className}__content--title`}>{textData?.header}</span>
+        <span className={`${className}__content--title`}>
+          {textData?.header}
+        </span>
         <span className={`${className}__content--text`}>{textData?.title}</span>
-        <span div className={`${className}__content--description`}>
+        <span className={`${className}__content--description`}>
           {textData?.text}
         </span>
       </div>
       <div className={`${className}__image`}>
-        <img src={`${textData?.images.url || '/productbotleft.png'}`} />
+        <img src={`${textData?.images?.url || "/productbotleft.png"}`} />
       </div>
     </div>
   );
