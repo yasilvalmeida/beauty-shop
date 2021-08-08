@@ -13,7 +13,8 @@ const initialState = {
     shopProductsLoaded: true,
     error: null,
     count: 0,
-    staticShopProducts: []
+    staticShopProducts: [],
+    loaded: false
 };
 const shopPageReducer = (state = initialState, {type, payload}) => {
     switch (type) {
@@ -45,6 +46,12 @@ const shopPageReducer = (state = initialState, {type, payload}) => {
           ...state,
           count: payload,
         };
+      case SET_LOADED: {
+        return {
+          ...state,
+          loaded: payload
+        }
+      }
       case SWITCH_TO_FAVOURITE:
         return {
           ...state,

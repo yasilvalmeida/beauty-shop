@@ -1,9 +1,48 @@
 import Link from "next/link";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 const FooterNavigation = ({footerData}) => {
-    const navList = useSelector((state) => state.navbar.navList);
-    const top10Categories = navList.slice(0, 10);
+    const navListState = useSelector((state) => state.navbar.navList);
+    const lang = useSelector((state) => state?.navbar?.selectedLanguage);
+    const [navList, setNavList] = useState([]);
+
+    useEffect(() => {
+      const categories = [];
+      const top10Categories = navListState.slice(0, 10);
+      top10Categories?.map((elem, i) => {
+        const filters =
+          elem.filter((detail) => detail.lang === lang)?.length > 0
+            ? elem.filter((detail) => detail.lang === lang)
+            : elem;
+        const filtered = filters[0];
+        const { categoryId, name } = filtered;
+        let url = "";
+        switch (name) {
+          case "Shop":
+            url = "shop";
+            break;
+          case "Magazin":
+            url = "magazine";
+            break;
+          case "Kontakt":
+            url = "contact";
+            break;
+          default:
+            url = `shop?category=${categoryId}`;
+        }
+        if (categoryId === 444) url = "brands";
+        const e = {
+          id: categoryId,
+          name,
+          url,
+          categories: [],
+        };
+        categories.push(e);
+      });
+      setNavList(categories);
+    }, [navListState, lang]);
+    
     const dpab = ["Friedrich-Ebert-Straße 13 61476 Kronberg","Öffnungszeiten: Mo-fr 09-18 Uhr Sa 12-16 Uhr"]
     const kontoUrl =  [
       "/registrieren", 
@@ -62,7 +101,7 @@ const FooterNavigation = ({footerData}) => {
           </div>
           <div className={"footer__navigation__container__body__item2"}>
             <h2>Online Shop</h2>
-            {top10Categories?.map((e, i) => {
+            {navList?.map((e, i) => {
               return (
                 <li key={i}>
                   <Link exact href={`${e?.url}`}>

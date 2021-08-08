@@ -10,8 +10,11 @@ import {
 
 export const getShopProducts = (currentPage, maxPerPage, filterType, filterId, lang) => {
     return (dispatch) => {
+        dispatch({
+          type: SET_LOADED,
+          payload: false,
+        });
         dispatch({ type: GET_SHOP_PRODUCTS });
-        dispatch({ type: SET_LOADED });
         if (filterId === 0) {
           axios
             .get(
@@ -22,6 +25,12 @@ export const getShopProducts = (currentPage, maxPerPage, filterType, filterId, l
               const { totalsCount } = data;
               const { entries } = data;
               const products = [];
+              if (entries?.length === 0) {
+                dispatch({
+                  type: SET_LOADED,
+                  payload: true,
+                });
+              }
               await entries.map(async (product, i) => {
                 const images = [];
                 const variants_of_a_products = [];
@@ -111,18 +120,21 @@ export const getShopProducts = (currentPage, maxPerPage, filterType, filterId, l
                   }
                   //vop.price = price;
                 });
-                products.push({
-                  id,
-                  name: name1,
-                  brand,
-                  brandId: manufacturerId !== 0 ? manufacturerId : 0,
-                  images,
-                  variants_of_a_products,
-                  New_Date_Limit: createdAt,
-                  created_at: createdAt,
-                  updated_at: updatedAt,
-                  keywords,
-                });
+                if (texts?.length > 0) {
+                  products.push({
+                    id,
+                    name: name1,
+                    brand,
+                    brandId: manufacturerId !== 0 ? manufacturerId : 0,
+                    images,
+                    variants_of_a_products,
+                    New_Date_Limit: createdAt,
+                    created_at: createdAt,
+                    updated_at: updatedAt,
+                    keywords,
+                    itemData,
+                  });
+                }
                 if (i === entries.length - 1) {
                   dispatch({
                     type: SET_SHOP_PRODUCTS,
@@ -132,6 +144,11 @@ export const getShopProducts = (currentPage, maxPerPage, filterType, filterId, l
                   dispatch({
                     type: SET_SHOP_PRODUCTS_COUNT,
                     payload: totalsCount,
+                  });
+
+                  dispatch({ 
+                    type: SET_LOADED,
+                    payload: true 
                   });
                 }
               });
@@ -147,6 +164,12 @@ export const getShopProducts = (currentPage, maxPerPage, filterType, filterId, l
               const { totalsCount } = data;
               const { entries } = data;
               const products = [];
+              if (entries?.length === 0) {
+                dispatch({
+                  type: SET_LOADED,
+                  payload: true,
+                });
+              }
               await entries.map(async (product, i) => {
                 const images = [];
                 const variants_of_a_products = [];
@@ -166,7 +189,7 @@ export const getShopProducts = (currentPage, maxPerPage, filterType, filterId, l
                   description,
                   technicalData,
                   keywords,
-                } = texts[0];
+                } = texts?.length > 0 ? texts[0] : {};
                 let brand = "No Brand";
                 await itemImages.map((image, j) => {
                   const formats = [];
@@ -236,18 +259,21 @@ export const getShopProducts = (currentPage, maxPerPage, filterType, filterId, l
                   }
                   //vop.price = price;
                 });
-                products.push({
-                  id,
-                  name: name1,
-                  brand,
-                  brandId: manufacturerId !== 0 ? manufacturerId : 0,
-                  images,
-                  variants_of_a_products,
-                  New_Date_Limit: createdAt,
-                  created_at: createdAt,
-                  updated_at: updatedAt,
-                  keywords,
-                });
+                if (texts?.length > 0) {
+                  products.push({
+                    id,
+                    name: name1,
+                    brand,
+                    brandId: manufacturerId !== 0 ? manufacturerId : 0,
+                    images,
+                    variants_of_a_products,
+                    New_Date_Limit: createdAt,
+                    created_at: createdAt,
+                    updated_at: updatedAt,
+                    keywords,
+                    itemData,
+                  });
+                }
                 if (i === entries.length - 1) {
                   dispatch({
                     type: SET_SHOP_PRODUCTS,
@@ -257,6 +283,11 @@ export const getShopProducts = (currentPage, maxPerPage, filterType, filterId, l
                   dispatch({
                     type: SET_SHOP_PRODUCTS_COUNT,
                     payload: totalsCount,
+                  });
+
+                  dispatch({
+                    type: SET_LOADED,
+                    payload: true,
                   });
                 }
               });
@@ -272,6 +303,12 @@ export const getShopProducts = (currentPage, maxPerPage, filterType, filterId, l
               const { totalsCount } = data;
               const { entries } = data;
               const products = [];
+              if (entries?.length === 0) {
+                dispatch({
+                  type: SET_LOADED,
+                  payload: true,
+                });
+              }
               await entries.map(async (variation, i) => {
                 const images = [];
                 const variants_of_a_products = [];
@@ -295,7 +332,7 @@ export const getShopProducts = (currentPage, maxPerPage, filterType, filterId, l
                   description,
                   technicalData,
                   keywords,
-                } = texts[0];
+                } = texts?.length > 0 ? texts[0] : {};
                 let brand = "No Brand";
                 await itemImages.map((image, j) => {
                   const formats = [];
@@ -361,19 +398,21 @@ export const getShopProducts = (currentPage, maxPerPage, filterType, filterId, l
                   }
                   //vop.price = price;
                 });
-                products.push({
-                  id,
-                  name: name1,
-                  brand,
-                  brandId: manufacturerId !== 0 ? manufacturerId : 0,
-                  images,
-                  variants_of_a_products,
-                  New_Date_Limit: createdAt,
-                  created_at: createdAt,
-                  updated_at: updatedAt,
-                  keywords,
-                  itemData,
-                });
+                if (texts?.length > 0){
+                  products.push({
+                    id,
+                    name: name1,
+                    brand,
+                    brandId: manufacturerId !== 0 ? manufacturerId : 0,
+                    images,
+                    variants_of_a_products,
+                    New_Date_Limit: createdAt,
+                    created_at: createdAt,
+                    updated_at: updatedAt,
+                    keywords,
+                    itemData,
+                  });
+                }
                 if (i === entries.length - 1) {
                   dispatch({
                     type: SET_SHOP_PRODUCTS,
@@ -383,6 +422,11 @@ export const getShopProducts = (currentPage, maxPerPage, filterType, filterId, l
                   dispatch({
                     type: SET_SHOP_PRODUCTS_COUNT,
                     payload: totalsCount,
+                  });
+
+                  dispatch({
+                    type: SET_LOADED,
+                    payload: true,
                   });
                 }
               });

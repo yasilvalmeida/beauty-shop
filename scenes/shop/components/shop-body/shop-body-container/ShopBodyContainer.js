@@ -24,7 +24,8 @@ const ShopBodyContainer = ({
 }) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  let productsData = useSelector((state) => state.shop.shopProducts);
+  const productsData = useSelector((state) => state.shop.shopProducts);
+  const loaded = useSelector((state) => state.shop.loaded);
   const lang = useSelector((state) => state?.navbar?.selectedLanguage);
   const staticData = useSelector((state) => state.shop.staticShopProducts);
   const count = useSelector((state) => state.shop.count);
@@ -68,6 +69,7 @@ const ShopBodyContainer = ({
   };
 
   useEffect(() => {
+    console.log('aux', filterId, loaded, products?.length)
     setProducts([]);
     if (current === 1) {
       setMinValue(0);
@@ -149,7 +151,7 @@ const ShopBodyContainer = ({
 
   return (
     <div className="shop-right-body">
-      {products?.length === 0 ? (
+      {!loaded ? (
         <div className={"loader__component"}>
           <Space size="middle">
             <Spin size="large" />
@@ -158,7 +160,7 @@ const ShopBodyContainer = ({
       ) : (
         <>
           <div className="__products">
-            {productsData.map((e, i) => {
+            {products?.map((e, i) => {
               return (
                 <div key={i}>
                   <ShopSingleProduct

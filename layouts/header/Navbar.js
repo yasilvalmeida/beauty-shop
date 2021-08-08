@@ -32,6 +32,7 @@ const Navbar = () => {
         default:
           url = `shop?category=${categoryId}`;
       }
+      if (categoryId === 444) url = "brands";
       const e = {
         id: categoryId,
         name,
@@ -42,7 +43,7 @@ const Navbar = () => {
     });
     setNavList(categories);
   }, [navListState, lang]);
-
+  
   const route = useRouter();
 
   return (
@@ -72,14 +73,11 @@ const Navbar = () => {
                         <Link exact href={`/${e?.url}`}>
                           <a
                             className={`hovered-top-link ${
-                              route?.pathname === e?.url
-                                ? "active-navbar"
-                                : ""
+                              route?.asPath === e?.url ? "active-navbar" : ""
                             }`}
                             href={e?.url}
                             style={
-                              route?.pathname?.substring(1) ===
-                              e?.url
+                              route?.asPath?.substring(1) === e?.url
                                 ? { WebkitTextStroke: "1px" }
                                 : null
                             }
@@ -145,11 +143,11 @@ const Navbar = () => {
                           <a
                             href="#"
                             className={`hovered-top-link ${
-                              route.pathname === e?.url ? "active-navbar" : ""
+                              route.asPath === e?.url ? "active-navbar" : ""
                             }`}
                             href={e?.url}
                             style={
-                              route.pathname.substring(1) === e?.url
+                              route.asPath.substring(1) === e?.url
                                 ? { WebkitTextStroke: "1px" }
                                 : null
                             }

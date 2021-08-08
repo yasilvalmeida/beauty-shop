@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import store from "../store/store";
 import { getNavbar } from "../services/actions/homepage__stable";
 import { getManufactories } from "../services/actions/manufactories";
+import ScrollArrow from "../shareable/ScrollUp";
 
 function MyApp({ Component, pageProps }) {
   const lang = "de";
@@ -19,6 +20,7 @@ function MyApp({ Component, pageProps }) {
           <title>Das Parfum & Beauty</title>
         </Head>
         <Component {...pageProps} />
+        <ScrollArrow />
       </>
     </Provider>
   );
