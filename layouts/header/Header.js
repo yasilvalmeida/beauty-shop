@@ -1,20 +1,13 @@
 import HeaderSearch from "./HeaderSearch";
 import Navbar from "./Navbar";
 import { getHeaderTexts } from '../../services/actions/homepage__stable';
-import { getNavbar } from "../../services/actions/homepage__stable";
-import { getManufactories } from "../../services/actions/manufactories";
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from "react";
 
 const Header = () => {
   const dispatch = useDispatch();
   const { headerText1, headerText2 } = useSelector(state => state.navbar);
-  const lang = useSelector((state) => state?.navbar?.selectedLanguage);
-  useEffect(() => {
-    dispatch(getNavbar(lang));
-    dispatch(getManufactories(lang));
-  }, []);
-
+  
   useEffect(() => {
     dispatch(getHeaderTexts());
   }, []);
