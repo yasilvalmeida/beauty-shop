@@ -292,7 +292,7 @@ export const getFirstAndSecondThreeProducts = (lang) => {
   };
 };
 
-export const getProducts = (currentPage, itemsPerPage) => {
+export const getProducts = (currentPage, itemsPerPage, lang) => {
   return (dispatch) => {
     axios
       .get(

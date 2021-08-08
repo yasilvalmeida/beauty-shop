@@ -1,14 +1,14 @@
-import LoginScene from "../scenes/login";
-import Header from "../layouts/header/Header";
+import PageHeader from "../layouts/header/Header";
 import Footer from "../layouts/footer/Footer";
 import MobileHeader from "../layouts/mobile-header/MobileHeader";
-
-const Login = () => {
+import ApprovedScene from "../scenes/approved";
+const Approved = () => {
   return (
     <>
-      <Header />
+      <PageHeader />
       <MobileHeader />
-      <LoginScene />
+      <ApprovedScene />
+      <Footer />
     </>
   );
 };
@@ -19,4 +19,4 @@ export async function getStaticProps() {
   };
 }
 
-export default Login;
+export default Approved;

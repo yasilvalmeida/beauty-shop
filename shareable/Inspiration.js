@@ -9,7 +9,17 @@ const InspirationSection = ({ background, color, inspiration, padding }) => {
         <div className="inspiration-body d-flex flex-wrap">
           <div className="col-lg-9 col-xl-9 inspiration-left">
             <p style={{ color: color }}>{inspiration?.image_title}</p>
-            <img src={inspiration?.images?.url || "/inspiration.png"} />
+            <Link href={shopUrl}>
+              <a href={shopUrl}>
+                <Image
+                  src={inspiration?.images?.url || "/aaa.jpg"}
+                  layout="responsive"
+                  width={800}
+                  height={600}
+                  style={{ cursor: "pointer" }}
+                />
+              </a>
+            </Link>
           </div>
           <div className={"col-lg-3 col-xl-3 inspiration-right d-flex"}>
             <div className={"inspiration-right-head"}>
@@ -19,9 +29,13 @@ const InspirationSection = ({ background, color, inspiration, padding }) => {
               >
                 {inspiration?.header}
               </p>
-              <h2 style={{ color: color }}>
-                {inspiration?.title}
-              </h2>
+              <Link href={shopUrl}>
+                <a href={shopUrl}>
+                  <h2 style={{ color: color, cursor: "pointer" }}>
+                    {inspiration?.title}
+                  </h2>
+                </a>
+              </Link>
             </div>
             <p className={"inspiration-right-bottxt"} style={{ color: color }}>
               {inspiration?.text}

@@ -1,4 +1,7 @@
 import { useSelector } from "react-redux";
+import { useState } from "react";
+import HeaderLoginPopup from "../../layouts/header/modal/HeaderLoginPopup";
+
 const ProductInformation = ({
   e,
   moment,
@@ -8,15 +11,26 @@ const ProductInformation = ({
   toProductPage,
   toApproved,
   router,
+  isAuthenticated
 }) => {
   const manufactories = useSelector((state) => state.manufactory.manufactories);
   const filter = manufactories.filter(
     (manufactory) => manufactory.id === e?.brandId
   );
   e.brand = filter[0]?.name;
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
   return (
     <>
       <div className={"picture-body-prod"}>
+        <HeaderLoginPopup
+          isModalVisible={isModalVisible}
+          setIsModalVisible={setIsModalVisible}
+        />
         <a href={`/products/${e?.id}`}>
           <img
             src={
@@ -49,10 +63,17 @@ const ProductInformation = ({
           viewBox="0 0 512 512"
           className={"letter-svg heart-icon-item"}
           onClick={() => {
-            addToFavorites(
-              e?.id,
-              e?.variants_of_a_products?.find((item) => item?.main === true)?.id
-            );
+            if (isAuthenticated) {
+              addToFavorites(
+                e?.id,
+                e?.variants_of_a_products?.find((item) => item?.main === true)
+                  ?.id
+              );
+            } else {
+              if (router.pathname !== "/login") {
+                showModal();
+              }
+            }
           }}
           style={
             e?.variants_of_a_products?.find((item) => item?.main === true)
@@ -100,10 +121,7 @@ const ProductInformation = ({
         </span>
       )}
       {e?.brandId !== 0 ? (
-        <div
-          className={"prod-txt-name"}
-          onClick={() => router.push(`/shop?brand=${e?.brandId}`)}
-        >
+        <div className={"prod-txt-name"} onClick={() => toProductPage(e.id)}>
           <h3> {e?.brand} </h3>
         </div>
       ) : (

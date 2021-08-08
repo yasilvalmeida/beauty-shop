@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
-import {addToBasket} from "../../services/actions/basket";
+import { addToBasket } from "../../services/actions/basket";
 import { Spin, Space } from "antd";
 import ProductInformation from "./ProductInformation";
 
@@ -38,7 +38,7 @@ const ProductsWithLeftText = ({ products, leftText, addToWishList }) => {
     }
   };
   const toApproved = () => {
-    router.push("/magazinartikelone");
+    router.push("/approved");
   };
   return (
     <>
@@ -46,7 +46,11 @@ const ProductsWithLeftText = ({ products, leftText, addToWishList }) => {
         <div className="firstprod-left-text">
           <div className="firstprod-left-text">
             <p>{leftText?.Header}</p>
-            <h2>{leftText?.Title}</h2>
+            <Link href={shopUrl}>
+              <a href={shopUrl}>
+                <h2 style={{ cursor: "pointer" }}>{leftText?.Title}</h2>
+              </a>
+            </Link>
             <span>{leftText?.Text}</span>
           </div>
           <Link href={shopUrl}>
@@ -74,6 +78,7 @@ const ProductsWithLeftText = ({ products, leftText, addToWishList }) => {
                     addProductToBasket={addProductToBasket}
                     toProductPage={toProductPage}
                     toApproved={toApproved}
+                    isAuthenticated={isAuthenticated}
                     router={router}
                   />
                 </div>

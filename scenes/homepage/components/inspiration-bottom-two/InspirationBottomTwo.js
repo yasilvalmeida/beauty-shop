@@ -1,20 +1,22 @@
 import InspirationBottomTwoRep from "../../../../shareable/InspirationBottomTwoRep";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 const InspirationBottomTwo = () => {
-    const { inspirations } = useSelector(state => state.navbar);
-    const [homepageThirdI, setHomepageThirdI] = useState({});
-    
-    useEffect(() => {
-        setHomepageThirdI(inspirations.find(elem => elem.position === 'HomePageThre'));
-    }, [inspirations]);
+  const { inspirations } = useSelector((state) => state.navbar);
+  const [homepageThirdI, setHomepageThirdI] = useState({});
 
-    return(
-        <>
-           <InspirationBottomTwoRep inspiration={homepageThirdI} />
-        </>
-    )
-}
+  useEffect(() => {
+    setHomepageThirdI(
+      inspirations.find((elem) => elem.position === "HomePageThre")
+    );
+  }, [inspirations]);
 
-export default InspirationBottomTwo
+  return (
+    <>
+      <InspirationBottomTwoRep inspiration={homepageThirdI} />
+    </>
+  );
+};
+
+export default InspirationBottomTwo;

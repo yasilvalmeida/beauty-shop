@@ -5,15 +5,15 @@ import {getProducts,addToWishList} from "../../../services/actions/products";
 
 const FirstProducts = ({getFour}) =>{
     const dispatch = useDispatch();
-    const defaultLanguage = useSelector((state) => state?.navbar?.selectedLanguage);
+    const lang = useSelector((state) => state?.navbar?.selectedLanguage);
     const prdcts = useSelector(state => state?.products?.products);
     const productsWithLeftText = useSelector(state => state?.products?.productsWithLeftText);
     const authData = useSelector(state => state.auth);
     const [leftText, setLeftText] = useState({});
     const [products, setProducts] = useState([]);
     useEffect(() => {
-      dispatch(getProducts(1, 3, defaultLanguage));
-    }, [authData?.isAuthenticated, defaultLanguage]);
+      dispatch(getProducts(1, 3, lang));
+    }, [authData?.isAuthenticated, lang]);
     useEffect(() => {
       setProducts(prdcts);
     }, [prdcts]);

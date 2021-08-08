@@ -1,40 +1,38 @@
-import {useState, useEffect} from 'react';
-import {useRouter} from 'next/router';
-import {useDispatch, useSelector} from "react-redux";
-import {addToWishList, addToWishListTwo} from "../services/actions/products";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { addToWishList, addToWishListTwo } from "../services/actions/products";
 import moment from "moment";
 import { addToBasket } from "../services/actions/basket";
-import {getProductsByCategories} from "../services/actions/products";
+import { getProductsByCategories } from "../services/actions/products";
 import { Spin, Space } from "antd";
 import ProductInformation from "../shareable/Products/ProductInformation";
 
-const formatter = new Intl.NumberFormat('de-DE', {
-    style: 'currency',
-    currency: 'EUR',
-    minimumFractionDigits: 2
+const formatter = new Intl.NumberFormat("de-DE", {
+  style: "currency",
+  currency: "EUR",
+  minimumFractionDigits: 2,
 });
 
 const ProductsWithFilter = ({
-                              autoFlow,
-                              gridTemplateColumns,
-                              gap,
-                              position
-                            }) => {
+  autoFlow,
+  gridTemplateColumns,
+  gap,
+  position,
+}) => {
   const headtext = "Männerpflege";
   const dispatch = useDispatch();
-  
-  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const router = useRouter();
   const navListState = useSelector((state) => state.navbar.navList);
   const top3Categories = navListState.slice(0, 3);
   const [defaultCategory, setDefaultCategory] = useState(0);
-  const lang = useSelector(
-    (state) => state?.navbar?.selectedLanguage
-  );
+  const lang = useSelector((state) => state?.navbar?.selectedLanguage);
   const productsByCategoriesState = useSelector(
     (state) => state.products.productsByCategories
   );
-  const [productsByCategories, setProductsByCategories] = useState([])
+  const [productsByCategories, setProductsByCategories] = useState([]);
 
   useEffect(() => {
     const categoriesIds = [];
@@ -44,18 +42,18 @@ const ProductsWithFilter = ({
           ? elem.filter((detail) => detail.lang === lang)
           : elem;
       const e = filter[0];
-      const { categoryId, name } = e
+      const { categoryId, name } = e;
       categoriesIds.push({
         id: categoryId,
-        name
+        name,
       });
     });
-    dispatch(getProductsByCategories(1, 3, categoriesIds, lang));
+    dispatch(getProductsByCategories(1, 4, categoriesIds, lang));
   }, [navListState]);
 
   useEffect(() => {
     setProductsByCategories(productsByCategoriesState);
-  }, [productsByCategoriesState])
+  }, [productsByCategoriesState]);
 
   const addToFavorites = (id, variantId) => {
     if (!isAuthenticated) {
@@ -100,16 +98,16 @@ const ProductsWithFilter = ({
   };
 
   const toProductPage = (e) => {
-    if (router.pathname !== '/products') {
-        router.push(`/products/${e}`);
+    if (router.pathname !== "/products") {
+      router.push(`/products/${e}`);
     } else {
-        router.push(e);
+      router.push(e);
     }
   };
 
   const toApproved = () => {
     router.push("/magazinartikelone");
-  }
+  };
 
   return (
     <>
@@ -155,23 +153,23 @@ const ProductsWithFilter = ({
                 gap: gap,
               }}
             >
-              {productsByCategories[defaultCategory]?.products?.map(
-                (e, i) => {
-                  return (
-                    <div className={"first-prod-items col-lg-3"} key={i}>
-                      <ProductInformation
-                        e={e}
-                        moment={moment}
-                        formatter={formatter}
-                        addToFavorites={addToFavorites}
-                        addProductToBasket={addProductToBasket}
-                        toProductPage={toProductPage}
-                        toApproved={toApproved}
-                      />
-                    </div>
-                  );
-                }
-              )}
+              {productsByCategories[defaultCategory]?.products?.map((e, i) => {
+                return (
+                  <div className={"first-prod-items col-lg-3"} key={i}>
+                    <ProductInformation
+                      e={e}
+                      moment={moment}
+                      formatter={formatter}
+                      addToFavorites={addToFavorites}
+                      addProductToBasket={addProductToBasket}
+                      toProductPage={toProductPage}
+                      toApproved={toApproved}
+                      router={router}
+                      isAuthenticated={isAuthenticated}
+                    />
+                  </div>
+                );
+              })}
             </div>
           </div>
         )}

@@ -1,12 +1,12 @@
 import NewsletterRep from "../../../shareable/newsLetter/NewsletterRep";
 
-const Newsletter = () =>{
-    const padding="20vh"
-    return(
-        <>
-            <NewsletterRep padding={padding}/>
-        </>
-    )
-}
+const Newsletter = () => {
+  const padding = "20vh";
+  return (
+    <>
+      <NewsletterRep padding={padding} />
+    </>
+  );
+};
 
-export default Newsletter
+export default Newsletter;

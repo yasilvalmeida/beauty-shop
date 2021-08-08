@@ -1,6 +1,6 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import {useRouter} from "next/router";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Neuigkeiten = ({
   background,
@@ -11,10 +11,10 @@ const Neuigkeiten = ({
   width,
   padd,
   neuigkeiten,
-  neuigkeitenSecond
+  neuigkeitenSecond,
 }) => {
   const magazineUrl = "/magazine";
-  const router = useRouter()
+  const router = useRouter();
   return (
     <>
       <div
@@ -29,14 +29,25 @@ const Neuigkeiten = ({
           <div className={"col-lg-6 product-bottom-left d-flex"}>
             <div className={"prod-bot-left-img"}>
               <h2 style={{ color: color }}>NEUIGKEITEN</h2>
-              <img
-                src={neuigkeiten?.images?.url || "/productbotleft.png"}
-                layout="responsive"
-              />
+              <Link href={magazineUrl}>
+                <a href={magazineUrl}>
+                  <Image
+                    src={neuigkeiten?.images?.url || "/aaa.jpg"}
+                    layout="responsive"
+                    width={800}
+                    height={600}
+                    style={{ cursor: "pointer" }}
+                  />
+                </a>
+              </Link>
             </div>
             <div className={"prod-bod-left-txt"}>
               <p style={{ color: color }}>{neuigkeiten?.header}</p>
-              <h2 style={{ color: color }}>{neuigkeiten?.title}</h2>
+              <Link href={magazineUrl}>
+                <h2 style={{ color: color, cursor: "pointer" }}>
+                  {neuigkeiten?.title}
+                </h2>
+              </Link>
               <span style={{ color: color }}>{neuigkeiten?.text}</span>
               <button
                 className={"filter-bot-btn"}
@@ -55,12 +66,24 @@ const Neuigkeiten = ({
           <div className={"product-bottom-middle"}></div>
           <div className={"col-lg-6 product-bottom-right d-flex"}>
             <p style={{ color: color }}>{neuigkeitenSecond?.header}</p>
-            <h2 style={{ color: color }}>{neuigkeitenSecond?.title}</h2>
+            <Link href={magazineUrl}>
+              <h2 style={{ color: color, cursor: "pointer" }}>
+                {neuigkeitenSecond?.title}
+              </h2>
+            </Link>
             <span style={{ color: color }}>{neuigkeitenSecond?.text}</span>
             <div className={"prod-bot-right-img"}>
-              <img
-                src={neuigkeitenSecond?.images?.url || "/productbotright.png"}
-              />
+              <Link href={magazineUrl}>
+                <a href={magazineUrl}>
+                  <Image
+                    src={neuigkeitenSecond?.images?.url || "/aaa.jpg"}
+                    layout="responsive"
+                    width={800}
+                    height={600}
+                    style={{ cursor: "pointer" }}
+                  />
+                </a>
+              </Link>
             </div>
             <br />
             <button

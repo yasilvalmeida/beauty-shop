@@ -37,6 +37,20 @@
         text-decoration: underline;
       }
     }
+    .go-back{
+      color: black;
+      //border: solid 1px black;
+      font-size: 3rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      width: 200px;
+      &:hover {
+        background: black;
+        color: white;
+        width: max-content;
+        cursor: pointer;
+      }
+    }
   }
   .login-scene-form-and-else {
     width: 72%;

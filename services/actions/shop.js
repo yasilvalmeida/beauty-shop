@@ -132,7 +132,6 @@ export const getShopProducts = (currentPage, maxPerPage, filterType, filterId, l
                     created_at: createdAt,
                     updated_at: updatedAt,
                     keywords,
-                    itemData,
                   });
                 }
                 if (i === entries.length - 1) {
@@ -271,7 +270,6 @@ export const getShopProducts = (currentPage, maxPerPage, filterType, filterId, l
                     created_at: createdAt,
                     updated_at: updatedAt,
                     keywords,
-                    itemData,
                   });
                 }
                 if (i === entries.length - 1) {
@@ -410,7 +408,6 @@ export const getShopProducts = (currentPage, maxPerPage, filterType, filterId, l
                     created_at: createdAt,
                     updated_at: updatedAt,
                     keywords,
-                    itemData,
                   });
                 }
                 if (i === entries.length - 1) {
