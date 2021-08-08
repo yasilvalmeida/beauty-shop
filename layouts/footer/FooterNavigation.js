@@ -113,15 +113,24 @@ const FooterNavigation = ({footerData}) => {
           </div>
           <div className={"footer__navigation__container__body__item3"}>
             <h2>Mein Konto</h2>
-            {footerData[3]?.map((e, i) => {
-              return (
-                <li key={i}>
-                  <Link exact href={kontoUrl[i]}>
-                    <a>{e?.title}</a>
-                  </Link>
-                </li>
-              );
-            })}
+            <ul>
+              {footerData[3]?.map((e, i) => {
+                return (
+                  <li key={i}>
+                    <Link exact href={kontoUrl[i]}>
+                      <a>{e?.title}</a>
+                    </Link>
+                  </li>
+                );
+              })}
+              <li>
+                <Link exact href="/about">
+                  <a href="/about">
+                    About
+                  </a>
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
