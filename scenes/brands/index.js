@@ -53,7 +53,6 @@ const BrandsScene = ({id}) => {
     }, [id]);
     const data = useSelector(state => state.brand.brandPageData)
     const loader = useSelector(state => state.brand.brandPageDataLoaded)
-    console.log(data)
     return (
         <>
             {loader ?

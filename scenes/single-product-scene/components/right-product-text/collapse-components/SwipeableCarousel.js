@@ -3,7 +3,6 @@ import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
 SwiperCore.use([Autoplay, /* Navigation, Pagination */]);
 const SwipeableCarousel = (product) =>{
     const { elem } = product;
-    console.log("elem", elem);
     /* const swiperData = [
         {image:"/item.png",text:"clean product 1"},
         {image:"/item.png",text:"clean product 2"},

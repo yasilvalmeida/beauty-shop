@@ -92,7 +92,9 @@
   }
   .__products {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(27%, 1fr));
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(auto, auto);
+    margin-left: 100px;
     @media screen and(min-width: 1024px) and (max-width: 1440px){
       gap: 2.3rem;
     }
@@ -104,8 +106,16 @@
     @media screen and(min-width: 624px) and (max-width: 1024px) {
       grid-template-columns: repeat(auto-fill, minmax(38rem, 1fr));
     }
-   
-
+    .result {
+      color: #3e3e3e;
+      font-size: 6rem;
+      font-weight: 300;
+      font-style: normal;
+      text-transform: uppercase;
+      line-height: 1;
+      margin: auto;
+      display: table;
+    }
     .middleInfoContainer {
       @extend %containerProps;
       grid-area: 4 / 1 /4 / 4;

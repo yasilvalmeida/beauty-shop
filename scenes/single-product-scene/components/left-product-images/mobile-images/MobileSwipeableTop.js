@@ -9,8 +9,6 @@ SwiperCore.use([Navigation, Pagination]);
 
 
 const MobileSwipeableCarousel = ({imagesData, elem}) => {
-    // console.log("elem",elem);
-    // console.log(elem.New_Date_Limit > moment(new Date()).format("YYYY-MM-DD"))
     const {singleProductVariantId} = useSelector(
         (state) => state.singleProdPage
     );

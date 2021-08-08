@@ -58,12 +58,6 @@ const ShopBodyContainer = ({
     }
   };
   const handleNext = () => {
-    console.log(
-      "handleNext",
-      current,
-      Math.ceil(count / maxItemAllowed),
-      current >= Math.ceil(count / maxItemAllowed)
-    );
     if (current >= Math.ceil(count / maxItemAllowed)) {
       setCurrent(Math.ceil(count / maxItemAllowed));
     }
@@ -149,7 +143,6 @@ const ShopBodyContainer = ({
         ])
       );
     } else {
-      console.log("aaaaaaa");
       dispatch(sortShopProducts([...staticData]));
     }
   }, [selected]);

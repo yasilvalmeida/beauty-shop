@@ -7,7 +7,7 @@ const SearchDetail = () => {
   const { word } = router.query;
   return (
     <>
-      <SearchScene word={word} />
+      <SearchScene word={word?.toLowerCase()} />
     </>
   );
 };

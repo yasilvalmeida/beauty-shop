@@ -22,8 +22,7 @@ const CheckoutStepScene = () =>{
         }
         router.push({
                     pathname: `/checkout/step${stepNum}`,
-                })
-        console.log(current,stepNum)
+                });
     };
     const prev = () => {
         if( current > 0){
@@ -32,7 +31,6 @@ const CheckoutStepScene = () =>{
         if(stepNum > 1){
             setStepnum(stepNum - 1)
         }
-        console.log(current,stepNum)
     };
     const [steps,setSteps] = useState([
         {id:0,step:true,name:"Bestellübersicht"},

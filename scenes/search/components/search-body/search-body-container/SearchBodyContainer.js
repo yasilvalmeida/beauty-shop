@@ -1,30 +1,17 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import PagePagination from '../../../../../shareable/pagination/Pagination';
-import SearchDescription from "./search-description/SearchDescription";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToWishList } from "../../../../../services/actions/products";
 import { useRouter } from "next/router";
 import ShopSingleProduct from "../../../../../shareable/Products/ShopSingleProduct";
-import moment from "moment";
-import {
-  getShopProducts,
-  sortShopProducts,
-} from "../../../../../services/actions/shop";
+import { searchProducts } from "../../../../../services/actions/products";
+import { Spin, Space } from "antd";
 
-const SearchBodyContainer = ({
-  selected,
-  filterType,
-  filterId,
-  maxItemAllowed,
-  setCurrent,
-  current,
-  scrollToref
-}) => {
+const SearchBodyContainer = ({ word, scrollToref }) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  let productsData = useSelector((state) => state.shop.shopProducts);
-  const count = useSelector((state) => state.shop.count);
-  
+  const productsData = useSelector((state) => state.products.searchProducts);
+  const searching = useSelector((state) => state.products.searching);
+  const lang = useSelector((state) => state?.navbar?.selectedLanguage);
   const { isAuthenticated } = useSelector((state) => state.auth);
   const favouriteClickHandler = (id, variantId) => {
     if (!isAuthenticated) {
@@ -32,70 +19,50 @@ const SearchBodyContainer = ({
     }
     dispatch(addToWishList(id, variantId));
   };
-  
-  const [minValue, setMinValue] = useState(0);
-  const [maxValue, setMaxValue] = useState(maxItemAllowed);
-  
-  const handlePrev = () => {
-    setCurrent((prev) => prev - 1);
-    if (current <= 1) {
-      setCurrent(1);
-    }
-  };
-  const handleNext = () => {
-    if (current >= Math.ceil(count / maxItemAllowed)) {
-      setCurrent(Math.ceil(count / maxItemAllowed));
-    }
-    setCurrent((prev) => prev + 1);
-  };
+
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    if (current === 1) {
-      setMinValue(0);
-      setMaxValue(maxItemAllowed);
-    }
-    if (current > 1) {
-      setMinValue((current - 1) * maxItemAllowed);
-      setMaxValue(current * maxItemAllowed);
-    }
-    scrollToref.current.scrollIntoView();
-    dispatch(
-      getShopProducts(
-        current,
-        maxItemAllowed,
-        filterType,
-        filterId
-      )
-    );
-  }, [current]);
-
+    setProducts([]);
+    dispatch(searchProducts(lang, word));
+  }, [word, lang]);
   useEffect(() => {
-    
-  }, [selected]);
+    setProducts(productsData);
+  }, [productsData]);
 
   return (
     <div className="search-right-body">
-      <div className="__products">
-        {productsData?.map((e, i) => {
-            return (
-              <div key={i}>
-                <ShopSingleProduct
-                  elem={e}
-                  favouriteClickHandler={favouriteClickHandler}
-                />
+      {searching || products?.length === 0 ? (
+        <div className={"loader__component"}>
+          <Space size="middle">
+            <Spin size="large" />
+          </Space>
+        </div>
+      ) : (
+        <>
+          <div className="__products">
+            {products?.length > 0 ? (
+              products?.map((e, i) => {
+                return (
+                  <div key={i}>
+                    <ShopSingleProduct
+                      elem={e}
+                      favouriteClickHandler={favouriteClickHandler}
+                    />
+                  </div>
+                );
+              })
+            ) : (
+              <div className="result">
+                <div className="result__box">
+                  <span>No Results!</span>
+                </div>
               </div>
-            );
-          })}
-      </div>
+            )}
+          </div>
+        </>
+      )}
       <div className="search-desc-body">
-        <PagePagination
-          next={handleNext}
-          prev={handlePrev}
-          totalSize={count}
-          current={current}
-          maxAllowed={maxItemAllowed}
-        />
-        <SearchDescription />
       </div>
     </div>
   );

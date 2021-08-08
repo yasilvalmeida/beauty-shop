@@ -41,7 +41,7 @@ export const getShopProducts = (currentPage, maxPerPage, filterType, filterId, l
                   description,
                   technicalData,
                   keywords,
-                } = texts[0];
+                } = texts?.length > 0 ? texts[0] : {};
                 let brand = "No Brand";
                 await itemImages.map((image, j) => {
                   const formats = [];

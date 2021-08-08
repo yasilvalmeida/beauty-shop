@@ -27,7 +27,7 @@ const SearchScene = ({word}) => {
           <div className={"shop-all-elements"}>
             <SearchHeader word={word} />
             <SearchHeaderMobile word={word} />
-            <SearchBody />
+            <SearchBody word={word} />
           </div>
           <Footer />
         </>

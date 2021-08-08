@@ -222,7 +222,6 @@ const RegistrationForm = ({textData}) => {
         }
     }
     /* const handleCountryChange = (e) => {
-        //console.log('country on change', e)
         setRegisterData(prev => ({
             ...prev,
             country: e

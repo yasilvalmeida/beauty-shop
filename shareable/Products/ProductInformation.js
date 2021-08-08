@@ -10,7 +10,9 @@ const ProductInformation = ({
   router,
 }) => {
   const manufactories = useSelector((state) => state.manufactory.manufactories);
-  const filter = manufactories.filter((manufactory) => manufactory.id === e?.brandId);
+  const filter = manufactories.filter(
+    (manufactory) => manufactory.id === e?.brandId
+  );
   e.brand = filter[0]?.name;
   return (
     <>
@@ -51,7 +53,6 @@ const ProductInformation = ({
               e?.id,
               e?.variants_of_a_products?.find((item) => item?.main === true)?.id
             );
-            console.log(e);
           }}
           style={
             e?.variants_of_a_products?.find((item) => item?.main === true)

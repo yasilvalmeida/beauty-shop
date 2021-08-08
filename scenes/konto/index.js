@@ -30,7 +30,6 @@ const Konto = () => {
         }
     }, [authData]);
     const router = useRouter()
-    console.log(authData)
     return (
         <>{
             loading ? (

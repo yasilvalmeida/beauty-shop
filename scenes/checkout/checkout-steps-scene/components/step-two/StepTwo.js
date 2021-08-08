@@ -1,10 +1,8 @@
 import { Radio, Input } from 'antd';
 import {useState} from "react"
 const StepTwo = (props) =>{
-    console.log(props)
     const {next} = props
     const onChange = e => {
-        console.log('radio checked', e.target.value);
         setValue(e.target.value)
     };
     const [value,setValue] = useState()
