@@ -88,7 +88,7 @@ const MobileHeader = () => {
             return (
               <MobileCard
                 title={<Link href={e?.url}>{e?.name}</Link>}
-                /* data={e.categories} */
+                
                 key={i}
                 classValue="without-body"
               />

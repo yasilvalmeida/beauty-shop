@@ -24,13 +24,16 @@ const Header = () => {
   return (
     <>
       <header>
-        <div className="page-header-top-black">
-          <span className="col-lg-12" dangerouslySetInnerHTML={firstTextFunction()}>
-          </span>
+        <div className="page-header-top-black row">
+          <div className="col-sm-12">
+            <span dangerouslySetInnerHTML={firstTextFunction()}></span>
+          </div>
         </div>
         <div className="page-header-top-grey">
-          <span className="col-lg-12" dangerouslySetInnerHTML={secondTextFunction()}>
-          </span>
+          <span
+            className="col-sm-12"
+            dangerouslySetInnerHTML={secondTextFunction()}
+          ></span>
         </div>
         <HeaderSearch />
         <Navbar />

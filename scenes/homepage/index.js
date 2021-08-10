@@ -35,7 +35,6 @@ import RenderModal from "./components/render-modal/RenderModal";
 import { getFirstAndSecondThreeProducts } from "../../services/actions/products";
 
 const Homepage = () => {
-  // const htmltext = "<div><h1 style='color:red'>Alohha Bitches</h1></div>"
   const dispatch = useDispatch();
   const loaded = useSelector((state) => state.navbar.homePageSctOneLoaded);
   const navlistloaded = useSelector((state) => state.navbar.navListLoaded);
@@ -48,8 +47,12 @@ const Homepage = () => {
   const HPFS = useSelector((state) => state.navbar.homePageSctOne);
   const homepageIntro = HPFS.find((p) => p.position === "HomePage");
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const prdctsFirst = useSelector((state) => state?.products?.firstThreeProducts);
-  const prdctsSecond = useSelector((state) => state?.products?.secondThreeProducts);
+  const prdctsFirst = useSelector(
+    (state) => state?.products?.firstThreeProducts
+  );
+  const prdctsSecond = useSelector(
+    (state) => state?.products?.secondThreeProducts
+  );
   const defaultLanguage = useSelector(
     (state) => state?.navbar?.selectedLanguage
   );
@@ -137,7 +140,7 @@ const Homepage = () => {
           <FirstIntro />
           <FirstIntroMobile />
           <FirstProducts products={productsFirst} />
-          <SecondSection firstData={firstData} secondData={secondData} />
+          <SecondSection first={firstData} second={secondData} />
           <InspirationSection inspiration={inspiration} />
           <InspirationBottomOne />
           <InspirationBottomTwo />

@@ -45,7 +45,7 @@
         color: #3e3e3e;
         font-weight: 300;
         margin: 0;
-        font-size: 9rem;
+        font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));
         line-height: 60px;
         text-transform: uppercase;
       }

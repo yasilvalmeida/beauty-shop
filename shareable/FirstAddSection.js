@@ -3,8 +3,8 @@ import Link from "next/link";
 
 const FirstAddSection = ({
   background,
-  firstData,
-  secondData,
+  first,
+  second,
   textcolor,
   padding,
 }) => {
@@ -25,21 +25,21 @@ const FirstAddSection = ({
               <Link href={shopUrl}>
                 <a href={shopUrl}>
                   <Image
-                    src={firstData?.images?.url || "/aaa.jpg"}
+                    src={first?.images?.url || "/aaa.jpg"}
                     layout="responsive"
-                    width={800}
-                    height={600}
+                    width={375}
+                    height={281}
                     style={{ cursor: "pointer" }}
                   />
                 </a>
               </Link>
             </div>
             <div className={"sec-sec-el-text"}>
-              <p style={{ color: textcolor }}>{firstData?.header}</p>
+              <p style={{ color: textcolor }}>{first?.header}</p>
               <Link href={shopUrl}>
                 <a href={shopUrl}>
                   <h3 style={{ color: textcolor, cursor: "pointer" }}>
-                    {firstData?.title}
+                    {first?.title}
                   </h3>
                 </a>
               </Link>
@@ -47,7 +47,7 @@ const FirstAddSection = ({
             <div className={"sec-sec-el-link"}>
               <div className="collection-shop-button">
                 <p onClick={() => router.push(`${shopUrl}`)}>
-                  {firstData?.Link_text}
+                  {first?.Link_text}
                 </p>
               </div>
             </div>
@@ -57,7 +57,7 @@ const FirstAddSection = ({
               <Link href={shopUrl}>
                 <a href={shopUrl}>
                   <Image
-                    src={secondData?.images?.url || "/aaa.jpg"}
+                    src={second?.images?.url || "/aaa.jpg"}
                     layout="responsive"
                     width={800}
                     height={600}
@@ -67,11 +67,11 @@ const FirstAddSection = ({
               </Link>
             </div>
             <div className={"sec-sec-el-text"}>
-              <p style={{ color: textcolor }}>{secondData?.header}</p>
+              <p style={{ color: textcolor }}>{second?.header}</p>
               <Link href={shopUrl}>
                 <a href={shopUrl}>
                   <h3 style={{ color: textcolor, cursor: "pointer" }}>
-                    {secondData?.title}
+                    {second?.title}
                   </h3>
                 </a>
               </Link>
@@ -79,7 +79,7 @@ const FirstAddSection = ({
             <div className={"sec-sec-el-link"}>
               <div className="collection-shop-button">
                 <p onClick={() => router.push(`${shopUrl}`)}>
-                  {firstData?.Link_text}
+                  {first?.Link_text}
                 </p>
               </div>
             </div>

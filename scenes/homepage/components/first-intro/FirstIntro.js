@@ -9,7 +9,7 @@ const FirstIntro = () => {
   return (
     <>
       <div className={"first-intro "}>
-        <div className={"first-intro-body "}>
+        <div className={"first-intro-body"}>
           <div className={"first-intro-bod-left"}>
             <div>
               <p className={"intro-small-txt"}>{homepageIntro?.header}</p>
