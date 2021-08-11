@@ -136,12 +136,17 @@ const Homepage = () => {
           isModalVisible={isModalVisible}
           setIsModalVisible={setIsModalVisible}
         />
+
         <div className={"homepage-body"}>
           <FirstIntro />
           <FirstIntroMobile />
           <FirstProducts products={productsFirst} />
           <SecondSection first={firstData} second={secondData} />
           <InspirationSection inspiration={inspiration} />
+          <br className="clear" />
+          <br className="clear" />
+          <br className="clear" />
+          <br className="clear" />
           <InspirationBottomOne />
           <InspirationBottomTwo />
           <SecondProducts products={productsSecond} />

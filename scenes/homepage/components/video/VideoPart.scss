@@ -1,7 +1,10 @@
 .video-body {
   position: relative;
   overflow: hidden;
-  height: 633px;
+  //height: 633px;
+  @media (min-width: 1024px) {
+      height: 633px;
+    }
   div {
     height: unset;
   }

@@ -87,10 +87,10 @@
       }
     }
   }
-  .inspiration-body {
+  /* .inspiration-body {
     grid-template-columns: none;
     grid-auto-flow: row;
-    width: 90.5%;
+    width: 100%;
     margin: 0 auto;
     button {
       width: fit-content !important;
@@ -127,9 +127,13 @@
         line-height: 1.15;
         letter-spacing: 0.28px;
         font-size: 2rem;
+        @media screen and(max-width: 375px) {
+          width: 65%;
+          line-break: auto;
+        }
       }
     }
-  }
+  } */
   .inspiration-bottom {
     grid-auto-flow: dense;
     gap: 10px;

@@ -1,104 +1,143 @@
-import {useEffect, useState} from 'react';
-import {MenuOutlined, SearchOutlined} from '@ant-design/icons';
-import {Drawer, Input} from 'antd';
-import MobileCard from './MobileCard';
-import MobileMenuFooter from './MobileMenuFooter';
-import Logo from '../logo/Logo';
-import Image from 'next/image';
+import { useEffect, useState } from "react";
+import { MenuOutlined, SearchOutlined } from "@ant-design/icons";
+import { Drawer, Input } from "antd";
+import MobileCard from "./MobileCard";
+import MobileMenuFooter from "./MobileMenuFooter";
+import Logo from "../logo/Logo";
+import Image from "next/image";
 import CartSidebar from "../cartSidebar/CartSidebar";
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
-import {getBasketData} from "../../services/actions/basket";
+import { getBasketData } from "../../services/actions/basket";
+import { Spin, Space } from "antd";
 
 const MobileHeader = () => {
-    const dispatch = useDispatch()
-    const [visible, setVisible] = useState(false);
-    const [visibleCart, setVisibleCart] = useState(false);
-    const [showSearch, setShowSearch] = useState(false);
-    const navlinks = useSelector(state => state.navbar.navList)
+  const dispatch = useDispatch();
+  const [visible, setVisible] = useState(false);
+  const [visibleCart, setVisibleCart] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
+  const navListState = useSelector((state) => state.navbar.navList);
+  const lang = useSelector((state) => state?.navbar?.selectedLanguage);
+  const [navList, setNavList] = useState([]);
 
-    const showDrawer = () => {
-        setVisible(true);
-    };
-    const showDrawerCart = () => {
-        setVisibleCart(true);
-    };
-
-    const onClose = () => {
-        setVisible(false);
-    };
-    const onCloseCart = () => {
-        setVisibleCart(false);
-    };
-
-    const openSearch = () => {
-        setShowSearch(!showSearch)
+  const showDrawer = () => {
+    setVisible(true);
+  };
+  const showDrawerCart = () => {
+    setVisibleCart(true);
+  };
+  const onClose = () => {
+    setVisible(false);
+  };
+  const onCloseCart = () => {
+    setVisibleCart(false);
+  };
+  const openSearch = () => {
+    setShowSearch(!showSearch);
+  };
+  useEffect(() => {
+    if (visibleCart) {
+      dispatch(getBasketData());
     }
-    useEffect(() => {
-      if (visibleCart) {
-        dispatch(getBasketData());
+  }, [visibleCart]);
+  useEffect(() => {
+    const categories = [];
+    navListState?.map((elem, i) => {
+      const filters =
+        elem.filter((detail) => detail.lang === lang)?.length > 0
+          ? elem.filter((detail) => detail.lang === lang)
+          : elem;
+      const filtered = filters[0];
+      const { categoryId, name } = filtered;
+      let url = "";
+      switch (name) {
+        case "Shop":
+          url = "shop";
+          break;
+        case "Magazin":
+          url = "magazine";
+          break;
+        case "Kontakt":
+          url = "contact";
+          break;
+        default:
+          url = `shop?category=${categoryId}`;
       }
-    }, [visibleCart]);
+      if (categoryId === 444) url = "brands";
+      const e = {
+        id: categoryId,
+        name,
+        url,
+        categories: [],
+      };
+      categories.push(e);
+    });
+    setNavList(categories);
+  }, [navListState, lang]);
 
-    const prefix = (
-        <SearchOutlined
-            style={{
-                fontSize: 26,
-                color: '#7b7b7b',
-            }}
-        />
-    );
+  const prefix = (
+    <SearchOutlined
+      style={{
+        fontSize: 26,
+        color: "#7b7b7b",
+      }}
+    />
+  );
 
-    return (
-      <div className="mobileHeader">
-        <div className="mobileHeader__container">
-          <div className="mobileHeader__container__icon--menu">
-            <MenuOutlined onClick={showDrawer} />
-          </div>
-          <Logo />
-          <div className="mobileHeader__container__image--cart">
-            <SearchOutlined onClick={openSearch} />
-            <div onClick={showDrawerCart} style={{ cursor: "pointer" }}>
-              <Image src="/bag.svg" width={30} height={30} />
+  return (
+    <div className="mobileHeader">
+      <div className="mobileHeader__container">
+        <div className="mobileHeader__container__icon--menu">
+          {navList?.length === 0 ? (
+            <div className={"loader__component"}>
+              <Space size="middle">
+                <Spin size="large" />
+              </Space>
             </div>
+          ) : (
+            <MenuOutlined onClick={showDrawer} />
+          )}
+        </div>
+        <Logo />
+        <div className="mobileHeader__container__image--cart">
+          <SearchOutlined onClick={openSearch} />
+          <div onClick={showDrawerCart} style={{ cursor: "pointer" }}>
+            <Image src="/bag.svg" width={30} height={30} />
           </div>
         </div>
-        <div
-          className={showSearch ? "mobileHeader__search__container" : "hide"}
-        >
-          <Input
-            placeholder="suche"
-            className="mobileHeader__search__container--input"
-            prefix={prefix}
-          />
-        </div>
-        <Drawer
-          title={<Logo />}
-          className="mobileHeader__drawer__container"
-          placement="left"
-          closable={true}
-          width={315}
-          onClose={onClose}
-          visible={visible}
-          keyboard={true}
-          maskClosable={true}
-          // onBlur={onClose}
-        >
-          {navlinks?.map((e, i) => {
-            return (
-              <MobileCard
-                title={<Link href={e?.url}>{e?.name}</Link>}
-                
-                key={i}
-                classValue="without-body"
-              />
-            );
-          })}
-          <MobileMenuFooter />
-        </Drawer>
-        <CartSidebar onClose={onCloseCart} visible={visibleCart} />
       </div>
-    );
+      <div className={showSearch ? "mobileHeader__search__container" : "hide"}>
+        <Input
+          placeholder="suche"
+          className="mobileHeader__search__container--input"
+          prefix={prefix}
+        />
+      </div>
+      <Drawer
+        title={<Logo />}
+        className="mobileHeader__drawer__container"
+        placement="left"
+        closable={true}
+        width={315}
+        onClose={onClose}
+        visible={visible}
+        keyboard={true}
+        maskClosable={true}
+      >
+        {navList?.map((e, i) => {
+          return (
+            <MobileCard
+              title={<Link href={e?.url}>{e?.name}</Link>}
+              key={i}
+              classValue="without-body"
+            />
+          );
+        })}
+        <MobileMenuFooter />
+      </Drawer>
+      <CartSidebar onClose={onCloseCart} visible={visibleCart} />
+    </div>
+  );
 };
 
 export default MobileHeader;

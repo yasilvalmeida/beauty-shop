@@ -1,10 +1,15 @@
 .bottom-video-body {
-  width: 90.5%;
-  margin: 0 auto;
+  width: 90%;
+  margin: auto;
   justify-content: space-between;
-  display: grid;
+  /* display: grid;
   grid-auto-flow: column;
-  gap: 70px;
+  gap: 70px; */
+  @media (min-width: 1024px) {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 70px;
+  }
   .video-small-body-only {
     position: relative;
     display: grid;
