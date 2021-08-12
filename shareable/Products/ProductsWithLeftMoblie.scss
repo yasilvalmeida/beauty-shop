@@ -3,8 +3,9 @@
     margin-top: 30px;
     grid-template-columns: none;
     gap: 70px;
-    .prod-items-bod{
-      .first-prod-items{
+    
+    .prod-items-bod {
+      .first-prod-items {
         &:last-child{
           display: none;
         }

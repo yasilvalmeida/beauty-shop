@@ -44,7 +44,7 @@ const ProductsWithLeftText = ({ products, leftText, addToWishList }) => {
     <>
       <div className="first-products-body ">
         <div className="firstprod-left-text">
-          <div className="firstprod-left-text">
+          <div>
             <p>{leftText?.Header}</p>
             <Link href={shopUrl}>
               <a href={shopUrl}>
@@ -53,11 +53,13 @@ const ProductsWithLeftText = ({ products, leftText, addToWishList }) => {
             </Link>
             <span>{leftText?.Text}</span>
           </div>
-          <Link href={shopUrl}>
-            <a href={shopUrl}>
-              <button>{leftText?.Button_text}</button>
-            </a>
-          </Link>
+          <div className="button-body">
+            <Link href={shopUrl}>
+              <a href={shopUrl}>
+                <button>{leftText?.Button_text}</button>
+              </a>
+            </Link>
+          </div>
         </div>
         {products?.length === 0 ? (
           <div className={"loader__component"}>

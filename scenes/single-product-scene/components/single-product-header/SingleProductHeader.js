@@ -156,6 +156,7 @@ const SingleProductHeader = () => {
                 value={"large"}
                 data={singleProduct}
                 setBottleId={setBottleId}
+                className="single-product-select-variation"
               />
               <HeaderLoginPopup
                 isModalVisible={isModalVisible}

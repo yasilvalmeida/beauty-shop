@@ -250,6 +250,7 @@
     margin-top: 5vh;
     display: flex;
     flex-direction: column;
+    //flex-wrap: wrap;
     align-items: center;
     justify-content: flex-end;
     position: relative;
@@ -424,9 +425,9 @@
   border: 1px solid #707070;
   background: black;
   transition: 0.5s;
-  display: flex;
-  align-items: center;
-
+  //display: flex;
+  //align-items: center;
+  
   p {
     color: #ffffff;
     font-size: 2rem;
