@@ -109,7 +109,13 @@ const Navbar = () => {
                                     className={"nav-hov-links"}
                                     key={category?.id}
                                   >
-                                    <Link href={`/shop?brand=${category.id}`}>
+                                    <Link
+                                      href={
+                                        e?.id === 444
+                                          ? `/shop?brand=${category?.id}`
+                                          : `/shop?category=${category?.id}`
+                                      }
+                                    >
                                       {category.name}
                                     </Link>
                                   </li>
