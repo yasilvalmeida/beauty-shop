@@ -6,21 +6,30 @@ import { Spin, Space } from "antd";
 
 const Navbar = () => {
   const navListState = useSelector((state) => state.navbar.navList);
+  const manufactoryState = useSelector(
+    (state) => state.manufactory.manufactories
+  );
   const lang = useSelector((state) => state?.navbar?.selectedLanguage);
   const [navList, setNavList] = useState([]);
 
   useEffect(() => {
-    const categories = [];
+    const mainCategories = [];
     navListState?.map((elem, i) => {
       const filters =
         elem.filter((detail) => detail.lang === lang)?.length > 0
           ? elem.filter((detail) => detail.lang === lang)
           : elem;
       const filtered = filters[0];
-      const { categoryId, name } = filtered;
+      let { categoryId, name, categories } = filtered;
       let url = "";
       switch (name) {
-        case "Shop":
+        case "Typentest":
+          url = "typentest/step1";
+          break;
+        case "Video":
+          url = "video";
+          break;
+        case "Showroom":
           url = "shop";
           break;
         case "Magazin":
@@ -32,18 +41,21 @@ const Navbar = () => {
         default:
           url = `shop?category=${categoryId}`;
       }
-      if (categoryId === 444) url = "brands";
+      if (categoryId === 444) {
+        url = "brands";
+        categories = manufactoryState;
+      }
       const e = {
         id: categoryId,
         name,
         url,
-        categories: [],
+        categories,
       };
-      categories.push(e);
+      mainCategories.push(e);
     });
-    setNavList(categories);
+    setNavList(mainCategories);
   }, [navListState, lang]);
-  
+
   const route = useRouter();
 
   return (
@@ -91,21 +103,18 @@ const Navbar = () => {
                         {e?.categories?.length > 0 ? (
                           <>
                             <div className={"hovered"}>
-                              {e?.categories?.map((category) => (
-                                <div
-                                  className={" nav-hov-links "}
-                                  key={category?.id}
-                                >
-                                  <h2>{category?.CategoryName}</h2>
-                                  {category?.subCategories?.length
-                                    ? category?.subCategories?.map((subC) => (
-                                        <Link href={"/a-z"} key={subC?.id}>
-                                          {subC?.SubCategoryName}
-                                        </Link>
-                                      ))
-                                    : null}
-                                </div>
-                              ))}
+                              <ul>
+                                {e?.categories?.map((category) => (
+                                  <li
+                                    className={"nav-hov-links"}
+                                    key={category?.id}
+                                  >
+                                    <Link href={`/shop?brand=${category.id}`}>
+                                      {category.name}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
 
                               {e?.images && (
                                 <div className="col-lg-3 image-cont">

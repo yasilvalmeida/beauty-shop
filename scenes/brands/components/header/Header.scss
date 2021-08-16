@@ -4,7 +4,7 @@
   width: 90.5%;
   gap: 5rem;
   margin: 7rem auto;
-  @media screen and (max-width: 1024px){
+  @media (max-width: 1024px) {
       display: none;
   }
   &__text {

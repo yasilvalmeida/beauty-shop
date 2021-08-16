@@ -1,20 +1,17 @@
 import BrandsScene from "../scenes/brands";
-import {useRouter} from "next/router";
 
 const Brands = () => {
-    const router = useRouter()
-
-    return (
-        <>
-            <BrandsScene id={router.query}/>
-        </>
-    );
+  return (
+    <>
+      <BrandsScene />
+    </>
+  );
 };
 
 export async function getStaticProps() {
-    return {
-        props: {},
-    };
+  return {
+    props: {},
+  };
 }
 
 export default Brands;

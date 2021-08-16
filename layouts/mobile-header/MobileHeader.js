@@ -41,17 +41,23 @@ const MobileHeader = () => {
     }
   }, [visibleCart]);
   useEffect(() => {
-    const categories = [];
+    const mainCategories = [];
     navListState?.map((elem, i) => {
       const filters =
         elem.filter((detail) => detail.lang === lang)?.length > 0
           ? elem.filter((detail) => detail.lang === lang)
           : elem;
       const filtered = filters[0];
-      const { categoryId, name } = filtered;
+      const { categoryId, name, categories } = filtered;
       let url = "";
       switch (name) {
-        case "Shop":
+        case "Typentest":
+          url = "typentest/step1";
+          break;
+        case "Video":
+          url = "video";
+          break;
+        case "Showroom":
           url = "shop";
           break;
         case "Magazin":
@@ -68,11 +74,11 @@ const MobileHeader = () => {
         id: categoryId,
         name,
         url,
-        categories: [],
+        categories,
       };
-      categories.push(e);
+      mainCategories.push(e);
     });
-    setNavList(categories);
+    setNavList(mainCategories);
   }, [navListState, lang]);
 
   const prefix = (
@@ -128,6 +134,7 @@ const MobileHeader = () => {
           return (
             <MobileCard
               title={<Link href={e?.url}>{e?.name}</Link>}
+              data={e}
               key={i}
               classValue="without-body"
             />

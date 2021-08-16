@@ -235,7 +235,7 @@
                     /* Text style for "PARFUM" */
                     font-style: normal;
                     text-transform: uppercase;
-                    padding-top: 5px;
+                    padding-top: -5px;
                     border-left: 1px solid transparent;
                     border-top: 1px solid transparent;
                     border-right: 1px solid transparent;
@@ -265,17 +265,17 @@
                     .active-navbar{
                         -webkit-text-stroke: 1px black;
                     }
-                    &:hover{
+                    &:hover {
                         .hovered-top-link{
-                                -webkit-text-stroke: 1px black;
+                            -webkit-text-stroke: 1px black;
                         }
-                        .relative-nav{
+                        .relative-nav {
                             position: relative;
                             width: 100%;
                             height: 100%;
                             left: 0px;
                             display: block;
-                            .absolute-white{
+                            .absolute-white {
                                 position: absolute;
                                 width: 100%;
                                 height: 10px;
@@ -283,28 +283,27 @@
                                 background: white;
                             }
                         }
-
-
-                        .hovered{
+                        .hovered {
                             border: 1px solid black;
                             background: white;
-                            display: grid;
+                            //display: grid;
                             width: 100%;
-                            height: 65vh;
+                            //height: 65vh;
                             left: 0;
                             top: 100%;
                             -webkit-box-shadow: -2px 10px 10px -6px rgba(117,117,117,0.95);
                             box-shadow: -2px 10px 10px -6px rgba(117,117,117,0.95);
-                            padding: 100px;
+                            padding: 20px 50px 10px 50px;
                             position: absolute;
                             justify-content: space-between;
                             //background: rebeccapurple;
                             display: flex;
                             z-index: 2;
-                            .nav-hov-links{
-                                display: grid;
-                                text-align: left;
-                                h2{
+                            .nav-hov-links {
+                                //display: grid;
+                                text-align: center;
+                                
+                                h2 {
                                     font-size: 2.2rem;
                                     @media screen and (min-width:1440px) and (max-width:1680px){
                                         font-size: 1.8rem;
@@ -313,30 +312,32 @@
                                         font-size: 1.55rem;
                                     }
                                 }
-
-                            a{
-                                color: #000000;
-                                font-family: "Freight Sans Pro",system-ui,inherit;
-                                font-size: 2rem;
-                                font-weight: 300;
-                                font-style: normal;
-                                letter-spacing: 1.38px;
-                                line-height: 38px;
-                                text-align: left;
-                                /* Text style for "A-Z,  , Ap" */
-                                font-style: normal;
-                                text-transform: uppercase;
-                                width: fit-content;
-                                @media screen and (min-width:1440px) and (max-width:1680px){
-                                    font-size: 1.6rem;
+                                a {
+                                    color: #000000;
+                                    font-family: "Freight Sans Pro",system-ui,inherit;
+                                    font-size: 2rem;
+                                    font-weight: 300;
+                                    font-style: normal;
+                                    letter-spacing: 1.38px;
+                                    line-height: 38px;
+                                    text-align: left;
+                                    /* Text style for "A-Z,  , Ap" */
+                                    font-style: normal;
+                                    text-transform: uppercase;
+                                    width: fit-content;
+                                    @media screen and (min-width:1440px) and (max-width:1680px){
+                                        font-size: 1.6rem;
+                                    }
+                                    @media screen and (min-width:1080px) and (max-width:1440px){
+                                        font-size: 1.35rem;
+                                    }
+                                    &:hover{
+                                        -webkit-text-stroke: 1px black;
+                                    }
                                 }
-                                @media screen and (min-width:1080px) and (max-width:1440px){
-                                    font-size: 1.35rem;
+                                &:hover {
+                                    border-bottom: 1px #000000 solid;
                                 }
-                                &:hover{
-                                    -webkit-text-stroke: 1px black;
-                                }
-                            }
                             }
 
                             .image-cont {

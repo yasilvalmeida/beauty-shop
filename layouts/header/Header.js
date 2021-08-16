@@ -1,24 +1,24 @@
 import HeaderSearch from "./HeaderSearch";
 import Navbar from "./Navbar";
-import { getHeaderTexts } from '../../services/actions/homepage__stable';
-import { useDispatch, useSelector } from 'react-redux';
+import { getHeaderTexts } from "../../services/actions/homepage__stable";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const { headerText1, headerText2 } = useSelector(state => state.navbar);
-  
+  const { headerText1, headerText2 } = useSelector((state) => state.navbar);
+
   useEffect(() => {
     dispatch(getHeaderTexts());
   }, []);
   function firstTextFunction() {
     return {
-      __html: headerText1
+      __html: headerText1,
     };
   }
   function secondTextFunction() {
     return {
-      __html: headerText2
+      __html: headerText2,
     };
   }
   return (
