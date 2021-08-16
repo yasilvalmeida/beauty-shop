@@ -3,7 +3,6 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 const MobileCard = ({ title, data, classValue }) => {
-  console.log("aux", data);
   const route = useRouter();
   return (
     <Card

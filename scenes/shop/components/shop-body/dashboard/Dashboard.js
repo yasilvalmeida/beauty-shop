@@ -24,7 +24,15 @@ const Dashboard = ({
         : item;
     const e = filter[0];
     const { categoryId, name } = e;
-    categoriesData.push({ id: categoryId, name });
+    if (
+      name !== "Typentest" &&
+      name !== "Video" &&
+      name !== "Showroom" &&
+      name !== "Magazin" &&
+      name !== "Kontakt"
+    ) {
+      categoriesData.push({ id: categoryId, name });
+    }
   });
   let manufactoriesData = useSelector(
     (state) => state.manufactory.manufactories

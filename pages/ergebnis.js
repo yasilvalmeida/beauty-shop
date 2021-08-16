@@ -1,6 +1,16 @@
-// import Ergebnis from "../shareable/Products/ergebnis";
-import Ergebnis from '../scenes/ergebins';
+import ErgebnisScene from "../scenes/ergebins";
 
-export default function Error404Scene() {
-  return <Ergebnis />;
+const Ergebnis = () => {
+  return (
+    <>
+      <ErgebnisScene />
+    </>
+  );
+};
+export async function getStaticProps() {
+  return {
+    props: {},
+  };
 }
+
+export default Ergebnis;

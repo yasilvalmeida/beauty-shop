@@ -1,15 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-export default function ErgebnisProduct() {
-  const parfumTypes = [
-    "UNISEX",
-    "WÜRZIG",
-    "ELEGANT",
-    "FRISCH",
-    "BÜRO",
-    "EAU DE PARFUM",
-  ];
+export default function ErgebnisProduct({ parameters }) {
 
   const parfumData = [
     {
@@ -53,7 +45,7 @@ export default function ErgebnisProduct() {
         </p>
 
         <div className="ergebnis__product__title--parfumTypes">
-          {parfumTypes.map((item, index) => {
+          {parameters?.map((item, index) => {
             return <span key={index + item}>{item}</span>;
           })}
         </div>

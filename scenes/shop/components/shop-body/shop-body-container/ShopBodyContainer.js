@@ -69,7 +69,6 @@ const ShopBodyContainer = ({
   };
 
   useEffect(() => {
-    console.log('aux', filterId, loaded, products?.length)
     setProducts([]);
     if (current === 1) {
       setMinValue(0);
