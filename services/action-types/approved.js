@@ -1,0 +1,3 @@
+export const GET_APPROVED_DATA = "GET_APPROVED_DATA";
+export const SET_APPROVED_DATA = "SET_APPROVED_DATA";
+export const SET_ERROR = "SET_ERROR";

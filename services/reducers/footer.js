@@ -8,7 +8,7 @@ const initialState = {
     footerTopLoaded:true
 };
 
-const newsReducer = (state = initialState, { type, payload }) => {
+const footerReducer = (state = initialState, { type, payload }) => {
     switch (type) {
         case SET_FOOTER_DATA:
             return {
@@ -33,4 +33,4 @@ const newsReducer = (state = initialState, { type, payload }) => {
     }
 };
 
-export default newsReducer;
+export default footerReducer;

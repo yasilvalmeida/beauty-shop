@@ -1,4 +1,4 @@
-import {combineReducers} from "redux";
+import { combineReducers } from "redux";
 import homeReducer from "../services/reducers/homepage__stable";
 import newsletterReducer from "../services/reducers/newsletter";
 import authReducer from "../services/reducers/auth";
@@ -20,6 +20,7 @@ import videoReducer from "./reducers/video";
 import categoriesReducer from "./reducers/categories";
 import manufactoriesReducer from "./reducers/manufactories";
 import ergebnisReducer from "./reducers/ergebnis";
+import approvedReducer from "./reducers/approved";
 
 const rootReducer = combineReducers({
   navbar: homeReducer,
@@ -43,6 +44,7 @@ const rootReducer = combineReducers({
   category: categoriesReducer,
   manufactory: manufactoriesReducer,
   ergebnis: ergebnisReducer,
+  approved: approvedReducer,
 });
 
 export default rootReducer;
