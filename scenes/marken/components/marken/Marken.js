@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Link from "next/link";
+import { Space, Spin } from "antd";
 
 const Marken = ({ textData, manufactories }) => {
   const { title, header } = textData;
-  const { markenData } = useSelector((state) => state.marken);
+  const { markenData, markenDataLoaded } = useSelector((state) => state.marken);
   const [newArray, setNewArray] = useState([]);
 
   const splitArray = (arr, size) => {
@@ -42,7 +43,7 @@ const Marken = ({ textData, manufactories }) => {
   useEffect(() => {
     addManufactoriesToLetter(manufactories, markenData);
     splitArray(markenData, 4);
-  }, [newArray]);
+  }, [markenDataLoaded]);
 
   return (
     <div className={"marken__container"}>
@@ -50,65 +51,75 @@ const Marken = ({ textData, manufactories }) => {
         <h1 className={"marken__container__header--title"}>{header}</h1>
         <p className={"marken__container__header--subtitle"}>{title}</p>
       </div>
-      <>
-        {newArray?.map((e) => {
-          return (
-            <div className={"marken__container__content"}>
-              {e.map((letter, index) => {
-                return (
-                  <div
-                    className={"marken__container__content__item"}
-                    key={index}
-                  >
-                    <h4 className={"marken__container__content__item--title"}>
-                      {letter.title}
-                    </h4>
-                    {letter?.content?.map((brand, key) => {
-                      return (
-                        <Link href={`/brand/${brand?.id}`} key={key}>
-                          <p>
-                            <a
-                              href={`/brand/${brand?.id}`}
-                              className={
-                                "marken__container__content__item--content"
-                              }
-                            >
-                              {brand?.name}
-                            </a>
-                          </p>
-                        </Link>
-                      );
-                    })}
-                  </div>
-                );
-              })}
-            </div>
-          );
-        })}
-        <div className={"marken__container__mobile__content"}>
-          {markenData?.map((letter, index) => {
+      {markenDataLoaded ? (
+        <div className={"loader__component"}>
+          <Space size="middle">
+            <Spin size="large" />
+          </Space>
+        </div>
+      ) : (
+        <>
+          {newArray?.map((e) => {
             return (
-              <div className={"marken__container__content__item"} key={index}>
-                <h4 className={"marken__container__content__item--title"}>
-                  {letter?.title}
-                </h4>
-                {letter?.content?.map((brand, key) => {
+              <div className={"marken__container__content"}>
+                {e.map((letter, index) => {
                   return (
-                    <Link href={`/brand/${brand?.id}`} key={key}>
-                      <p
-                        onClick={`/brand/${brand?.id}`}
-                        className={"marken__container__content__item--content"}
-                      >
-                        {brand?.name}
-                      </p>
-                    </Link>
+                    <div
+                      className={"marken__container__content__item"}
+                      key={index}
+                    >
+                      <h4 className={"marken__container__content__item--title"}>
+                        {letter.title}
+                      </h4>
+                      {letter?.content?.map((brand, key) => {
+                        return (
+                          <Link href={`/brand/${brand?.id}`} key={key}>
+                            <p>
+                              <a
+                                href={`/brand/${brand?.id}`}
+                                className={
+                                  "marken__container__content__item--content"
+                                }
+                              >
+                                {brand?.name}
+                              </a>
+                            </p>
+                          </Link>
+                        );
+                      })}
+                    </div>
                   );
                 })}
               </div>
             );
           })}
-        </div>
-      </>
+          <div className={"marken__container__mobile__content"}>
+            {markenData?.map((letter, index) => {
+              return (
+                <div className={"marken__container__content__item"} key={index}>
+                  <h4 className={"marken__container__content__item--title"}>
+                    {letter?.title}
+                  </h4>
+                  {letter?.content?.map((brand, key) => {
+                    return (
+                      <Link href={`/brand/${brand?.id}`} key={key}>
+                        <p
+                          onClick={`/brand/${brand?.id}`}
+                          className={
+                            "marken__container__content__item--content"
+                          }
+                        >
+                          {brand?.name}
+                        </p>
+                      </Link>
+                    );
+                  })}
+                </div>
+              );
+            })}
+          </div>
+        </>
+      )}
     </div>
   );
 };
