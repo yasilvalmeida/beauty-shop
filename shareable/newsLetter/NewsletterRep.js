@@ -15,6 +15,7 @@ const NewsletterRep = ({ padding }) => {
     Gender: "",
     Email: "",
   });
+  const lang = useSelector((state) => state.navbar.selectedLanguage);
   const [checked, setChecked] = useState(false);
   const [checked2, setChecked2] = useState(false);
   const [checked3, setChecked3] = useState(false);
@@ -22,8 +23,8 @@ const NewsletterRep = ({ padding }) => {
 
   const [suc, setSuc] = useState(null);
   useEffect(() => {
-    dispatch(getNewsletterText());
-  }, []);
+    dispatch(getNewsletterText(lang));
+  }, [lang]);
 
   const textData = useSelector((state) => state.navbar.newsletterText);
 
@@ -69,7 +70,7 @@ const NewsletterRep = ({ padding }) => {
         <div className="newsLetter__container__header">
           <h2 className="newsLetter__container__header--title">Newsletter</h2>
           <p className="newsLetter__container__header--info">
-            {textData[0]?.text}
+            {textData?.paragraph}
           </p>
         </div>
         <div className="newsLetter__container__action">
@@ -81,7 +82,7 @@ const NewsletterRep = ({ padding }) => {
             <input
               type="text"
               name={"name"}
-              placeholder={"Vorname"}
+              placeholder={textData?.form_firstname}
               className="newsLetter__container__action__form--name"
               value={newsLetter.First_name}
               onChange={(e) => {
@@ -95,7 +96,7 @@ const NewsletterRep = ({ padding }) => {
             <input
               type="lastname"
               name={"lastname"}
-              placeholder={"nachname"}
+              placeholder={textData?.form_lastname}
               className="newsLetter__container__action__form--lastname"
               value={newsLetter.Surname}
               onChange={(e) => {
@@ -129,7 +130,7 @@ const NewsletterRep = ({ padding }) => {
                       }));
                   }}
                 />
-                <label htmlFor="Mannlich">Mannlich</label>
+                <label htmlFor="Mannlich">{textData?.form_male}</label>
               </div>
               <div
                 className={"newsLetter__container__action__form__gender--item"}
@@ -153,7 +154,7 @@ const NewsletterRep = ({ padding }) => {
                       }));
                   }}
                 />
-                <label htmlFor="Weiblich">Weiblich</label>
+                <label htmlFor="Weiblich">{textData?.form_female}</label>
               </div>
               <div
                 className={"newsLetter__container__action__form__gender--item"}
@@ -177,7 +178,7 @@ const NewsletterRep = ({ padding }) => {
                       }));
                   }}
                 />
-                <label htmlFor="Unisex">Divers</label>
+                <label htmlFor="Unisex">{textData?.form_unisex}</label>
               </div>
             </div>
             <Tooltip
@@ -190,7 +191,7 @@ const NewsletterRep = ({ padding }) => {
             >
               <input
                 type="email"
-                placeholder={"Email adresse"}
+                placeholder={textData?.form_email}
                 className={`newsLetter__container__action__form--email ${
                   emailSuccess ? "input-error" : null
                 }`}
@@ -215,7 +216,7 @@ const NewsletterRep = ({ padding }) => {
             <input
               type="submit"
               className="newsLetter__container__action__form--submit"
-              value={"Senden"}
+              value={textData?.form_button}
             />
           </form>
         </div>

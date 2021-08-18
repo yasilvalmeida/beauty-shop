@@ -424,12 +424,14 @@ export const getMidFoot = () => {
   };
 };
 
-export const getNewsletterText = () => {
+export const getNewsletterText = (lang) => {
   return (dispatch) => {
     dispatch({ type: HOMEPAGE_LOADER });
 
     return axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/newsletter-texts`)
+      .get(
+        `${process.env.NEXT_PUBLIC_API_URL}/newsletter-page-text?_locale=${lang}`
+      )
       .then((res) => {
         const { data } = res;
 
