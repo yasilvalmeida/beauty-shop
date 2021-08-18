@@ -7,6 +7,7 @@ const Marken = ({ textData, manufactories }) => {
   const { title, header } = textData;
   const { markenData, markenDataLoaded } = useSelector((state) => state.marken);
   const [newArray, setNewArray] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const splitArray = (arr, size) => {
     var arr2 = arr.slice(0),
@@ -16,6 +17,7 @@ const Marken = ({ textData, manufactories }) => {
       arrays.push(arr2.splice(0, size));
     }
     setNewArray([...arrays]);
+    setLoading(false);
   };
   const addManufactoriesToLetter = (manufactories, newArray) => {
     manufactories?.map((brand, i) => {
@@ -41,9 +43,10 @@ const Marken = ({ textData, manufactories }) => {
   };
 
   useEffect(() => {
+    setLoading(true);
     addManufactoriesToLetter(manufactories, markenData);
     splitArray(markenData, 4);
-  }, [markenDataLoaded]);
+  }, [manufactories]);
 
   return (
     <div className={"marken__container"}>
@@ -51,7 +54,7 @@ const Marken = ({ textData, manufactories }) => {
         <h1 className={"marken__container__header--title"}>{header}</h1>
         <p className={"marken__container__header--subtitle"}>{title}</p>
       </div>
-      {markenDataLoaded ? (
+      {loading ? (
         <div className={"loader__component"}>
           <Space size="middle">
             <Spin size="large" />
@@ -59,9 +62,9 @@ const Marken = ({ textData, manufactories }) => {
         </div>
       ) : (
         <>
-          {newArray?.map((e) => {
+          {newArray?.map((e, i) => {
             return (
-              <div className={"marken__container__content"}>
+              <div className={"marken__container__content"} key={i}>
                 {e.map((letter, index) => {
                   return (
                     <div
