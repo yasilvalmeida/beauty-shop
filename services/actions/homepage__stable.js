@@ -384,12 +384,12 @@ export const getInspirations = () => {
   };
 };
 
-export const getFourIcons = () => {
+export const getFourIcons = (lang) => {
   return (dispatch) => {
     dispatch({ type: HOMEPAGE_LOADER });
 
     return axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/four-icons`)
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/four-icons?_locale=${lang}`)
       .then((res) => {
         const { data } = res;
 
