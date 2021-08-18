@@ -21,6 +21,7 @@ import categoriesReducer from "./reducers/categories";
 import manufactoriesReducer from "./reducers/manufactories";
 import ergebnisReducer from "./reducers/ergebnis";
 import approvedReducer from "./reducers/approved";
+import aboutReducer from "./reducers/about_page";
 
 const rootReducer = combineReducers({
   navbar: homeReducer,
@@ -34,7 +35,7 @@ const rootReducer = combineReducers({
   registration: RegistrationReducer,
   versandarten: versandartenReducer,
   contact: ContactReducer,
-  notFoundReducer: notFoundReducer,
+  notFound: notFoundReducer,
   shop: shopPageReducer,
   brand: brandsProductsReducer,
   address: addressReducer,
@@ -45,6 +46,7 @@ const rootReducer = combineReducers({
   manufactory: manufactoriesReducer,
   ergebnis: ergebnisReducer,
   approved: approvedReducer,
+  about: aboutReducer,
 });
 
 export default rootReducer;

@@ -53,9 +53,7 @@ const Homepage = () => {
   const prdctsSecond = useSelector(
     (state) => state?.products?.secondThreeProducts
   );
-  const defaultLanguage = useSelector(
-    (state) => state?.navbar?.selectedLanguage
-  );
+  const lang = useSelector((state) => state?.navbar?.selectedLanguage);
 
   const homePageSctOneLoaded = useSelector(
     (state) => state.navbar.homePageSctOneLoaded
@@ -80,8 +78,8 @@ const Homepage = () => {
   useEffect(() => {
     setProductsFirst([]);
     setProductsSecond([]);
-    dispatch(getFirstAndSecondThreeProducts(defaultLanguage));
-  }, [defaultLanguage]);
+    dispatch(getFirstAndSecondThreeProducts(lang));
+  }, [lang]);
 
   useEffect(() => {
     setProductsFirst(prdctsFirst);

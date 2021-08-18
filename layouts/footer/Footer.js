@@ -14,17 +14,15 @@ const Footer = () =>{
         dispatch(getFooterData())
         dispatch(getFooterTop())
     },[])
-    return(
-        <>
-           <footer>
-               <FooterPayment/>
-               <FooterNav/>
-               <FooterNavigation footerData={footerData}/>
-               <FooterCopyright/>
-               <FooterBottom/>
-           </footer>
-        </>
-    )
+    return (
+      <>
+        <FooterPayment />
+        <FooterNav />
+        <FooterNavigation footerData={footerData} />
+        <FooterCopyright />
+        <FooterBottom />
+      </>
+    );
 }
 
 export default Footer

@@ -18,11 +18,10 @@ import { Space, Spin } from "antd";
 import { useSelector } from "react-redux";
 
 const ErrorScene = () => {
-  const { loading } = useSelector((state) => state.notFoundReducer);
-  const lang = useSelector((state) => state.navbar.selectedLanguage);
-  const { notFoundText, notFoundData } = useSelector(
-    (state) => state.notFoundReducer
+  const { loading, notFoundText, notFoundData } = useSelector(
+    (state) => state.notFound
   );
+  const lang = useSelector((state) => state.navbar.selectedLanguage);
 
   const dispatch = useDispatch();
   useEffect(() => {

@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useSelector } from "react-redux";
 
 export default function ProductOffers({ notFoundText, notFoundData }) {
   const { section_two_title, section_two_subtitle } = notFoundText;
@@ -8,8 +7,8 @@ export default function ProductOffers({ notFoundText, notFoundData }) {
   return (
     <div className="offers__container">
       <div className="offers__container__title">
-        <h2>{section_two_title}</h2>
-        <p>{section_two_subtitle}</p>
+        <h2>{notFoundText?.section_two_title}</h2>
+        <p>{notFoundText?.section_two_subtitle}</p>
       </div>
 
       <div className="offers__container__cards">
