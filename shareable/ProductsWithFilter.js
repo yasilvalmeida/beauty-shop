@@ -20,8 +20,13 @@ const ProductsWithFilter = ({
   gap,
   position,
 }) => {
-  const headtext = "Männerpflege";
   const dispatch = useDispatch();
+  const headers = [
+    { lang: "de", header: "Männerpflege" },
+    { lang: "en", header: "Men grooming" },
+    { lang: "fr", header: "Hommes de toilettage" },
+  ];
+  const [headtext, setHeadtext] = useState("Männerpflege");
 
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const router = useRouter();
@@ -33,6 +38,13 @@ const ProductsWithFilter = ({
     (state) => state.products.productsByCategories
   );
   const [productsByCategories, setProductsByCategories] = useState([]);
+
+  useEffect(() => {
+    const foundHeader = headers.find((header) => header.lang === lang);
+    const { header } = foundHeader;
+    setHeadtext(header);
+    console.log("aux-lang", headtext);
+  }, [lang]);
 
   useEffect(() => {
     const categoriesIds = [];

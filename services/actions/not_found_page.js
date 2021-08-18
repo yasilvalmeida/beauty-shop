@@ -1,20 +1,42 @@
 import * as notFoundTypes from "../action-types/not_found_page";
-import axios from 'axios';
+import axios from "axios";
 
-export const getNotFoundData = () => {
-  return dispatch => {
+export const getNotFoundText = (lang) => {
+  return (dispatch) => {
     dispatch({ type: notFoundTypes.LOADER });
-
-    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/not-found-page-section-1`)
-      .then(res => {
+    axios
+      .get(
+        `${process.env.NEXT_PUBLIC_API_URL}/not-found-page-text?_locale=${lang}`
+      )
+      .then((res) => {
         const { data } = res;
-        
-        dispatch({ 
-          type: notFoundTypes.SET_NOT_FOUND_DATA, 
-          payload: data 
+        dispatch({
+          type: notFoundTypes.SET_NOT_FOUND_TEXT,
+          payload: data,
         });
       })
-      .catch(err => dispatch({ type: notFoundTypes.SET_ERROR, payload: err }));
+      .catch((err) =>
+        dispatch({ type: notFoundTypes.SET_ERROR, payload: err })
+      );
   };
 };
 
+export const getNotFoundData = (lang) => {
+  return (dispatch) => {
+    dispatch({ type: notFoundTypes.LOADER });
+    axios
+      .get(
+        `${process.env.NEXT_PUBLIC_API_URL}/not-found-page-section-3-s?_locale=${lang}`
+      )
+      .then((res) => {
+        const { data } = res;
+        dispatch({
+          type: notFoundTypes.SET_NOT_FOUND_DATA,
+          payload: data,
+        });
+      })
+      .catch((err) =>
+        dispatch({ type: notFoundTypes.SET_ERROR, payload: err })
+      );
+  };
+};

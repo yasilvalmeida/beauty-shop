@@ -1,35 +1,53 @@
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
-import {  useSelector } from "react-redux";
+import { useState } from "react";
+import { useRouter } from "next/router";
 
-export default function MobileNotFound() {
-  const { notFoundData } = useSelector((state) => state.notFoundReducer);
-  
+export default function MobileNotFound({ notFoundText }) {
+  const router = useRouter();
+  const [word, setWord] = useState("");
+  const handleSearch = () => {
+    if (word && word !== "") {
+      router.push(`/search/${word}`);
+    }
+  };
   return (
     <div className="mobile__container">
       <div className="mobile__container__notFound__text">
         <span>404</span>
-
         <div>
-          <Image
-          src={notFoundData?.section1?.images.url || "/item.png"}
-          alt="Picture"
-            width={940}
-            height={624.7}
-            className="image"
-            objectFit="cover"
-          />
+          {notFoundText?.section_one_image?.map((image, i) => {
+            return (
+              <Image
+                src={image?.url || "/item.png"}
+                alt="Picture"
+                width={940}
+                height={624.7}
+                className="image"
+                objectFit="cover"
+              />
+            );
+          })}
         </div>
-        <p>
-        {notFoundData?.section1?.description}
-        </p>
+        <p>{notFoundText?.section_one_description}</p>
         <div>
           <div>
             <FontAwesomeIcon icon={faSearch} className={"mobile-search-icon"} />
-            <input type="text" placeholder="SUCHBEGRIFF EINGEBEN" />
+            <input
+              type="text"
+              placeholder={notFoundText?.search_input}
+              onChange={(e) => setWord(e?.target?.value)}
+              onKeyPress={(e) => {
+                if (e?.key === "Enter") {
+                  handleSearch();
+                }
+              }}
+            />
           </div>
-          <button>ABSENDEN</button>
+          <button onClick={handleSearch}>
+            {notFoundText?.search_button}
+          </button>
         </div>
       </div>
     </div>

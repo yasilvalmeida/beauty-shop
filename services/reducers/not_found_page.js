@@ -4,6 +4,7 @@ const initialState = {
   loading: true,
   error: null,
   notFoundData: null,
+  notFoundText: null
 };
 
 const notFoundReducer = (state = initialState, { type, payload }) => {
@@ -26,6 +27,12 @@ const notFoundReducer = (state = initialState, { type, payload }) => {
         ...state,
         loading: false,
         notFoundData: payload,
+      };
+    case notFoundTypes.SET_NOT_FOUND_TEXT:
+      return {
+        ...state,
+        loading: false,
+        notFoundText: payload,
       };
 
     default:

@@ -7,41 +7,56 @@ import ProductOffers from "./components/product-offers/ProductOffers";
 import NewsletterRep from "../../shareable/newsLetter/NewsletterRep";
 import MobileHeader from "../../layouts/mobile-header/MobileHeader";
 import MobileNotFound from "./components/mobile-not-found/MobileNotFound";
-import {getUserDataFromLocalStorage} from "../../services/actions/auth"
-import {useDispatch} from "react-redux";
-import {useEffect} from "react";
-import { getNotFoundData } from "../../services/actions/not_found_page";
-import {Space, Spin} from "antd";
-import {  useSelector } from "react-redux";
+import { getUserDataFromLocalStorage } from "../../services/actions/auth";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import {
+  getNotFoundText,
+  getNotFoundData,
+} from "../../services/actions/not_found_page";
+import { Space, Spin } from "antd";
+import { useSelector } from "react-redux";
 
 const ErrorScene = () => {
-  const {loading}  = useSelector((state) => state.notFoundReducer);
+  const { loading } = useSelector((state) => state.notFoundReducer);
+  const lang = useSelector((state) => state.navbar.selectedLanguage);
+  const { notFoundText, notFoundData } = useSelector(
+    (state) => state.notFoundReducer
+  );
 
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(getUserDataFromLocalStorage());
-        dispatch(getNotFoundData())
-    }, []);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUserDataFromLocalStorage());
+  }, []);
+  useEffect(() => {
+    dispatch(getNotFoundText(lang));
+    dispatch(getNotFoundData(lang));
+  }, [lang]);
 
   return (
     <>
-    {loading ?  <div className={"loader__body"}>
-                      <Space size="middle">
-                          <Spin size="large" />
-                      </Space>
-      </div> : <>
-                   <Header />
-                   <MobileHeader />
-                   <NotFound />
-                   <MobileNotFound />
-                   <ProductOffers />
-                   <ErrorPageProducts />
-                   <Services />
-                   <NewsletterRep padding={"20px"}/>
-          <Footer />
-          </>
-                  }
-     
+      <Header />
+      <MobileHeader />
+      {loading ? (
+        <div className={"loader__component"}>
+          <Space size="middle">
+            <Spin size="large" />
+          </Space>
+        </div>
+      ) : (
+        <>
+          <NotFound notFoundText={notFoundText} />
+          <MobileNotFound notFoundText={notFoundText} />
+          <ProductOffers
+            notFoundText={notFoundText}
+            notFoundData={notFoundData}
+          />
+        </>
+      )}
+      <ErrorPageProducts />
+      <Services />
+      <NewsletterRep />
+      <Footer />
     </>
   );
 };
