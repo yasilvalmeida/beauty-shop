@@ -34,10 +34,6 @@ export const getManufactories = (lang = "de") => {
                   // a must be equal to b
                   return 0;;
                 });
-                manufactories.unshift({
-                  id: 0,
-                  name: "Keiner",
-                });
                 dispatch({
                   type: SET_MANUFACTORIES,
                   payload: sortManufacturers,

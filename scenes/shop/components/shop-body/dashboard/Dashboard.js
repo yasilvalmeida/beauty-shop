@@ -15,8 +15,16 @@ const Dashboard = ({
   category,
 }) => {
   const navListState = useSelector((state) => state.navbar.navList);
+  let manufactoriesState = useSelector(
+    (state) => state.manufactory.manufactories
+  );
   const lang = useSelector((state) => state?.navbar?.selectedLanguage);
-  const categoriesData = [];
+  const categories = [];
+  const manufactories = manufactoriesState;
+  categories.unshift({
+    id: 0,
+    name: "Keiner",
+  });
   navListState?.map((item, i) => {
     const filter =
       item.filter((detail) => detail.lang === lang)?.length > 0
@@ -31,17 +39,22 @@ const Dashboard = ({
       name !== "Magazin" &&
       name !== "Kontakt"
     ) {
-      categoriesData.push({ id: categoryId, name });
+      categories.push({ id: categoryId, name });
     }
   });
-  let manufactoriesData = useSelector(
-    (state) => state.manufactory.manufactories
-  );
+
+  useEffect(() => {
+    manufactories.unshift({
+      id: 0,
+      name: "Keiner",
+    });
+  }, [manufactoriesState]);
+
   const data = {
     titles: [
-      { title: "KATEGORIEN", data: categoriesData },
+      { title: "KATEGORIEN", data: categories },
       /* { title: "SHOP BY", data: [] }, */
-      { title: "MARKEN", data: manufactoriesData },
+      { title: "MARKEN", data: manufactories },
       /* { title: "WIRKSTOFFE", data: [] },
       { title: "DUFT ANLASS", data: [] },
       { title: "DUFTNOTEN", data: [] },

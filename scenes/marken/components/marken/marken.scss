@@ -23,6 +23,7 @@
     &--subtitle {
       font-size: 4.3rem;
       color: #3e3e3e;
+      text-transform: uppercase;
       @media screen and(max-width: 1024px){
         font-size: 3.8rem;
       }
@@ -52,6 +53,12 @@
         text-transform: uppercase;
         font-size: 2.5rem;
         color: #3e3e3e;
+        &:hover {
+          border-bottom: #000 1px solid;
+          font-weight: 400;
+          border-bottom-width: 80%;
+          cursor: pointer;
+        }
       }
     }
   }
@@ -76,17 +83,19 @@
         text-transform: uppercase;
         @media screen and(max-width: 800px) {
           font-size:4rem;
-
         }
-        }
+      }
 
       &--content {
         text-transform: uppercase;
         font-size: 2.1rem;
         color: #3e3e3e;
+        &:hover {
+          border-bottom: #000 1px solid;
+          cursor: pointer;
+        }
         @media screen and(max-width: 800px) {
           font-size:1.8rem;
-
         }
       }
     }

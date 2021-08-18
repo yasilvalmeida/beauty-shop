@@ -70,6 +70,7 @@ const HeaderSearch = () => {
     },
     [languages]
   );
+  
   useEffect(() => {
     if (visible) {
       dispatch(getBasketData());

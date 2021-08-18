@@ -11,9 +11,9 @@ const ProductDetail = () => {
 };
 
 export async function getStaticProps() {
-    return {
-        props: {}
-    };
+  return {
+    props: {},
+  };
 }
 
 export async function getStaticPaths(params) {

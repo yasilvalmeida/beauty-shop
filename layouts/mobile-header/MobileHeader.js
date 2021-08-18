@@ -40,6 +40,7 @@ const MobileHeader = () => {
       dispatch(getBasketData());
     }
   }, [visibleCart]);
+
   useEffect(() => {
     const mainCategories = [];
     navListState?.map((elem, i) => {
@@ -69,7 +70,7 @@ const MobileHeader = () => {
         default:
           url = `shop?category=${categoryId}`;
       }
-      if (categoryId === 444) url = "brands";
+      if (categoryId === 444) url = "marken";
       const e = {
         id: categoryId,
         name,

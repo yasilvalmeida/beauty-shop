@@ -129,7 +129,6 @@ html {
 @import "../scenes/404-scene/index.scss";
 @import "../scenes/about/index.scss";
 @import "../scenes/approved/index.scss";
-@import "../scenes/brands/index.scss";
 @import "../scenes/checkout/index.scss";
 @import "../scenes/contact/index.scss";
 @import "../scenes/ergebins/index.scss";
@@ -157,6 +156,7 @@ html {
 @import "../scenes/shop/components/shop-body/shop-body-header/shopBodyHeader.scss";
 @import "../scenes/shop/components/shop-body/shop-body-footer/ShopBodyFooter";
 @import "../scenes/shop/components/shop-body/mobile-filter/mobileFilter.scss";
+@import "../scenes/single-brand-scene/index.scss";
 @import "../scenes/single-product-scene/index.scss";
 @import "../scenes/typentest/index.scss";
 @import "../scenes/versandarten/index.scss";
@@ -215,4 +215,5 @@ html {
     /* Safari, Android, iOS */
       url("../public/fonts/FreightSansProBlack-Italic.eot#OpenSans")
       format("svg"); /* Legacy iOS */
+  font-family: 'FreightSans Pro Black Italic';
 }

@@ -30,7 +30,7 @@ import {
 } from "../../services/actions/brands";
 import { Space, Spin } from "antd";
 
-const BrandsScene = () => {
+const SingleBrandScene = () => {
   const dispatch = useDispatch();
   const productOne = useSelector((state) => state?.brand.productOne);
   const productTwo = useSelector((state) => state?.brand.productTwo);
@@ -87,7 +87,7 @@ const BrandsScene = () => {
               addToWishList={addToWishList}
               getFour={getProductsWithFilter}
             />
-            {/* 
+            
             
             <BrandPortrait
               data={{
@@ -153,7 +153,7 @@ const BrandsScene = () => {
               addToWishList={addToWishList}
               getFour={getProductsWithFilter}
             />
-            <NewsletterRep /> */}
+            <NewsletterRep />
           </div>
           <Footer />
         </>
@@ -162,4 +162,4 @@ const BrandsScene = () => {
   );
 };
 
-export default BrandsScene;
+export default SingleBrandScene;

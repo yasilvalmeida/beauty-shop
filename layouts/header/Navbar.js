@@ -14,6 +14,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const mainCategories = [];
+    const manufactories = manufactoryState;
     navListState?.map((elem, i) => {
       const filters =
         elem.filter((detail) => detail.lang === lang)?.length > 0
@@ -42,8 +43,8 @@ const Navbar = () => {
           url = `shop?category=${categoryId}`;
       }
       if (categoryId === 444) {
-        url = "brands";
-        categories = manufactoryState;
+        url = "marken";
+        categories = manufactories;
       }
       const e = {
         id: categoryId,
@@ -54,7 +55,7 @@ const Navbar = () => {
       mainCategories.push(e);
     });
     setNavList(mainCategories);
-  }, [navListState, lang]);
+  }, [navListState, manufactoryState, lang]);
 
   const route = useRouter();
 
@@ -112,7 +113,7 @@ const Navbar = () => {
                                     <Link
                                       href={
                                         e?.id === 444
-                                          ? `/shop?brand=${category?.id}`
+                                          ? `/brand/${category?.id}`
                                           : `/shop?category=${category?.id}`
                                       }
                                     >

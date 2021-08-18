@@ -1,17 +1,17 @@
 import MarkenScene from "../scenes/marken";
 
 const Marken = () => {
-    return (
-        <>
-            <MarkenScene />
-        </>
-    );
+  return (
+    <>
+      <MarkenScene />
+    </>
+  );
 };
 
 export async function getStaticProps() {
-    return {
-        props: {},
-    };
+  return {
+    props: {},
+  };
 }
 
 export default Marken;
