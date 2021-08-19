@@ -1,4 +1,7 @@
-export const GET_FOOTER_DATA = "GET_FOOTER_DATA";
-export const SET_FOOTER_DATA = "SET_FOOTER_DATA";
-export const SET_ERROR = "SET_ERROR";
+export const GET_FOOTER = "GET_FOOTER_DATA";
+export const SET_FOOTER_CONTACT = "SET_FOOTER_CONTACT";
 export const SET_FOOTER_TOP = "SET_FOOTER_TOP";
+export const SET_FOOTER_PAYMENT = "SET_FOOTER_PAYMENT";
+export const SET_FOOTER_DPAB = "SET_FOOTER_DPAB";
+export const SET_FOOTER_MAIN_MENU = "SET_FOOTER_MAIN_MENU";
+export const SET_ERROR = "SET_ERROR";

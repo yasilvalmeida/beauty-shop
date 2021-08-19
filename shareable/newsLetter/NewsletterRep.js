@@ -212,12 +212,12 @@ const NewsletterRep = ({ padding }) => {
                 }}
               />
             </Tooltip>
-
-            <input
+            <button
               type="submit"
               className="newsLetter__container__action__form--submit"
-              value={textData?.form_button}
-            />
+            >
+              {textData?.form_button}
+            </button>
           </form>
         </div>
       </div>

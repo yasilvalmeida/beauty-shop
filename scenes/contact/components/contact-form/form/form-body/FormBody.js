@@ -252,15 +252,15 @@ const FormBody = ({ textData }) => {
             }
           >
             <input
-              id={"yes"}
+              id={"copyTo"}
               type="checkbox"
-              name={"gender"}
-              value={"male"}
+              name={"copyTo"}
+              value={"copyTo"}
               checked={contactData.copyTo}
               className="newsLetter__container__action__form--gender"
               onChange={handleCopyChange}
             />
-            <label htmlFor="yes">{textData?.add_me_to_copy}</label>
+            <label htmlFor="copyTo">{textData?.add_me_to_copy}</label>
           </div>
           <div
             className={

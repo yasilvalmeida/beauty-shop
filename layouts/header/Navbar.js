@@ -25,6 +25,7 @@ const Navbar = () => {
       let url = "";
       switch (name) {
         case "Typentest":
+        case "Type Test":
           url = "typentest/step1";
           break;
         case "Video":
@@ -34,9 +35,11 @@ const Navbar = () => {
           url = "shop";
           break;
         case "Magazin":
+        case "Magazine":
           url = "magazine";
           break;
         case "Kontakt":
+        case "Contact":
           url = "contact";
           break;
         default:
