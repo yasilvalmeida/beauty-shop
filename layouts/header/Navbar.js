@@ -9,7 +9,7 @@ const Navbar = () => {
   const manufactoryState = useSelector(
     (state) => state.manufactory.manufactories
   );
-  const lang = useSelector((state) => state?.navbar?.selectedLanguage);
+  const lang = useSelector((state) => state?.header?.headerLanguage);
   const [navList, setNavList] = useState([]);
 
   useEffect(() => {

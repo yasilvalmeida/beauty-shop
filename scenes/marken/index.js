@@ -10,7 +10,7 @@ import { Space, Spin } from "antd";
 
 const MarkenScene = () => {
   const dispatch = useDispatch();
-  const lang = useSelector((state) => state.navbar.selectedLanguage);
+  const lang = useSelector((state) => state.header.headerLanguage);
   const { markenDataLoaded } = useSelector((state) => state.marken);
   const { textDataLoaded } = useSelector((state) => state.marken);
   const { textData } = useSelector((state) => state.marken);

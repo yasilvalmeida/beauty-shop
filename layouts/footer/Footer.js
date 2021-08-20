@@ -16,7 +16,7 @@ import {
 
 const Footer = () => {
   const dispatch = useDispatch();
-  const lang = useSelector((state) => state.navbar.selectedLanguage);
+  const lang = useSelector((state) => state.header.headerLanguage);
   const {
     footerTop,
     footerContact,

@@ -15,7 +15,7 @@ const NewsletterRep = ({ padding }) => {
     Gender: "",
     Email: "",
   });
-  const lang = useSelector((state) => state.navbar.selectedLanguage);
+  const lang = useSelector((state) => state.header.headerLanguage);
   const [checked, setChecked] = useState(false);
   const [checked2, setChecked2] = useState(false);
   const [checked3, setChecked3] = useState(false);

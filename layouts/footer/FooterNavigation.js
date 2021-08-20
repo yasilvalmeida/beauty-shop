@@ -9,7 +9,7 @@ const FooterNavigation = ({
   footerMainMenu,
 }) => {
   const navListState = useSelector((state) => state.navbar.navList);
-  const lang = useSelector((state) => state?.navbar?.selectedLanguage);
+  const lang = useSelector((state) => state?.header?.headerLanguage);
   const [navList, setNavList] = useState([]);
   const manufactoryState = useSelector(
     (state) => state.manufactory.manufactories

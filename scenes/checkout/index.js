@@ -11,7 +11,7 @@ import { Space, Spin } from "antd";
 
 const CheckoutScene = () => {
   const dispatch = useDispatch();
-  const lang = useSelector((state) => state?.navbar?.selectedLanguage);
+  const lang = useSelector((state) => state.header.headerLanguage);
   const { checkoutPageData, checkoutPageLoading } = useSelector(
     (state) => state.checkout
   );

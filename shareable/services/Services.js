@@ -4,7 +4,7 @@ import { getFourIcons } from "../../services/actions/homepage__stable";
 import icons from "./servicesIcons";
 const Services = () => {
   const dispatch = useDispatch();
-  const lang = useSelector((state) => state.navbar.selectedLanguage);
+  const lang = useSelector((state) => state.header.headerLanguage);
   useEffect(() => {
     dispatch(getFourIcons(lang));
   }, [lang]);

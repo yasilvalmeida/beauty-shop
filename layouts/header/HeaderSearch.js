@@ -5,34 +5,26 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getHeaderContacts,
-  setSelectedLanguage,
-} from "../../services/actions/homepage__stable";
+import { setSelectedLanguage } from "../../services/actions/header";
+import { getNotFoundText } from "../../services/actions/not_found_page";
 import CartSidebar from "../cartSidebar/CartSidebar";
 import HeaderLoginPopup from "./modal/HeaderLoginPopup";
-import { getUserDataFromLocalStorage } from "../../services/actions/auth";
-import { getBasketData } from "../../services/actions/basket";
 
-const HeaderSearch = () => {
+const HeaderSearch = ({ headerLanguage, headerContact, headerPageText }) => {
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const { isAuthenticated } = useSelector((state) => state.auth);
+  const { notFoundText } = useSelector((state) => state.notFound);
+
   const [languages, setLanguages] = useState([
     { id: 1, name: "de", active: true },
     { id: 2, name: "en", active: false },
     { id: 3, name: "fr", active: false },
   ]);
-
-  const dispatch = useDispatch();
-  const router = useRouter();
-  const headerContacts = useSelector((state) => state.navbar.headerContacts);
-  const { isAuthenticated } = useSelector((state) => state.auth);
-
-  useEffect(() => {
-    dispatch(getHeaderContacts());
-    dispatch(getUserDataFromLocalStorage());
-    dispatch(setSelectedLanguage("de"));
-  }, []);
-
   const [visible, setVisible] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [word, setWord] = useState("");
 
   const showDrawer = () => {
     setVisible(true);
@@ -41,13 +33,10 @@ const HeaderSearch = () => {
   const onClose = () => {
     setVisible(false);
   };
-  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
     setIsModalVisible(true);
   };
-
-  const [word, setWord] = useState("");
 
   const handleSearch = () => {
     if (word && word !== "") {
@@ -70,12 +59,10 @@ const HeaderSearch = () => {
     },
     [languages]
   );
-  
+
   useEffect(() => {
-    if (visible) {
-      dispatch(getBasketData());
-    }
-  }, [visible]);
+    dispatch(getNotFoundText(headerLanguage));
+  }, [headerLanguage]);
 
   return (
     <>
@@ -114,8 +101,12 @@ const HeaderSearch = () => {
                   }}
                 />
               </svg>
-              <a href={`mailto:${headerContacts[0]?.email}`}>
-                {headerContacts[0]?.email}
+              <a
+                href={`mailto:${
+                  headerContact?.length > 0 ? headerContact[0]?.email : ""
+                }`}
+              >
+                {headerContact?.length > 0 ? headerContact[0]?.email : ""}
               </a>
             </div>
             <div className={"head-mid-left-phone"}>
@@ -135,8 +126,16 @@ const HeaderSearch = () => {
                   }}
                 />
               </svg>
-              <a href={`tel:${headerContacts[0]?.phone_number}`}>
-                {headerContacts[0]?.phone_number}
+              <a
+                href={`tel:${
+                  headerContact?.length > 0
+                    ? headerContact[0]?.phone_number
+                    : ""
+                }`}
+              >
+                {headerContact?.length > 0
+                  ? headerContact[0]?.phone_number
+                  : ""}
               </a>
             </div>
           </div>
@@ -151,7 +150,7 @@ const HeaderSearch = () => {
                 <input
                   type="text"
                   value={word}
-                  placeholder={"suche"}
+                  placeholder={notFoundText?.search_button}
                   onChange={(e) => setWord(e?.target?.value)}
                   onKeyPress={(e) => {
                     if (e?.key === "Enter") {
@@ -178,6 +177,7 @@ const HeaderSearch = () => {
               <HeaderLoginPopup
                 isModalVisible={isModalVisible}
                 setIsModalVisible={setIsModalVisible}
+                headerPageText={headerPageText}
               />
               <svg
                 onClick={() => {
@@ -268,6 +268,7 @@ const HeaderSearch = () => {
         visible={visible}
         showDrawer={showDrawer}
         onClose={onClose}
+        headerPageText={headerPageText}
       />
     </>
   );

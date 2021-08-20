@@ -21,7 +21,7 @@ const ErrorScene = () => {
   const { loading, notFoundText, notFoundData } = useSelector(
     (state) => state.notFound
   );
-  const lang = useSelector((state) => state.navbar.selectedLanguage);
+  const lang = useSelector((state) => state.header.headerLanguage);
 
   const dispatch = useDispatch();
   useEffect(() => {

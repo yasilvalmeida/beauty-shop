@@ -53,7 +53,7 @@ const Homepage = () => {
   const prdctsSecond = useSelector(
     (state) => state?.products?.secondThreeProducts
   );
-  const lang = useSelector((state) => state?.navbar?.selectedLanguage);
+  const lang = useSelector((state) => state.header.headerLanguage);
 
   const homePageSctOneLoaded = useSelector(
     (state) => state.navbar.homePageSctOneLoaded

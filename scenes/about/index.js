@@ -16,7 +16,7 @@ import { getFirstAndSecondThreeProducts } from "../../services/actions/products"
 const AboutScene = () => {
   const dispatch = useDispatch();
   const { loading, aboutText } = useSelector((state) => state.about);
-  const lang = useSelector((state) => state.navbar.selectedLanguage);
+  const lang = useSelector((state) => state.header.headerLanguage);
   const [productsFirst, setProductsFirst] = useState([]);
   const [productsSecond, setProductsSecond] = useState([]);
   const prdctsFirst = useSelector(

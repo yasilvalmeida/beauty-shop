@@ -13,7 +13,7 @@ import { Spin, Space } from "antd";
 
 const ApprovedScene = () => {
   const dispatch = useDispatch();
-  const lang = useSelector((state) => state?.navbar?.selectedLanguage);
+  const lang = useSelector((state) => state.header.headerLanguage);
   const loading = useSelector((state) => state.approved.approvedDataLoading);
   const approvedData = useSelector((state) => state.approved.approvedData);
   const {

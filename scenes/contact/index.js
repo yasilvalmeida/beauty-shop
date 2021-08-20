@@ -13,7 +13,7 @@ import { Space, Spin } from "antd";
 
 const ContactScene = () => {
   const dispatch = useDispatch();
-  const lang = useSelector((state) => state.navbar.selectedLanguage);
+  const lang = useSelector((state) => state?.header?.headerLanguage);
   const { textDataLoaded } = useSelector((state) => state.contact);
   useEffect(() => {
     dispatch(getUserDataFromLocalStorage());

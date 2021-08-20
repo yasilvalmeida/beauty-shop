@@ -23,6 +23,7 @@ import ergebnisReducer from "./reducers/ergebnis";
 import approvedReducer from "./reducers/approved";
 import aboutReducer from "./reducers/about_page";
 import checkoutReducer from "./reducers/checkout";
+import headerReducer from "./reducers/header";
 
 const rootReducer = combineReducers({
   about: aboutReducer,
@@ -36,6 +37,7 @@ const rootReducer = combineReducers({
   contact: ContactReducer,
   ergebnis: ergebnisReducer,
   footer: footerReducer,
+  header: headerReducer,
   konto: kontoPageReducer,
   manufactory: manufactoriesReducer,
   marken: markenReducer,

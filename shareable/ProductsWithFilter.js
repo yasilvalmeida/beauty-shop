@@ -33,7 +33,7 @@ const ProductsWithFilter = ({
   const navListState = useSelector((state) => state.navbar.navList);
   const top3Categories = navListState.slice(0, 3);
   const [defaultCategory, setDefaultCategory] = useState(0);
-  const lang = useSelector((state) => state?.navbar?.selectedLanguage);
+  const lang = useSelector((state) => state.header.headerLanguage);
   const productsByCategoriesState = useSelector(
     (state) => state.products.productsByCategories
   );
