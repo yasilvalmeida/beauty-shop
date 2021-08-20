@@ -2,7 +2,12 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
-const FooterNavigation = ({ footerContact, footerDPAB, footerMainMenu }) => {
+const FooterNavigation = ({
+  footerContact,
+  footerHeader,
+  footerDPAB,
+  footerMainMenu,
+}) => {
   const navListState = useSelector((state) => state.navbar.navList);
   const lang = useSelector((state) => state?.navbar?.selectedLanguage);
   const [navList, setNavList] = useState([]);
@@ -62,7 +67,7 @@ const FooterNavigation = ({ footerContact, footerDPAB, footerMainMenu }) => {
     <div className={"footer__navigation__container"}>
       <div className={"footer__navigation__container__body"}>
         <div className={"footer__navigation__container__body__item"}>
-          <h2>Kontakt</h2>
+          <h2>{footerHeader?.contact}</h2>
           <p>{footerContact?.text_one}</p>
           <p>{footerContact?.text_two}</p>
           <p>
@@ -77,12 +82,12 @@ const FooterNavigation = ({ footerContact, footerDPAB, footerMainMenu }) => {
           </p>
         </div>
         <div className={"footer__navigation__container__body__item1"}>
-          <h2>Dpab Store</h2>
+          <h2>{footerHeader?.store}</h2>
           <p>{footerDPAB?.text_one}</p>
           <p>{footerDPAB?.text_two}</p>
         </div>
         <div className={"footer__navigation__container__body__item2"}>
-          <h2>Online Shop</h2>
+          <h2>{footerHeader?.online_shop}</h2>
           {navList?.map((e, i) => {
             return (
               <li key={i}>
@@ -94,7 +99,7 @@ const FooterNavigation = ({ footerContact, footerDPAB, footerMainMenu }) => {
           })}
         </div>
         <div className={"footer__navigation__container__body__item3"}>
-          <h2>Mein Konto</h2>
+          <h2>{footerHeader?.main_account}</h2>
           <ul>
             {footerMainMenu?.map((e, i) => {
               return (

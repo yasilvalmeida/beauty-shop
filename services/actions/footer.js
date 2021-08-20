@@ -3,6 +3,7 @@ import {
   GET_FOOTER,
   SET_FOOTER_TOP,
   SET_FOOTER_CONTACT,
+  SET_FOOTER_HEADER,
   SET_FOOTER_PAYMENT,
   SET_FOOTER_DPAB,
   SET_FOOTER_MAIN_MENU,
@@ -38,6 +39,23 @@ export const getFooterPayment = (lang) => {
 
         dispatch({
           type: SET_FOOTER_PAYMENT,
+          payload: data,
+        });
+      })
+      .catch((err) => dispatch({ type: SET_ERROR, payload: err }));
+  };
+};
+
+export const getFooterHeader = (lang) => {
+  return (dispatch) => {
+    dispatch({ type: GET_FOOTER });
+    axios
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/footer-header?_locale=${lang}`)
+      .then((res) => {
+        const { data } = res;
+
+        dispatch({
+          type: SET_FOOTER_HEADER,
           payload: data,
         });
       })

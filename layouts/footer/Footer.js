@@ -6,6 +6,7 @@ import FooterCopyright from "./FooterCopyright";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import {
+  getFooterHeader,
   getFooterContact,
   getFooterTop,
   getFooterPayment,
@@ -19,11 +20,13 @@ const Footer = () => {
   const {
     footerTop,
     footerContact,
+    footerHeader,
     footerPayment,
     footerDPAB,
     footerMainMenu,
   } = useSelector((state) => state.footer);
   useEffect(() => {
+    dispatch(getFooterHeader(lang));
     dispatch(getFooterContact(lang));
     dispatch(getFooterTop(lang));
     dispatch(getFooterPayment(lang));
@@ -36,6 +39,7 @@ const Footer = () => {
       <FooterNav footerTop={footerTop} />
       <FooterNavigation
         footerContact={footerContact}
+        footerHeader={footerHeader}
         footerDPAB={footerDPAB}
         footerMainMenu={footerMainMenu}
       />

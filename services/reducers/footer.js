@@ -2,6 +2,7 @@ import {
   SET_ERROR,
   GET_FOOTER,
   SET_FOOTER_CONTACT,
+  SET_FOOTER_HEADER,
   SET_FOOTER_TOP,
   SET_FOOTER_PAYMENT,
   SET_FOOTER_DPAB,
@@ -12,6 +13,7 @@ const initialState = {
   error: null,
   footerTop: [],
   footerContact: null,
+  footerHeader: null,
   footerPayment: null,
   footerDPAB: null,
   footerMainMenu: null,
@@ -36,6 +38,12 @@ const footerReducer = (state = initialState, { type, payload }) => {
         ...state,
         footerLoader: false,
         footerContact: payload,
+      };
+    case SET_FOOTER_HEADER:
+      return {
+        ...state,
+        footerLoader: false,
+        footerHeader: payload,
       };
     case SET_FOOTER_TOP:
       return {
