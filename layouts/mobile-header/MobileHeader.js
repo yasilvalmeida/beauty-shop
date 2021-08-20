@@ -53,6 +53,7 @@ const MobileHeader = () => {
       let url = "";
       switch (name) {
         case "Typentest":
+        case "Type Test":
           url = "typentest/step1";
           break;
         case "Video":
@@ -62,9 +63,11 @@ const MobileHeader = () => {
           url = "shop";
           break;
         case "Magazin":
+        case "Magazine":
           url = "magazine";
           break;
         case "Kontakt":
+        case "Contact":
           url = "contact";
           break;
         default:
@@ -134,7 +137,7 @@ const MobileHeader = () => {
         {navList?.map((e, i) => {
           return (
             <MobileCard
-              title={<Link href={e?.url}>{e?.name}</Link>}
+              title={<Link href={`/${e?.url}`}>{e?.name}</Link>}
               data={e}
               key={i}
               classValue="without-body"

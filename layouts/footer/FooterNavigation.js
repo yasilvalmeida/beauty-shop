@@ -86,7 +86,7 @@ const FooterNavigation = ({ footerContact, footerDPAB, footerMainMenu }) => {
           {navList?.map((e, i) => {
             return (
               <li key={i}>
-                <Link exact href={`${e?.url}`}>
+                <Link exact href={`/${e?.url}`}>
                   <a>{e?.name}</a>
                 </Link>
               </li>

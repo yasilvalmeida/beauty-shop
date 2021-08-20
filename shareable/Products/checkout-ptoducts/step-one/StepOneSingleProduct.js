@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 
-const StepOneSingleProduct = () => {
+const StepOneSingleProduct = ({ checkoutPageData }) => {
   const formatter = new Intl.NumberFormat("de-DE", {
     style: "currency",
     currency: "EUR",
@@ -40,7 +40,7 @@ const StepOneSingleProduct = () => {
             $ 28.00
           </h3>
           <p className={"checkoutstep__single__product__left__text--delete"}>
-            Loschen
+            {checkoutPageData?.delete}
           </p>
         </div>
       </div>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 
-const CheckoutSingleProduct = () => {
+const CheckoutSingleProduct = ({ checkoutPageData }) => {
   const formatter = new Intl.NumberFormat("de-DE", {
     style: "currency",
     currency: "EUR",
@@ -40,15 +40,15 @@ const CheckoutSingleProduct = () => {
             $ 28.00
           </h3>
           <p className={"checkout__single__product__left__text--delete"}>
-            Loschen
+            {checkoutPageData?.delete}
           </p>
         </div>
       </div>
       <div className={"checkout__single__product__right"}>
         <div className={"checkout__single__product__right__top"}>
           <div className={"checkout__single__product__right__top__left"}>
-            <button>Warenkorb aktualisieren</button>
-            <p>menge</p>
+            <button>{checkoutPageData?.update_shopping_cart}</button>
+            <p>{checkoutPageData?.quantity}</p>
           </div>
           <div className={"checkout__single__product__right__top__quantity"}>
             <input
@@ -56,6 +56,7 @@ const CheckoutSingleProduct = () => {
               min={"1"}
               max={"10"}
               value={value < 10 ? `0${value}` : value}
+              onChange={setValue}
             />
             <div
               className={
@@ -92,7 +93,7 @@ const CheckoutSingleProduct = () => {
               }}
             />
           </svg>
-          <p>Auf meine Wunschliste verschieben</p>
+          <p>{checkoutPageData?.to_my_wishlist}</p>
         </div>
       </div>
     </div>
