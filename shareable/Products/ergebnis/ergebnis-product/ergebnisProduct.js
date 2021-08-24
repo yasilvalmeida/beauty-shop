@@ -1,7 +1,30 @@
 import React from "react";
 import Image from "next/image";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getTypentestStepOneData,
+  getTypentestStepTwoData,
+  getTypentestStepThreeData,
+  getTypentestStepFourData,
+} from "../../../../services/actions/typentest";
 
-export default function ErgebnisProduct({ parameters }) {
+export default function ErgebnisProduct() {
+  const dispatch = useDispatch();
+  const lang = useSelector((state) => state.header.headerLanguage);
+  const {
+    typentestStepOneData,
+    typentestStepTwoData,
+    typentestStepThreeData,
+    typentestStepFourData,
+  } = useSelector((state) => state.typentest);
+  const { pageText, parameters } = useSelector((state) => state.ergebnis);
+  useEffect(() => {
+    dispatch(getTypentestStepOneData(lang));
+    dispatch(getTypentestStepTwoData(lang));
+    dispatch(getTypentestStepThreeData(lang));
+    dispatch(getTypentestStepFourData(lang));
+  }, [lang]);
 
   const parfumData = [
     {
@@ -36,16 +59,91 @@ export default function ErgebnisProduct({ parameters }) {
   return (
     <div className="ergebnis__product">
       <div className="ergebnis__product__title">
-        <p className="mobile__text">
-          AUF BASIS IHRER ERGEBNISSE, HABEN WIR DIESE DÜFTE FÜR SIE AUSGEWÄHLT
-        </p>
-        <h2>IHRE PERSÖNLICHE</h2>
-        <p className="text">
-          AUF BASIS IHRER ERGEBNISSE, HABEN WIR DIESE DÜFTE FÜR SIE AUSGEWÄHLT
-        </p>
+        <p className="mobile__text">{pageText?.subheader}</p>
+        <h2>{pageText?.header}</h2>
+        <p className="text">{pageText?.subheader}</p>
 
         <div className="ergebnis__product__title--parfumTypes">
-          {parameters?.map((item, index) => {
+          {parameters?.map((parameter, index) => {
+            let item = "";
+            switch (parameter?.type) {
+              case "gender":
+                switch (parameter?.value) {
+                  case "radio_one":
+                    item = typentestStepOneData?.radio_one;
+                    break;
+                  case "radio_two":
+                    item = typentestStepOneData?.radio_two;
+                    break;
+                  case "radio_three":
+                    item = typentestStepOneData?.radio_three;
+                    break;
+                }
+                break;
+              case "favorite":
+                switch (parameter?.value) {
+                  case 1:
+                    item = typentestStepTwoData?.text_one;
+                    break;
+                  case 2:
+                    item = typentestStepTwoData?.text_two;
+                    break;
+                  case 3:
+                    item = typentestStepTwoData?.text_three;
+                    break;
+                  case 4:
+                    item = typentestStepTwoData?.text_four;
+                    break;
+                  case 5:
+                    item = typentestStepTwoData?.text_five;
+                    break;
+                  case 6:
+                    item = typentestStepTwoData?.text_six;
+                    break;
+                  case 7:
+                    item = typentestStepTwoData?.text_seven;
+                    break;
+                  case 8:
+                    item = typentestStepTwoData?.text_eight;
+                    break;
+                }
+                break;
+              case "occasion":
+                switch (parameter?.value) {
+                  case 1:
+                    item = typentestStepThreeData?.text_one;
+                    break;
+                  case 2:
+                    item = typentestStepThreeData?.text_two;
+                    break;
+                  case 3:
+                    item = typentestStepThreeData?.text_three;
+                    break;
+                  case 4:
+                    item = typentestStepThreeData?.text_four;
+                    break;
+                }
+                break;
+              case "style":
+                switch (parameter?.value) {
+                  case 1:
+                    item = typentestStepFourData?.text_one;
+                    break;
+                  case 2:
+                    item = typentestStepFourData?.text_two;
+                    break;
+                  case 3:
+                    item = typentestStepFourData?.text_three;
+                    break;
+                  case 4:
+                    item = typentestStepFourData?.text_four;
+                    break;
+                  case 5:
+                    item = typentestStepFourData?.text_five;
+                    break;
+                }
+                break;
+            }
             return <span key={index + item}>{item}</span>;
           })}
         </div>

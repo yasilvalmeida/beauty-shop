@@ -1,18 +1,14 @@
 import React from "react";
 import Image from "next/image";
+import { useSelector } from "react-redux";
 
 export default function ErgebnisTester() {
+  const { pageText } = useSelector((state) => state.ergebnis);
   return (
     <div className="ergebnis__tester">
       <div className="ergebnis__tester__title">
-        <h2>PERSÖNLICHE DUFTAUSWAHL ALS</h2>
-        <p>
-          LOREM IPSUM DOLOR SIT AMET, CONSETETUR SADIPSCING ELITR, SED DIAM
-          NONUMY EIRMOD TEMPOR INVIDUNT UT LABORE ET DOLORE MAGNA ALIQUYAM ERAT,
-          SED DIAM VOLUPTUA. AT VERO EOS ET ACCUSAM ET JUSTO DUO DOLORES ET EA
-          REBUM. STET CLITA KASD GUBERGREN, NO SEA TAKIMATA SANCTUS EST LOREM
-          IPSUM
-        </p>
+        <h2>{pageText?.tester_header}</h2>
+        <p>{pageText?.tester_content}</p>
       </div>
       <div className="ergebnis__tester__parfum">
         <Image

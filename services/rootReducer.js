@@ -24,6 +24,7 @@ import approvedReducer from "./reducers/approved";
 import aboutReducer from "./reducers/about_page";
 import checkoutReducer from "./reducers/checkout";
 import headerReducer from "./reducers/header";
+import typentestReducer from "./reducers/typentest";
 
 const rootReducer = combineReducers({
   about: aboutReducer,
@@ -49,6 +50,7 @@ const rootReducer = combineReducers({
   registration: RegistrationReducer,
   singleProdPage: singleProductPageReducer,
   shop: shopPageReducer,
+  typentest: typentestReducer,
   versandarten: versandartenReducer,
   video: videoReducer,
 });

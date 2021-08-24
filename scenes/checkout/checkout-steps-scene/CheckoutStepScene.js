@@ -19,7 +19,7 @@ import StepFour from "./components/step-four/StepFour";
 const CheckoutStepScene = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const lang = useSelector((state) => state?.navbar?.selectedLanguage);
+  const lang = useSelector((state) => state.header.headerLanguage);
   const {
     checkoutPageData,
     checkoutPageLoading,
@@ -117,8 +117,8 @@ const CheckoutStepScene = () => {
                         : i === 1
                         ? checkoutPageStepData?.step_two_header
                         : i === 2
-                        ? checkoutPageStepData?.step_two_header
-                        : checkoutPageStepData?.step_two_header
+                        ? checkoutPageStepData?.step_three_header
+                        : checkoutPageStepData?.step_four_header
                     }
                     num={e.id}
                     key={i}

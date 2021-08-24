@@ -8,22 +8,37 @@ import { getNewsReport } from "../../services/actions/news";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getUserDataFromLocalStorage } from "../../services/actions/auth";
+import { getErgebnisPageText } from "../../services/actions/ergebnis";
+import { Space, Spin, Steps } from "antd";
 
 const ErgebnisScene = () => {
   const dispatch = useDispatch();
-  const parameters = useSelector((state) => state.ergebnis.parameters);
-  
+  const lang = useSelector((state) => state.header.headerLanguage);
+  const { pageLoading } = useSelector((state) => state.ergebnis);
   useEffect(() => {
     dispatch(getUserDataFromLocalStorage());
     dispatch(getNewsReport());
   }, []);
+  useEffect(() => {
+    dispatch(getErgebnisPageText(lang));
+  }, [lang]);
   return (
     <>
       <Header />
       <MobileHeader />
-      <ErgebnisProducts parameters={parameters} />
-      <ErgebnisTesters />
-      <NeuigkeitenSection />
+      {pageLoading ? (
+        <div className={"loader__component"}>
+          <Space size="middle">
+            <Spin size="large" />
+          </Space>
+        </div>
+      ) : (
+        <>
+          <ErgebnisProducts />
+          <ErgebnisTesters />
+          <NeuigkeitenSection />
+        </>
+      )}
       <br />
       <Footer />
     </>

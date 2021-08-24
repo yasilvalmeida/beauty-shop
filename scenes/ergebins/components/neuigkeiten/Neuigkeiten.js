@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import Neuigkeiten from "../../../../shareable/Neuigkeiten";
 
 const NeuigkeitenSection = () => {
+  const { pageText } = useSelector((state) => state.ergebnis);
   const btntext = "mehr neuigkeiten";
   const news = useSelector(({ news }) => news);
 
@@ -14,7 +15,7 @@ const NeuigkeitenSection = () => {
 
   return (
     <div className="neuigkeiten__block">
-      <h2>SIE SUCHEN WEITERE INSPIRATION?</h2>
+      <h2>{pageText?.inspiration_header}</h2>
       <div className="neuigkeiten">
         <Neuigkeiten
           btntext={btntext}

@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
 const Neuigkeiten = ({
   background,
@@ -13,8 +15,30 @@ const Neuigkeiten = ({
   neuigkeiten,
   neuigkeitenSecond,
 }) => {
+  const lang = useSelector((state) => state.header.headerLanguage);
   const magazineUrl = "/magazine";
   const router = useRouter();
+  const main_header = [
+    {
+      lang: "de",
+      value: "NEUIGKEITEN",
+    },
+    {
+      lang: "en",
+      value: "NEWS",
+    },
+    {
+      lang: "fr",
+      value: "NOUVELLES",
+    },
+  ];
+  const [header, setHeader] = useState(main_header[0]?.value);
+
+  useEffect(() => {
+    const selectedHeader = main_header?.find((item) => item?.lang === lang);
+    setHeader(selectedHeader?.value);
+  }, [lang]);
+
   return (
     <>
       <div
@@ -28,7 +52,7 @@ const Neuigkeiten = ({
         <div className={"first-product-bottom-body"}>
           <div className={"col-lg-6 product-bottom-left d-flex"}>
             <div className={"prod-bot-left-img"}>
-              <h2 style={{ color: color }}>NEUIGKEITEN</h2>
+              <h2 style={{ color: color }}>{header}</h2>
               <Link href={magazineUrl}>
                 <a href={magazineUrl}>
                   <Image
