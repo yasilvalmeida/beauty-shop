@@ -12,8 +12,11 @@ const formatter = new Intl.NumberFormat("de-DE", {
   minimumFractionDigits: 2,
 });
 
-const ProductsWithLeftText = ({ products, leftText, addToWishList }) => {
-  const shopUrl = "/shop";
+const ProductsWithLeftText = ({
+  products,
+  leftText,
+  addToWishList,
+}) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const { isAuthenticated } = useSelector((state) => state.auth);
@@ -45,18 +48,18 @@ const ProductsWithLeftText = ({ products, leftText, addToWishList }) => {
       <div className="first-products-body ">
         <div className="firstprod-left-text">
           <div>
-            <p>{leftText?.Header}</p>
-            <Link href={shopUrl}>
-              <a href={shopUrl}>
-                <h2 style={{ cursor: "pointer" }}>{leftText?.Title}</h2>
+            <p>{leftText?.header}</p>
+            <Link href={leftText?.url || ""}>
+              <a href={leftText?.url || ""}>
+                <h2 style={{ cursor: "pointer" }}>{leftText?.title}</h2>
               </a>
             </Link>
-            <span>{leftText?.Text}</span>
+            <span>{leftText?.text}</span>
           </div>
           <div className="button-body">
-            <Link href={shopUrl}>
-              <a href={shopUrl}>
-                <button>{leftText?.Button_text}</button>
+            <Link href={leftText?.url || ""}>
+              <a href={leftText?.url || ""}>
+                <button>{leftText?.button}</button>
               </a>
             </Link>
           </div>

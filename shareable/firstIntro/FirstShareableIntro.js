@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { useSelector } from "react-redux";
 
 const FirstShareableIntro = ({
   smalltxt,
@@ -9,32 +10,37 @@ const FirstShareableIntro = ({
   bg,
   color,
   padding,
-  homepageIntro,
 }) => {
-  const shopUrl = "/shop";
+  const { firstIntroData, firstIntroLoading } = useSelector(
+    (state) => state.landing
+  );
   return (
     <div style={{ backgroundColor: bg }}>
       <div className={`mobile__firstintro__body ${padding}`}>
         <div className={"text-body"}>
           <p className={"small-text"} style={{ color: color }}>
-            {homepageIntro?.header}
+            {firstIntroData?.header}
           </p>
-          <Link href={`${shopUrl}`}>
-            <a href={shopUrl}>
+          <Link href={firstIntroData?.url || ""}>
+            <a href={firstIntroData?.url || ""}>
               <h2
                 className={"big-text"}
                 style={{ color: color, cursor: "pointer" }}
               >
-                {homepageIntro?.title}
+                {firstIntroData?.title}
               </h2>
             </a>
           </Link>
         </div>
         <div className={"image-body"}>
-          <Link href={`${shopUrl}`}>
-            <a href={shopUrl}>
+          <Link href={firstIntroData?.url || ""}>
+            <a href={firstIntroData?.url || ""}>
               <Image
-                src={homepageIntro?.images?.url || "/aaa.jpg"}
+                src={
+                  firstIntroData?.image?.length > 0
+                    ? firstIntroData?.image[0]?.url
+                    : "/aaa.jpg"
+                }
                 layout="responsive"
                 width={800}
                 height={600}
@@ -45,9 +51,9 @@ const FirstShareableIntro = ({
         </div>
 
         <div className={"button-body"}>
-          <Link href={`${shopUrl}`}>
-            <a href={shopUrl}>
-              <button>{homepageIntro?.button_text}</button>
+          <Link href={firstIntroData?.url || ""}>
+            <a href={firstIntroData?.url || ""}>
+              <button>{firstIntroData?.button}</button>
             </a>
           </Link>
         </div>

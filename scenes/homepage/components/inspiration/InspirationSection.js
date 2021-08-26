@@ -1,9 +1,9 @@
 import InspirationSection from "../../../../shareable/Inspiration";
 
-const Inspiration = ({ inspiration }) => {
+const Inspiration = () => {
   return (
     <>
-      <InspirationSection inspiration={inspiration} />
+      <InspirationSection />
     </>
   );
 };

@@ -1,21 +1,28 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 
-const InspirationSection = ({ background, color, inspiration, padding }) => {
-  const shopUrl = "/shop";
+const InspirationSection = ({ background, color, padding }) => {
+  const { inspirationOneTextData } = useSelector((state) => state.landing);
   return (
     <>
       <div style={{ backgroundColor: background, paddingTop: padding }}>
         <div className="inspiration-body">
           <div className="inspiration-left">
-            <p style={{ color: color }}>{inspiration?.image_title}</p>
-            <Link href={shopUrl}>
-              <a href={shopUrl}>
+            <p style={{ color: color }}>
+              {inspirationOneTextData?.image_header}
+            </p>
+            <Link href={inspirationOneTextData?.url || ""}>
+              <a href={inspirationOneTextData?.url || ""}>
                 <Image
-                  src={inspiration?.images?.url || "/aaa.jpg"}
+                  src={
+                    inspirationOneTextData?.image?.length > 0
+                      ? inspirationOneTextData?.image[0]?.url
+                      : "/aaa.jpg"
+                  }
                   layout="responsive"
                   width={800}
-                  height={600}
+                  height={560}
                   style={{ cursor: "pointer" }}
                 />
               </a>
@@ -27,12 +34,12 @@ const InspirationSection = ({ background, color, inspiration, padding }) => {
                 className={"inspiration-right-headtxt"}
                 style={{ color: color }}
               >
-                {inspiration?.header}
+                {inspirationOneTextData?.title}
               </p>
-              <Link href={shopUrl}>
-                <a href={shopUrl}>
+              <Link href={inspirationOneTextData?.url || ""}>
+                <a href={inspirationOneTextData?.url || ""}>
                   <h2 style={{ color: color, cursor: "pointer" }}>
-                    {inspiration?.title}
+                    {inspirationOneTextData?.header}
                   </h2>
                 </a>
               </Link>
@@ -40,12 +47,12 @@ const InspirationSection = ({ background, color, inspiration, padding }) => {
                 className={"inspiration-right-bottxt"}
                 style={{ color: color }}
               >
-                {inspiration?.text}
+                {inspirationOneTextData?.text}
               </p>
-              <Link href={shopUrl}>
-                <a href={shopUrl}>
+              <Link href={inspirationOneTextData?.url || ""}>
+                <a href={inspirationOneTextData?.url || ""}>
                   <button style={{ color: background, backgroundColor: color }}>
-                    {inspiration?.button_text}
+                    {inspirationOneTextData?.button}
                   </button>
                 </a>
               </Link>

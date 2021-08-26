@@ -20,7 +20,7 @@ import {
 } from "../../services/actions/homepage__stable";
 import { getUserDataFromLocalStorage } from "../../services/actions/auth";
 import { getNewsReport } from "../../services/actions/news";
-import { getProductsWithLeftText } from "../../services/actions/products";
+import { getProductsWithLeftTextOne } from "../../services/actions/landing";
 import { Space, Spin } from "antd";
 import MobileHeader from "../../layouts/mobile-header/MobileHeader";
 import Footer from "../../layouts/footer/Footer";
@@ -53,7 +53,7 @@ const HerrenScene = () => {
     });
 
     dispatch(getNewsReport());
-    dispatch(getProductsWithLeftText());
+    dispatch(getProductsWithLeftTextOne("de"));
     dispatch(getHomePageSctOne());
   }, []);
   const headLoaded = useSelector((state) => state.navbar.homePageSctOneLoaded);
@@ -63,10 +63,10 @@ const HerrenScene = () => {
   );
   return (
     <>
+      <PageHeader />
+      <MobileHeader />
       {!headLoaded && !navlistloaded ? (
         <>
-          <PageHeader />
-          <MobileHeader />
           <div className={"harren-main-body"}>
             <HerrenHead />
             <FirstComponent />
@@ -83,7 +83,6 @@ const HerrenScene = () => {
             <Services />
             <Newsletter />
           </div>
-          <Footer />
         </>
       ) : (
         <div className={"loader__body"}>
@@ -92,6 +91,7 @@ const HerrenScene = () => {
           </Space>
         </div>
       )}
+      <Footer />
     </>
   );
 };

@@ -10,7 +10,6 @@ import {
   SET_FOUR_ICONS,
   SET_MIDFOOT,
   SET_NEWSLETTER_TEXT,
-  GET_RENDER_MODAL,
 } from "../action-types/homepage__stable";
 
 const initialState = {
@@ -36,7 +35,6 @@ const initialState = {
   newsletterTextLoaded: true,
   x: false,
   loader: true,
-  renderModalData: null,
   selectedLanguage: "de",
 };
 
@@ -117,12 +115,6 @@ const homeRedcucer = (state = initialState, action) => {
         fourIcons: action.payload,
         fourIconsLoaded: false,
         // loader: false,
-      };
-
-    case GET_RENDER_MODAL:
-      return {
-        ...state,
-        renderModalData: action.payload,
       };
   }
   return state;

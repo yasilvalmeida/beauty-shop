@@ -1,37 +1,33 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import ProductsWithLeftText from "../../../shareable/Products/ProductsWithLeftText";
-import {useDispatch, useSelector} from "react-redux";
-import {getProducts,addToWishList} from "../../../services/actions/products";
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts, addToWishList } from "../../../services/actions/products";
 
-const FirstProducts = ({getFour}) =>{
-    const dispatch = useDispatch();
-    const lang = useSelector((state) => state?.navbar?.selectedLanguage);
-    const prdcts = useSelector(state => state?.products?.products);
-    const productsWithLeftText = useSelector(state => state?.products?.productsWithLeftText);
-    const authData = useSelector(state => state.auth);
-    const [leftText, setLeftText] = useState({});
-    const [products, setProducts] = useState([]);
-    useEffect(() => {
-      dispatch(getProducts(1, 3, lang));
-    }, [authData?.isAuthenticated, lang]);
-    useEffect(() => {
-      setProducts(prdcts);
-    }, [prdcts]);
-    useEffect(() => {
-        setLeftText(productsWithLeftText.find(pr => pr.position === 'HerrenPageOne'));
-    }, [productsWithLeftText]);
+const FirstProducts = ({ getFour }) => {
+  const dispatch = useDispatch();
+  const lang = useSelector((state) => state?.navbar?.selectedLanguage);
+  const prdcts = useSelector((state) => state?.products?.products);
+  const { productsWithLeftTextOne } = useSelector((state) => state?.products);
+  const authData = useSelector((state) => state.auth);
+  const [leftText, setLeftText] = useState({});
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    dispatch(getProducts(1, 3, lang));
+  }, [authData?.isAuthenticated, lang]);
+  useEffect(() => {
+    setProducts(prdcts);
+  }, [prdcts]);
 
-    return(
-        <>
-            <ProductsWithLeftText
-                leftText={leftText}
-                products = {products}
-                addToWishList={addToWishList}
-                getFour={getFour}
-            />
-        </>
-    )
-}
+  return (
+    <>
+      <ProductsWithLeftText
+        leftText={productsWithLeftTextOne}
+        products={products}
+        addToWishList={addToWishList}
+        getFour={getFour}
+      />
+    </>
+  );
+};
 
-
-export default FirstProducts
+export default FirstProducts;

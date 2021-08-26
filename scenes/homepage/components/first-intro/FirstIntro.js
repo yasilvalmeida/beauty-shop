@@ -1,37 +1,42 @@
 import { useSelector } from "react-redux";
 import Image from "next/image";
 import Link from "next/link";
+import { Spin, Space } from "antd";
 
 const FirstIntro = () => {
-  const HPFS = useSelector((state) => state.navbar.homePageSctOne);
-  const homepageIntro = HPFS.find((p) => p.position === "HomePage");
-  const shopUrl = "/shop";
+  const { firstIntroData, firstIntroLoading } = useSelector(
+    (state) => state.landing
+  );
   return (
     <>
       <div className={"first-intro "}>
         <div className={"first-intro-body"}>
           <div className={"first-intro-bod-left"}>
             <div>
-              <p className={"intro-small-txt"}>{homepageIntro?.header}</p>
-              <Link href={shopUrl}>
-                <a href={shopUrl}>
+              <p className={"intro-small-txt"}>{firstIntroData?.header}</p>
+              <Link href={firstIntroData?.url || ""}>
+                <a href={firstIntroData?.url || ""}>
                   <h2 className={"intro-big-txt"} style={{ cursor: "pointer" }}>
-                    {homepageIntro?.title}
+                    {firstIntroData?.title}
                   </h2>
                 </a>
               </Link>
             </div>
-            <Link href={shopUrl}>
-              <a href={shopUrl}>
-                <button>{homepageIntro?.button_text}</button>
+            <Link href={firstIntroData?.url || ""}>
+              <a href={firstIntroData?.url || ""}>
+                <button>{firstIntroData?.button}</button>
               </a>
             </Link>
           </div>
           <div className={"first-intro-bod-right"}>
-            <Link href={shopUrl}>
-              <a href={shopUrl}>
+            <Link href={firstIntroData?.url || ""}>
+              <a href={firstIntroData?.url || ""}>
                 <Image
-                  src={homepageIntro?.images?.url || "/aaa.jpg"}
+                  src={
+                    firstIntroData?.image?.length > 0
+                      ? firstIntroData?.image[0]?.url
+                      : "/aaa.jpg"
+                  }
                   layout="responsive"
                   width={800}
                   height={600}

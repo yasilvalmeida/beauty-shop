@@ -9,7 +9,6 @@ import {
   GET_FAVOURITES_PRODUCTS,
   SET_FAVOURITES_PRODUCTS,
   GET_PRODUCTS_WITH_LEFT_TEXT,
-  SET_PRODUCTS_WITH_LEFT_TEXT,
   GET_PRODUCTS_WITH_FILTER,
   GET_EIGHT_PRODUCTS_WITH_FILTER,
   GET_SINGLE_PRODUCT_DATA,
@@ -627,22 +626,6 @@ export const getUserWishlist = () => {
       .then((res) => {
         const { data } = res;
         dispatch({ type: SET_FAVOURITES_PRODUCTS, payload: data });
-      })
-      .catch((err) => dispatch({ type: SET_PRODUCTS_ERROR, payload: err }));
-  };
-};
-
-export const getProductsWithLeftText = () => {
-  return (dispatch) => {
-    dispatch({ type: GET_PRODUCTS_WITH_LEFT_TEXT });
-    axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/product-with-left-texts`)
-      .then((res) => {
-        const { data } = res;
-        dispatch({
-          type: SET_PRODUCTS_WITH_LEFT_TEXT,
-          payload: data,
-        });
       })
       .catch((err) => dispatch({ type: SET_PRODUCTS_ERROR, payload: err }));
   };

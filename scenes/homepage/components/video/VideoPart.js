@@ -1,12 +1,16 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import ReactPlayer from "react-player";
 
-const VideoPart = ({ text, video }) => {
+const VideoPart = () => {
+  const { videoData } = useSelector((state) => state.video);
+  const video = videoData?.length > 0 ? videoData[0]?.url : "/video.webm";
+  const text = videoData?.length > 0 ? videoData[0]?.name : "Play";
   const [play, setPlay] = useState(false);
   const [show, setShow] = useState(false);
   return (
     <>
-      <div className={"video-body"} style={{ marginBottom: "6rem" }}>
+      <div className={"video-body"} style={{ marginBottom: "5rem" }}>
         <ReactPlayer
           url={video?.video?.url || "/video.webm"}
           muted={true}

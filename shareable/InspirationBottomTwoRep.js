@@ -1,13 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 
-const InspirationBottomTwoRep = ({
-  background,
-  color,
-  padding,
-  inspiration,
-}) => {
-  const shopUrl = "/shop";
+const InspirationBottomTwoRep = ({ background, color, padding }) => {
+  const { inspirationThreeTextData } = useSelector((state) => state.landing);
   return (
     <>
       <div style={{ backgroundColor: background, paddingBottom: padding }}>
@@ -18,39 +14,49 @@ const InspirationBottomTwoRep = ({
         >
           <div className={"col-lg-6 inspiration-bottom-image"}>
             <div className={"inspiration-bottom-imagetxt-two"}>
-              <Link href={shopUrl}>
-                <a href={shopUrl}>
+              <Link href={inspirationThreeTextData?.url || ""}>
+                <a href={inspirationThreeTextData?.url || ""}>
                   <Image
-                    src={inspiration?.images?.url || "/inspirationbot1.png"}
+                    src={
+                      inspirationThreeTextData?.image?.length > 0
+                        ? inspirationThreeTextData?.image[0]?.url
+                        : "/inspirationbot1.png"
+                    }
                     layout="responsive"
                     width={800}
                     height={600}
                     style={{ cursor: "pointer" }}
                   />
-                  <p className={"insp-bot-lg"}>{inspiration?.image_header}</p>
-                  <p className={"insp-bot-lg"}>{inspiration?.image_title}</p>
+                  <p className={"insp-bot-lg"}>
+                    {inspirationThreeTextData?.image_title}
+                  </p>
+                  <p className={"insp-bot-lg"}>
+                    {inspirationThreeTextData?.image_header}
+                  </p>
                 </a>
               </Link>
             </div>
           </div>
           <div className={"col-lg-6 inspiration-bottom-text2"}>
             <div className={"inspiration-bottom-head-txt"}>
-              <p style={{ color: color }}>{inspiration?.header}</p>
-              <Link href={shopUrl}>
-                <a href={shopUrl}>
+              <p style={{ color: color }}>{inspirationThreeTextData?.title}</p>
+              <Link href={inspirationThreeTextData?.url || ""}>
+                <a href={inspirationThreeTextData?.url || ""}>
                   <h2 style={{ color: color, cursor: "pointer" }}>
-                    {inspiration?.title}
+                    {inspirationThreeTextData?.header}
                   </h2>
                 </a>
               </Link>
             </div>
-            <span style={{ color: color }}>{inspiration?.text}</span>
-            <Link href={shopUrl}>
+            <span style={{ color: color }}>
+              {inspirationThreeTextData?.text}
+            </span>
+            <Link href={inspirationThreeTextData?.url || ""}>
               <button
                 className={"inspiration-bottom-btn"}
                 style={{ color: background, backgroundColor: color }}
               >
-                {inspiration?.button_text}
+                {inspirationThreeTextData?.button}
               </button>
             </Link>
           </div>

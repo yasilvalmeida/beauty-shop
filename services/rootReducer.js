@@ -25,6 +25,7 @@ import aboutReducer from "./reducers/about_page";
 import checkoutReducer from "./reducers/checkout";
 import headerReducer from "./reducers/header";
 import typentestReducer from "./reducers/typentest";
+import landingReducer from "./reducers/landing";
 
 const rootReducer = combineReducers({
   about: aboutReducer,
@@ -40,6 +41,7 @@ const rootReducer = combineReducers({
   footer: footerReducer,
   header: headerReducer,
   konto: kontoPageReducer,
+  landing: landingReducer,
   manufactory: manufactoriesReducer,
   marken: markenReducer,
   navbar: homeReducer,

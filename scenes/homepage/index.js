@@ -15,24 +15,31 @@ import FirstIntroMobile from "./components/mobile/firstIntro/FirstIntro";
 import NewsletterRep from "../../shareable/newsLetter/NewsletterRep";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  getCollectionShops,
   getHomePageSctOne,
-  getInspirations,
   getMidFoot,
 } from "../../services/actions/homepage__stable";
-import {
-  getProductsWithFilter,
-  getProductsWithLeftText,
-} from "../../services/actions/products";
+import { getFirstAndSecondThreeProducts } from "../../services/actions/products";
 import { getNewsReport } from "../../services/actions/news";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../../layouts/header/Header";
 import MobileHeader from "../../layouts/mobile-header/MobileHeader";
 import Footer from "../../layouts/footer/Footer";
 import { Spin, Space } from "antd";
 import Services from "../../shareable/services/Services";
 import RenderModal from "./components/render-modal/RenderModal";
-import { getFirstAndSecondThreeProducts } from "../../services/actions/products";
+import {
+  getFirstIntroPageText,
+  getProductsWithLeftTextOne,
+  getProductsWithLeftTextTwo,
+  getSectionText,
+  getInspirationOneText,
+  getInspirationTwoText,
+  getInspirationThreeText,
+  getNewsSectionText,
+  getDPABMagazineText,
+  getDPABBottomText,
+} from "../../services/actions/landing";
+import { getVideoData } from "../../services/actions/video";
 
 const Homepage = () => {
   const dispatch = useDispatch();
@@ -41,12 +48,9 @@ const Homepage = () => {
   const headerloaded = useSelector(
     (state) => state.navbar.headerContactsLoaded
   );
-  const [firstData, setFirstData] = useState({});
-  const [secondData, setSecondData] = useState({});
-  const [inspiration, setInspiration] = useState({});
   const HPFS = useSelector((state) => state.navbar.homePageSctOne);
   const homepageIntro = HPFS.find((p) => p.position === "HomePage");
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(true);
   const prdctsFirst = useSelector(
     (state) => state?.products?.firstThreeProducts
   );
@@ -55,56 +59,34 @@ const Homepage = () => {
   );
   const lang = useSelector((state) => state.header.headerLanguage);
 
-  const homePageSctOneLoaded = useSelector(
-    (state) => state.navbar.homePageSctOneLoaded
-  );
-
   const loader = useSelector((state) => state.navbar.loader);
-
-  const collectionShopsLoading = useSelector(
-    (state) => state.navbar.collectionShopsLoading
-  );
-  const inspirationsLoading = useSelector(
-    (state) => state.navbar.inspirationsLoading
-  );
-  const fourIconsLoaded = useSelector((state) => state.navbar.fourIconsLoaded);
-  const midfootLoaded = useSelector((state) => state.navbar.midfootLoaded);
-  const newsletterTextLoaded = useSelector(
-    (state) => state.navbar.newsletterTextLoaded
-  );
   const [productsFirst, setProductsFirst] = useState([]);
   const [productsSecond, setProductsSecond] = useState([]);
+  const [homeLoader, setHomeLoader] = useState(true);
 
   useEffect(() => {
     setProductsFirst([]);
     setProductsSecond([]);
     dispatch(getFirstAndSecondThreeProducts(lang));
+    dispatch(getFirstIntroPageText(lang));
+    dispatch(getProductsWithLeftTextOne(lang));
+    dispatch(getProductsWithLeftTextTwo(lang));
+    dispatch(getSectionText(lang));
+    dispatch(getInspirationOneText(lang));
+    dispatch(getInspirationTwoText(lang));
+    dispatch(getInspirationThreeText(lang));
+    dispatch(getNewsSectionText(lang));
+    dispatch(getDPABMagazineText(lang));
+    dispatch(getDPABBottomText(lang));
   }, [lang]);
-
   useEffect(() => {
     setProductsFirst(prdctsFirst);
   }, [prdctsFirst]);
   useEffect(() => {
     setProductsSecond(prdctsSecond);
   }, [prdctsSecond]);
-
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
-  const [homeLoader, setHomeLoader] = useState(true);
-
   useEffect(() => {
-    dispatch(getCollectionShops()).then((res) => {
-      setFirstData(res?.find((elem) => elem.position === "HomePageLeft"));
-      setSecondData(res?.find((elem) => elem.position === "HomePageRight"));
-    });
-
-    dispatch(getInspirations()).then((data) => {
-      setInspiration(data.find((elem) => elem.position === "HomePageOne"));
-    });
-
-    dispatch(getProductsWithLeftText());
+    dispatch(getVideoData());
     dispatch(getNewsReport());
     dispatch(getHomePageSctOne());
     dispatch(getMidFoot());
@@ -113,52 +95,52 @@ const Homepage = () => {
     }
     localStorage.setItem("popup", "shown");
   }, []);
-
   useEffect(() => {
     setHomeLoader(loader);
   }, [loader]);
 
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
   return (
     <>
-      {homeLoader && (
-        <div className={"loader__body"}>
+      <Header />
+      <MobileHeader />
+      {homeLoader ? (
+        <div className={"loader__component"}>
           <Space size="middle">
             <Spin size="large" />
           </Space>
         </div>
+      ) : (
+        <>
+          <RenderModal
+            isModalVisible={isModalVisible}
+            setIsModalVisible={setIsModalVisible}
+          />
+          <div className={"homepage-body"}>
+            <FirstIntro />
+            <FirstIntroMobile />
+            <FirstProducts products={productsFirst} />
+            <SecondSection />
+            <InspirationSection />
+            {/* <br className="clear" /> */}
+            <InspirationBottomOne />
+            <InspirationBottomTwo />
+            <SecondProducts products={productsSecond} />
+            <ProductsWithFilterHomepage />
+            <FilteredProductBottom />
+            <VideoPart />
+            <BottomVideo />
+            <DpabMagazine />
+            <DpabBottom />
+            <Services />
+            <NewsletterRep />
+          </div>
+        </>
       )}
-      <>
-        <Header />
-        <MobileHeader />
-        <RenderModal
-          isModalVisible={isModalVisible}
-          setIsModalVisible={setIsModalVisible}
-        />
-
-        <div className={"homepage-body"}>
-          <FirstIntro />
-          <FirstIntroMobile />
-          <FirstProducts products={productsFirst} />
-          <SecondSection first={firstData} second={secondData} />
-          <InspirationSection inspiration={inspiration} />
-          <br className="clear" />
-          <br className="clear" />
-          <br className="clear" />
-          <br className="clear" />
-          <InspirationBottomOne />
-          <InspirationBottomTwo />
-          <SecondProducts products={productsSecond} />
-          <ProductsWithFilterHomepage />
-          <FilteredProductBottom />
-          <VideoPart />
-          <BottomVideo />
-          <DpabMagazine />
-          <DpabBottom />
-          <Services />
-          <NewsletterRep />
-        </div>
-        <Footer />
-      </>
+      <Footer />
     </>
   );
 };

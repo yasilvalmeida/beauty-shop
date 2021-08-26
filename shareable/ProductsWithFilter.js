@@ -43,10 +43,6 @@ const ProductsWithFilter = ({
     const foundHeader = headers.find((header) => header.lang === lang);
     const { header } = foundHeader;
     setHeadtext(header);
-    console.log("aux-lang", headtext);
-  }, [lang]);
-
-  useEffect(() => {
     const categoriesIds = [];
     top3Categories?.map((elem, i) => {
       const filter =
@@ -61,7 +57,7 @@ const ProductsWithFilter = ({
       });
     });
     dispatch(getProductsByCategories(1, 4, categoriesIds, lang));
-  }, [navListState]);
+  }, [navListState, lang]);
 
   useEffect(() => {
     setProductsByCategories(productsByCategoriesState);

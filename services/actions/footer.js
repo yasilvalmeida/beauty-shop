@@ -106,10 +106,14 @@ export const getFooterMainMenu = (lang) => {
       )
       .then((res) => {
         const { data } = res;
-
+        const sorted = data.sort((a, b) => {
+          if (a.id > b.id) return 1;
+          else if (a.id == b.id) return 0;
+          else return -1;
+        });
         dispatch({
           type: SET_FOOTER_MAIN_MENU,
-          payload: data,
+          payload: sorted,
         });
       })
       .catch((err) => dispatch({ type: SET_ERROR, payload: err }));

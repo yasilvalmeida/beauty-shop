@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
 
 const Neuigkeiten = ({
   background,
@@ -12,32 +11,9 @@ const Neuigkeiten = ({
   btntext,
   width,
   padd,
-  neuigkeiten,
-  neuigkeitenSecond,
 }) => {
-  const lang = useSelector((state) => state.header.headerLanguage);
-  const magazineUrl = "/magazine";
+  const { newsSectionTextData } = useSelector((state) => state.landing);
   const router = useRouter();
-  const main_header = [
-    {
-      lang: "de",
-      value: "NEUIGKEITEN",
-    },
-    {
-      lang: "en",
-      value: "NEWS",
-    },
-    {
-      lang: "fr",
-      value: "NOUVELLES",
-    },
-  ];
-  const [header, setHeader] = useState(main_header[0]?.value);
-
-  useEffect(() => {
-    const selectedHeader = main_header?.find((item) => item?.lang === lang);
-    setHeader(selectedHeader?.value);
-  }, [lang]);
 
   return (
     <>
@@ -52,11 +28,15 @@ const Neuigkeiten = ({
         <div className={"first-product-bottom-body"}>
           <div className={"col-lg-6 product-bottom-left d-flex"}>
             <div className={"prod-bot-left-img"}>
-              <h2 style={{ color: color }}>{header}</h2>
-              <Link href={magazineUrl}>
-                <a href={magazineUrl}>
+              <h2 style={{ color: color }}>{newsSectionTextData?.header}</h2>
+              <Link href={newsSectionTextData?.url || ""}>
+                <a href={newsSectionTextData?.url || ""}>
                   <Image
-                    src={neuigkeiten?.images?.url || "/aaa.jpg"}
+                    src={
+                      newsSectionTextData?.left_image?.length > 0
+                        ? newsSectionTextData?.left_image[0]?.url
+                        : "/aaa.jpg"
+                    }
                     layout="responsive"
                     width={800}
                     height={600}
@@ -66,16 +46,18 @@ const Neuigkeiten = ({
               </Link>
             </div>
             <div className={"prod-bod-left-txt"}>
-              <p style={{ color: color }}>{neuigkeiten?.header}</p>
-              <Link href={magazineUrl}>
+              <p style={{ color: color }}>{newsSectionTextData?.left_title}</p>
+              <Link href={newsSectionTextData?.url || ""}>
                 <h2 style={{ color: color, cursor: "pointer" }}>
-                  {neuigkeiten?.title}
+                  {newsSectionTextData?.left_header}
                 </h2>
               </Link>
-              <span style={{ color: color }}>{neuigkeiten?.text}</span>
+              <span style={{ color: color }}>
+                {newsSectionTextData?.left_text}
+              </span>
               <button
                 className={"filter-bot-btn"}
-                onClick={() => router.push(`${magazineUrl}`)}
+                onClick={() => router.push(`${newsSectionTextData?.url || ""}`)}
                 style={{
                   color: background,
                   backgroundColor: color,
@@ -83,24 +65,30 @@ const Neuigkeiten = ({
                   padding: padd,
                 }}
               >
-                {neuigkeiten?.link_text}{" "}
+                {newsSectionTextData?.small_button}{" "}
               </button>
             </div>
           </div>
           <div className={"product-bottom-middle"}></div>
           <div className={"col-lg-6 product-bottom-right d-flex"}>
-            <p style={{ color: color }}>{neuigkeitenSecond?.header}</p>
-            <Link href={magazineUrl}>
+            <p style={{ color: color }}>{newsSectionTextData?.right_title}</p>
+            <Link href={newsSectionTextData?.url || ""}>
               <h2 style={{ color: color, cursor: "pointer" }}>
-                {neuigkeitenSecond?.title}
+                {newsSectionTextData?.right_header}
               </h2>
             </Link>
-            <span style={{ color: color }}>{neuigkeitenSecond?.text}</span>
+            <span style={{ color: color }}>
+              {newsSectionTextData?.right_text}
+            </span>
             <div className={"prod-bot-right-img"}>
-              <Link href={magazineUrl}>
-                <a href={magazineUrl}>
+              <Link href={newsSectionTextData?.url || ""}>
+                <a href={newsSectionTextData?.url || ""}>
                   <Image
-                    src={neuigkeitenSecond?.images?.url || "/aaa.jpg"}
+                    src={
+                      newsSectionTextData?.right_image?.length > 0
+                        ? newsSectionTextData?.right_image[0]?.url
+                        : "/aaa.jpg"
+                    }
                     layout="responsive"
                     width={800}
                     height={600}
@@ -112,7 +100,7 @@ const Neuigkeiten = ({
             <br />
             <button
               className={""}
-              onClick={() => router.push(`${magazineUrl}`)}
+              onClick={() => router.push(`${newsSectionTextData?.url || ""}`)}
               style={{
                 color: background,
                 backgroundColor: color,
@@ -121,13 +109,13 @@ const Neuigkeiten = ({
                 margin: "auto",
               }}
             >
-              {neuigkeitenSecond?.link_text}{" "}
+              {newsSectionTextData?.small_button}{" "}
             </button>
           </div>
         </div>
         <button
           className={"filter-bot-btn"}
-          onClick={() => router.push(`${magazineUrl}`)}
+          onClick={() => router.push(`${newsSectionTextData?.url || ""}`)}
           style={{
             color: background,
             backgroundColor: color,
@@ -135,7 +123,7 @@ const Neuigkeiten = ({
             padding: padd,
           }}
         >
-          {btntext}{" "}
+          {newsSectionTextData?.large_button}{" "}
         </button>
       </div>
     </>

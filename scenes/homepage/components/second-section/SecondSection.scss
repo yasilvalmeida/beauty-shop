@@ -52,21 +52,20 @@
       }
       .sec-sec-el-link {
         margin-top: 5px;
-        height: 100%;
+        height: 95px;
         display: flex;
-        a {
-          align-self: flex-end;
-          color: #a12224;
-          font-size: 2rem;
-          font-weight: 300;
-          font-style: normal;
-          letter-spacing: 1px;
-          line-height: 35px;
-          text-align: left;
-          /* Text style for "Kollektion" */
-          font-style: normal;
-          text-decoration: underline;
-          text-transform: uppercase;
+        .collection-shop-button {
+          p {
+            /* align-self: flex-end;
+            font-size: 2rem;
+            font-weight: 300;
+            font-style: normal;
+            letter-spacing: 1px;
+            line-height: 35px;
+            text-align: left;
+            font-style: normal;
+            text-transform: uppercase; */
+          }
         }
       }
     }

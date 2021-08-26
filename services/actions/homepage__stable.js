@@ -12,7 +12,6 @@ import {
   SET_MIDFOOT,
   SET_NEWSLETTER_TEXT,
   HOMEPAGE_LOADER,
-  GET_RENDER_MODAL,
 } from "../action-types/homepage__stable";
 import axios from "axios";
 
@@ -375,25 +374,6 @@ export const getNewsletterText = (lang) => {
 
         dispatch({
           type: SET_NEWSLETTER_TEXT,
-          payload: data,
-        });
-
-        return data;
-      })
-      .catch((err) => dispatch({ type: SET_HOME_ERROR }));
-  };
-};
-
-export const getRenderModal = () => {
-  return (dispatch) => {
-    dispatch({ type: HOMEPAGE_LOADER });
-
-    return axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/home-page-popup-content`)
-      .then((res) => {
-        const { data } = res;
-        dispatch({
-          type: GET_RENDER_MODAL,
           payload: data,
         });
 

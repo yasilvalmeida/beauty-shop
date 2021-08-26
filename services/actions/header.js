@@ -52,7 +52,7 @@ export const getHeaderContact = () => {
 
         return data;
       })
-      .catch((err) => dispatch({ type: SET_HOME_ERROR }));
+      .catch((err) => dispatch({ type: SET_HEADER_ERROR }));
   };
 };
 
@@ -61,7 +61,9 @@ export const getHeaderPageText = (lang) => {
     dispatch({ type: GET_HEADER });
 
     return axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/header-page-text?_locale=${lang}`)
+      .get(
+        `${process.env.NEXT_PUBLIC_API_URL}/header-page-text?_locale=${lang}`
+      )
       .then((res) => {
         const { data } = res;
 
@@ -72,6 +74,6 @@ export const getHeaderPageText = (lang) => {
 
         return data;
       })
-      .catch((err) => dispatch({ type: SET_HOME_ERROR }));
+      .catch((err) => dispatch({ type: SET_HEADER_ERROR }));
   };
 };
