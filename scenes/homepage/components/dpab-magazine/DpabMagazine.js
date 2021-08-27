@@ -3,7 +3,6 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 
 const DpabMagazine = () => {
-  const magazineUrl = "/magazine";
   const { dpabMagazineTextData } = useSelector((state) => state.landing);
   return (
     <>
@@ -26,7 +25,7 @@ const DpabMagazine = () => {
               />
             </div>
             <div className={"dpab-top-section-txt"}>
-              <h2>{dpabMagazineTextData?.image?.subheader}</h2>
+              <h2>{dpabMagazineTextData?.subheader}</h2>
               <p>{dpabMagazineTextData?.title}</p>
               <span>{dpabMagazineTextData?.text}</span>
               <Link href={dpabMagazineTextData?.url || "/magazine"}>
@@ -37,7 +36,7 @@ const DpabMagazine = () => {
             </div>
           </div>
           <div className={"dpab-bottom-section d-flex flex-wrap"}>
-            <div className={"col-lg-6 dpab-bottom-section-left d-flex"}>
+            <div className={"dpab-bottom-section-left d-flex"}>
               <div className={"dpab-bottom-section-left-img-bod"}>
                 <div className={"dpab-bottom-section-left-img"}>
                   <Image

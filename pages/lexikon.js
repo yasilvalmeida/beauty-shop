@@ -1,20 +1,15 @@
-import PageHeader from "../layouts/header/Header";
-import Footer from "../layouts/footer/Footer";
-import MobileHeader from "../layouts/mobile-header/MobileHeader";
 import LexikonScene from "../scenes/lexikon";
-const Lexikon =()=> {
-    return (
-        <>
-            <PageHeader />
-            <MobileHeader/>
-            <LexikonScene/>
-            <Footer/>
-        </>
-    );
-}
+
+const Lexikon = () => {
+  return (
+    <>
+      <LexikonScene />
+    </>
+  );
+};
 export async function getStaticProps() {
-    return {
-        props: {},
-    };
+  return {
+    props: {},
+  };
 }
-export default Lexikon
+export default Lexikon;

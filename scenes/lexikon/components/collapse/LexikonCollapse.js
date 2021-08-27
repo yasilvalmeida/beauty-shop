@@ -1,33 +1,33 @@
-import {Collapse} from "antd";
+import { Collapse } from "antd";
 import CollapseLeftImage from "./components/collapse-left-image/CollapseLeftImage";
-import OnlyLeftText from "./components/only-left-text/OnlyLeftText";
+import { useSelector } from "react-redux";
+import { useEffect, useState, useRef } from "react";
 
-const LexikonCollapse = () =>{
-    const { Panel } = Collapse;
-    const collapseData = [
-        {theme:"A",component:<CollapseLeftImage/>},
-        {theme:"B",component:<OnlyLeftText/>},
-        {theme:"C",component:<CollapseLeftImage/>},
-        {theme:"D",component:<OnlyLeftText/>},
-        {theme:"E",component:<OnlyLeftText/>},
-    ]
-    return(
-        <div className={"lexikon__collapse__container"}>
-            {collapseData.map((e,i)=>{
-                return(
-                    <Collapse
-                        key={i}
-                        expandIconPosition='right'
-                        ghost='true'
-                    >
-                        <Panel header={`LEXIKON THEMA ${e.theme}`} key={0} >
-                            {e.component}
-                        </Panel>
-                    </Collapse>
-                )
-            })}
-        </div>
-    )
-}
+const LexikonCollapse = ({ theme }) => {
+  const { lexikonThemeData } = useSelector((state) => state.lexikon);
+  const { Panel } = Collapse;
+  const scrollToref = useRef();
+  return (
+    <div className={"lexikon__collapse__container"} ref={scrollToref}>
+      {lexikonThemeData?.map((e, i) => {
+        return (
+          <>
+            <Collapse
+              key={e?.theme}
+              expandIconPosition="right"
+              ghost="true"
+              activeKey={`${theme}`}
+              destroyInactivePanel={true}
+            >
+              <Panel header={`LEXIKON THEMA ${e.theme}`} key={e?.theme}>
+                <CollapseLeftImage data={e} />
+              </Panel>
+            </Collapse>
+          </>
+        );
+      })}
+    </div>
+  );
+};
 
-export default LexikonCollapse
+export default LexikonCollapse;
