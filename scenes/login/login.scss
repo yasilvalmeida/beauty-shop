@@ -124,7 +124,7 @@
         }
       }
       .login-right-mid-txt {
-        margin: 40px 0;
+        margin: 50px 0px;
         color: #000000;
         font-size: 2.3rem;
         font-weight: 300;
@@ -133,8 +133,8 @@
         line-height: 35px;
         text-align: left;
         text-transform: uppercase;
-        @media screen and(max-width: 1024px) {
-          margin: 30px 0;
+        @media screen and(max-width: 1100px) {
+          margin: 70px 0;
         }
       }
       .login-right-one {

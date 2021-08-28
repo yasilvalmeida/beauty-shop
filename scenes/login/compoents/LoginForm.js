@@ -13,7 +13,7 @@ import { notification, Tooltip } from "antd";
 
 const LoginForm = () => {
   const router = useRouter();
-
+  const { loginPageTextData } = useSelector((state) => state.auth);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -35,8 +35,8 @@ const LoginForm = () => {
       message: "",
       description:
         type === "success"
-          ? "Logged in successfully"
-          : "Please provide a correct email and password",
+          ? loginPageTextData?.message_success
+          : loginPageTextData?.message_fail,
     });
   };
   useEffect(() => {
@@ -47,10 +47,10 @@ const LoginForm = () => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [emailErrorMessage, setEmailErrorMessage] = useState(
-    "Please insert a valid email address."
+    loginPageTextData?.message_warning_email
   );
   const [passwordErrorMessage, setPasswordErrorMessage] = useState(
-    "Please insert a valid email password."
+    loginPageTextData?.message_warning_password
   );
   const handleLogin = (e) => {
     e.preventDefault();
@@ -71,10 +71,14 @@ const LoginForm = () => {
     } else {
       if (password.length < 8) {
         setPasswordError(true);
-        setPasswordErrorMessage("Password must be at least 8 characters");
+        setPasswordErrorMessage(
+          loginPageTextData?.message_warning_at_least_eight
+        );
       }
       if (password.length === 0) {
-        setPasswordErrorMessage("Password is required");
+        setPasswordErrorMessage(
+          loginPageTextData?.message_warning_password_required
+        );
       }
       if (
         !email.match(
@@ -82,10 +86,10 @@ const LoginForm = () => {
         )
       ) {
         setEmailError(true);
-        setEmailErrorMessage("Please insert a valid email address.");
+        setEmailErrorMessage(loginPageTextData?.message_warning_email);
       }
       if (email.length === 0) {
-        setEmailErrorMessage("Email is required");
+        setEmailErrorMessage(loginPageTextData?.message_warning_email_required);
       }
     }
   };
@@ -94,24 +98,19 @@ const LoginForm = () => {
     <>
       <div className={"login-scene d-flex"}>
         <div className={"login-scene-head"}>
-          <h2>Anmelden</h2>
-          {/* <Link href={"/"}>
-            <a className={"go-back"} href={"/"}>
-              Zurück
-            </a>
-          </Link> */}
+          <h2>{loginPageTextData?.header}</h2>
           <span className={"go-back"} onClick={() => router.back()}>
             <FontAwesomeIcon
               icon={faArrowLeft}
               className={"head-search-icon"}
             />{" "}
-            Zuruck
+            {loginPageTextData?.back}
           </span>
         </div>
         <div className={"login-scene-form-and-else d-flex flex-wrap"}>
           <div className={"left-of-login-form col-lg-5 d-flex"}>
             <div className={"left-login-form-one"}>
-              <h2>Kunden Log-in</h2>
+              <h2>{loginPageTextData?.login_title}</h2>
               <form action="#" onSubmit={handleLogin}>
                 <Tooltip
                   title={emailErrorMessage}
@@ -121,7 +120,7 @@ const LoginForm = () => {
                 >
                   <input
                     type="email"
-                    placeholder={"E-Mail-Adresse"}
+                    placeholder={loginPageTextData?.email}
                     className={`${emailError ? "input-error" : null}`}
                     value={email}
                     onChange={(e) => {
@@ -144,7 +143,7 @@ const LoginForm = () => {
                 >
                   <input
                     type="password"
-                    placeholder={"Passwort"}
+                    placeholder={loginPageTextData?.password}
                     value={password}
                     className={`${passwordError ? "input-error" : null}`}
                     onChange={(e) => {
@@ -158,9 +157,13 @@ const LoginForm = () => {
                   />
                 </Tooltip>
                 <div className={"forgot-pass-and-submit"}>
-                  <button type="submit">Anmelden</button>
+                  <button type="submit">
+                    {loginPageTextData?.login_button}
+                  </button>
                   <Link href={"/forgotpassword"}>
-                    <a href="/forgotpassword">Passwort vergessen</a>
+                    <a href="/forgotpassword">
+                      {loginPageTextData?.forgot_pasword}
+                    </a>
                   </Link>
                 </div>
               </form>
@@ -171,7 +174,7 @@ const LoginForm = () => {
                   <FontAwesomeIcon icon={faFacebookSquare} />
                 </span>
                 <span className="facebook-button--text">
-                  Mit Facebook anmelden
+                  {loginPageTextData?.facebook}
                 </span>
               </button>
               <button className="google-button">
@@ -179,23 +182,23 @@ const LoginForm = () => {
                   <FontAwesomeIcon icon={faGooglePlusSquare} />
                 </span>
                 <span className="google-button--text">
-                  Mit Google+ anmelden
+                  {loginPageTextData?.google}
                 </span>
               </button>
             </div>
           </div>
           <div className={"col-lg-5 login-right-form"}>
             <div className={"login-right-one"}>
-              <h2>Noch kein Konto? Registrieren</h2>
+              <h2>{loginPageTextData?.create_title}</h2>
               <Link href="/registrieren">
-                <button>Konto erstellen</button>
+                <button>{loginPageTextData?.create_button}</button>
               </Link>
             </div>
-            <p className={"login-right-mid-txt"}>ODER</p>
+            <p className={"login-right-mid-txt"}>{loginPageTextData?.or}</p>
             <div className={"login-right-two"}>
-              <button>Gast</button>
+              <button>{loginPageTextData?.guest_button}</button>
               <Link href={"/order"}>
-                <a href="/order">Direkt per Paypal oder amazon pay bezahlen</a>
+                <a href="/order">{loginPageTextData?.pay_direct}</a>
               </Link>
             </div>
             <div className={"login-right-three d-flex flex-wrap"}>
@@ -211,6 +214,7 @@ const LoginForm = () => {
                   src="./paypallogin.png"
                   alt="paypal"
                   className={"col-lg-6"}
+                  f
                 />
               </div>
             </div>

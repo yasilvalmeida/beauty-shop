@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import { Spin, Space } from "antd";
+import Loader from "../../shareable/Loader";
 
 const Navbar = () => {
   const navListState = useSelector((state) => state.navbar.navList);
@@ -65,11 +65,7 @@ const Navbar = () => {
   return (
     <>
       {navList.length === 0 ? (
-        <div className={"loader__component"}>
-          <Space size="middle">
-            <Spin size="large" />
-          </Space>
-        </div>
+        <Loader type={"component"} />
       ) : (
         <>
           <div className={"navbar-body"}>

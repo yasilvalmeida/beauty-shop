@@ -5,7 +5,7 @@ import HeadTextLexikon from "./components/head-text/HeadTextLexikon";
 import LexikonFilter from "./components/lexikon-filter/LexikonFilter";
 import LexikonCollapse from "./components/collapse/LexikonCollapse";
 import NewsletterRep from "../../shareable/newsLetter/NewsletterRep";
-import { Space, Spin } from "antd";
+import Loader from "../../shareable/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getUserDataFromLocalStorage } from "../../services/actions/auth";
@@ -38,11 +38,7 @@ const LexikonScene = () => {
       <PageHeader />
       <MobileHeader />
       {lexikonThemeLoading ? (
-        <div className={"loader__body"}>
-          <Space size="middle">
-            <Spin size="large" />
-          </Space>
-        </div>
+        <Loader type={"component"} />
       ) : (
         <div className={"lexikon__body__for__all"}>
           <HeadTextLexikon />

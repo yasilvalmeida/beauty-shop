@@ -7,7 +7,7 @@ import { getCheckoutPageData } from "../../services/actions/checkout";
 import PageHeader from "../../layouts/header/Header";
 import MobileHeader from "../../layouts/mobile-header/MobileHeader";
 import Footer from "../../layouts/footer/Footer";
-import { Space, Spin } from "antd";
+import Loader from "../../shareable/Loader";
 
 const CheckoutScene = () => {
   const dispatch = useDispatch();
@@ -29,11 +29,7 @@ const CheckoutScene = () => {
       <PageHeader />
       <MobileHeader />
       {checkoutPageLoading ? (
-        <div className={"loader__component"}>
-          <Space size="middle">
-            <Spin size="large" />
-          </Space>
-        </div>
+        <Loader type={"component"} />
       ) : (
         <div className={"checkout__scene__container"}>
           <div className={"checkout__scene__container--title"}>

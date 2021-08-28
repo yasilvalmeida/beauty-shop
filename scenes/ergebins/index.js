@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getUserDataFromLocalStorage } from "../../services/actions/auth";
 import { getErgebnisPageText } from "../../services/actions/ergebnis";
-import { Space, Spin, Steps } from "antd";
+import Loader from "../../shareable/Loader";
 
 const ErgebnisScene = () => {
   const dispatch = useDispatch();
@@ -27,11 +27,7 @@ const ErgebnisScene = () => {
       <Header />
       <MobileHeader />
       {pageLoading ? (
-        <div className={"loader__component"}>
-          <Space size="middle">
-            <Spin size="large" />
-          </Space>
-        </div>
+        <Loader type={"component"} />
       ) : (
         <>
           <ErgebnisProducts />

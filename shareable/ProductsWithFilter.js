@@ -7,6 +7,7 @@ import { addToBasket } from "../services/actions/basket";
 import { getProductsByCategories } from "../services/actions/products";
 import { Spin, Space } from "antd";
 import ProductInformation from "../shareable/Products/ProductInformation";
+import Loader from "../shareable/Loader";
 
 const formatter = new Intl.NumberFormat("de-DE", {
   style: "currency",
@@ -146,11 +147,7 @@ const ProductsWithFilter = ({
           </div>
         </div>
         {productsByCategories?.length === 0 ? (
-          <div className={"loader__component"}>
-            <Space size="middle">
-              <Spin size="large" />
-            </Space>
-          </div>
+          <Loader type={"component"} />
         ) : (
           <div>
             <div

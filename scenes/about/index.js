@@ -6,11 +6,11 @@ import SecondAboutSection from "./components/secondSection/SecondSection";
 import ThirdAboutSection from "./components/thirdsection/ThirdSection";
 import Social from "../../shareable/social/Social";
 import NewsletterRep from "../../shareable/newsLetter/NewsletterRep";
+import Loader from "../../shareable/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getUserDataFromLocalStorage } from "../../services/actions/auth";
 import { getAboutText } from "../../services/actions/about_page";
-import { Space, Spin } from "antd";
 import { getFirstAndSecondThreeProducts } from "../../services/actions/products";
 
 const AboutScene = () => {
@@ -50,11 +50,7 @@ const AboutScene = () => {
       <MobileHeader />
       <div className="about-main-body">
         {loading ? (
-          <div className={"loader__component"}>
-            <Space size="middle">
-              <Spin size="large" />
-            </Space>
-          </div>
+          <Loader type={"component"} />
         ) : (
           <>
             <HeadText aboutText={aboutText} />

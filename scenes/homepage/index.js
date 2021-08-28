@@ -24,7 +24,7 @@ import { useEffect, useState } from "react";
 import Header from "../../layouts/header/Header";
 import MobileHeader from "../../layouts/mobile-header/MobileHeader";
 import Footer from "../../layouts/footer/Footer";
-import { Spin, Space } from "antd";
+import Loader from "../../shareable/Loader";
 import Services from "../../shareable/services/Services";
 import RenderModal from "./components/render-modal/RenderModal";
 import {
@@ -108,11 +108,7 @@ const Homepage = () => {
       <Header />
       <MobileHeader />
       {homeLoader ? (
-        <div className={"loader__component"}>
-          <Space size="middle">
-            <Spin size="large" />
-          </Space>
-        </div>
+        <Loader type={"component"} />
       ) : (
         <>
           <RenderModal

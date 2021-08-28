@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getUserDataFromLocalStorage } from "../../services/actions/auth";
 import { getApprovedData } from "../../services/actions/approved";
-import { Spin, Space } from "antd";
+import Loader from "../../shareable/Loader";
 
 const ApprovedScene = () => {
   const dispatch = useDispatch();
@@ -35,11 +35,7 @@ const ApprovedScene = () => {
       <MobileHeader />
       <div className={"approved-body"}>
         {loading ? (
-          <div className={"loader__component"}>
-            <Space size="middle">
-              <Spin size="large" />
-            </Space>
-          </div>
+          <Loader type={"component"} />
         ) : (
           <>
             <HeadTextThree

@@ -21,7 +21,7 @@ import {
 import { getUserDataFromLocalStorage } from "../../services/actions/auth";
 import { getNewsReport } from "../../services/actions/news";
 import { getProductsWithLeftTextOne } from "../../services/actions/landing";
-import { Space, Spin } from "antd";
+import Loader from "../../shareable/Loader";
 import MobileHeader from "../../layouts/mobile-header/MobileHeader";
 import Footer from "../../layouts/footer/Footer";
 import PageHeader from "../../layouts/header/Header";
@@ -85,11 +85,7 @@ const HerrenScene = () => {
           </div>
         </>
       ) : (
-        <div className={"loader__body"}>
-          <Space size="middle">
-            <Spin size="large" />
-          </Space>
-        </div>
+        <Loader type={"component"} />
       )}
       <Footer />
     </>

@@ -2,11 +2,10 @@ import PageHeader from "../../../layouts/header/Header";
 import MobileHeader from "../../../layouts/mobile-header/MobileHeader";
 import Footer from "../../../layouts/footer/Footer";
 import CustomStep from "./components/steps/CustomStep";
-const { Step } = Steps;
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { Space, Spin, Steps, Popover } from "antd";
+import { Steps, Popover } from "antd";
 import {
   getCheckoutPageData,
   getCheckoutPageStepData,
@@ -15,10 +14,12 @@ import StepOne from "./components/step-one/StepOne";
 import StepTwo from "./components/step-two/StepTwo";
 import StepThree from "./components/step-three/StepThree";
 import StepFour from "./components/step-four/StepFour";
+import Loader from "../../../shareable/Loader";
 
 const CheckoutStepScene = () => {
   const dispatch = useDispatch();
   const router = useRouter();
+  const { Step } = Steps;
   const lang = useSelector((state) => state.header.headerLanguage);
   const {
     checkoutPageData,
@@ -95,11 +96,7 @@ const CheckoutStepScene = () => {
       <PageHeader />
       <MobileHeader />
       {checkoutPageStepLoading && checkoutPageLoading ? (
-        <div className={"loader__component"}>
-          <Space size="middle">
-            <Spin size="large" />
-          </Space>
-        </div>
+        <Loader type={"component"} />
       ) : (
         <div className={"checkout__step__scene__body"}>
           <div className={"checkout__step__scene__body__header"}>

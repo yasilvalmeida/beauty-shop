@@ -1,6 +1,7 @@
 import { Collapse } from "antd";
 import { useState } from "react";
 import CheckoutModal from "../checkout-modal/CheckoutModal";
+
 const CheckoutProductsData = ({ checkoutPageData }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const showModal = () => {

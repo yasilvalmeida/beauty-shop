@@ -1,14 +1,10 @@
-import { Space, Spin } from "antd";
+import Loader from "../../Loader";
 
 const Products = ({ aboutText, products }) => {
   return (
     <>
       {products?.length === 0 ? (
-        <div className={"loader__component"}>
-          <Space size="middle">
-            <Spin size="large" />
-          </Space>
-        </div>
+        <Loader type={"component"} />
       ) : (
         <div className={"about-products-list"}>
           {products.map((product, i) => {

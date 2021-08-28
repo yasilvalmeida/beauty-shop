@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getContactData } from "../../services/actions/contact";
 import { getUserDataFromLocalStorage } from "../../services/actions/auth";
-import { Space, Spin } from "antd";
+import Loader from "../../shareable/Loader";
 
 const ContactScene = () => {
   const dispatch = useDispatch();
@@ -29,11 +29,7 @@ const ContactScene = () => {
       <MobileHeader />
       <div className={"contact__scene__body"}>
         {textDataLoaded ? (
-          <div className={"loader__component"}>
-            <Space size="middle">
-              <Spin size="large" />
-            </Space>
-          </div>
+          <Loader type={"component"} />
         ) : (
           <>
             <ContactHeader img={textData?.images?.url} />

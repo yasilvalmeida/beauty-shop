@@ -9,7 +9,7 @@ import CartSidebar from "../cartSidebar/CartSidebar";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import { getBasketData } from "../../services/actions/basket";
-import { Spin, Space } from "antd";
+import Loader from "../../shareable/Loader";
 
 const MobileHeader = () => {
   const dispatch = useDispatch();
@@ -99,11 +99,7 @@ const MobileHeader = () => {
       <div className="mobileHeader__container">
         <div className="mobileHeader__container__icon--menu">
           {navList?.length === 0 ? (
-            <div className={"loader__component"}>
-              <Space size="middle">
-                <Spin size="large" />
-              </Space>
-            </div>
+            <Loader type={"component"} />
           ) : (
             <MenuOutlined onClick={showDrawer} />
           )}
