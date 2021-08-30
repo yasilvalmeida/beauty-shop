@@ -33,12 +33,12 @@ export const getVideoText = (lang) => {
   };
 };
 
-export const getVideoData = () => {
+export const getVideoData = (lang) => {
   return (dispatch) => {
     dispatch({ type: GET_VIDEO_DATA });
 
     axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/videos`)
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/videos?_locale=${lang}`)
       .then((res) => {
         const { data } = res;
 

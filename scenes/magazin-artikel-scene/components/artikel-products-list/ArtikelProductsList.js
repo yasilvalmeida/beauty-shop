@@ -3,9 +3,9 @@ import MagazinProducts from "../../../../shareable/Products/magazin-products/Mag
 const ProductsList = () =>{
     const products = [
         {id:0,nohovertext1:"Places to go", nohovertext2:"Lorem ipsum dolor sit amet,consectetur adipisicing elit. Blanditiis, commodi, suscipit.", name:"Ylumi", type:"energy kapseln", type2:"kapseln", price:"28,00 €", image:"/item.png"},
-        {id:1,nohovertext1:"Places to go", nohovertext2:"Lorem ipsum dolor sit amet,consectetur adipisicing elit. Blanditiis, commodi, suscipit.", name:"Ylumi", type:"energy kapseln", type2:"kapseln", price:"28,00 €", image:"/item.png"},
-        {id:2,nohovertext1:"Places to go", nohovertext2:"Lorem ipsum dolor sit amet,consectetur adipisicing elit. Blanditiis, commodi, suscipit.", name:"Ylumi", type:"energy kapseln", type2:"kapseln", price:"28,00 €", image:"/item.png"},
-        {id:3,nohovertext1:"Places to go", nohovertext2:"Lorem ipsum dolor sit amet,consectetur adipisicing elit. Blanditiis, commodi, suscipit.", name:"Ylumi", type:"energy kapseln", type2:"kapseln", price:"28,00 €", image:"/item.png"},
+        {id:1,nohovertext1:"Places to go", nohovertext2:"Lorem ipsum dolor sit amet,consectetur adipisicing elit. Blanditiis, commodi, suscipit.", name:"Ylumi", type:"energy kapseln", type2:"kapseln", price:"38,00 €", image:"/item.png"},
+        {id:2,nohovertext1:"Places to go", nohovertext2:"Lorem ipsum dolor sit amet,consectetur adipisicing elit. Blanditiis, commodi, suscipit.", name:"Ylumi", type:"energy kapseln", type2:"kapseln", price:"48,00 €", image:"/item.png"},
+        {id:3,nohovertext1:"Places to go", nohovertext2:"Lorem ipsum dolor sit amet,consectetur adipisicing elit. Blanditiis, commodi, suscipit.", name:"Ylumi", type:"energy kapseln", type2:"kapseln", price:"58,00 €", image:"/item.png"},
     ]
     return(
         <div className={"artikel__products__body"}>

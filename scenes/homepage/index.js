@@ -78,6 +78,7 @@ const Homepage = () => {
     dispatch(getNewsSectionText(lang));
     dispatch(getDPABMagazineText(lang));
     dispatch(getDPABBottomText(lang));
+    dispatch(getVideoData(lang));
   }, [lang]);
   useEffect(() => {
     setProductsFirst(prdctsFirst);
@@ -86,7 +87,6 @@ const Homepage = () => {
     setProductsSecond(prdctsSecond);
   }, [prdctsSecond]);
   useEffect(() => {
-    dispatch(getVideoData());
     dispatch(getNewsReport());
     dispatch(getHomePageSctOne());
     dispatch(getMidFoot());

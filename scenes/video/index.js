@@ -1,76 +1,96 @@
-import ComponentHeader from '../../shareable/component-header/ComponentHeader';
-import MediatekInfo from './components/mediatek-info/MediatekInfo';
-import VideoPart from '../homepage/components/video/VideoPart'
-import VideosContainer from './components/video-container/VideosContainer'
-import Social from '../../shareable/social/Social';
+import ComponentHeader from "../../shareable/component-header/ComponentHeader";
+import MediatekInfo from "./components/mediatek-info/MediatekInfo";
+import VideoPart from "../homepage/components/video/VideoPart";
+import VideosContainer from "./components/video-container/VideosContainer";
+import Social from "../../shareable/social/Social";
 import NewsletterRep from "../../shareable/newsLetter/NewsletterRep";
-import {useDispatch, useSelector} from "react-redux";
-import {useEffect, useState} from "react";
-import {getUserDataFromLocalStorage} from "../../services/actions/auth";
-import {filterVideos, getVideos, getVideoText} from "../../services/actions/video";
+import Loader from "../../shareable/Loader";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { getUserDataFromLocalStorage } from "../../services/actions/auth";
+import {
+  filterVideos,
+  getVideoData,
+  getVideoText,
+} from "../../services/actions/video";
 
 const Video = () => {
-    const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const lang = useSelector((state) => state.header.headerLanguage);
+  const { filtered } = useSelector((state) => state.video);
+  const { videoTextLoaded, videoTextData, videoLoaded, videoData } =
+    useSelector((state) => state.video);
+  const [activeIndex, setActiveIndex] = useState();
+  const [infoFilter, setInfoFilter] = useState({ type: "", checked: false });
+  const info = videoData?.map((e) => {
+    return e.type.toUpperCase();
+  });
 
-    useEffect(() => {
-        dispatch(getUserDataFromLocalStorage());
-        dispatch(getVideoText())
-        dispatch(getVideos())
-    }, []);
+  console.log("aux-data", videoData);
+  console.log("aux-type", info);
 
-    const {videoText} = useSelector(state => state.video)
-    const {videos} = useSelector(state => state.video)
-    const {videosLoaded} = useSelector(state => state.video)
+  useEffect(() => {
+    //setActiveIndex(videoData[0]?.id);
+  }, [videoLoaded]);
+  useEffect(() => {
+    let a = [];
+    videoData?.map((e) => {
+      if (e.type.toUpperCase() === infoFilter.type) {
+        a.push(e);
+      }
+    });
+    if (infoFilter.type !== "" && infoFilter.checked) {
+      dispatch(filterVideos(a));
+    } else dispatch(filterVideos([]));
+  }, [infoFilter]);
+  useEffect(() => {
+    dispatch(getUserDataFromLocalStorage());
+  }, []);
+  useEffect(() => {
+    dispatch(getVideoText(lang));
+    dispatch(getVideoData(lang));
+  }, [lang]);
+  useEffect(() => {
+    if (filtered.length !== 0) {
+      setActiveIndex(filtered[0]?.id);
+    }
+  }, [filtered]);
 
-    const [activeIndex, setActiveIndex] = useState()
-
-    useEffect(() => {
-        setActiveIndex(videos[0]?.id)
-    }, [videosLoaded])
-
-    const info = videos.map(e => {
-        return e.type.toUpperCase()
-    })
-
-    const [infoFilter, setInfoFilter] = useState({type: "", checked: false})
-
-    useEffect(() => {
-        let a = []
-        videos.map(e => {
-            if (e.type.toUpperCase() === infoFilter.type) {
-                a.push(e)
+  return (
+    <div>
+      {videoTextLoaded && videoLoaded ? (
+        <Loader type={"component"} />
+      ) : (
+        <>
+          <ComponentHeader
+            info={videoTextData?.header}
+            title={videoTextData?.title}
+          />
+          <MediatekInfo
+            info={info}
+            setInfo={setInfoFilter}
+            checked={infoFilter.checked}
+            filter={infoFilter}
+          />
+          <VideoPart
+            text={videoTextData?.text}
+            video={
+              filtered.length !== 0
+                ? filtered.find((item) => item.id === activeIndex)
+                : videoData?.find((item) => item.id === activeIndex)
             }
-        })
-        if (infoFilter.type !== "" && infoFilter.checked) {
-            dispatch(filterVideos(a))
-        } else dispatch(filterVideos([]))
-    }, [infoFilter])
-
-    const {filtered} = useSelector(state => state.video)
-
-    useEffect(() => {
-        if (filtered.length !== 0) {
-            setActiveIndex(filtered[0]?.id)
-        }
-    }, [filtered])
-
-    return (
-        <div>
-            <ComponentHeader
-                info={videoText?.header}
-                title={videoText?.title}
-            />
-            <MediatekInfo info={info} setInfo={setInfoFilter} checked={infoFilter.checked} filter={infoFilter}/>
-            <VideoPart text={videoText?.video_text}
-                       video={filtered.length !== 0 ?
-                           filtered.find(item => item.id === activeIndex) :
-                           videos.find(item => item.id === activeIndex)}/>
-            <VideosContainer videos={filtered.length !== 0 ? filtered : videos} activeIndex={activeIndex}
-                             setActiveIndex={setActiveIndex}/>
-            <Social/>
-            <NewsletterRep/>
-        </div>
-    );
+          />
+          <VideosContainer
+            videos={filtered.length !== 0 ? filtered : videoData}
+            activeIndex={activeIndex}
+            setActiveIndex={setActiveIndex}
+          />
+        </>
+      )}
+      <Social />
+      <NewsletterRep />
+    </div>
+  );
 };
 
 export default Video;
