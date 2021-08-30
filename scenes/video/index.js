@@ -26,11 +26,10 @@ const Video = () => {
     return e.type.toUpperCase();
   });
 
-  console.log("aux-data", videoData);
-  console.log("aux-type", info);
-
   useEffect(() => {
-    //setActiveIndex(videoData[0]?.id);
+    if (videoData?.length > 0) {
+      setActiveIndex(videoData[0]?.id);
+    }
   }, [videoLoaded]);
   useEffect(() => {
     let a = [];

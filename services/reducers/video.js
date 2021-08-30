@@ -65,33 +65,22 @@ const videoReducer = (state = initialState, { type, payload }) => {
         videoLoaded: false,
         videoData: payload,
       };
-    /* case GET_VIDEOS:
-      return {
-        ...state,
-        videosLoaded: true,
-      };
-    case SET_VIDEOS:
-      return {
-        ...state,
-        videos: payload,
-        videosLoaded: false,
-      }; */
     case SET_CHANGEABLE_VIDEOS:
       return {
         ...state,
-        videosForSelect: state.videos.filter(
-          (item) => item.id !== state.videos[0].id
+        videosForSelect: state.videoData?.filter(
+          (item) => item.id !== state.videoData[0].id
         ),
       };
     case CHANGE_VIDEO:
       return {
         ...state,
-        videosForSelect: state.videos.filter((item) => item.id !== payload),
+        videosForSelect: state.videoData?.filter((item) => item.id !== payload),
       };
     case ADD_TO_BOOKMARK:
       return {
         ...state,
-        videos: state.videos.map((e) => {
+        videos: state.videoData?.map((e) => {
           if (payload.id === e.id) {
             if (payload.data.isFavorite !== undefined) {
               e.favorite = payload.data.isFavorite;
