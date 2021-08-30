@@ -28,7 +28,7 @@ import {
   getBrandsProductsThree,
   getBrandsProductsTwo,
 } from "../../services/actions/brands";
-import { Space, Spin } from "antd";
+import Loader from "../../shareable/Loader";
 
 const SingleBrandScene = () => {
   const dispatch = useDispatch();
@@ -51,11 +51,7 @@ const SingleBrandScene = () => {
   return (
     <>
       {loader ? (
-        <div className={"loader__body"}>
-          <Space size="middle">
-            <Spin size="large" />
-          </Space>
-        </div>
+        <Loader type={"component"} />
       ) : (
         <>
           <Header />
@@ -87,8 +83,7 @@ const SingleBrandScene = () => {
               addToWishList={addToWishList}
               getFour={getProductsWithFilter}
             />
-            
-            
+
             <BrandPortrait
               data={{
                 title: data?.brand_portrait_title,

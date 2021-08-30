@@ -2,11 +2,11 @@ import Header from "../../layouts/header/Header";
 import MobileHeader from "../../layouts/mobile-header/MobileHeader";
 import Footer from "../../layouts/footer/Footer";
 import ContactHeader from "../../shareable/contact-header/ContactHeader";
+import Loader from "../../shareable/Loader";
 import Marken from "./components/marken/Marken";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMarkens, getMarkenText } from "../../services/actions/marken";
-import { Space, Spin } from "antd";
 
 const MarkenScene = () => {
   const dispatch = useDispatch();
@@ -35,17 +35,10 @@ const MarkenScene = () => {
       {loaded ? (
         <>
           <ContactHeader img={textData?.image?.url} />
-          <Marken
-            textData={textData}
-            manufactories={manufactories}
-          />
+          <Marken textData={textData} manufactories={manufactories} />
         </>
       ) : (
-        <div className={"loader__component"}>
-          <Space size="middle">
-            <Spin size="large" />
-          </Space>
-        </div>
+        <Loader type={"component"} />
       )}
       <Footer />
     </>

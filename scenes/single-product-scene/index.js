@@ -14,7 +14,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { getUserDataFromLocalStorage } from "../../services/actions/auth";
 import { useRouter } from "next/router";
-import { Spin, Space } from "antd";
+import Loader from "../../shareable/Loader";
 import { getSingleProductText } from "../../services/actions/single-product";
 
 const SingleProductScene = () => {
@@ -33,11 +33,7 @@ const SingleProductScene = () => {
   return (
     <>
       {loaded ? (
-        <div className={"loader__body"}>
-          <Space size="middle">
-            <Spin size="large" />
-          </Space>
-        </div>
+        <Loader type={"component"} />
       ) : (
         <>
           <Header />

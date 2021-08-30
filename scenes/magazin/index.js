@@ -2,6 +2,7 @@ import ComponentHeaderBody from "./components/component-header-body/ComponentHea
 import AddSection from "./components/add-section/AddSection";
 import ProductsList from "./components/products-list-top/ProductsList";
 import MagazinSecondSection from "./components/magazin-second-section/MagazinSecondSection";
+import Loader from "../../shareable/Loader";
 import Social from "../../shareable/social/Social";
 import NewsletterRep from "../../shareable/newsLetter/NewsletterRep";
 import BeautyEssentials from "./components/beauty-esentials/BeautyEsentials";
@@ -30,6 +31,7 @@ const MagazinScene = () => {
 
   return (
     <div className={"magazin__all__elements"}>
+      {/* <Loader type={"component"} /> */}
       <ComponentHeaderBody />
       <AddSection addData1={addData1} addData2={addData2} addData3={addData3} />
       <ProductsList />
