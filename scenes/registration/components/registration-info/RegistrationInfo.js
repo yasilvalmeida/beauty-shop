@@ -1,4 +1,5 @@
 import Icons from "./info-icons/InfoIcons";
+
 const RegistrationInfo = ({ textData }) => {
   return (
     <div className={"registration__info__container"}>
