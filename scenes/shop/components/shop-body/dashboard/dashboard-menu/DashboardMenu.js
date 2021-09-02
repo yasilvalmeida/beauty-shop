@@ -1,6 +1,7 @@
-import { Collapse } from 'antd';
-import DashboardMenuRadio from './dashboard-menu-panel/DashboardMenuRadio';
+import { Collapse } from "antd";
+import DashboardMenuRadio from "./dashboard-menu-panel/DashboardMenuRadio";
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const DashboardMenu = ({
   data,
@@ -10,9 +11,11 @@ const DashboardMenu = ({
   setCurrent,
   current,
   scrollToref,
-  brand, 
-  category
+  brand,
+  category,
+  type
 }) => {
+  const lang = useSelector((state) => state.navbar.selectedLanguage);
   const { Panel } = Collapse;
   const [key, setKey] = useState(category ? 0 : brand ? 1 : "");
   useEffect(() => {
@@ -34,11 +37,14 @@ const DashboardMenu = ({
           defaultActiveKey={`${key}`}
           accordion
           ghost={true}
-          key={i}
+          key={`${i}-${lang}-${type}`}
         >
-          <Panel header={`${item.title} (${item.data.length}):`} key={`p-${i}`}>
+          <Panel
+            header={`${item.title} (${item.data.length}):`}
+            key={`${item.title}-${i}-${type}`}
+          >
             <DashboardMenuRadio
-              key={`d-${i}`}
+              key={`${item.title}-${i}-${type}`}
               data={item.data}
               topic={item.title}
               setFilterType={setFilterType}
@@ -49,6 +55,7 @@ const DashboardMenu = ({
               scrollToref={scrollToref}
               brand={brand}
               category={category}
+              type={type}
             />
           </Panel>
         </Collapse>

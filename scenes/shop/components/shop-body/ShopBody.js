@@ -1,7 +1,7 @@
-import Dashboard from './dashboard/Dashboard';
-import MobileFilter from './mobile-filter/MobileFilter';
-import ShopBodyContainer from './shop-body-container/ShopBodyContainer';
-import ShopBodyHeader from './shop-body-header/ShopBodyHeader';
+import Dashboard from "./dashboard/Dashboard";
+import MobileFilter from "./mobile-filter/MobileFilter";
+import ShopBodyContainer from "./shop-body-container/ShopBodyContainer";
+import ShopBodyHeader from "./shop-body-header/ShopBodyHeader";
 import { useEffect, useState, useRef } from "react";
 
 const ShopBody = ({ brand, category }) => {
@@ -55,8 +55,18 @@ const ShopBody = ({ brand, category }) => {
           scrollToref={scrollToref}
           brand={brand}
           category={category}
+          type={"web"}
         />
-        <MobileFilter />
+        <MobileFilter
+          setFilterType={setFilterType}
+          setFilterId={setFilterId}
+          maxItemAllowed={maxItemAllowed}
+          setCurrent={setCurrent}
+          current={current}
+          scrollToref={scrollToref}
+          brand={brand}
+          category={category}
+        />
         <ShopBodyContainer
           selected={selected}
           filterType={filterType}

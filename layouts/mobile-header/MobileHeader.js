@@ -135,7 +135,7 @@ const MobileHeader = () => {
             <MobileCard
               title={<Link href={`/${e?.url}`}>{e?.name}</Link>}
               data={e}
-              key={i}
+              key={`${e?.url}-${i}`}
               classValue="without-body"
             />
           );

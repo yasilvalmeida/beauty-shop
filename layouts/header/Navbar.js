@@ -75,7 +75,7 @@ const Navbar = () => {
                   {navList.map((e, i) => {
                     return (
                       <li
-                        key={i}
+                        key={`${i}-${e?.url}`}
                         className={`main-list ${
                           e?.categories?.length > 0
                             ? "main-list-with-hover"
@@ -104,10 +104,10 @@ const Navbar = () => {
                           <>
                             <div className={"hovered"}>
                               <ul>
-                                {e?.categories?.map((category) => (
+                                {e?.categories?.map((category, i) => (
                                   <li
                                     className={"nav-hov-links"}
-                                    key={category?.id}
+                                    key={`${category?.id}-${i}`}
                                   >
                                     <Link
                                       href={

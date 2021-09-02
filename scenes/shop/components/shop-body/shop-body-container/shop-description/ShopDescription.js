@@ -1,16 +1,14 @@
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 
 const ShopDescription = () => {
-  const text= useSelector(({ news }) => news.shopPageLg);
+  const { shopPageTextData } = useSelector((state) => state.shop);
   return (
-      <div className='shop__description'>
-        <h5 className='shop__description--title'>
-          {text[0]?.header}
-        </h5>
-        <p className='shop__description--text'>
-          {text[0]?.text}
-        </p>
-      </div>
+    <div className="shop__description">
+      <h5 className="shop__description--title">
+        {shopPageTextData?.bottom_header}
+      </h5>
+      <p className="shop__description--text">{shopPageTextData?.bottom_text}</p>
+    </div>
   );
 };
 

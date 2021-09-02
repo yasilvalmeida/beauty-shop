@@ -1,28 +1,31 @@
-import Image from 'next/image';
-import {useSelector} from "react-redux";
+import Image from "next/image";
+import { useSelector } from "react-redux";
 
 const ShopHeaderMobile = () => {
-  const news = useSelector(({ news }) => news);
-  const  shopHeadOne = news.newsReports.find(n => n.position === 'ShopPageOne');
+  const { shopPageTextData } = useSelector((state) => state.shop);
   return (
-    <div className='shopHeader__container__mobile'>
-      <div className='shopHeader__container__info'>
-        <span className='shopHeader__container__info--label'>
-          {shopHeadOne?.header}
+    <div className="shopHeader__container__mobile">
+      <div className="shopHeader__container__info">
+        <span className="shopHeader__container__info--label">
+          {shopPageTextData?.top_title}
         </span>
-        <span className='shopHeader__container__info--title'>
-          {shopHeadOne?.title}
+        <span className="shopHeader__container__info--title">
+          {shopPageTextData?.top_header}
         </span>
-        <div className='shopHeader__container__images'>
+        <div className="shopHeader__container__images">
           <Image
             width={941}
             height={624}
-            layout='responsive'
-            src={`${shopHeadOne?.images.url || '/productbotleft.png'}`}
+            layout="responsive"
+            src={`${
+              shopPageTextData?.top_image?.length > 0
+                ? shopPageTextData?.top_image[0]?.url
+                : "/productbotleft.png"
+            }`}
           />
         </div>
-        <span className='shopHeader__container__info--description'>
-          {shopHeadOne?.text}
+        <span className="shopHeader__container__info--description">
+          {shopPageTextData?.top_text}
         </span>
       </div>
     </div>

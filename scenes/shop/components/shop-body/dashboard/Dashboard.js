@@ -1,8 +1,6 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import DashboardMenu from "./dashboard-menu/DashboardMenu";
-import { getCategories } from "../../../../../services/actions/categories";
-import { getManufactories } from "../../../../../services/actions/manufactories";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const Dashboard = ({
   setFilterType,
@@ -13,12 +11,14 @@ const Dashboard = ({
   scrollToref,
   brand,
   category,
+  type
 }) => {
   const navListState = useSelector((state) => state.navbar.navList);
   let manufactoriesState = useSelector(
     (state) => state.manufactory.manufactories
   );
-  const lang = useSelector((state) => state?.navbar?.selectedLanguage);
+  const lang = useSelector((state) => state.navbar.selectedLanguage);
+  const { shopPageTextData } = useSelector((state) => state.shop);
   const categories = [];
   const manufactories = manufactoriesState;
   categories.unshift({
@@ -48,13 +48,13 @@ const Dashboard = ({
       id: 0,
       name: "Keiner",
     });
-  }, [manufactoriesState]);
+  }, []);
 
   const data = {
     titles: [
-      { title: "KATEGORIEN", data: categories },
+      { title: shopPageTextData?.category || "KATEGORIEN", data: categories },
       /* { title: "SHOP BY", data: [] }, */
-      { title: "MARKEN", data: manufactories },
+      { title: shopPageTextData?.brand || "MARKEN", data: manufactories },
       /* { title: "WIRKSTOFFE", data: [] },
       { title: "DUFT ANLASS", data: [] },
       { title: "DUFTNOTEN", data: [] },
@@ -64,19 +64,22 @@ const Dashboard = ({
   };
 
   return (
-    <div className="dashboard__container">
-      <DashboardMenu
-        data={data}
-        setFilterType={setFilterType}
-        setFilterId={setFilterId}
-        maxItemAllowed={maxItemAllowed}
-        setCurrent={setCurrent}
-        current={current}
-        scrollToref={scrollToref}
-        brand={brand}
-        category={category}
-      />
-    </div>
+    <>
+      <div className={`dashboard__${type}__container`}>
+        <DashboardMenu
+          data={data}
+          setFilterType={setFilterType}
+          setFilterId={setFilterId}
+          maxItemAllowed={maxItemAllowed}
+          setCurrent={setCurrent}
+          current={current}
+          scrollToref={scrollToref}
+          brand={brand}
+          category={category}
+          type={type}
+        />
+      </div>
+    </>
   );
 };
 

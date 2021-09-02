@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import PagePagination from '../../../../../shareable/pagination/Pagination';
-import InfoContainer from '../../../../../shareable/info-container/InfoContainer';
-import ShopDescription from './shop-description/ShopDescription';
+import React, { useCallback, useEffect, useState } from "react";
+import PagePagination from "../../../../../shareable/pagination/Pagination";
+import InfoContainer from "../../../../../shareable/info-container/InfoContainer";
+import ShopDescription from "./shop-description/ShopDescription";
 import { useDispatch, useSelector } from "react-redux";
 import { addToWishList } from "../../../../../services/actions/products";
 import { useRouter } from "next/router";
@@ -24,20 +24,12 @@ const ShopBodyContainer = ({
 }) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const productsData = useSelector((state) => state.shop.shopProducts);
-  const loaded = useSelector((state) => state.shop.loaded);
+  const { loaded, count, shopProducts, staticShopProducts } = useSelector(
+    (state) => state.shop
+  );
   const lang = useSelector((state) => state?.navbar?.selectedLanguage);
-  const staticData = useSelector((state) => state.shop.staticShopProducts);
-  const count = useSelector((state) => state.shop.count);
-  const news = useSelector(({ news }) => news);
   const [products, setProducts] = useState([]);
 
-  const shopHeadTwo = news.newsReports.find(
-    (n) => n.position === "ShopPageTwo"
-  );
-  const shopHeadThree = news.newsReports.find(
-    (n) => n.position === "ShopPageThree"
-  );
   const { isAuthenticated } = useSelector((state) => state.auth);
   const favouriteClickHandler = (id, variantId) => {
     if (!isAuthenticated) {
@@ -45,12 +37,12 @@ const ShopBodyContainer = ({
     }
     dispatch(addToWishList(id, variantId));
   };
-  
+
   const [minValue, setMinValue] = useState(0);
   const [maxValue, setMaxValue] = useState(maxItemAllowed);
-  
+
   const handleBegin = () => {
-    setCurrent(1)
+    setCurrent(1);
   };
   const handlePrev = () => {
     setCurrent((prev) => prev - 1);
@@ -79,12 +71,14 @@ const ShopBodyContainer = ({
       setMaxValue(current * maxItemAllowed);
     }
     scrollToref.current.scrollIntoView();
-    dispatch(getShopProducts(current, maxItemAllowed, filterType, filterId, lang));
+    dispatch(
+      getShopProducts(current, maxItemAllowed, filterType, filterId, lang)
+    );
   }, [current, filterId, lang]);
 
   useEffect(() => {
-    setProducts(productsData);
-  }, [productsData]);  
+    setProducts(shopProducts);
+  }, [shopProducts]);
 
   useEffect(() => {
     if (selected === "A-Z") {
@@ -144,7 +138,7 @@ const ShopBodyContainer = ({
         ])
       );
     } else {
-      dispatch(sortShopProducts([...staticData]));
+      dispatch(sortShopProducts([...staticShopProducts]));
     }
   }, [selected]);
 
@@ -169,14 +163,8 @@ const ShopBodyContainer = ({
                 </div>
               );
             })}
-            <InfoContainer
-              className="middleInfoContainer"
-              textData={shopHeadTwo}
-            />
-            <InfoContainer
-              className="bottomInfoContainer"
-              textData={shopHeadThree}
-            />
+            <InfoContainer className="middleInfoContainer" type="one" />
+            <InfoContainer className="bottomInfoContainer" type="two" />
           </div>
         </>
       )}
