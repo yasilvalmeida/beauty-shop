@@ -29,7 +29,7 @@ const ProductsWithFilter = ({
   ];
   const [headtext, setHeadtext] = useState("Männerpflege");
 
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const { isAuthenticated } = useSelector((state) => state.auth);
   const router = useRouter();
   const navListState = useSelector((state) => state.navbar.navList);
   const top3Categories = navListState.slice(0, 3);

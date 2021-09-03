@@ -1,16 +1,12 @@
+import HeaderLoginPopup from "../../../../layouts/header/modal/HeaderLoginPopup";
 import ShareableSelect from "../../../../shareable/select/ShareableSelect";
-import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import {
-  addToWishList,
-  getSingleProduct,
-} from "../../../../services/actions/products";
+import { addToWishList } from "../../../../services/actions/products";
+import { addToBasket } from "../../../../services/actions/basket";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import { addToBasket } from "../../../../services/actions/basket";
-import HeaderLoginPopup from "../../../../layouts/header/modal/HeaderLoginPopup";
 
 const SingleProductHeader = () => {
   const router = useRouter();
@@ -21,36 +17,39 @@ const SingleProductHeader = () => {
   });
   const dispatch = useDispatch();
 
-  const { singleProduct } = useSelector((state) => state.products);
   const { isAuthenticated } = useSelector((state) => state.auth);
-  const singleProductVariantId = useSelector(
-    (state) => state.singleProdPage.singleProductVariantId
-  );
+  const {
+    singleProductVariantId,
+    singleProductData,
+    singleProductPageTextData,
+  } = useSelector((state) => state.singleProduct);
   const [defaultVariant, setDefaultVariant] = useState([]);
   const [bottleId, setBottleId] = useState(
-    singleProduct.variants_of_a_products.filter((item) => {
-      return item.main === true;
+    singleProductData?.variants_of_a_products?.filter((item) => {
+      return item?.main === true;
     }).id
   );
   const [productPrice, setProductPrice] = useState(defaultVariant[0]?.price);
   const [productQuantity, setproductQuantity] = useState(
-    singleProduct.variants_of_a_products.find((item) => item.main === true)
-      .quantity
+    singleProductData?.variants_of_a_products?.find(
+      (item) => item?.main === true
+    )?.quantity
   );
   let [defaultProductVariant, setDefaultProductVariant] =
     useState(defaultVariant);
   const [value, setValue] = useState(1);
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const maxLimit = productQuantity || defaultVariant[0]?.quantity;
 
   useEffect(() => {
     setProductPrice(
-      singleProduct?.variants_of_a_products?.filter((item) => {
-        return item.id === bottleId;
+      singleProductData?.variants_of_a_products?.filter((item) => {
+        return item?.id === bottleId;
       })[0]?.price
     );
     setproductQuantity(
-      singleProduct?.variants_of_a_products?.filter((item) => {
-        return item.id === bottleId;
+      singleProductData?.variants_of_a_products?.filter((item) => {
+        return item?.id === bottleId;
       })[0]?.quantity
     );
     setValue(1);
@@ -58,20 +57,20 @@ const SingleProductHeader = () => {
 
   useEffect(() => {
     setDefaultProductVariant(
-      singleProduct.variants_of_a_products.filter((item) => {
-        return item.main === true;
+      singleProductData?.variants_of_a_products?.filter((item) => {
+        return item?.main === true;
       })
     );
   }, []);
 
-  const onIncHandler = (a) => {
+  const onIncHandler = () => {
     if (
       maxLimit === undefined &&
       value <
         Number(
-          singleProduct.variants_of_a_products.find(
-            (item) => item.main === true
-          ).quantity
+          singleProductData?.variants_of_a_products?.find(
+            (item) => item?.main === true
+          )?.quantity
         )
     ) {
       setValue(value + 1);
@@ -81,7 +80,6 @@ const SingleProductHeader = () => {
       }
     }
   };
-
   const onDecHandler = () => {
     if (value > 1) {
       setValue(value - 1);
@@ -92,25 +90,27 @@ const SingleProductHeader = () => {
 
   useEffect(() => {
     setDefaultVariant(
-      singleProduct?.variants_of_a_products.filter((item) => item.main === true)
+      singleProductData?.variants_of_a_products?.filter(
+        (item) => item?.main === true
+      )
     );
   }, []);
 
   useEffect(() => {
     setDefaultVariant(
-      singleProduct?.variants_of_a_products.filter(
-        (item) => item.id === singleProductVariantId
+      singleProductData?.variants_of_a_products?.filter(
+        (item) => item?.id === singleProductVariantId
       )
     );
   }, [singleProductVariantId]);
 
   let variantId = [];
 
-  if (singleProduct.variants_of_a_products.length === 1) {
-    variantId = [...singleProduct.variants_of_a_products];
+  if (singleProductData?.variants_of_a_products?.length === 1) {
+    variantId = [...singleProductData?.variants_of_a_products];
   } else {
-    variantId = singleProduct.variants_of_a_products.filter((item) => {
-      return item.main === true;
+    variantId = singleProductData?.variants_of_a_products?.filter((item) => {
+      return item?.main === true;
     });
   }
 
@@ -134,8 +134,6 @@ const SingleProductHeader = () => {
       dispatch(addToBasket(id, variantId, quantity));
     }
   };
-  const [isModalVisible, setIsModalVisible] = useState(false);
-
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -144,17 +142,17 @@ const SingleProductHeader = () => {
     <>
       <div className={"single-product-header"}>
         <div className={"left-side"}>
-          <p>{singleProduct?.brand}</p>
-          <h2>{singleProduct?.name.toUpperCase()}</h2>
-          <a href="#">{singleProduct?.kind}</a>
+          <p>{singleProductData?.brand}</p>
+          <h2>{singleProductData?.name.toUpperCase()}</h2>
+          <a href="#">{singleProductData?.kind}</a>
           <div className="left-side-select-body">
             <div className={"left-side-select"}>
-              <span>Inhalt</span>
+              <span>{singleProductPageTextData?.content}</span>
               <ShareableSelect
-                product={singleProduct}
+                product={singleProductData}
                 defaultValue={defaultVariant[0]?.bottle_sizes}
                 value={"large"}
-                data={singleProduct}
+                data={singleProductData}
                 setBottleId={setBottleId}
                 className="single-product-select-variation"
               />
@@ -164,7 +162,7 @@ const SingleProductHeader = () => {
               />
             </div>
             <div className={"left-side-select"}>
-              <span>menge</span>
+              <span>{singleProductPageTextData?.amount}</span>
               <div
                 className={"cart__sidebar__product__body__text--quantityinp"}
               >
@@ -175,13 +173,10 @@ const SingleProductHeader = () => {
                   value={value < 10 ? `0${value}` : value}
                 />
                 <div>
-                  <button
-                    className={"btnplus"}
-                    onClick={() => onIncHandler(singleProduct)}
-                  >
+                  <button className={"btnplus"} onClick={onIncHandler}>
                     <FontAwesomeIcon icon={faPlus} />
                   </button>
-                  <button className={"btnminus"} onClick={onDecHandler()}>
+                  <button className={"btnminus"} onClick={onDecHandler}>
                     <FontAwesomeIcon icon={faMinus} />
                   </button>
                 </div>
@@ -196,7 +191,7 @@ const SingleProductHeader = () => {
             onClick={() => {
               if (isAuthenticated) {
                 addProductToBasket(
-                  singleProduct.id,
+                  singleProductData.id,
                   !bottleId ? defaultVariant[0]?.id : bottleId,
                   variantId,
                   value
@@ -208,33 +203,40 @@ const SingleProductHeader = () => {
               }
             }}
           >
-            <p>in den warenkorb</p>
+            <p>{singleProductPageTextData?.add_basket}</p>
           </div>
           <div className={"bot-text-right"}>
             <p>
               {formatter.format(
                 value *
-                  singleProduct?.variants_of_a_products?.filter(
-                    (item) => item.id === singleProductVariantId
+                  (singleProductData?.variants_of_a_products?.filter(
+                    (item) => item?.id === singleProductVariantId
                   )[0]?.price ||
-                  singleProduct?.variants_of_a_products?.find((item) => {
-                    return item.main === true;
-                  }).price
+                    singleProductData?.variants_of_a_products?.find((item) => {
+                      return item?.main === true;
+                    })?.price)
               )}
             </p>
             <div className={"r-first"}>
-              <span>
-                {formatter.format(
-                  value *
-                    singleProduct?.variants_of_a_products?.filter(
-                      (item) => item.id === singleProductVariantId
-                    )[0]?.price ||
-                    singleProduct?.variants_of_a_products?.find((item) => {
-                      return item.main === true;
-                    }).price
-                )}{" "}
-              </span>
-              <span>Versandkostenfrei*</span>
+              {value *
+                (singleProductData?.variants_of_a_products?.filter(
+                  (item) => item?.id === singleProductVariantId
+                )[0]?.price ||
+                  singleProductData?.variants_of_a_products?.find((item) => {
+                    return item?.main === true;
+                  })?.price) >
+              singleProductPageTextData?.free_shipping_condition ? (
+                <>
+                  <span>
+                    {formatter.format(
+                      singleProductPageTextData?.free_shipping_condition
+                    )}
+                  </span>
+                  <span>{singleProductPageTextData?.free_shipping}</span>
+                </>
+              ) : (
+                <span></span>
+              )}
             </div>
             <div className={"r-second"}>
               <svg
@@ -244,16 +246,16 @@ const SingleProductHeader = () => {
                 viewBox="0 0 512 512"
                 className={"letter-svg heart-icon-item"}
                 style={
-                  !singleProduct?.variants_of_a_products?.find(
-                    (item) => item.id === singleProductVariantId
+                  !singleProductData?.variants_of_a_products?.find(
+                    (item) => item?.id === singleProductVariantId
                   )
-                    ? singleProduct?.variants_of_a_products?.find(
-                        (item) => item.id === variantId[0].id
-                      ).favorite
+                    ? singleProductData?.variants_of_a_products?.find(
+                        (item) => item?.id === variantId[0]?.id
+                      )?.favorite
                       ? { stroke: "#000000" }
                       : { stroke: "#7b7b7b" }
-                    : singleProduct?.variants_of_a_products?.find(
-                        (item) => item.id === singleProductVariantId
+                    : singleProductData?.variants_of_a_products?.find(
+                        (item) => item?.id === singleProductVariantId
                       )?.favorite
                     ? { stroke: "#000000" }
                     : { stroke: "#7b7b7b" }
@@ -261,7 +263,7 @@ const SingleProductHeader = () => {
                 onClick={() => {
                   if (isAuthenticated) {
                     toggleVariantAsfavourite(
-                      singleProduct.id,
+                      singleProductData.id,
                       !bottleId ? defaultVariant[0]?.id : bottleId,
                       variantId
                     );
@@ -275,12 +277,12 @@ const SingleProductHeader = () => {
                 <path
                   d="M352.92,80C288,80,256,144,256,144s-32-64-96.92-64C106.32,80,64.54,124.14,64,176.81c-1.1,109.33,86.73,187.08,183,252.42a16,16,0,0,0,18,0c96.26-65.34,184.09-143.09,183-252.42C447.46,124.14,405.68,80,352.92,80Z"
                   style={
-                    !singleProduct?.variants_of_a_products?.find(
-                      (item) => item.id === singleProductVariantId
+                    !singleProductData?.variants_of_a_products?.find(
+                      (item) => item?.id === singleProductVariantId
                     )
-                      ? singleProduct?.variants_of_a_products?.find(
-                          (item) => item.id === variantId[0].id
-                        ).favorite
+                      ? singleProductData?.variants_of_a_products?.find(
+                          (item) => item?.id === variantId[0]?.id
+                        )?.favorite
                         ? {
                             fill: "#000000",
                             strokeMiterlimit: "10",
@@ -291,8 +293,8 @@ const SingleProductHeader = () => {
                             strokeMiterlimit: "10",
                             strokeWidth: "32px",
                           }
-                      : singleProduct?.variants_of_a_products?.find(
-                          (item) => item.id === singleProductVariantId
+                      : singleProductData?.variants_of_a_products?.find(
+                          (item) => item?.id === singleProductVariantId
                         )?.favorite
                       ? {
                           fill: "#000000",
@@ -307,7 +309,7 @@ const SingleProductHeader = () => {
                   }
                 />
               </svg>
-              <p>auf meine wunchliste</p>
+              <p>{singleProductPageTextData?.wishlist}</p>
             </div>
           </div>
         </div>

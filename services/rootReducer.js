@@ -5,7 +5,7 @@ import authReducer from "../services/reducers/auth";
 import productsReducer from "../services/reducers/products";
 import newsReportReducer from "./reducers/news";
 import footerReducer from "./reducers/footer";
-import singleProductPageReducer from "./reducers/single-product";
+import singleProductReducer from "./reducers/single-product";
 import kontoPageReducer from "./reducers/konto";
 import RegistrationReducer from "./reducers/registration";
 import versandartenReducer from "./reducers/versandarten";
@@ -27,6 +27,7 @@ import headerReducer from "./reducers/header";
 import typentestReducer from "./reducers/typentest";
 import landingReducer from "./reducers/landing";
 import lexikonReducer from "./reducers/lexikon";
+import socialReducer from "./reducers/social";
 
 const rootReducer = combineReducers({
   about: aboutReducer,
@@ -52,8 +53,9 @@ const rootReducer = combineReducers({
   notFound: notFoundReducer,
   products: productsReducer,
   registration: RegistrationReducer,
-  singleProdPage: singleProductPageReducer,
+  singleProduct: singleProductReducer,
   shop: shopPageReducer,
+  social: socialReducer,
   typentest: typentestReducer,
   versandarten: versandartenReducer,
   video: videoReducer,

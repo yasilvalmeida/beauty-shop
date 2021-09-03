@@ -4,9 +4,10 @@ import { useState, useEffect } from "react";
 import CartSidebarFooter from "../../shareable/cart-sidebar/footer/CartSidebarFooter";
 import { useSelector } from "react-redux";
 
-const CartSidebar = ({ visible, onClose, headerPageText }) => {
-  const [products, setProducts] = useState([1, 2]);
+const CartSidebar = ({ visible, onClose }) => {
+  const { headerPageText } = useSelector((state) => state.header);
   const productsData = useSelector((state) => state.basket.products);
+  const [products, setProducts] = useState([1, 2]);
   const [cartWidth, setCartWidth] = useState(488);
   const [windowSize, setWindowSize] = useState({
     width: undefined,

@@ -11,7 +11,7 @@ const ProductInformation = ({
   toProductPage,
   toApproved,
   router,
-  isAuthenticated
+  isAuthenticated,
 }) => {
   const manufactories = useSelector((state) => state.manufactory.manufactories);
   const filter = manufactories.filter(

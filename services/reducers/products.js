@@ -14,8 +14,6 @@ import {
   GET_PRODUCTS_WITH_FILTER,
   GET_PRODUCTS_PAGE_DATA,
   GET_EIGHT_PRODUCTS_WITH_FILTER,
-  GET_SINGLE_PRODUCT_DATA,
-  SET_PRODUCT_SINGLE_LOADED,
   GET_PRODUCTS_WITH_FILTER_TWO,
   SWITCH_TO_FAVOURITE_TWO,
   SET_PRODUCTS_BY_CATEGORIES,
@@ -40,8 +38,6 @@ const initialState = {
   productsPageData: [],
   productsPageDataLoaded: true,
   productsByCategories: [],
-  singleProduct: {},
-  singleProductLoaded: true,
   totalsCount: 0,
   lastPageNumber: 0,
   searchProducts: [],
@@ -56,17 +52,6 @@ const productsReducer = (state = initialState, { type, payload }) => {
         ...state,
         productsWithFilterLoaded: false,
         productsWithFilter: payload,
-      };
-    case GET_SINGLE_PRODUCT_DATA:
-      return {
-        ...state,
-        singleProductLoaded: false,
-        singleProduct: payload,
-      };
-    case SET_PRODUCT_SINGLE_LOADED:
-      return {
-        ...state,
-        singleProductLoaded: true,
       };
     case GET_EIGHT_PRODUCTS_WITH_FILTER:
       return {

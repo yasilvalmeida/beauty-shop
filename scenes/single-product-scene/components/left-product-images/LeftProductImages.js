@@ -8,16 +8,16 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const LeftProductImages = ({ elem }) => {
-  const { singleProductVariantId } = useSelector(
-    (state) => state.singleProdPage
+  const { singleProductPageTextData, singleProductVariantId } = useSelector(
+    (state) => state.singleProduct
   );
 
   let defaultVariant = [];
-  if (elem.variants_of_a_products.length === 1) {
-    defaultVariant = elem.variants_of_a_products;
+  if (elem?.variants_of_a_products?.length === 1) {
+    defaultVariant = elem?.variants_of_a_products;
   } else {
-    defaultVariant = elem.variants_of_a_products.filter((item) => {
-      return item.main === true;
+    defaultVariant = elem?.variants_of_a_products?.filter((item) => {
+      return item?.main === true;
     });
   }
 
@@ -26,8 +26,8 @@ const LeftProductImages = ({ elem }) => {
   useEffect(() => {
     if (singleProductVariantId !== "") {
       setProductVariant(
-        elem.variants_of_a_products.filter((item) => {
-          return item.id === singleProductVariantId;
+        elem?.variants_of_a_products?.filter((item) => {
+          return item?.id === singleProductVariantId;
         })
       );
     }
@@ -46,7 +46,7 @@ const LeftProductImages = ({ elem }) => {
               icon={faArrowLeft}
               className={"head-search-icon"}
             />{" "}
-            Zuruck
+            {singleProductPageTextData?.back}
           </span>
           <div className={"about-product-main-img-body"}>
             <div className={"product-page-image-head"}>
@@ -75,7 +75,7 @@ const LeftProductImages = ({ elem }) => {
                     : { backgroundColor: "black" }
                 }
               >
-                new
+                {singleProductPageTextData?.new}
               </p>
               {elem?.approved_by_DPAB && (
                 <img
@@ -90,7 +90,7 @@ const LeftProductImages = ({ elem }) => {
               className={"headtxt-one"}
               style={elem?.clean_product ? { opacity: "1" } : { opacity: "0" }}
             >
-              Clean Product
+              {singleProductPageTextData?.clean_product}
             </p>
             <p
               className={"headtxt-two"}
@@ -98,7 +98,7 @@ const LeftProductImages = ({ elem }) => {
                 elem?.limited_edition ? { opacity: "1" } : { opacity: "0" }
               }
             >
-              Limited Edition
+              {singleProductPageTextData?.special_edition}
             </p>
           </div>
           <div className={"bottom_three-images-body"}>

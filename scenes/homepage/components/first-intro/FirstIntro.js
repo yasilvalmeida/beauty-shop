@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import Image from "next/image";
 import Link from "next/link";
-import { Spin, Space } from "antd";
 
 const FirstIntro = () => {
   const { firstIntroData, firstIntroLoading } = useSelector(

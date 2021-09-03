@@ -177,7 +177,6 @@ const HeaderSearch = ({ headerLanguage, headerContact, headerPageText }) => {
               <HeaderLoginPopup
                 isModalVisible={isModalVisible}
                 setIsModalVisible={setIsModalVisible}
-                headerPageText={headerPageText}
               />
               <svg
                 onClick={() => {
@@ -268,7 +267,6 @@ const HeaderSearch = ({ headerLanguage, headerContact, headerPageText }) => {
         visible={visible}
         showDrawer={showDrawer}
         onClose={onClose}
-        headerPageText={headerPageText}
       />
     </>
   );

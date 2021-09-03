@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import PagePagination from "../../../../../shareable/pagination/Pagination";
 import InfoContainer from "../../../../../shareable/info-container/InfoContainer";
 import ShopDescription from "./shop-description/ShopDescription";

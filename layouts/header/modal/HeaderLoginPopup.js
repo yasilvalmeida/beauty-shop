@@ -1,16 +1,10 @@
 import { Modal } from "antd";
-import Link from "next/link";
 import { useRouter } from "next/router";
-import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
-const HeaderLoginPopup = ({
-  isModalVisible,
-  setIsModalVisible,
-  headerPageText,
-}) => {
+const HeaderLoginPopup = ({ isModalVisible, setIsModalVisible }) => {
   const router = useRouter();
-
+  const { headerPageText } = useSelector((state) => state.header);
   const handleOk = () => {
     setIsModalVisible(false);
   };

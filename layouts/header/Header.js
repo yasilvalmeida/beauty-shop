@@ -13,8 +13,9 @@ import { useEffect } from "react";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const { headerText, headerLanguage, headerContact, headerPageText } =
-    useSelector((state) => state.header);
+  const { headerText, headerLanguage, headerContact } = useSelector(
+    (state) => state.header
+  );
 
   useEffect(() => {
     dispatch(getHeaderTexts(headerLanguage));
@@ -53,7 +54,6 @@ const Header = () => {
         <HeaderSearch
           headerLanguage={headerLanguage}
           headerContact={headerContact}
-          headerPageText={headerPageText}
         />
         <Navbar />
       </header>

@@ -43,13 +43,6 @@ import { getVideoData } from "../../services/actions/video";
 
 const Homepage = () => {
   const dispatch = useDispatch();
-  const loaded = useSelector((state) => state.navbar.homePageSctOneLoaded);
-  const navlistloaded = useSelector((state) => state.navbar.navListLoaded);
-  const headerloaded = useSelector(
-    (state) => state.navbar.headerContactsLoaded
-  );
-  const HPFS = useSelector((state) => state.navbar.homePageSctOne);
-  const homepageIntro = HPFS.find((p) => p.position === "HomePage");
   const [isModalVisible, setIsModalVisible] = useState(true);
   const prdctsFirst = useSelector(
     (state) => state?.products?.firstThreeProducts
