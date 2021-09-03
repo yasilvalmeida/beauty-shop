@@ -6,7 +6,7 @@ import {
 
 import axios from "axios";
 
-export const getManufactories = (lang = "de") => {
+export const getManufactories = (lang) => {
     return (dispatch) => {
         dispatch({ type: GET_MANUFACTORIES });
         axios

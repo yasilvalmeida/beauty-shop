@@ -1,16 +1,11 @@
 import SearchBodyContainer from "./search-body-container/SearchBodyContainer";
-import { useEffect, useState, useRef } from "react";
 
-const SearchBody = ({word}) => {
-  const scrollToref = useRef();
-  
+const SearchBody = ({ word }) => {
+
   return (
-    <div className="search__body" ref={scrollToref}>
+    <div className="search__body">
       <div className="search__body__content">
-        <SearchBodyContainer
-          word={word}
-          scrollToref={scrollToref}
-        />
+        <SearchBodyContainer word={word} />
       </div>
     </div>
   );

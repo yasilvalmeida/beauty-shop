@@ -3,14 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToWishList } from "../../../../../services/actions/products";
 import { useRouter } from "next/router";
 import ShopSingleProduct from "../../../../../shareable/Products/ShopSingleProduct";
-import { searchProducts } from "../../../../../services/actions/products";
-import { Spin, Space } from "antd";
+import Loader from "../../../../../shareable/Loader";
+import { searchProducts } from "../../../../../services/actions/search";
 
-const SearchBodyContainer = ({ word, scrollToref }) => {
+const SearchBodyContainer = ({ word }) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const productsData = useSelector((state) => state.products.searchProducts);
-  const searching = useSelector((state) => state.products.searching);
+  const { searchCount, searchData, searchLoading } = useSelector(
+    (state) => state.search
+  );
   const lang = useSelector((state) => state?.navbar?.selectedLanguage);
   const { isAuthenticated } = useSelector((state) => state.auth);
   const favouriteClickHandler = (id, variantId) => {
@@ -27,17 +28,13 @@ const SearchBodyContainer = ({ word, scrollToref }) => {
     dispatch(searchProducts(lang, word));
   }, [word, lang]);
   useEffect(() => {
-    setProducts(productsData);
-  }, [productsData]);
+    setProducts(searchData);
+  }, [searchData]);
 
   return (
     <div className="search-right-body">
-      {searching || products?.length === 0 ? (
-        <div className={"loader__component"}>
-          <Space size="middle">
-            <Spin size="large" />
-          </Space>
-        </div>
+      {searchLoading || searchCount === 0 ? (
+        <Loader type="component" />
       ) : (
         <>
           <div className="__products">
@@ -62,8 +59,7 @@ const SearchBodyContainer = ({ word, scrollToref }) => {
           </div>
         </>
       )}
-      <div className="search-desc-body">
-      </div>
+      <div className="search-desc-body"></div>
     </div>
   );
 };

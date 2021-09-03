@@ -115,7 +115,7 @@ const LoginForm = () => {
                 <Tooltip
                   title={emailErrorMessage}
                   color={"red"}
-                  visible={emailError ? true : false}
+                  visible={emailError ? "true" : "false"}
                   placement="bottomRight"
                 >
                   <input
@@ -138,7 +138,7 @@ const LoginForm = () => {
                 <Tooltip
                   title={passwordErrorMessage}
                   color={"red"}
-                  visible={passwordError ? true : false}
+                  visible={passwordError ? "true" : "false"}
                   placement="bottomRight"
                 >
                   <input

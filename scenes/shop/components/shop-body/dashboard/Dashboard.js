@@ -11,7 +11,7 @@ const Dashboard = ({
   scrollToref,
   brand,
   category,
-  type
+  type,
 }) => {
   const navListState = useSelector((state) => state.navbar.navList);
   let manufactoriesState = useSelector(
@@ -20,11 +20,6 @@ const Dashboard = ({
   const lang = useSelector((state) => state.navbar.selectedLanguage);
   const { shopPageTextData } = useSelector((state) => state.shop);
   const categories = [];
-  const manufactories = manufactoriesState;
-  categories.unshift({
-    id: 0,
-    name: "Keiner",
-  });
   navListState?.map((item, i) => {
     const filter =
       item.filter((detail) => detail.lang === lang)?.length > 0
@@ -43,18 +38,29 @@ const Dashboard = ({
     }
   });
 
-  useEffect(() => {
-    manufactories.unshift({
-      id: 0,
-      name: "Keiner",
-    });
-  }, []);
-
   const data = {
     titles: [
-      { title: shopPageTextData?.category || "KATEGORIEN", data: categories },
+      {
+        title: shopPageTextData?.category || "KATEGORIEN",
+        data: [
+          {
+            id: 0,
+            name: "Keiner",
+          },
+          ...categories,
+        ],
+      },
       /* { title: "SHOP BY", data: [] }, */
-      { title: shopPageTextData?.brand || "MARKEN", data: manufactories },
+      {
+        title: shopPageTextData?.brand || "MARKEN",
+        data: [
+          {
+            id: 0,
+            name: "Keiner",
+          },
+          ...manufactoriesState,
+        ],
+      },
       /* { title: "WIRKSTOFFE", data: [] },
       { title: "DUFT ANLASS", data: [] },
       { title: "DUFTNOTEN", data: [] },

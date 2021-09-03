@@ -28,6 +28,7 @@ import typentestReducer from "./reducers/typentest";
 import landingReducer from "./reducers/landing";
 import lexikonReducer from "./reducers/lexikon";
 import socialReducer from "./reducers/social";
+import searchPageReducer from "./reducers/search";
 
 const rootReducer = combineReducers({
   about: aboutReducer,
@@ -53,6 +54,7 @@ const rootReducer = combineReducers({
   notFound: notFoundReducer,
   products: productsReducer,
   registration: RegistrationReducer,
+  search: searchPageReducer,
   singleProduct: singleProductReducer,
   shop: shopPageReducer,
   social: socialReducer,
