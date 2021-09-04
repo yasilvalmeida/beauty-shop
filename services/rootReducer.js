@@ -29,6 +29,7 @@ import landingReducer from "./reducers/landing";
 import lexikonReducer from "./reducers/lexikon";
 import socialReducer from "./reducers/social";
 import searchPageReducer from "./reducers/search";
+import magazineReducer from "./reducers/magazine";
 
 const rootReducer = combineReducers({
   about: aboutReducer,
@@ -46,6 +47,7 @@ const rootReducer = combineReducers({
   konto: kontoPageReducer,
   landing: landingReducer,
   lexikon: lexikonReducer,
+  magazine: magazineReducer,
   manufactory: manufactoriesReducer,
   marken: markenReducer,
   navbar: homeReducer,

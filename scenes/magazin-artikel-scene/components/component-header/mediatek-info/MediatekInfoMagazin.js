@@ -1,12 +1,15 @@
-const MediatekInfoMagazinArtikel = () =>{
-    return(
-        <div className={"magazin__container__header__buttons"}>
-            <button>Beauty</button>
-            <button>Interieur</button>
-            <button>Well-beeing</button>
-            <button>Travel</button>
-        </div>
-    )
-}
+import { useSelector } from "react-redux";
 
-export default MediatekInfoMagazinArtikel
+const MediatekInfoMagazinArtikel = () => {
+  const { magazineOnePageTextData } = useSelector((state) => state.magazine);
+  return (
+    <div className={"magazin__container__header__buttons"}>
+      <button>{magazineOnePageTextData?.header_button_beauty}</button>
+      <button>{magazineOnePageTextData?.header_button_interieur}</button>
+      <button>{magazineOnePageTextData?.header_button_well_beeing}</button>
+      <button>{magazineOnePageTextData?.header_button_travel}</button>
+    </div>
+  );
+};
+
+export default MediatekInfoMagazinArtikel;
