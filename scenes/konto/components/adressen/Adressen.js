@@ -14,6 +14,7 @@ import Loader from "../../../../shareable/Loader";
 
 const Adressen = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const billingData = useSelector((state) => state.address.billingAddresses);
   const deliveryData = useSelector((state) => state.address.deliveryAddresses);
   const { billingAddressesLoaded, deliveryAddressesLoaded } = useSelector(
@@ -37,7 +38,6 @@ const Adressen = () => {
   const handleClose = () => {
     setShowForm(false);
   };
-  const router = useRouter();
 
   return (
     <>
