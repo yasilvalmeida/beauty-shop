@@ -8,11 +8,13 @@ import {
   SET_REGISTRATION_DATA,
 } from "../action-types/registration";
 
-export const getRegisterCountries = () => {
+export const getRegisterCountries = (lang) => {
   return (dispatch) => {
     dispatch({ type: SET_LOADED });
     axios
-      .get(`${process.env.PLENTY_MARKET_API_URL}?action=fetchCountries`)
+      .get(
+        `${process.env.PLENTY_MARKET_API_URL}?action=fetchCountries&lang=${lang}`
+      )
       .then((data) => {
         dispatch({
           type: GET_COUNTRIES,
@@ -28,7 +30,9 @@ export const getRegisterTextData = (lang) => {
     dispatch({ type: SET_LOADED });
 
     axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/registration-page-data?_locale=${lang}`)
+      .get(
+        `${process.env.NEXT_PUBLIC_API_URL}/registration-page-data?_locale=${lang}`
+      )
       .then((res) => {
         const { data } = res;
 

@@ -1,39 +1,60 @@
 import {
-    GET_KONTO_MAIN_BOXES_TEXT,
-    SET_KONTO_DATA_LOADED,
-    SET_ERROR
-}
-from "../action-types/konto";
+  GET_KONTO_MAIN_BOXES_DATA,
+  SET_KONTO_MAIN_BOXES_DATA,
+  GET_KONTO_MAIN_BOXES_ERROR,
+  GET_KONTO_PAGE_TEXT_DATA,
+  SET_KONTO_PAGE_TEXT_DATA,
+  GET_KONTO_PAGE_TEXT_ERROR,
+} from "../action-types/konto";
 
 const initialState = {
-   mainBoxes:[],
-   mainBoxesLoaded:true,
-   error:""
+  kontoMainBoxesData: null,
+  kontoMainBoxesLoading: true,
+  kontoMainBoxesError: null,
+  kontoPageTextData: null,
+  kontoPageTextLoading: true,
+  kontoPageTextError: null,
 };
 
 const kontoPageReducer = (state = initialState, { type, payload }) => {
-    switch (type) {
-
-        case GET_KONTO_MAIN_BOXES_TEXT:
-            return {
-                ...state,
-                mainBoxesLoaded: false,
-                mainBoxes: payload
-            };
-        case SET_KONTO_DATA_LOADED:
-            return {
-                ...state,
-                mainBoxesLoaded: true
-            }
-        case SET_ERROR:
-            return {
-                ...state,
-                error: payload,
-                mainBoxesLoaded: false
-            }
-        default:
-            return state;
-    }
+  switch (type) {
+    case SET_KONTO_MAIN_BOXES_DATA:
+      return {
+        ...state,
+        kontoMainBoxesLoading: false,
+        kontoMainBoxesData: payload,
+      };
+    case GET_KONTO_MAIN_BOXES_DATA:
+      return {
+        ...state,
+        kontoMainBoxesLoading: true,
+      };
+    case GET_KONTO_MAIN_BOXES_ERROR:
+      return {
+        ...state,
+        kontoMainBoxesError: payload,
+        kontoMainBoxesLoading: false,
+      };
+    case SET_KONTO_PAGE_TEXT_DATA:
+      return {
+        ...state,
+        kontoPageTextLoading: false,
+        kontoPageTextData: payload,
+      };
+    case GET_KONTO_PAGE_TEXT_DATA:
+      return {
+        ...state,
+        kontoPageTextLoading: true,
+      };
+    case GET_KONTO_PAGE_TEXT_ERROR:
+      return {
+        ...state,
+        kontoPageTextError: payload,
+        kontoPageTextLoading: false,
+      };
+    default:
+      return state;
+  }
 };
 
 export default kontoPageReducer;

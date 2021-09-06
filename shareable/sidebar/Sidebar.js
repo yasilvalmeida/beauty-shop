@@ -1,5 +1,5 @@
-import Profile from './profile/Profile'
-import MainAccount from './main-account/MainAcount'
+import Profile from "./profile/Profile";
+import MainAccount from "./main-account/MainAcount";
 
 const Sidebar = () => {
   return (
@@ -7,7 +7,7 @@ const Sidebar = () => {
       <Profile />
       <MainAccount />
     </div>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;

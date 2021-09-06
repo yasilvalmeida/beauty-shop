@@ -13,23 +13,24 @@
       display: none;
       }
     .activekonto{
-      a{
+      a {
         color:black;
         @extend %listProps;
         border-bottom: 1px solid black;
+        font-weight: bold;
       }
     }
     &__list {
       list-style-type: none;
-      &--item{
+      &--item {
           @extend %listProps;
           cursor: pointer;
-          a{
+          a {
             color: black;
             border-bottom: 1px solid transparent;
           }
-        &:first-child{
-          font-weight: bold;
+        &:first-child {
+          /* font-weight: bold; */
         }
       }
     }

@@ -7,7 +7,7 @@ import {
   GET_DELIVERY_ADDRESS,
   SET_BILLING_ADDRESS,
   SET_DELIVERY_ADDRESS,
-  SET_ERROR,
+  SET_ADDRESS_ERROR,
 } from "../action-types/address";
 import { GET_PRODUCTS, SET_PRODUCTS } from "../action-types/products";
 
@@ -43,7 +43,7 @@ export const addAddress = (data, appointment) => {
 
         return product;
       })
-      .catch((err) => dispatch({ type: SET_ERROR, payload: err }));
+      .catch((err) => dispatch({ type: SET_ADDRESS_ERROR, payload: err }));
   };
 };
 
@@ -70,7 +70,7 @@ export const getBillingAddress = () => {
           payload: data,
         });
       })
-      .catch((err) => dispatch({ type: SET_ERROR, payload: err }));
+      .catch((err) => dispatch({ type: SET_ADDRESS_ERROR, payload: err }));
   };
 };
 
@@ -97,7 +97,7 @@ export const getDeliveryAddress = () => {
           payload: data,
         });
       })
-      .catch((err) => dispatch({ type: SET_ERROR, payload: err }));
+      .catch((err) => dispatch({ type: SET_ADDRESS_ERROR, payload: err }));
   };
 };
 
@@ -127,7 +127,7 @@ export const deleteAddress = (id, appointment) => {
 
         return data;
       })
-      .catch((err) => dispatch({ type: SET_ERROR, payload: err }));
+      .catch((err) => dispatch({ type: SET_ADDRESS_ERROR, payload: err }));
   };
 };
 
@@ -167,6 +167,6 @@ export const editAddress = (datas, appointment, id) => {
 
         return data;
       })
-      .catch((err) => dispatch({ type: SET_ERROR, payload: err }));
+      .catch((err) => dispatch({ type: SET_ADDRESS_ERROR, payload: err }));
   };
 };

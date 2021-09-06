@@ -6,24 +6,39 @@ import {
   addAddress,
   editAddress,
 } from "../../../../../services/actions/address";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 const { Option } = Select;
 const AddressenForm = ({ back, appointment, editable, setShow }) => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getRegisterCountries());
-  }, []);
-  const [contval, setContval] = useState("Select a country");
+  const lang = useSelector((state) => state.header.headerLanguage);
   const countriesData = useSelector(
     (state) => state.registration.countries
-  )?.Data;
-  const handleCountryChange = (e) => {
-    setContval(e);
-    setFormData((prev) => ({
-      ...prev,
-      country: e,
-    }));
-  };
+  )?.data;
+  const { kontoPageTextData } = useSelector((state) => state.konto);
+
+  const [countryVal, setCountryVal] = useState(
+    kontoPageTextData?.address_form_country
+  );
+  const [formData, setFormData] = useState({
+    name: "",
+    surname: "",
+    addressLineOne: "",
+    road: "",
+    house: "",
+    plz: "",
+    ort: "",
+    country: "",
+  });
+  const [nameError, setNameError] = useState("");
+  const [surnameError, setSurnameError] = useState("");
+  const [addressLineOneError, setAddressLineOneError] = useState("");
+  const [roadError, setRoadError] = useState("");
+  const [houseNumberError, setHouseNumberError] = useState("");
+  const [postCodeError, setPostCodeError] = useState("");
+  const [ortError, setOrtError] = useState("");
+
   useEffect(() => {
     if (Object.keys(editable).length !== 0) {
       setFormData((prev) => ({
@@ -37,28 +52,20 @@ const AddressenForm = ({ back, appointment, editable, setShow }) => {
         ort: editable.place,
         country: editable.country,
       }));
-      setContval(editable.country);
+      setCountryVal(editable.country);
     }
   }, [editable]);
-  const [formData, setFormData] = useState({
-    name: "",
-    surname: "",
-    addressLineOne: "",
-    road: "",
-    house: "",
-    plz: "",
-    ort: "",
-    country: "",
-  });
+  useEffect(() => {
+    dispatch(getRegisterCountries(lang));
+  }, [lang]);
 
-  const [nameError, setNameError] = useState("");
-  const [surnameError, setSurnameError] = useState("");
-  const [addressLineOneError, setAddressLineOneError] = useState("");
-  const [roadError, setRoadError] = useState("");
-  const [houseNumberError, setHouseNumberError] = useState("");
-  const [postCodeError, setPostCodeError] = useState("");
-  const [ortError, setOrtError] = useState("");
-
+  const handleCountryChange = (e) => {
+    setCountryVal(e);
+    setFormData((prev) => ({
+      ...prev,
+      country: e,
+    }));
+  };
   const handleValidation = (e) => {
     let re = /^[A-Za-z]+$/;
     let addressReg = /[,#-\/\s\!\@\$.....]/gi;
@@ -179,7 +186,7 @@ const AddressenForm = ({ back, appointment, editable, setShow }) => {
         ort: "",
         country: "",
       });
-      setContval("Select a country");
+      setCountryVal(kontoPageTextData?.address_form_country);
     } else {
       if (
         !nameError &&
@@ -206,7 +213,7 @@ const AddressenForm = ({ back, appointment, editable, setShow }) => {
           ort: "",
           country: "",
         });
-        setContval("select a country");
+        setCountryVal(kontoPageTextData?.address_form_country);
         setNameError("");
         setSurnameError("");
         setRoadError("");
@@ -214,6 +221,9 @@ const AddressenForm = ({ back, appointment, editable, setShow }) => {
         setOrtError("");
         setHouseNumberError("");
         setAddressLineOneError("");
+        setTimeout(() => {
+          setShow();
+        }, 1000);
       } else {
         if (nameError === "") {
           setNameError(true);
@@ -235,23 +245,21 @@ const AddressenForm = ({ back, appointment, editable, setShow }) => {
         }
       }
     }
-    setTimeout(() => {
-      setShow();
-    }, 1000);
   };
 
   return (
     <div className={"add__address"}>
-      <h2 className={"add__address__title"}>adresse ändern</h2>
+      <h2 className={"add__address__title"}>
+        {kontoPageTextData?.adress_form_header}
+      </h2>
       <p className={"add__address__text"}>
-        bitte tragen sie ihre adressdaten ein und klicken sie auf &bdquo;
-        speichern &rdquo;
+        {kontoPageTextData?.address_form_title}
       </p>
       <form action="#" onSubmit={(e) => onSubmitHandler(e)}>
         <div className={`validation-field ${nameError ? "invalidInput" : ""}`}>
           <input
             type="text"
-            placeholder={"Vorname*"}
+            placeholder={`${kontoPageTextData?.address_form_placeholder_name}*`}
             name={"name"}
             value={formData.name}
             onChange={(e) => handleValidation(e)}
@@ -261,7 +269,7 @@ const AddressenForm = ({ back, appointment, editable, setShow }) => {
               nameError ? { visibility: "visible" } : { visibility: "hidden" }
             }
           >
-            Ungültiger Name
+            {kontoPageTextData?.address_form_warning_name}
           </p>
         </div>
         <div
@@ -269,7 +277,7 @@ const AddressenForm = ({ back, appointment, editable, setShow }) => {
         >
           <input
             type="text"
-            placeholder={"Nachname*"}
+            placeholder={`${kontoPageTextData?.address_form_placeholder_surname}*`}
             name={"surname"}
             value={formData.surname}
             onChange={(e) => handleValidation(e)}
@@ -281,7 +289,7 @@ const AddressenForm = ({ back, appointment, editable, setShow }) => {
                 : { visibility: "hidden" }
             }
           >
-            ungültiger Nachname
+            {kontoPageTextData?.address_form_warning_surname}
           </p>
         </div>
         <div
@@ -291,7 +299,9 @@ const AddressenForm = ({ back, appointment, editable, setShow }) => {
         >
           <input
             type="text"
-            placeholder={"Adresszeile 1 (oder Firmenname)"}
+            placeholder={
+              kontoPageTextData?.address_form_placeholder_address_line_one
+            }
             name={"addressLineOne"}
             value={formData.addressLineOne}
             onChange={(e) => handleValidation(e)}
@@ -303,13 +313,13 @@ const AddressenForm = ({ back, appointment, editable, setShow }) => {
                 : { visibility: "hidden" }
             }
           >
-            ungültiger Adresszeile
+            {kontoPageTextData?.address_form_warning_address_line_one}
           </p>
         </div>
         <div className={`validation-field ${roadError ? "invalidInput" : ""}`}>
           <input
             type="text"
-            placeholder={"Strasse*"}
+            placeholder={`${kontoPageTextData?.address_form_placeholder_address_line_two}*`}
             name={"road"}
             value={formData.road}
             onChange={(e) => handleValidation(e)}
@@ -319,7 +329,7 @@ const AddressenForm = ({ back, appointment, editable, setShow }) => {
               roadError ? { visibility: "visible" } : { visibility: "hidden" }
             }
           >
-            bitte füllen sie das pflitchfeld aus
+            {kontoPageTextData?.address_form_warning_address_line_two}
           </p>
         </div>
         <div
@@ -329,7 +339,7 @@ const AddressenForm = ({ back, appointment, editable, setShow }) => {
         >
           <input
             type="text"
-            placeholder={"Hausnummer*"}
+            placeholder={`${kontoPageTextData?.address_form_placeholder_house_number}*`}
             name={"house"}
             value={formData.house}
             onChange={(e) => handleValidation(e)}
@@ -341,7 +351,7 @@ const AddressenForm = ({ back, appointment, editable, setShow }) => {
                 : { visibility: "hidden" }
             }
           >
-            ungültiger housenummer
+            {kontoPageTextData?.address_form_warning_house_number}
           </p>
         </div>
         <div
@@ -349,7 +359,7 @@ const AddressenForm = ({ back, appointment, editable, setShow }) => {
         >
           <input
             type="text"
-            placeholder={"PLZ*"}
+            placeholder={`${kontoPageTextData?.address_form_placeholder_post_code}*`}
             name={"plz"}
             value={formData.plz}
             onChange={(e) => handleValidation(e)}
@@ -361,13 +371,13 @@ const AddressenForm = ({ back, appointment, editable, setShow }) => {
                 : { visibility: "hidden" }
             }
           >
-            bitte füllen sie das pflichtfeld aus!
+            {kontoPageTextData?.address_form_warning_post_code}
           </p>
         </div>
         <div className={`validation-field ${ortError ? "invalidInput" : ""} `}>
           <input
             type="text"
-            placeholder={"Ort*"}
+            placeholder={`${kontoPageTextData?.address_form_placeholder_location}*`}
             name={"ort"}
             value={formData.ort}
             onChange={(e) => handleValidation(e)}
@@ -377,15 +387,15 @@ const AddressenForm = ({ back, appointment, editable, setShow }) => {
               ortError ? { visibility: "visible" } : { visibility: "hidden" }
             }
           >
-            bitte füllen sie das pflichtfeld aus!
+            {kontoPageTextData?.address_form_warning_location}
           </p>
         </div>
         <Select
-          defaultValue={"Select a country"}
+          defaultValue={kontoPageTextData?.address_form_country}
           onChange={handleCountryChange}
           name="country"
           style={{ height: "5.92rem" }}
-          value={contval}
+          value={countryVal}
         >
           {countriesData?.map((e, i) => {
             return (
@@ -395,11 +405,12 @@ const AddressenForm = ({ back, appointment, editable, setShow }) => {
             );
           })}
         </Select>
-        <input type="submit" value={"Speichern"} />
+        <input type="submit" value={kontoPageTextData?.address_form_submit} />
       </form>
       <div className={"zuruck_back_body_white"}>
         <button className={"zuruck_back"} onClick={back}>
-          zurück zur übersicht
+          <FontAwesomeIcon icon={faArrowLeft} className={"head-search-icon"} />{" "}
+          {kontoPageTextData?.adress_back}
         </button>
       </div>
     </div>

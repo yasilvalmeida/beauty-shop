@@ -1,3 +1,6 @@
+import PageHeader from "../../layouts/header/Header";
+import MobileHeader from "../../layouts/mobile-header/MobileHeader";
+import Footer from "../../layouts/footer/Footer";
 import Sidebar from "../../shareable/sidebar/Sidebar";
 import KontoContainer from "./components/konto-container/KontoContainer";
 import Adressen from "./components/adressen/Adressen";
@@ -11,28 +14,36 @@ import NewsletterRep from "../../shareable/newsLetter/NewsletterRep";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserDataFromLocalStorage } from "../../services/actions/auth";
-import { getKontoMainBoxesData } from "../../services/actions/konto";
+import {
+  getKontoMainBoxesData,
+  getKontoPageTextData,
+} from "../../services/actions/konto";
 import Loader from "../../shareable/Loader";
 
 const Konto = () => {
   const dispatch = useDispatch();
+  const lang = useSelector((state) => state.header.headerLanguage);
   const authData = useSelector((state) => state.auth);
-  const loading = useSelector((state) => state.konto.mainBoxesLoaded);
+  const { kontoMainBoxesLoading } = useSelector((state) => state.konto);
 
   useEffect(() => {
     dispatch(getUserDataFromLocalStorage());
-    dispatch(getKontoMainBoxesData());
   }, []);
-
   useEffect(() => {
-    if (!authData?.isAuthenticated) {
+    dispatch(getKontoMainBoxesData(lang));
+    dispatch(getKontoPageTextData(lang));
+  }, [lang]);
+  useEffect(() => {
+    if (authData?.isAuthenticated) {
       router.push("/");
     }
   }, [authData]);
   const router = useRouter();
   return (
     <>
-      {loading ? (
+      <PageHeader />
+      <MobileHeader />
+      {kontoMainBoxesLoading ? (
         <Loader type={"component"} />
       ) : (
         <>
@@ -49,6 +60,7 @@ const Konto = () => {
           {router.query.id == "whishlist" && <NewsletterRep />}
         </>
       )}
+      <Footer />
     </>
   );
 };

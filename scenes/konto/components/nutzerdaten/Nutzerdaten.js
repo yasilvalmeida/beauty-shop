@@ -1,9 +1,5 @@
-const Nutzerdaten = () =>{
-    return(
-        <div>
-            nutzerdaten
-        </div>
-    )
-}
+const Nutzerdaten = () => {
+  return <div>nutzerdaten</div>;
+};
 
-export default Nutzerdaten
+export default Nutzerdaten;

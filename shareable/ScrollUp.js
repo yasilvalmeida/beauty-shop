@@ -1,9 +1,16 @@
 import { faArrowCircleUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const ScrollArrow = () => {
   const [showScroll, setShowScroll] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // browser code
+      window.addEventListener("scroll", checkScrollTop, { passive: true });
+    }
+  }, [typeof window !== "undefined"]);
 
   const checkScrollTop = () => {
     if (typeof window !== "undefined") {
@@ -20,10 +27,6 @@ const ScrollArrow = () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
-  if (typeof window !== "undefined") {
-    // browser code
-    window.addEventListener("scroll", checkScrollTop, { passive: true });
-  }
 
   return (
     <FontAwesomeIcon
