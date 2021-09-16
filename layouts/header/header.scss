@@ -9,16 +9,15 @@
     span {
         color: #d8d8d8;
         font-family: "Freight Sans Pro",system-ui,inherit;
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         font-weight: 400;
-        font-style: normal;
-        letter-spacing:2px;
+        font-style: italic;
+        letter-spacing: 1.68px;
         text-align: center;
-        /* Text style for "Parfum & B" */
         font-style: normal;
         text-transform: uppercase;
-        @media screen and (min-width:1080px) and (max-width:1440px){
-            font-size: 1.2rem;
+        @media screen and (max-width: 1024px){
+            font-size: 1.1rem !important;
         }
     }
 }
@@ -37,15 +36,11 @@
         font-weight: 400;
         font-style: italic;
         letter-spacing: 1.68px;
-
         text-align: center;
-        /* Text style for "Geniessen" */
         font-style: normal;
-
-
         text-transform: uppercase;
-        @media screen and (min-width:1080px) and (max-width:1440px){
-            font-size: 1.2rem;
+        @media screen and (max-width: 1024px){
+            font-size: 1.1rem !important;
         }
     }
 }

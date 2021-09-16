@@ -51,8 +51,9 @@ const Homepage = () => {
     (state) => state?.products?.secondThreeProducts
   );
   const lang = useSelector((state) => state.header.headerLanguage);
-
   const loader = useSelector((state) => state.navbar.loader);
+  const { sectionTextData } = useSelector((state) => state?.landing);
+
   const [productsFirst, setProductsFirst] = useState([]);
   const [productsSecond, setProductsSecond] = useState([]);
   const [homeLoader, setHomeLoader] = useState(true);
@@ -112,9 +113,8 @@ const Homepage = () => {
             <FirstIntro />
             <FirstIntroMobile />
             <FirstProducts products={productsFirst} />
-            <SecondSection />
+            <SecondSection sectionTextData={sectionTextData} />
             <InspirationSection />
-            {/* <br className="clear" /> */}
             <InspirationBottomOne />
             <InspirationBottomTwo />
             <SecondProducts products={productsSecond} />

@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
-import { addToWishList, addToWishListTwo } from "../services/actions/products";
 import moment from "moment";
 import { addToBasket } from "../services/actions/basket";
-import { getProductsByCategories } from "../services/actions/products";
-import { Spin, Space } from "antd";
+import {
+  addToWishList,
+  addToWishListTwo,
+  getProductsByCategories,
+} from "../services/actions/products";
 import ProductInformation from "../shareable/Products/ProductInformation";
 import Loader from "../shareable/Loader";
 
@@ -15,24 +17,65 @@ const formatter = new Intl.NumberFormat("de-DE", {
   minimumFractionDigits: 2,
 });
 
-const ProductsWithFilter = ({
-  autoFlow,
-  gridTemplateColumns,
-  gap,
-  position,
-}) => {
+const ProductsWithFilter = ({ position }) => {
   const dispatch = useDispatch();
-  const headers = [
+  let headers = [
     { lang: "de", header: "Männerpflege" },
     { lang: "en", header: "Men grooming" },
     { lang: "fr", header: "Hommes de toilettage" },
   ];
-  const [headtext, setHeadtext] = useState("Männerpflege");
-
   const { isAuthenticated } = useSelector((state) => state.auth);
   const router = useRouter();
   const navListState = useSelector((state) => state.navbar.navList);
-  const top3Categories = navListState.slice(0, 3);
+  let top3Categories;
+  let start = 1;
+  let limit;
+  if (position === "HerrenPageOne") {
+    /* headers = [
+      { lang: "de", header: "Männerpflege" },
+      { lang: "en", header: "Men grooming" },
+      { lang: "fr", header: "Hommes de toilettage" },
+    ]; */
+    top3Categories = [];
+    limit = 8;
+    navListState.map((element, i) => {
+      let tmp = element?.filter((cat) => cat?.categoryId === 445);
+      if (tmp?.length > 0) top3Categories.push(tmp);
+    });
+    top3Categories.push([
+      { categoryId: 545, lang: "de", name: "SCHÖNHEIT" },
+      { categoryId: 545, lang: "en", name: "BEAUTY" },
+    ]);
+    top3Categories.push([
+      { categoryId: 645, lang: "de", name: "INTERIEUR" },
+      { categoryId: 645, lang: "en", name: "INTERIEUR" },
+    ]);
+  } else if (position === "HerrenPageTwo") {
+    headers = [
+      { lang: "de", header: "DÜFTE FÜR HERREN" },
+      { lang: "en", header: "Fragrances For Man" },
+      { lang: "fr", header: "Parfums pour hommes" },
+    ];
+    top3Categories = [];
+    limit = 8;
+    start = 8;
+    navListState.map((element, i) => {
+      let tmp = element?.filter((cat) => cat?.categoryId === 445);
+      if (tmp?.length > 0) top3Categories.push(tmp);
+    });
+    top3Categories.push([
+      { categoryId: 545, lang: "de", name: "SCHÖNHEIT" },
+      { categoryId: 545, lang: "en", name: "BEAUTY" },
+    ]);
+    top3Categories.push([
+      { categoryId: 645, lang: "de", name: "INTERIEUR" },
+      { categoryId: 645, lang: "en", name: "INTERIEUR" },
+    ]);
+  } else if (position === "HomePage") {
+    top3Categories = navListState.slice(0, 3);
+    limit = 4;
+  }
+  const [headtext, setHeadtext] = useState(headers[0]?.header);
   const [defaultCategory, setDefaultCategory] = useState(0);
   const lang = useSelector((state) => state.header.headerLanguage);
   const productsByCategoriesState = useSelector(
@@ -41,7 +84,7 @@ const ProductsWithFilter = ({
   const [productsByCategories, setProductsByCategories] = useState([]);
 
   useEffect(() => {
-    const foundHeader = headers.find((header) => header.lang === lang);
+    const foundHeader = headers?.find((header) => header?.lang === lang);
     const { header } = foundHeader;
     setHeadtext(header);
     const categoriesIds = [];
@@ -57,7 +100,10 @@ const ProductsWithFilter = ({
         name,
       });
     });
-    dispatch(getProductsByCategories(1, 4, categoriesIds, lang));
+    console.log("aux", position, start, limit);
+    dispatch(
+      getProductsByCategories(start, limit, categoriesIds, lang, position)
+    );
   }, [navListState, lang]);
 
   useEffect(() => {
@@ -150,14 +196,7 @@ const ProductsWithFilter = ({
           <Loader type={"component"} />
         ) : (
           <div>
-            <div
-              className={"products-with-filter-list"}
-              style={{
-                gridTemplateColumns: gridTemplateColumns,
-                gridAutoFlow: autoFlow,
-                gap: gap,
-              }}
-            >
+            <div className={"products-with-filter-list"}>
               {productsByCategories[defaultCategory]?.products?.map((e, i) => {
                 return (
                   <div className={"first-prod-items col-lg-3"} key={i}>

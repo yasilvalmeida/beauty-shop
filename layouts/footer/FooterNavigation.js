@@ -52,6 +52,9 @@ const FooterNavigation = ({
         url = "marken";
         categories = manufactories;
       }
+      if (categoryId === 446) {
+        url = "herren";
+      }
       const e = {
         id: categoryId,
         name,

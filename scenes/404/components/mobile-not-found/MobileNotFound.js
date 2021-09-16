@@ -26,6 +26,7 @@ export default function MobileNotFound({ notFoundText }) {
                 height={624.7}
                 className="image"
                 objectFit="cover"
+                key={`${image?.url}-mobile-${i}`}
               />
             );
           })}
@@ -45,9 +46,7 @@ export default function MobileNotFound({ notFoundText }) {
               }}
             />
           </div>
-          <button onClick={handleSearch}>
-            {notFoundText?.search_button}
-          </button>
+          <button onClick={handleSearch}>{notFoundText?.search_button}</button>
         </div>
       </div>
     </div>

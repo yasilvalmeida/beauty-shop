@@ -1,10 +1,15 @@
 .clear { clear: both; }
+
 .inspiration-body {
   margin: auto;
   @media (max-width: 1024px) {
     width: 70% !important;
     height: auto;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: -10rem;
   }
+
   @media (min-width: 1024px) {
     width: 90%;
     display: grid;
@@ -12,12 +17,39 @@
     grid-template-columns: 75% 25%;
     gap: 10px;
     margin-top: 15rem;
+    margin-bottom: -15rem;
+    height: auto;
+  }
+  @media (min-width: 1700px) {
+    width: 80%;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 75% 25%;
+    gap: 10px;
+    margin-top: 15rem;
+    margin-bottom: 5rem;
+    height: auto;
   }
   .inspiration-left {
     position: relative;
     width: 100%;
     max-height: 630px;
-    img{
+    @media only screen and (max-width: 375px) {
+      margin-top: 5rem;
+      margin-left: -6rem !important;
+      width: 335px;
+    }
+    @media only screen and (min-width: 375px) and (max-width: 1024px) and (orientation:portrait) {
+      margin-top: 5rem;
+      margin-left: -6rem !important;
+      width: 125%;
+    }
+    @media only screen and (min-width: 375px) and (max-width: 1024px) and (orientation: landscape) {
+      margin-top: 5rem;
+      margin-left: -6rem !important;
+      width: 118%;
+    }
+    img {
       width: 100%;
       height: 100%;
     }
@@ -25,7 +57,7 @@
       position: absolute;
       top: -5vw;
       color: #3e3e3e;
-      font-family: 'Open Sans Condensed', system-ui,inherit;
+      font-family: 'Freight Sans Pro', system-ui,inherit;
       font-size: 6vw;
       font-weight: 400;
       font-style: normal;
@@ -34,13 +66,21 @@
       text-transform: uppercase;
       font-style: normal;
       z-index: 99;
+      @media (max-width: 1024px) {
+        font-size: 8vw;
+        top: -8vw;
+      }
     }
   }
   .inspiration-right {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-left: 4.2rem;
+    padding-left: 4.0rem;
+    @media (max-width: 1024px) {
+      padding-left: 0rem;
+      margin-left: -6rem;
+    }
     .inspiration-right-headtxt {
       color: #5c5c5c;
       font-family: 'Freight Sans Pro', system-ui,inherit;
@@ -53,21 +93,15 @@
       /* Text style for "Gesichtspf" */
       font-style: normal;
       text-transform: uppercase;
-      @media screen and(max-width: 1427px) {
-        font-size: 2.2rem;
-      }
-      @media screen and(max-width: 1289px) {
-        font-size: 2rem;
-      }
-      @media screen and (max-width: 1024px) {
-        font-size: 2.5rem;
+      @media screen and (min-width: 1024px) {
+        font-size: 2.0rem;
       }
     }
     h2 {
       margin-top: 0.5rem;
       color: #3e3e3e;
       font-family: 'Freight Sans Pro', system-ui,inherit;
-      font-size: 5.0rem;
+      font-size: 4.8rem;
       font-weight: normal;
       font-stretch: normal;
       font-style: normal;
@@ -77,51 +111,32 @@
       text-transform: uppercase;
       width: 120%;
       margin-bottom: 0;
-      @media screen and(max-width: 1427px) {
-        font-size: 5rem;
-      }
-      @media screen and (max-width: 1370px) {
-        margin-top: 0.3rem;
-      }
-      @media screen and(max-width: 1289px) {
-        font-size: 5.0rem;
-      }
-      @media screen and (max-width: 1024px) {
-        font-size: 5.0rem;
+      @media screen and (min-width: 1024px) {
+        font-size: 4.0rem;
       }
     }
     .inspiration-right-bottxt {
       margin: 5rem 0;
       color: #2e2e2e;
       font-family: 'Freight Sans Pro', system-ui,inherit;
-      font-size: 2.4rem;
+      font-size: 2.0rem;
       font-stretch: normal;
       font-style: normal;
-      line-height: 35px !important;
+      line-height: 25px !important;
       letter-spacing: 0.55px;
       text-align: left;
       /* Text style for "Lorem ipsu" */
       font-style: normal;
-
-      @media screen and(max-width: 1427px) {
-        font-size: 2rem;
-      }
-      @media screen and (max-width: 1370px) {
-        margin: 3rem 0;
-      }
-      @media screen and(max-width: 1289px) {
-        font-size: 1.8rem;
-      }
       @media screen and (max-width: 1024px) {
-        font-size: 2.4rem !important;
-        clear: both;
+        font-size: 2.0rem !important;
+        height: max-content;
       }
     }
     button {
       width: fit-content;
       color: #ffffff;
       font-family: 'Freight Sans Pro', system-ui,inherit;
-      font-size: 1.35vw;
+      font-size: 2rem;
       font-weight: 400;
       font-style: normal;
       letter-spacing: 5px;
@@ -131,10 +146,11 @@
       text-transform: uppercase;
       padding: 12px 10px;
       background-color: #080808;
-      width: 75%;
+      width: auto;
       border: none;
-      @media screen and (max-width: 1725px) {
+      @media screen and (max-width: 1024px) {
         width: fit-content;
+        font-size: 2rem;
       }
     }
     @media (min-width: 1024px) {

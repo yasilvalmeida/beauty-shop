@@ -1,12 +1,14 @@
 import InspirationBottomOneRep from "../../../shareable/InsprationBottomOneRep";
+import { useSelector } from "react-redux";
 
-const InspirationBottomOne = ({ inspiration }) => {
+const InspirationBottomOne = () => {
+  const { herrenInspirationTwoTextData } = useSelector((state) => state.herren);
   const background = "black";
   const color = "white";
   return (
     <>
       <InspirationBottomOneRep
-        inspiration={inspiration}
+        inspiration={herrenInspirationTwoTextData}
         background={background}
         color={color}
       />

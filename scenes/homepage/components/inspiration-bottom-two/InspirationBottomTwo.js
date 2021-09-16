@@ -1,9 +1,11 @@
 import InspirationBottomTwoRep from "../../../../shareable/InspirationBottomTwoRep";
+import { useSelector } from "react-redux";
 
 const InspirationBottomTwo = () => {
+  const { inspirationThreeTextData } = useSelector((state) => state.landing);
   return (
     <>
-      <InspirationBottomTwoRep />
+      <InspirationBottomTwoRep inspiration={inspirationThreeTextData} />
     </>
   );
 };

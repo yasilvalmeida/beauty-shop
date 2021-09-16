@@ -1,9 +1,9 @@
 import FirstAddSection from "../../../../shareable/FirstAddSection";
 
-const SecondSection = () => {
+const SecondSection = ({ sectionTextData }) => {
   return (
     <>
-      <FirstAddSection />
+      <FirstAddSection sectionTextData={sectionTextData} />
     </>
   );
 };

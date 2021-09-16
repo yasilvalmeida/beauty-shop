@@ -30,6 +30,7 @@ import lexikonReducer from "./reducers/lexikon";
 import socialReducer from "./reducers/social";
 import searchPageReducer from "./reducers/search";
 import magazineReducer from "./reducers/magazine";
+import herrenPageReducer from "./reducers/herren";
 
 const rootReducer = combineReducers({
   about: aboutReducer,
@@ -44,6 +45,7 @@ const rootReducer = combineReducers({
   ergebnis: ergebnisReducer,
   footer: footerReducer,
   header: headerReducer,
+  herren: herrenPageReducer,
   konto: kontoPageReducer,
   landing: landingReducer,
   lexikon: lexikonReducer,

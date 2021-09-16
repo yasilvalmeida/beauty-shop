@@ -1,10 +1,10 @@
-import { useRouter } from "next/router";
 import Link from "next/link";
-import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/router";
 import { addToBasket } from "../../services/actions/basket";
-import { Spin, Space } from "antd";
 import ProductInformation from "./ProductInformation";
+import Loader from "../../shareable/Loader";
 
 const formatter = new Intl.NumberFormat("de-DE", {
   style: "currency",
@@ -12,11 +12,7 @@ const formatter = new Intl.NumberFormat("de-DE", {
   minimumFractionDigits: 2,
 });
 
-const ProductsWithLeftText = ({
-  products,
-  leftText,
-  addToWishList,
-}) => {
+const ProductsWithLeftText = ({ products, leftText, addToWishList }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const { isAuthenticated } = useSelector((state) => state.auth);
@@ -65,11 +61,7 @@ const ProductsWithLeftText = ({
           </div>
         </div>
         {products?.length === 0 ? (
-          <div className={"loader__component"}>
-            <Space size="middle">
-              <Spin size="large" />
-            </Space>
-          </div>
+          <Loader type={"component"} />
         ) : (
           <div className={"prod-items-bod"}>
             {products?.map((e, i) => {

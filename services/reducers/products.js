@@ -17,6 +17,7 @@ import {
   GET_PRODUCTS_WITH_FILTER_TWO,
   SWITCH_TO_FAVOURITE_TWO,
   SET_PRODUCTS_BY_CATEGORIES,
+  SET_PRODUCTS_BY_CATEGORY,
   SET_SEARCH_PRODUCTS,
   SET_SEARCH_PRODUCTS_COUNT,
   SET_SEARCHING,
@@ -38,6 +39,7 @@ const initialState = {
   productsPageData: [],
   productsPageDataLoaded: true,
   productsByCategories: [],
+  productsByCategory: [],
   totalsCount: 0,
   lastPageNumber: 0,
   searchProducts: [],
@@ -181,6 +183,12 @@ const productsReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         productsByCategories: payload,
+      };
+    }
+    case SET_PRODUCTS_BY_CATEGORY: {
+      return {
+        ...state,
+        productsByCategory: payload,
       };
     }
     case SET_SEARCH_PRODUCTS: {

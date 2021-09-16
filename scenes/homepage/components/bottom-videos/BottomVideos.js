@@ -18,7 +18,7 @@ const BottomVideo = () => {
         {videoData?.map((video, i) => {
           if (i > 0 && i < 4) {
             return (
-              <div className={"small-vid-bod"}>
+              <div className={"small-vid-bod"} key={i}>
                 <div className={"video-small-body-only"}>
                   <ReactPlayer
                     url={video?.video?.url !== undefined ? video?.video?.url : "/video.webm"}

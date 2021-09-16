@@ -4,6 +4,7 @@ import {
   SET_FIRST_THREE_PRODUCTS,
   SET_SECOND_THREE_PRODUCTS,
   SET_PRODUCTS_BY_CATEGORIES,
+  SET_PRODUCTS_BY_CATEGORY,
   SET_PRODUCTS_ERROR,
   SWITCH_TO_FAVOURITE,
   GET_FAVOURITES_PRODUCTS,
@@ -259,6 +260,130 @@ export const getProducts = (currentPage, itemsPerPage, lang) => {
           if (i === entries.length - 1) {
             dispatch({
               type: SET_PRODUCTS,
+              payload: products,
+            });
+          }
+        });
+      })
+      .catch((err) => dispatch({ type: SET_PRODUCTS_ERROR, payload: err }));
+  };
+};
+
+export const getProductsByCategory = (
+  currentPage,
+  maxPerPage,
+  categoryId,
+  lang, position
+) => {
+  return async (dispatch) => {
+    axios
+      .get(
+        `${process.env.PLENTY_MARKET_API_URL}?action=fetchVariation&page=${currentPage}&itemsPerPage=${maxPerPage}&categoryId=${categoryId}&with=variationCategories,itemImages,item&lang=${lang}`
+      )
+      .then(async (res) => {
+        const { data } = res;
+        const { entries } = data;
+        const products = [];
+        await entries.map(async (variation, i) => {
+          const images = [];
+          const variants_of_a_products = [];
+          const { isMain, purchasePrice, availability, item, itemImages } =
+            variation;
+          const { id, manufacturerId, createdAt, updatedAt } = item;
+          const itemData = await axios.get(
+            `${process.env.PLENTY_MARKET_API_URL}?action=fetchItem&id=${id}&lang=${lang}`
+          );
+          const { data } = itemData;
+          const { texts } = data;
+          const {
+            name1,
+            shortDescription,
+            metaDescription,
+            description,
+            technicalData,
+            keywords,
+          } = texts?.length > 0 ? texts[0] : {};
+          let brand = "No Brand";
+          await itemImages.map((image, j) => {
+            const formats = [];
+            const {
+              cleanImageName,
+              fileType,
+              height,
+              width,
+              size,
+              url,
+              insert,
+              lastUpdate,
+              urlMiddle,
+              urlPreview,
+            } = image;
+            if (url) {
+              formats.push({
+                large: {
+                  url,
+                  mime: fileType,
+                },
+              });
+            }
+            if (urlMiddle) {
+              formats.push({
+                medium: {
+                  url: urlMiddle,
+                  mime: fileType,
+                },
+              });
+            }
+            if (urlPreview) {
+              formats.push({
+                thumbnail: {
+                  url: urlPreview,
+                  mime: fileType,
+                },
+              });
+            }
+            images.push({
+              name: cleanImageName,
+              mime: fileType,
+              height,
+              width,
+              size,
+              url,
+              formats,
+              created_at: insert,
+              updated_at: lastUpdate,
+            });
+          });
+          await variants_of_a_products.push({
+            main: isMain,
+            images: images.length > 0 ? [images[0]] : [],
+            price: purchasePrice,
+            quantity: availability,
+          });
+          await variants_of_a_products.map((vop, v) => {
+            if (v === 0) {
+              vop.main = true;
+            } else {
+              vop.main = false;
+            }
+            //vop.price = price;
+          });
+          products.push({
+            id,
+            name: name1,
+            brand,
+            brandId: manufacturerId !== 0 ? manufacturerId : 0,
+            images,
+            variants_of_a_products,
+            New_Date_Limit: createdAt,
+            created_at: createdAt,
+            updated_at: updatedAt,
+            keywords,
+            itemData,
+          });
+          if (i === entries.length - 1) {
+            dispatch({
+              type: SET_PRODUCTS_BY_CATEGORY,
               payload: products,
             });
           }

@@ -1,9 +1,9 @@
-@media screen and(min-width:1024px ) {
+@media screen and (min-width: 1024px) {
   .mobile__firstintro__body {
     display: none;
   }
 }
-@media screen and(max-width:1024px ) {
+@media screen and (max-width: 1024px) {
   .mobile__firstintro__body {
     display: grid;
     gap: 4rem;
@@ -239,7 +239,7 @@
    .product-bottom-right {
      display: grid !important;
      p {
-       margin: 5px 0 !important;
+       margin: 20px 0 !important;
        text-align: left !important;
      }
      h2 {

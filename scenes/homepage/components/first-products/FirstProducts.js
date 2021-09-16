@@ -3,9 +3,10 @@ import ProductsWithLeftText from "../../../../shareable/Products/ProductsWithLef
 import { addToWishList } from "../../../../services/actions/products";
 
 const FirstProducts = ({ products }) => {
-  const { productsWithLeftTextOneData } = useSelector((state) => state?.landing);
-  const authData = useSelector((state) => state.auth);
-  
+  const { productsWithLeftTextOneData } = useSelector(
+    (state) => state?.landing
+  );
+
   return (
     <>
       <ProductsWithLeftText

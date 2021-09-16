@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function ProductOffers({ notFoundText, notFoundData }) {
-  const { section_two_title, section_two_subtitle } = notFoundText;
 
   return (
     <div className="offers__container">

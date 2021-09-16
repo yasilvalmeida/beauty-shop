@@ -74,6 +74,7 @@ const MobileHeader = () => {
           url = `shop?category=${categoryId}`;
       }
       if (categoryId === 444) url = "marken";
+      if (categoryId === 446) url = "herren";
       const e = {
         id: categoryId,
         name,

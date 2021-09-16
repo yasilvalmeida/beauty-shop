@@ -61,8 +61,9 @@ const Neuigkeiten = ({
                 style={{
                   color: background,
                   backgroundColor: color,
-                  width: width,
-                  padding: padd,
+                  width: "31%",
+                  display: "flex",
+                  margin: "auto",
                 }}
               >
                 {newsSectionTextData?.small_button}{" "}
@@ -99,12 +100,12 @@ const Neuigkeiten = ({
             </div>
             <br />
             <button
-              className={""}
+              className={"filter-bot-btn"}
               onClick={() => router.push(`${newsSectionTextData?.url || ""}`)}
               style={{
                 color: background,
                 backgroundColor: color,
-                width: width,
+                width: "31%",
                 display: "flex",
                 margin: "auto",
               }}
@@ -119,7 +120,7 @@ const Neuigkeiten = ({
           style={{
             color: background,
             backgroundColor: color,
-            width: width,
+            width: "20%",
             padding: padd,
           }}
         >

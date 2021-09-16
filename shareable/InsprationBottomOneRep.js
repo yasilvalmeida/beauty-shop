@@ -1,42 +1,41 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useSelector } from "react-redux";
 
-const InspirationBottomOneRep = ({ background, color }) => {
-  const { inspirationTwoTextData } = useSelector((state) => state.landing);
+const InspirationBottomOneRep = ({ inspiration, background, color }) => {
+  
   return (
     <>
       <div style={{ backgroundColor: background }}>
         <div className={"d-flex flex-wrap inspiration-bottom"}>
           <div className={"col-lg-6 inspiration-bottom-text"}>
             <div className={"inspiration-bottom-head-txt"}>
-              <p style={{ color: color }}>{inspirationTwoTextData?.title}</p>
-              <Link href={inspirationTwoTextData?.url || ""}>
-                <a href={inspirationTwoTextData?.url || ""}>
+              <p style={{ color: color }}>{inspiration?.title}</p>
+              <Link href={inspiration?.url || ""}>
+                <a href={inspiration?.url || ""}>
                   <h2 style={{ color: color, cursor: "pointer" }}>
-                    {inspirationTwoTextData?.header}
+                    {inspiration?.header}
                   </h2>
                 </a>
               </Link>
             </div>
-            <span style={{ color: color }}>{inspirationTwoTextData?.text}</span>
-            <Link href={inspirationTwoTextData?.url || ""}>
+            <span style={{ color: color }}>{inspiration?.text}</span>
+            <Link href={inspiration?.url || ""}>
               <button
                 className={"inspiration-bottom-btn"}
                 style={{ color: background, backgroundColor: color }}
               >
-                {inspirationTwoTextData?.button}
+                {inspiration?.button}
               </button>
             </Link>
           </div>
           <div className={"col-lg-6 inspiration-bottom-image"}>
             <div className={"inspiration-bottom-imagetxt"}>
-              <Link href={inspirationTwoTextData?.url || ""}>
-                <a href={inspirationTwoTextData?.url || ""}>
+              <Link href={inspiration?.url || ""}>
+                <a href={inspiration?.url || ""}>
                   <Image
                     src={
-                      inspirationTwoTextData?.image?.length > 0
-                        ? inspirationTwoTextData?.image[0]?.url
+                      inspiration?.image?.length > 0
+                        ? inspiration?.image[0]?.url
                         : "/inspirationbot1.png"
                     }
                     layout="responsive"
@@ -45,10 +44,10 @@ const InspirationBottomOneRep = ({ background, color }) => {
                     style={{ cursor: "pointer" }}
                   />
                   <p className={"insp-bot-sm"}>
-                    {inspirationTwoTextData?.image_title}
+                    {inspiration?.image_title}
                   </p>
                   <p className={"insp-bot-lg"}>
-                    {inspirationTwoTextData?.image_header}
+                    {inspiration?.image_header}
                   </p>
                 </a>
               </Link>

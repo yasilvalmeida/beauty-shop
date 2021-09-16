@@ -1,5 +1,5 @@
 .filtered-products-body {
-  width: 90.5%;
+  width: 95%;
   //height: 100vh;
   margin: 0 auto;
   flex-direction: column;
@@ -189,9 +189,13 @@
   }
   .products-with-filter-list {
     @media (min-width: 1024px) {
-      display: grid;
-      grid-auto-flow: column;
+      //width: 102%;
+      display: flex;
+      //grid-auto-flow: column;
       gap: 2rem;
+      flex-wrap: wrap;
+      flex-direction: row;
+      justify-content: space-between;
     }
   }
   .products-filter-head-home {
@@ -247,6 +251,9 @@
     }
   }
   .first-prod-items {
+    @media (min-width: 1024px) {
+      width: 20%;
+    }
     margin-top: 5vh;
     display: flex;
     flex-direction: column;

@@ -18,25 +18,14 @@
 
         .ant-modal-title {
           color: white;
-          font-size: 7.5rem;
-          @media screen and(max-width: 1600px) {
-            font-size: 6.8rem;
+          font-size: 5rem;
+          @media screen and(min-width: 1024px) {
+            width: 80%;
           }
-          @media screen and(max-width: 1200px) {
-            font-size: 6rem;
+          @media screen and(max-width: 1024px) {
+            font-size: 3rem;
             width: 90%;
-          }
-          @media screen and(max-width: 742px) {
-            font-size: 5rem;
-            width: 90%;
-          }
-          @media screen and(max-width: 640px) {
-            font-size: 4.5rem;
-            width: 90%;
-          }
-          @media screen and(max-width: 400px) {
-            font-size: 3.2rem;
-            width: 90%;
+            line-height: 20px;
           }
         }
       }
@@ -44,8 +33,8 @@
       .ant-modal-body {
         .render__modal__content {
           &__toptxt {
-            font-size: 2.7rem;
-            font-weight: 400;
+            font-size: 2.5rem;
+            font-weight: 300;
             font-stretch: normal;
             font-style: normal;
             line-height: 1.32;
@@ -54,8 +43,8 @@
             color: #ffffff;
             text-transform: uppercase;
             margin-bottom: 3.2rem;
-            @media screen and(max-width: 400px) {
-              font-size: 2.3rem;
+            @media screen and(max-width: 1024px) {
+              font-size: 2.0rem;
             }
           }
 
@@ -70,7 +59,7 @@
             img {
               width: 100%;
               height: 100%;
-              object-fit: cover;
+              //object-fit: cover;
             }
           }
 
@@ -83,9 +72,9 @@
 
               .email__subscription__popup {
                 display: grid;
-                width: 90.5%;
-                grid-template-columns: 53% 44%;
-                gap: 3.2rem;
+                width: 100%;
+                grid-template-columns: 50% 47%;
+                gap: 3rem;
                 @media screen and(max-width: 450px) {
                   width: 100%;
                   grid-template-columns: unset;
@@ -165,10 +154,10 @@
 
               .checkmark {
                 position: absolute;
-                top: 4px;
+                top: 2px;
                 left: 0;
-                height: 2.2rem;
-                width: 2.2rem;
+                height: 1.2rem;
+                width: 1.2rem;
                 background-color: white;
                 border: 1px solid white;
               }
@@ -209,13 +198,13 @@
                 width: 100%;
 
                 label {
-                  margin-left: 1rem;
-                  font-size: 2.2rem;
+                  margin-left: 0rem;
+                  font-size: 1.5rem;
                   font-weight: normal;
                   font-stretch: normal;
                   font-style: normal;
                   line-height: 1.35;
-                  letter-spacing: 1.2px;
+                  letter-spacing: 0px;
                   text-align: left;
                   color: #ffffff;
                   text-transform: uppercase;
@@ -228,10 +217,10 @@
 
                 .checkmark {
                   position: absolute;
-                  top: 4px;
+                  top: 3px;
                   left: 0;
-                  height: 2.2rem;
-                  width: 2.2rem;
+                  height: 1.5rem;
+                  width: 1.5rem;
                   background-color: white;
                 }
 
@@ -249,10 +238,10 @@
           }
 
           &__bottom {
-            margin-top: 5rem;
+            margin-top: 0rem;
 
             p {
-              font-size: 2rem;
+              font-size: 1.5rem;
               font-weight: normal;
               font-stretch: normal;
               font-style: normal;

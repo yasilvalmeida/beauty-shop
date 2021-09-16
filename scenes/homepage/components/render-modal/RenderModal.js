@@ -3,7 +3,7 @@ import { Modal } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { getRenderModal } from "../../../../services/actions/landing";
 import { postNewsletter } from "../../../../services/actions/newsletter";
-import { Spin, Space } from "antd";
+import Loader from "../../../../shareable/Loader";
 
 const RenderModal = ({ isModalVisible, setIsModalVisible }) => {
   const dispatch = useDispatch();
@@ -61,18 +61,14 @@ const RenderModal = ({ isModalVisible, setIsModalVisible }) => {
   return (
     <>
       {renderModalLoading ? (
-        <div className={"loader__component"}>
-          <Space size="middle">
-            <Spin size="large" />
-          </Space>
-        </div>
+        <Loader type={"component"} />
       ) : (
         <Modal
           title={renderModalData?.title}
           visible={isModalVisible}
           onOk={handleOk}
           onCancel={handleCancel}
-          width={1200}
+          width={"85%"}
           wrapClassName={"on__render__modal"}
           footer={null}
         >

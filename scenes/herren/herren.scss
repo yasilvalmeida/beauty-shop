@@ -22,78 +22,124 @@
   }
 }
 .herren-head-body{
-    width: 100%;
-    margin: 0 auto;
+  width: 100%;
+  margin: 0 auto;
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: 50%;
   margin-top: 50px;
   @media screen and(max-width: 1024px) {
-      display: none;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px !important;
+    background-color: #000000;
   }
-    .herren-head-left{
-      display: flex;
-      justify-content: flex-end;
-      background-color: #000000;
-      padding: 165px 0;
-      .herren-head-left-body{
-        width: 90.5%;
-
-        p{
-          color: #ffffff;
-          font-family: "Freight Sans Pro",system-ui,inherit;
-          font-size: 2.5rem;
-          font-weight: 300;
-          font-style: normal;
-          letter-spacing: 1.38px;
-          line-height: normal;
-          text-transform: uppercase;
-          margin: 0;
+  .herren-head-left {
+    /* display: flex;
+    justify-content: flex-end; */
+    background-color: #000000;
+    padding: 165px 0;
+    @media screen and(max-width: 1024px) {
+      padding: 65px 0;
+    }
+    @media screen and(min-width: 1024px) {
+      padding: 65px 0;
+    }
+    .herren-head-left-body {
+      width: 80%;
+      @media screen and(max-width: 1024px) {
+        /* display: none; */
+        display: flex;
+        flex-direction: column;
+      }
+      /* @media screen and(max-width: 1600px) {
+        width: 70%;
+      } */
+      p {
+        color: #ffffff;
+        font-family: "Freight Sans Pro",system-ui,inherit;
+        font-size: 2.5rem;
+        font-weight: 300;
+        font-style: normal;
+        letter-spacing: 1.38px;
+        line-height: normal;
+        text-transform: uppercase;
+        margin: 0;
+        @media screen and(max-width: 1024px) {
+          font-size: 1rem;
+          text-align: start;
+          margin-top: -50px;
         }
-        h2{
-          color: #ffffff;
-          font-family: "Freight Sans Pro",system-ui,inherit;
-          font-size: 8rem;
+      }
+      h2 {
+        color: #ffffff;
+        font-family: "Freight Sans Pro",system-ui,inherit;
+        font-size: 7rem;
+        font-weight: 300;
+        font-style: normal;
+        //letter-spacing: 3.6px;
+        line-height: 80px;
+        text-transform: uppercase;
+        text-align: left;
+        cursor: pointer;
+        @media screen and(max-width: 1024px) {
+          font-size: 5rem !important;
           font-weight: 300;
-          font-style: normal;
-          letter-spacing: 3.6px;
-          line-height: 80px;
-          text-transform: uppercase;
-          text-align: left;
-          cursor: pointer;
+          text-align: start !important;
+          letter-spacing: 0px;
+          line-height: 40px;
         }
-        button{
-          background-color: #ffffff;
-          border: none;
-          color: #000000;
-          font-family: "Freight Sans Pro",system-ui,inherit;
-          font-size: 2.5rem;
-          padding: 20px;
-          margin-top: 0px;
-          font-weight: 500;
-          font-style: normal;
-          letter-spacing: 5px;
-          line-height: normal;
-          text-align: center;
-          text-transform: uppercase;
+      }
+      button {
+        background-color: #ffffff;
+        border: none;
+        color: #000000;
+        font-family: "Freight Sans Pro",system-ui,inherit;
+        font-size: 2.5rem;
+        padding: 20px;
+        margin-top: 0px;
+        font-weight: 500;
+        font-style: normal;
+        letter-spacing: 5px;
+        line-height: normal;
+        text-align: center;
+        text-transform: uppercase;
+        @media screen and(max-width: 1024px) {
+          position: relative;
+          margin-left: 25%;
+          /* margin-right: 25%; */
+          top: 320px;
+          height: 0px;
+          line-height: 0px;
+          width: 152px;
+          letter-spacing: 0px;
         }
       }
     }
-  .herren-head-right{
-    min-height: 625px;
-    max-height: 100%;
-    background-repeat: no-repeat;
-    background-size: cover;
+  }
+  .herren-head-right {
     cursor: pointer;
+    background-repeat: no-repeat;
+    
+    @media screen and(max-width: 1024px) {
+      background-size: 100% 300px;
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-top: -110px;
+    }
+    @media screen and(min-width: 1024px) {
+      background-size: 100% 500px;
+    }
+    @media screen and(min-width: 1600px) {
+      background-size: 100% 700px;
+    }
   }
 }
-.harren-first-products{
-    width: 90%;
-    margin: 10vh auto ;
-
-
+.harren-first-products {
+  width: 90%;
+  margin: 10vh auto;
 }
-.harreninsp{
+.harreninsp {
   display: grid;
   gap: 132px;
   background: black;

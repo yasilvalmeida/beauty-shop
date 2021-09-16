@@ -1,12 +1,14 @@
 import InspirationSection from "../../../shareable/Inspiration";
+import { useSelector } from "react-redux";
 
-const Inspiration = ({ inspiration }) => {
+const Inspiration = () => {
+  const { herrenInspirationOneTextData } = useSelector((state) => state.herren);
   const background = "black";
   const color = "white";
   const padding = "10px";
   return (
     <InspirationSection
-      inspiration={inspiration}
+      inspiration={herrenInspirationOneTextData}
       background={background}
       color={color}
       padding={padding}
