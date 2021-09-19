@@ -10,6 +10,7 @@ import {
   getProductsWithFilter,
 } from "../../services/actions/products";
 import { useEffect } from "react";
+import { useRouter } from "next/router";
 import Products from "./components/products/Products";
 import BrandPortrait from "./components/brand-portrait/BrandPortrait";
 import ActiveIngredients from "./components/active-ingredients/ActiveIngredients";
@@ -32,6 +33,8 @@ import Loader from "../../shareable/Loader";
 
 const SingleBrandScene = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
+  const lang = useSelector((state) => state.header.headerLanguage);
   const productOne = useSelector((state) => state?.brand.productOne);
   const productTwo = useSelector((state) => state?.brand.productTwo);
   const productThree = useSelector((state) => state?.brand.productThree);
@@ -39,23 +42,27 @@ const SingleBrandScene = () => {
   const productFive = useSelector((state) => state?.brand.productFive);
   useEffect(() => {
     dispatch(getUserDataFromLocalStorage());
-    dispatch(getBrandsPageData("yulumi"));
-    dispatch(getBrandsProductsOne());
-    dispatch(getBrandsProductsTwo());
-    dispatch(getBrandsProductsThree());
-    dispatch(getBrandsProductsFour());
-    dispatch(getBrandsProductsFive());
   }, []);
+
+  useEffect(() => {
+    const { brandId } = router?.query;
+    dispatch(getBrandsPageData(lang));
+    dispatch(getBrandsProductsOne(brandId, lang));
+    dispatch(getBrandsProductsTwo(brandId, lang));
+    dispatch(getBrandsProductsThree(brandId, lang));
+    dispatch(getBrandsProductsFour(brandId, lang));
+    dispatch(getBrandsProductsFive(brandId, lang));
+  }, [lang]);
   const data = useSelector((state) => state.brand.brandPageData);
   const loader = useSelector((state) => state.brand.brandPageDataLoaded);
   return (
     <>
+      <Header />
+      <MobileHeader />
       {loader ? (
         <Loader type={"component"} />
       ) : (
         <>
-          <Header />
-          <MobileHeader />
           <div className={"brands__page__body"}>
             <BrandsHeader
               data={{
@@ -83,7 +90,6 @@ const SingleBrandScene = () => {
               addToWishList={addToWishList}
               getFour={getProductsWithFilter}
             />
-
             <BrandPortrait
               data={{
                 title: data?.brand_portrait_title,
@@ -148,11 +154,11 @@ const SingleBrandScene = () => {
               addToWishList={addToWishList}
               getFour={getProductsWithFilter}
             />
-            <NewsletterRep />
           </div>
-          <Footer />
         </>
       )}
+      <NewsletterRep />
+      <Footer />
     </>
   );
 };

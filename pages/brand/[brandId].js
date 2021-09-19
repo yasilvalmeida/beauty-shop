@@ -20,7 +20,7 @@ export async function getStaticPaths(params) {
   return {
     paths: data?.map((e) => {
       return {
-        params: { id: `${e}` },
+        params: { brandId: `${e}` },
       };
     }),
     fallback: false,

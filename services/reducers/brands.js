@@ -41,7 +41,7 @@ const brandsProductsReducer = (state = initialState, { type, payload }) => {
     case SET_BRAND_PAGE_DATA: {
       return {
         ...state,
-        brandPageData: payload[0],
+        brandPageData: payload[1],
         brandPageDataLoaded: false,
       };
     }
