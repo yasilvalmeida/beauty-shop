@@ -1,3 +1,6 @@
+import PageHeader from "../../layouts/header/Header";
+import MobileHeader from "../../layouts/mobile-header/MobileHeader";
+import Footer from "../../layouts/footer/Footer";
 import ComponentHeader from "../../shareable/component-header/ComponentHeader";
 import MediatekInfo from "./components/mediatek-info/MediatekInfo";
 import VideoPart from "../homepage/components/video/VideoPart";
@@ -57,6 +60,8 @@ const Video = () => {
 
   return (
     <div>
+      <PageHeader />
+      <MobileHeader />
       {videoTextLoaded && videoLoaded ? (
         <Loader type={"component"} />
       ) : (
@@ -88,6 +93,7 @@ const Video = () => {
       )}
       <Social />
       <NewsletterRep />
+      <Footer />
     </div>
   );
 };

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const VideosContainer = ({ video, changeVideo, addToBookmark }) => {
+  console.log('aux', video)
   const [play, setPlay] = useState(false);
   return (
     <div className={"col-lg-4 small-vid-bod"}>
@@ -108,8 +109,8 @@ const VideosContainer = ({ video, changeVideo, addToBookmark }) => {
         </div>
         <h2>{video?.name}</h2>
         <span>{video?.description}</span>
-        <Link href={`${video?.url} || "/shop"`}>
-          <a href={`${video?.url} || "/shop"`}>{video?.button}</a>
+        <Link href={video?.url || "/shop"}>
+          <a href={video?.url}>{video?.button}</a>
         </Link>
       </div>
     </div>
