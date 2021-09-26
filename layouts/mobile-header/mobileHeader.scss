@@ -112,10 +112,20 @@
       }
     }
   }
+  .mobileHeader__translation__container {
+    visibility: visible;
+    transform: translateX(28%);
+    transition: all .3s ease-in;
+    position: absolute;
+    right: 10rem;
+    @media screen and (max-width: 1080px) {
+      display: block;
+    }
+  }
   .hide {
     opacity: 0;
-    transform: translateY(-50%);
-    transition: all .3s ease-in-out;
+    //transform: translateY(20%);
+    //transition: all .3s ease-out;
     visibility: hidden;
   }
 }
@@ -127,7 +137,7 @@
   width: 50%;
 }
 
-.ant- -close {
+.ant--close {
   .anticon {
     font-size: 5rem;
   }

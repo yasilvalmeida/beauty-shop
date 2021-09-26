@@ -1,6 +1,10 @@
-import { useEffect, useState } from "react";
-import { MenuOutlined, SearchOutlined } from "@ant-design/icons";
-import { Drawer, Input } from "antd";
+import { useEffect, useState, useCallback } from "react";
+import {
+  MenuOutlined,
+  SearchOutlined,
+  TranslationOutlined,
+} from "@ant-design/icons";
+import { Drawer, Input, Radio, Space } from "antd";
 import MobileCard from "./MobileCard";
 import MobileMenuFooter from "./MobileMenuFooter";
 import Logo from "../logo/Logo";
@@ -9,6 +13,7 @@ import CartSidebar from "../cartSidebar/CartSidebar";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import { getBasketData } from "../../services/actions/basket";
+import { setSelectedLanguage } from "../../services/actions/header";
 import Loader from "../../shareable/Loader";
 
 const MobileHeader = () => {
@@ -16,9 +21,16 @@ const MobileHeader = () => {
   const [visible, setVisible] = useState(false);
   const [visibleCart, setVisibleCart] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+  const [showTranslation, setShowTranslation] = useState(false);
   const navListState = useSelector((state) => state.navbar.navList);
   const lang = useSelector((state) => state?.navbar?.selectedLanguage);
   const [navList, setNavList] = useState([]);
+  const [languages, setLanguages] = useState([
+    { id: 1, name: "de", active: true },
+    { id: 2, name: "en", active: false },
+    { id: 3, name: "fr", active: false },
+  ]);
+  const [language, setLanguage] = useState(languages[0]?.name);
 
   const showDrawer = () => {
     setVisible(true);
@@ -33,14 +45,36 @@ const MobileHeader = () => {
     setVisibleCart(false);
   };
   const openSearch = () => {
+    setShowTranslation(false);
     setShowSearch(!showSearch);
   };
+  const openTranslation = () => {
+    setShowSearch(false);
+    setShowTranslation(!showTranslation);
+  }
+  const onChange = useCallback(
+    (e) => {
+      console.log("radio checked", e.target.value);
+      setLanguage(e.target.value);
+      setLanguages((prev) =>
+        prev.map((lng) => {
+          lng.active = false;
+          if (lng.name === e.target.value) {
+            lng.active = true;
+            dispatch(setSelectedLanguage(lng?.name?.toLowerCase()));
+          }
+          return lng;
+        })
+      );
+    },
+    [languages]
+  );
   useEffect(() => {
     if (visibleCart) {
       dispatch(getBasketData());
     }
   }, [visibleCart]);
-
+ 
   useEffect(() => {
     const mainCategories = [];
     navListState?.map((elem, i) => {
@@ -107,11 +141,32 @@ const MobileHeader = () => {
         </div>
         <Logo />
         <div className="mobileHeader__container__image--cart">
+          <TranslationOutlined onClick={openTranslation} />
           <SearchOutlined onClick={openSearch} />
           <div onClick={showDrawerCart} style={{ cursor: "pointer" }}>
             <Image src="/bag.svg" width={30} height={30} />
           </div>
         </div>
+      </div>
+      <div
+        className={
+          showTranslation ? "mobileHeader__translation__container" : "hide"
+        }
+      >
+        <Radio.Group onChange={onChange} value={language} buttonStyle="solid">
+          <Space direction="horizontal">
+            {languages.map((lng, idx) => (
+              <Radio.Button
+                value={lng.name}
+                key={idx}
+                checked={lng.active ? true : false}
+                style={{ background: "#ccc", borderColor: "black" }}
+              >
+                {lng.name}
+              </Radio.Button>
+            ))}
+          </Space>
+        </Radio.Group>
       </div>
       <div className={showSearch ? "mobileHeader__search__container" : "hide"}>
         <Input
