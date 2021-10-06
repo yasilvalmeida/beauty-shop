@@ -1,0 +1,61 @@
+
+.services-body {
+  width: 90.5%;
+  margin: 20rem auto 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  @media screen and (max-width: 1250px) {
+    grid-template-columns: repeat(auto-fit, minmax(45rem, 1fr));
+  }
+  .services-item {
+    display: grid;
+    justify-items: center;
+    align-items: end;
+    gap: 2rem;
+    width: 80%;
+    margin: 0 auto;
+    img{
+      width: 10%;
+    }
+    @media screen and (min-width: 425px) and(max-width: 1250px) {
+      width: 60%;
+    }
+    svg {
+      width: 10rem;
+      height: 10rem;
+      margin-bottom: 3rem;
+    }
+    h2 {
+      color: #2e2e2e;
+      font-size: 3.5rem;
+      font-weight: 400;
+      font-style: normal;
+      letter-spacing: 3.5px;
+      text-align: center;
+      /* Text style for "Kostenlose" */
+      font-style: normal;
+
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      @media screen and (max-width: 1024px) {
+        width: 30rem;
+      }
+    }
+    p {
+      color: #2e2e2e;
+      font-family: 'Freight Sans Pro', system-ui,inherit;
+      font-size: 2.5rem;
+      font-style: normal;
+      text-align: center;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.2;
+      letter-spacing: 1.05px;
+      margin-bottom: 5rem;
+      @media screen and (max-width: 1024px) {
+        width: 35rem;
+      }
+    }
+  }
+}

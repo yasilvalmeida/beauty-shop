@@ -31,6 +31,7 @@ import socialReducer from "./reducers/social";
 import searchPageReducer from "./reducers/search";
 import magazineReducer from "./reducers/magazine";
 import herrenPageReducer from "./reducers/herren";
+import recommendationReduccer from "./reducers/recommendation";
 
 const rootReducer = combineReducers({
   about: aboutReducer,
@@ -57,6 +58,7 @@ const rootReducer = combineReducers({
   newsletter: newsletterReducer,
   notFound: notFoundReducer,
   products: productsReducer,
+  recommendation: recommendationReduccer,
   registration: RegistrationReducer,
   search: searchPageReducer,
   singleProduct: singleProductReducer,

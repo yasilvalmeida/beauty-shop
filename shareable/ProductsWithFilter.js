@@ -31,11 +31,6 @@ const ProductsWithFilter = ({ position }) => {
   let start = 1;
   let limit;
   if (position === "HerrenPageOne") {
-    /* headers = [
-      { lang: "de", header: "Männerpflege" },
-      { lang: "en", header: "Men grooming" },
-      { lang: "fr", header: "Hommes de toilettage" },
-    ]; */
     top3Categories = [];
     limit = 8;
     navListState.map((element, i) => {
@@ -73,6 +68,26 @@ const ProductsWithFilter = ({ position }) => {
     ]);
   } else if (position === "HomePage") {
     top3Categories = navListState.slice(0, 3);
+    limit = 4;
+  } else if (position === "Recommendation") {
+    headers = [
+      { lang: "de", header: "Von uns für sie" },
+      { lang: "en", header: "From us for you" },
+      { lang: "fr", header: "De nous pour vous" },
+    ];
+    top3Categories = [];
+    navListState.map((element, i) => {
+      let tmp = element?.filter((cat) => cat?.categoryId === 445);
+      if (tmp?.length > 0) top3Categories.push(tmp);
+    });
+    top3Categories.push([
+      { categoryId: 545, lang: "de", name: "SCHÖNHEIT" },
+      { categoryId: 545, lang: "en", name: "BEAUTY" },
+    ]);
+    top3Categories.push([
+      { categoryId: 645, lang: "de", name: "INTERIEUR" },
+      { categoryId: 645, lang: "en", name: "INTERIEUR" },
+    ]);
     limit = 4;
   }
   const [headtext, setHeadtext] = useState(headers[0]?.header);

@@ -1,0 +1,25 @@
+.recommendation-body {
+  display: flex;
+  flex-direction: column;
+  display: grid;
+  grid-auto-flow: row;
+  gap: 0rem;
+
+  .inspiration-bottom-left {
+    margin-bottom: -5rem;
+  }
+  .product__with__filter {
+    margin-top: 15rem;
+    margin-bottom: 15rem;
+  }
+  .neuigkeiten {
+    margin-bottom: 15rem;
+    @media screen and (max-width: 1650px) {
+     margin-bottom: 0;
+    }
+  }
+}
+
+@import "components/recommendation-header/recommendationHeader";
+@import "components/products-with-filter/ProductsWithFilter";
+@import "components/services/Services";
