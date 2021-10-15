@@ -102,18 +102,13 @@ export const getFooterMainMenu = (lang) => {
     dispatch({ type: GET_FOOTER });
     axios
       .get(
-        `${process.env.NEXT_PUBLIC_API_URL}/footer-main-accounts?_locale=${lang}`
+        `${process.env.NEXT_PUBLIC_API_URL}/footer-main-accounts?_locale=${lang}&_sort=order_number:ASC`
       )
       .then((res) => {
         const { data } = res;
-        const sorted = data.sort((a, b) => {
-          if (a.id > b.id) return 1;
-          else if (a.id == b.id) return 0;
-          else return -1;
-        });
         dispatch({
           type: SET_FOOTER_MAIN_MENU,
-          payload: sorted,
+          payload: data,
         });
       })
       .catch((err) => dispatch({ type: SET_ERROR, payload: err }));

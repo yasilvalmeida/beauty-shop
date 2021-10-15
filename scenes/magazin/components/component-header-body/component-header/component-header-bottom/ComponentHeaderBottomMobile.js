@@ -1,7 +1,19 @@
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import moment from "moment";
 import Link from "next/link";
 const ComponentHeaderBottomMobile = () => {
+  const { magazineCategoriesData, magazineArticlesData } = useSelector(
+    (state) => state.magazine
+  );
+  const [selectedNew, setSelectedNew] = useState(
+    magazineArticlesData?.length > 0 ? magazineArticlesData[0] : null
+  );
+  useEffect(() => {
+    if (magazineArticlesData?.length > 0) {
+      setSelectedNew(magazineArticlesData[0]);
+    }
+  }, [magazineArticlesData]);
   const dataText = useSelector((state) => state.news.newsReports).find(
     (p) => (p.position = "MagazinPageOne")
   );
@@ -9,25 +21,28 @@ const ComponentHeaderBottomMobile = () => {
     <div className={"component__header__bottom__mobile"}>
       <div className={"component__header__bottom__mobile__white"}>
         <span className={"component__header__bottom__body__white__text--date"}>
-          {moment(dataText?.updated_at).format("DD.MM.YYYY")}
+          {moment(selectedNew?.date).format("DD.MM.YYYY")}
         </span>
         <p
           className={"component__header__bottom__body__white__text--coverstory"}
         >
-          {dataText?.header}
+          {selectedNew?.magazine_category?.name ||
+            magazineCategoriesData?.find(
+              (category) => category?.id === selectedNew?.magazine_category
+            )?.name}
         </p>
         <h2 className={"component__header__bottom__body__white__text--title"}>
-          {dataText?.title}
+          {selectedNew?.title}
         </h2>
         <span className={"component__header__bottom__body__white__text--txt"}>
-          {dataText?.text}
+          {selectedNew?.resume}
         </span>
-        <Link href={`${dataText?.url}`}>
+        <Link href={`article/${selectedNew?.id}`}>
           <a
-            href="#"
+            href={`article/${selectedNew?.id}`}
             className={"component__header__bottom__body__white__text--link"}
           >
-            {dataText?.link_text}
+            {selectedNew?.link}
           </a>
         </Link>
       </div>

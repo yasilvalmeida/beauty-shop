@@ -4,7 +4,7 @@ import MediatekInfoMagazinArtikel from "../mediatek-info/MediatekInfoMagazin";
 import { useSelector } from "react-redux";
 
 const MagazinArtikelComponentHeader = () => {
-  const { magazineOnePageTextData } = useSelector((state) => state.magazine);
+  const { magazinePageTextData } = useSelector((state) => state.magazine);
   const bg = "rgba(0,0,0,.5)";
   const color = "white";
   const color2 = "black";
@@ -12,8 +12,8 @@ const MagazinArtikelComponentHeader = () => {
   return (
     <div className={"magazin__container__header"}>
       <ComponentHeader
-        info={magazineOnePageTextData?.header_info}
-        title={magazineOnePageTextData?.header_title}
+        info={magazinePageTextData?.header_info}
+        title={magazinePageTextData?.header_title}
         bg={bg}
         color={color}
         color2={color2}

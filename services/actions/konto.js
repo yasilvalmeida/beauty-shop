@@ -12,10 +12,10 @@ export const getKontoMainBoxesData = (lang) => {
   return (dispatch) => {
     dispatch({ type: GET_KONTO_MAIN_BOXES_DATA });
     axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/main-accounts?_locale=${lang}`)
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/main-accounts?_locale=${lang}&_sort=id:ASC`)
       .then((res) => {
         const { data } = res;
-        const sortData = data.sort((a, b) => {
+        /* const sortData = data.sort((a, b) => {
           if (a.id > b.id) {
             return 1;
           }
@@ -24,11 +24,11 @@ export const getKontoMainBoxesData = (lang) => {
           }
           // a must be equal to b
           return 0;
-        });
+        }); */
 
         dispatch({
           type: SET_KONTO_MAIN_BOXES_DATA,
-          payload: sortData,
+          payload: data,
         });
       })
       .catch((err) =>

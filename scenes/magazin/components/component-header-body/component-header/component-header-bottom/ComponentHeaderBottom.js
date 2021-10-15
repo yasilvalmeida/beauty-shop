@@ -1,33 +1,69 @@
 import Image from "next/image";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import moment from "moment";
 import Link from "next/link";
-const ComponentHeaderBottom = () =>{
-    const dataText = useSelector(state => state.news.newsReports).find(p => p.position = "MagazinPageOne")
-    return(
-        <div className={"component__header__bottom__body"}>
-            <div className={"component__header__bottom__body__white"}>
-                <div className={"component__header__bottom__body__white__image"}>
-                    <Image src={`${dataText?.images?.url || "/magazin/magazin2.png"}`} layout={"responsive"} width={1300} height={630}/>
-                </div>
-                <div className={"component__header__bottom__body__white__text"}>
-                    <span className={"component__header__bottom__body__white__text--date"}>{moment(dataText?.updated_at).format("DD.MM.YYYY")}</span>
-                    <p className={"component__header__bottom__body__white__text--coverstory"}>{dataText?.header}</p>
-                    <h2 className={"component__header__bottom__body__white__text--title"}>
-                        {dataText?.title}
-                    </h2>
-                    <span className={"component__header__bottom__body__white__text--txt"}>
-                        {dataText?.text}
-                    </span>
-                    <Link href={`${dataText?.url}`} >
-                        <a href="#" className={"component__header__bottom__body__white__text--link"}>
-                            {dataText?.link_text}
-                        </a>
-                    </Link>
-                </div>
-            </div>
+const ComponentHeaderBottom = () => {
+  const { magazineCategoriesData, magazineArticlesData } = useSelector(
+    (state) => state.magazine
+  );
+  const [selectedNew, setSelectedNew] = useState(
+    magazineArticlesData?.length > 0 ? magazineArticlesData[0] : null
+  );
+  useEffect(() => {
+    if (magazineArticlesData?.length > 0) {
+      setSelectedNew(magazineArticlesData[0]);
+    }
+  }, [magazineArticlesData]);
+  return (
+    <div className={"component__header__bottom__body"}>
+      <div className={"component__header__bottom__body__white"}>
+        <div className={"component__header__bottom__body__white__image"}>
+          <Image
+            src={`${
+              selectedNew?.images?.length > 0
+                ? selectedNew?.images[0].url
+                : "/magazin/magazin2.png"
+            }`}
+            layout={"responsive"}
+            width={1300}
+            height={630}
+          />
         </div>
-    )
-}
+        <div className={"component__header__bottom__body__white__text"}>
+          <span
+            className={"component__header__bottom__body__white__text--date"}
+          >
+            {moment(selectedNew?.date).format("DD.MM.YYYY")}
+          </span>
+          <p
+            className={
+              "component__header__bottom__body__white__text--coverstory"
+            }
+          >
+            {selectedNew?.magazine_category?.name ||
+              magazineCategoriesData?.find(
+                (category) => category?.id === selectedNew?.magazine_category
+              )?.name}
+          </p>
+          <h2 className={"component__header__bottom__body__white__text--title"}>
+            {selectedNew?.title}
+          </h2>
+          <span className={"component__header__bottom__body__white__text--txt"}>
+            {selectedNew?.resume}
+          </span>
+          <Link href={`article/${selectedNew?.id}`}>
+            <a
+              href={`article/${selectedNew?.id}`}
+              className={"component__header__bottom__body__white__text--link"}
+            >
+              {selectedNew?.link}
+            </a>
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-export default ComponentHeaderBottom
+export default ComponentHeaderBottom;

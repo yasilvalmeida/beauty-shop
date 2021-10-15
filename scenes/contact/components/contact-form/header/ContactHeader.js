@@ -6,8 +6,12 @@ const ContactFormHeader = ({ textData }) => {
       <p>{textData?.text_2}</p>
       <p>{textData?.text_3}</p>
       <p>{textData?.text_4}</p>
-      <p>{textData?.text_5}</p>
-      <p>{textData?.text_6}</p>
+      <p>
+        <a href={`tel:${textData?.text_5}`}>{textData?.text_5}</a>
+      </p>
+      <p>
+        <a href={`mailto:${textData?.text_6}`}>{textData?.text_6}</a>
+      </p>
     </div>
   );
 };

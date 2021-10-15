@@ -10,7 +10,7 @@ const ScrollArrow = () => {
       // browser code
       window.addEventListener("scroll", checkScrollTop, { passive: true });
     }
-  }, [typeof window !== "undefined"]);
+  }, [/* typeof window !== "undefined" */]);
 
   const checkScrollTop = () => {
     if (typeof window !== "undefined") {

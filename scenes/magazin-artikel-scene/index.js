@@ -15,18 +15,18 @@ import { useState, useEffect } from "react";
 import CarouselArtikel from "./components/carousel/CarouselArtikel";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserDataFromLocalStorage } from "../../services/actions/auth";
-import { getMagazineOnePageText } from "../../services/actions/magazine";
+import { getMagazinePageText } from "../../services/actions/magazine";
 
 const MagazinArtikelScene = () => {
   const dispatch = useDispatch();
   const lang = useSelector((state) => state.header.headerLanguage);
-  const { magazineOnePageTextLoading } = useSelector((state) => state.magazine);
+  const { magazinePageTextLoading } = useSelector((state) => state.magazine);
   const [showSlider, setShowSlider] = useState(false);
   useEffect(() => {
     dispatch(getUserDataFromLocalStorage());
   }, []);
   useEffect(() => {
-    dispatch(getMagazineOnePageText(lang));
+    dispatch(getMagazinePageText(lang));
   }, [lang]);
   return (
     <>
@@ -34,7 +34,7 @@ const MagazinArtikelScene = () => {
       <MobileHeader />
       <div className={"artikel__all__elements"}>
         {!showSlider ? (
-          magazineOnePageTextLoading ? (
+          magazinePageTextLoading ? (
             <Loader type={"component"} />
           ) : (
             <>

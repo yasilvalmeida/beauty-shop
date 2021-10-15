@@ -3,15 +3,15 @@ import TextPart from "./text-part/TextPart";
 import { useSelector } from "react-redux";
 
 const ArtikelComponentHeaderBody = () => {
-  const { magazineOnePageTextData } = useSelector((state) => state.magazine);
+  const { magazinePageTextData } = useSelector((state) => state.magazine);
   const url = "";
   return (
     <div
       className={"component__header__body__all__artikel"}
       style={{
         backgroundImage: `url(${
-          magazineOnePageTextData?.header_image?.length > 0
-            ? magazineOnePageTextData?.header_image[0]?.url
+          magazinePageTextData?.header_image?.length > 0
+            ? magazinePageTextData?.header_image[0]?.url
             : url
         })`,
       }}
