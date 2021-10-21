@@ -5,10 +5,11 @@ import { useSelector } from "react-redux";
 
 const ComponentHeaderBody = () => {
   const { magazinePageTextData } = useSelector((state) => state.magazine);
-  const defaultBackgroundUrl =
+  const defaultBackgroundUrl = `url(${
     magazinePageTextData?.header_image?.length > 0
       ? magazinePageTextData?.header_image[0]?.url
-      : "url(/magazin/magazinbackground.png)";
+      : "/magazin/magazinbackground2.png"
+  })`;
   return (
     <div
       className={"component__header__body__all"}

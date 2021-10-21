@@ -30,6 +30,7 @@ const MagazinScene = () => {
     magazineArticlesLoading,
     magazineArticlesData,
     magazineBlogsLoading,
+    magazineBlogsData,
   } = useSelector((state) => state.magazine);
 
   useEffect(() => {
@@ -62,52 +63,40 @@ const MagazinScene = () => {
             <ComponentHeaderBody />
             <AddSection
               addData1={
-                magazineArticlesData?.length > 1
-                  ? magazineArticlesData[1]
-                  : null
+                magazineBlogsData?.length > 0 ? magazineBlogsData[0] : null
               }
               addData2={
-                magazineArticlesData?.length > 2
-                  ? magazineArticlesData[2]
-                  : null
+                magazineBlogsData?.length > 1 ? magazineBlogsData[1] : null
               }
               addData3={
-                magazineArticlesData?.length > 3
-                  ? magazineArticlesData[3]
-                  : null
+                magazineBlogsData?.length > 2 ? magazineBlogsData[2] : null
               }
             />
             <ProductsList />
             <MagazinSecondSection
               dataText={
-                magazineArticlesData?.length > 4
-                  ? magazineArticlesData[4]
+                magazineArticlesData?.length > 1
+                  ? magazineArticlesData[1]
                   : null
               }
             />
             <MagazinSecondSectionMobile
               dataText={
-                magazineArticlesData?.length > 4
-                  ? magazineArticlesData[4]
+                magazineArticlesData?.length > 1
+                  ? magazineArticlesData[1]
                   : null
               }
             />
             <ProductsList />
             <AddSection
               addData1={
-                magazineArticlesData?.length > 5
-                  ? magazineArticlesData[5]
-                  : null
+                magazineBlogsData?.length > 3 ? magazineBlogsData[3] : null
               }
               addData2={
-                magazineArticlesData?.length > 6
-                  ? magazineArticlesData[6]
-                  : null
+                magazineBlogsData?.length > 4 ? magazineBlogsData[4] : null
               }
               addData3={
-                magazineArticlesData?.length > 7
-                  ? magazineArticlesData[7]
-                  : null
+                magazineBlogsData?.length > 5 ? magazineBlogsData[5] : null
               }
             />
             <BeautyEssentials />

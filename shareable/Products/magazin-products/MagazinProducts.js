@@ -1,8 +1,46 @@
 import { useState } from "react";
+import { addToBasket } from "../../../services/actions/basket";
+import HeaderLoginPopup from "../../../layouts/header/modal/HeaderLoginPopup";
+import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
+
 const MagazinProducts = ({ elem }) => {
+  const router = useRouter();
+  const formatter = new Intl.NumberFormat("de-DE", {
+    style: "currency",
+    currency: "EUR",
+    minimumFractionDigits: 2,
+  });
   const [rotate, setRotate] = useState("");
   const [transformed, setTransformed] = useState("");
-
+  const { variants_of_a_products } = elem;
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const { isAuthenticated } = useSelector((state) => state.auth);
+  let variantId = [];
+  const name =
+    elem?.name?.length <= 10
+      ? elem?.name
+      : elem?.name?.substring(0, 10) + "...";
+  if (elem?.variants_of_a_products?.length === 1) {
+    variantId = [...elem?.variants_of_a_products];
+  } else {
+    variantId = elem?.variants_of_a_products?.filter((item) => {
+      return item?.main === true;
+    });
+  }
+  const addProductToBasket = (id, variantId, defaultId, quantity) => {
+    if (!isAuthenticated) {
+      return router.push("/login");
+    }
+    if (variantId === undefined) {
+      dispatch(addToBasket(elem?.product_id, defaultId[0].id, quantity));
+    } else {
+      dispatch(addToBasket(elem?.product_id, variantId, quantity));
+    }
+  };
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
   return (
     <div
       className={"magazin__single__item__body"}
@@ -15,32 +53,59 @@ const MagazinProducts = ({ elem }) => {
         setTransformed("");
       }}
     >
+      <HeaderLoginPopup
+        isModalVisible={isModalVisible}
+        setIsModalVisible={setIsModalVisible}
+      />
       <div className={"magazin__single__item__body__image"}>
-        <img src={elem.image} alt="item" />
+        <img
+          src={elem.images?.length > 0 ? elem?.images[0]?.url : "/item.png"}
+          alt={name}
+          height={180}
+        />
       </div>
       <div className={"magazin__single__item__body__text"}>
         <div className={"magazin__single__item__body__text--nohover"}>
-          <h3>{elem.nohovertext1}</h3>
-          <p>{elem.nohovertext2}</p>
+          <h3>{elem.text_one}</h3>
+          <p>{elem.text_two}</p>
           <p className={`plusik ${rotate}`}>+</p>
         </div>
         <div
           className={`magazin__single__item__body__text__hover ${transformed}`}
         >
-          <h3 className={"magazin__single__item__body__text__hover--name"}>
-            {elem.name}
-          </h3>
+          <h6 className={"magazin__single__item__body__text__hover--name"}>
+            {name}
+          </h6>
           <p className={"magazin__single__item__body__text__hover--type"}>
-            {elem.type}
+            {elem.brand}
           </p>
           <p className={"magazin__single__item__body__text__hover--type2"}>
-            {elem.type2}
+            {variants_of_a_products?.length > 0
+              ? variants_of_a_products[0]?.number
+              : "No Number"}
           </p>
           <p className={"magazin__single__item__body__text__hover--price"}>
-            {elem.price}
+            {formatter.format(
+              variants_of_a_products?.length > 0
+                ? variants_of_a_products[0]?.price
+                : 0
+            )}
           </p>
           <button
             className={"magazin__single__item__body__text__hover--button"}
+            onClick={() => {
+              if (isAuthenticated) {
+                toggleVariantAsfavourite(
+                  singleProductData.id,
+                  !bottleId ? defaultVariant[0]?.id : bottleId,
+                  variantId
+                );
+              } else {
+                if (router.pathname !== "/login") {
+                  showModal();
+                }
+              }
+            }}
           >
             <p>Quick shop</p>{" "}
             <svg

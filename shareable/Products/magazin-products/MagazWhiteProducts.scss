@@ -43,7 +43,7 @@
       transform: translateY(-100%);
       transition: .6s;
       &--name{
-        font-size: 4rem;
+        font-size: 3rem;
         text-transform: uppercase;
         font-weight: normal;
         font-stretch: normal;
@@ -56,7 +56,7 @@
       }
       &--type{
         text-transform: capitalize;
-        font-size: 3rem;
+        font-size: 2rem;
         margin: 0;
       }
       &--type2{
@@ -73,7 +73,7 @@
         text-decoration: underline;
       }
       &--price{
-        font-size: 3.1rem;
+        font-size: 3.0rem;
         font-weight: 600;
         font-stretch: normal;
         font-style: normal;

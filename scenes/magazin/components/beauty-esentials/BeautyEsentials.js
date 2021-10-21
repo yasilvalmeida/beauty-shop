@@ -5,14 +5,15 @@ const BeautyEssentials = () => {
   const { magazinePageTextData, magazineBlogsData } = useSelector(
     (state) => state.magazine
   );
+  const magazineBlogDataReduced = magazineBlogsData?.length > 6 ? magazineBlogsData?.slice(6): [];
   return (
     <div className="beauty__essential__container">
       <div className={"beauty__essential__container__title"}>
         <h3>{magazinePageTextData?.beauty_title}</h3>
       </div>
       <div className="beauty__essential__container__items">
-        {magazineBlogsData?.length > 0 ? (
-          magazineBlogsData?.map((e, i) => {
+        {magazineBlogDataReduced?.length > 0 ? (
+          magazineBlogDataReduced?.map((e, i) => {
             return (
               <div
                 key={i}

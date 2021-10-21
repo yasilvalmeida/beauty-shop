@@ -1,0 +1,71 @@
+.carousel__body__artikel__first{
+  animation: anim .5s;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  position: relative;
+  text-align: center;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  @media screen and(max-width: 1024px) {
+    width: 100%;
+    height: 45vh !important;
+    position: absolute;
+    top: 0vh;
+  }
+  &__mid{
+    align-content: center; 
+    &--txt1{
+      color: white;
+      font-size: 1.5rem;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+      &:hover {
+        background: rgba($color: #000000, $alpha: 0.3);
+        cursor: pointer;
+      }
+    }
+    &--txt2{
+      font-size: 6.2rem;
+      color: white;
+      &:hover {
+        background: rgba($color: #000000, $alpha: 0.3);
+        cursor: pointer;
+      }
+    }
+    &--txt3{
+      font-size: 3.2rem;
+      color: white;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+      &:hover {
+        background: rgba($color: #000000, $alpha: 0.3);
+        cursor: pointer;
+      }
+    }
+  }
+  &__bot{
+    p{
+      color: white;
+      font-size: 1.5rem;
+      margin-bottom: 0;
+      &:hover {
+        background: rgba($color: #000000, $alpha: 0.3);
+        cursor: pointer;
+      }
+    }
+  }
+}
+@keyframes anim {
+  0%{
+    transform: scale(0);
+  }
+  100%{
+    transform: scale(1);
+  }
+}

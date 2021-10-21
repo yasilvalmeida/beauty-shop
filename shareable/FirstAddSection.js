@@ -29,7 +29,9 @@ const FirstAddSection = ({ background, textcolor, padding, sectionTextData }) =>
                 <a href={shopUrl}>
                   <Image
                     src={
-                      left_image?.length > 0 ? left_image[0]?.url : "/aaa.jpg"
+                      left_image && left_image?.length > 0
+                        ? left_image[0]?.url
+                        : "/aaa.jpg"
                     }
                     layout="responsive"
                     width={375}
@@ -40,9 +42,7 @@ const FirstAddSection = ({ background, textcolor, padding, sectionTextData }) =>
               </Link>
             </div>
             <div className={"sec-sec-el-text"}>
-              <p style={{ color: textcolor }}>
-                {left_text}
-              </p>
+              <p style={{ color: textcolor }}>{left_text}</p>
               <Link href={shopUrl}>
                 <a href={shopUrl}>
                   <h3

@@ -11,7 +11,13 @@ import {
   SET_MAGAZINE_ARTICLES_DATA,
   SET_MAGAZINE_BLOGS_ERROR,
   GET_MAGAZINE_BLOGS_DATA,
-  SET_MAGAZINE_BLOGS_DATA
+  SET_MAGAZINE_BLOGS_DATA,
+  GET_MAGAZINE_SINGLE_ARTICLE_DATA,
+  SET_MAGAZINE_SINGLE_ARTICLE_DATA,
+  SET_MAGAZINE_SINGLE_ARTICLE_ERROR,
+  GET_MAGAZINE_SINGLE_BLOG_DATA,
+  SET_MAGAZINE_SINGLE_BLOG_DATA,
+  SET_MAGAZINE_SINGLE_BLOG_ERROR,
 } from "../action-types/magazine";
 
 const initialState = {
@@ -28,6 +34,12 @@ const initialState = {
   magazineBlogsError: null,
   magazineBlogsLoading: true,
   magazineBlogsData: null,
+  magazineSingleArticleError: null,
+  magazineSingleArticleLoading: true,
+  magazineSingleArticleData: null,
+  magazineSingleBlogError: null,
+  magazineSingleBlogLoading: true,
+  magazineSingleBlogData: null,
 };
 
 const magazineReducer = (state = initialState, { type, payload }) => {
@@ -104,6 +116,40 @@ const magazineReducer = (state = initialState, { type, payload }) => {
         ...state,
         magazineBlogsData: payload,
         magazineBlogsLoading: false,
+      };
+    case SET_MAGAZINE_SINGLE_ARTICLE_ERROR:
+      return {
+        ...state,
+        magazineSingleArticleError: payload,
+        magazineSingleArticleLoading: false,
+      };
+    case GET_MAGAZINE_SINGLE_ARTICLE_DATA:
+      return {
+        ...state,
+        magazineSingleArticleLoading: true,
+      };
+    case SET_MAGAZINE_SINGLE_ARTICLE_DATA:
+      return {
+        ...state,
+        magazineSingleArticleData: payload,
+        magazineSingleArticleLoading: false,
+      };
+    case SET_MAGAZINE_SINGLE_BLOG_ERROR:
+      return {
+        ...state,
+        magazineSingleBlogError: payload,
+        magazineSingleBlogLoading: false,
+      };
+    case GET_MAGAZINE_SINGLE_BLOG_DATA:
+      return {
+        ...state,
+        magazineSingleBlogLoading: true,
+      };
+    case SET_MAGAZINE_SINGLE_BLOG_DATA:
+      return {
+        ...state,
+        magazineSingleBlogData: payload,
+        magazineSingleBlogLoading: false,
       };
   }
   return state;

@@ -9,9 +9,9 @@ const MagazinAddSection = ({ addData1, addData2, addData3 }) => {
   return (
     <div className={"magazin__add__section__container"}>
       <div className={"magazin__add__section__container__item item1"}>
-        <Link href={`article/${addData3?.id}`}>
+        <Link href={`blog/${addData3?.id}`}>
           <a
-            href={`article/${addData3?.id}`}
+            href={`blog/${addData3?.id}`}
             className={"component__header__bottom__body__white__text--link"}
           >
             <div
@@ -36,9 +36,9 @@ const MagazinAddSection = ({ addData1, addData2, addData3 }) => {
         </div>
       </div>
       <div className={"magazin__add__section__container__item item2"}>
-        <Link href={`article/${addData3?.id}`}>
+        <Link href={`blog/${addData3?.id}`}>
           <a
-            href={`article/${addData3?.id}`}
+            href={`blog/${addData3?.id}`}
             className={"component__header__bottom__body__white__text--link"}
           >
             <div
@@ -63,9 +63,9 @@ const MagazinAddSection = ({ addData1, addData2, addData3 }) => {
         </div>
       </div>
       <div className={"magazin__add__section__container__item item3"}>
-        <Link href={`article/${addData3?.id}`}>
+        <Link href={`blog/${addData3?.id}`}>
           <a
-            href={`article/${addData3?.id}`}
+            href={`blog/${addData3?.id}`}
             className={"component__header__bottom__body__white__text--link"}
           >
             <div

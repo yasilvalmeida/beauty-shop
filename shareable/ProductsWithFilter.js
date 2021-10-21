@@ -115,7 +115,6 @@ const ProductsWithFilter = ({ position }) => {
         name,
       });
     });
-    console.log("aux", position, start, limit);
     dispatch(
       getProductsByCategories(start, limit, categoriesIds, lang, position)
     );
