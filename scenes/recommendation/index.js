@@ -44,7 +44,6 @@ const RecommendationScene = () => {
           <div className={"recommendation-body"}>
             <InspirationBottomOne />
             <RecommendationBody />
-            <NewsletterRep />
             <ProductsWithFilterHomepage />
             <Services />
             <NewsletterRep />

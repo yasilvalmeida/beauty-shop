@@ -69,29 +69,29 @@ const RecommendationBody = ({ padding }) => {
   };
   return (
     <>
-      <div className="newsLetter__container">
-        <div className="newsLetter__container__header">
-          <h2 className="newsLetter__container__header--title">
+      <div className="recommendation__container">
+        <div className="recommendation__container__header">
+          <h2 className="recommendation__container__header--title">
             {recommendationTextData?.main_title}
           </h2>
-          <p className="newsLetter__container__header--info">
+          <p className="recommendation__container__header--info">
             {recommendationTextData?.main_subtitle_one}
           </p>
-          <p className="newsLetter__container__header--info">
+          <p className="recommendation__container__header--info">
             {recommendationTextData?.main_text_one}
           </p>
         </div>
-        <div className="newsLetter__container__action">
+        <div className="recommendation__container__action">
           <form
             action="#"
-            className="newsLetter__container__action__form"
+            className="recommendation__container__action__form"
             onSubmit={onSubmit}
           >
             <input
               type="text"
               name={"name"}
               placeholder={textData?.form_firstname}
-              className="newsLetter__container__action__form--name"
+              className="recommendation__container__action__form--name"
               value={newsLetter.First_name}
               onChange={(e) => {
                 const val = e.target.value;
@@ -112,7 +112,7 @@ const RecommendationBody = ({ padding }) => {
               <input
                 type="email"
                 placeholder={textData?.form_email}
-                className={`newsLetter__container__action__form--email ${
+                className={`recommendation__container__action__form--email ${
                   emailSuccess ? "input-error" : null
                 }`}
                 value={newsLetter.Email}
@@ -134,25 +134,25 @@ const RecommendationBody = ({ padding }) => {
             </Tooltip>
           </form>
         </div>
-        <div className="newsLetter__container__header">
-          <p className="newsLetter__container__header--info">
+        <div className="recommendation__container__header">
+          <p className="recommendation__container__header--info">
             {recommendationTextData?.main_subtitle_two}
           </p>
-          <p className="newsLetter__container__header--info">
+          <p className="recommendation__container__header--info">
             {recommendationTextData?.main_text_two}
           </p>
         </div>
-        <div className="newsLetter__container__action">
+        <div className="recommendation__container__action">
           <form
             action="#"
-            className="newsLetter__container__action__form"
+            className="recommendation__container__action__form"
             onSubmit={onSubmit}
           >
             <input
               type="text"
               name={"name"}
               placeholder={textData?.form_firstname}
-              className="newsLetter__container__action__form--name"
+              className="recommendation__container__action__form--name"
               value={newsLetter.First_name}
               onChange={(e) => {
                 const val = e.target.value;
@@ -173,7 +173,7 @@ const RecommendationBody = ({ padding }) => {
               <input
                 type="email"
                 placeholder={textData?.form_email}
-                className={`newsLetter__container__action__form--email ${
+                className={`recommendation__container__action__form--email ${
                   emailSuccess ? "input-error" : null
                 }`}
                 value={newsLetter.Email}
@@ -193,10 +193,14 @@ const RecommendationBody = ({ padding }) => {
                 }}
               />
             </Tooltip>
-            <p>{recommendationTextData?.main_required_text}</p>
-            <div className={"newsLetter__container__action__form__gender"}>
+            <p className={"recommendation__container__action__form__required"}>
+              {recommendationTextData?.main_required_text}
+            </p>
+            <div className={"recommendation__container__action__form__gender"}>
               <div
-                className={"newsLetter__container__action__form__gender--item"}
+                className={
+                  "recommendation__container__action__form__gender--item"
+                }
               >
                 <input
                   id={"Mannlich"}
@@ -204,7 +208,7 @@ const RecommendationBody = ({ padding }) => {
                   name={"gender"}
                   value={"male"}
                   checked={checked}
-                  className="newsLetter__container__action__form--gender"
+                  className="recommendation__container__action__form--gender"
                   onChange={(e) => {
                     const val = e.target.value;
                     setChecked(!checked);
@@ -222,7 +226,7 @@ const RecommendationBody = ({ padding }) => {
             </div>
             <button
               type="submit"
-              className="newsLetter__container__action__form--submit"
+              className="recommendation__container__action__form--submit"
             >
               {recommendationTextData?.main_button}
             </button>
