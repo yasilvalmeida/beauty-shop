@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 
@@ -16,9 +15,9 @@ const FirstElement = ({ next, previous, image }) => {
       }}
     >
       <span className={"backto"}>
-        <Link href={`/article/${id}`} onClick={() => route.back()}>
+        <a href={`/article/${id}`} onClick={() => route.back()}>
           {magazineSingleArticleData?.gallery_back}
-        </Link>
+        </a>
       </span>
 
       <div className={"carousel__body__artikel__first__mid"}>

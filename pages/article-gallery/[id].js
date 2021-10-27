@@ -1,10 +1,9 @@
-import React from "react";
-import BlogScene from "../../scenes/blog";
+import CarouselArtikel from "../../scenes/article/components/carousel/CarouselArtikel";
 
-const Blog = () => {
+const ArticleGallery = () => {
   return (
     <>
-      <BlogScene />
+      <CarouselArtikel />
     </>
   );
 };
@@ -27,4 +26,4 @@ export async function getStaticPaths(params) {
   };
 }
 
-export default Blog;
+export default ArticleGallery;

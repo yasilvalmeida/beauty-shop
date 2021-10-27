@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 
 const ArtikelFirstSecBottom = ({ setShowSlider }) => {
   const route = useRouter();
+  const { query } = route;
+  const { id } = query;
   const { magazinePageTextData, magazineSingleArticleData } = useSelector(
     (state) => state.magazine
   );
@@ -31,9 +33,7 @@ const ArtikelFirstSecBottom = ({ setShowSlider }) => {
         >
           {magazineSingleArticleData?.images?.slice(1, 3).map((image, i) => {
             return (
-              <div
-                key={i}
-              >
+              <div key={i}>
                 <img src={image?.url} alt="" />
               </div>
             );
@@ -41,7 +41,7 @@ const ArtikelFirstSecBottom = ({ setShowSlider }) => {
         </div>
       </div>
       <span
-        onClick={() => route.push(`${asPath}/gallery`)}
+        onClick={() => route.push(`/article-gallery/${id}`)}
         className={"artikel__first__bottom__container--link"}
       >
         {magazinePageTextData?.gallery}

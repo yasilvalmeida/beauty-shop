@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
@@ -22,9 +21,9 @@ const RightSided = ({ next, previous, image }) => {
   return (
     <div className={"carousel__artikel__right"}>
       <span className={"backto"}>
-        <Link href={`/article/${id}`} onClick={() => route.back()}>
+        <a href={`/article/${id}`} onClick={() => route.back()}>
           {magazineSingleArticleData?.gallery_back}
-        </Link>
+        </a>
       </span>
       <div className={"carousel__artikel__right__mainimg"}>
         <img

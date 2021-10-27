@@ -1,7 +1,7 @@
 import React from "react";
-import ArticleScene from "../../../scenes/article";
+import ArticleScene from "../../scenes/article";
 
-const Blog = () => {
+const Article = () => {
   return (
     <>
       <ArticleScene />
@@ -17,7 +17,6 @@ export async function getStaticProps() {
 
 export async function getStaticPaths(params) {
   const data = [...Array(10000).keys()];
-  data.unshift('gallery');
   return {
     paths: data?.map((e) => {
       return {
@@ -28,4 +27,4 @@ export async function getStaticPaths(params) {
   };
 }
 
-export default Blog;
+export default Article;
