@@ -15,17 +15,7 @@ export const getKontoMainBoxesData = (lang) => {
       .get(`${process.env.NEXT_PUBLIC_API_URL}/main-accounts?_locale=${lang}&_sort=id:ASC`)
       .then((res) => {
         const { data } = res;
-        /* const sortData = data.sort((a, b) => {
-          if (a.id > b.id) {
-            return 1;
-          }
-          if (a.id < b.id) {
-            return -1;
-          }
-          // a must be equal to b
-          return 0;
-        }); */
-
+        
         dispatch({
           type: SET_KONTO_MAIN_BOXES_DATA,
           payload: data,
