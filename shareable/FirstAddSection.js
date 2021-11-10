@@ -1,7 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const FirstAddSection = ({ background, textcolor, padding, sectionTextData }) => {
+const FirstAddSection = ({
+  background,
+  textcolor,
+  padding,
+  sectionTextData,
+}) => {
   const {
     left_image,
     left_text,
@@ -10,7 +15,17 @@ const FirstAddSection = ({ background, textcolor, padding, sectionTextData }) =>
     right_text,
     right_header,
     button,
-  } = sectionTextData;
+  } = !sectionTextData
+    ? {
+        left_image: "",
+        left_text: "",
+        left_header: "",
+        right_image: "",
+        right_text: "",
+        right_header: "",
+        button: "",
+      }
+    : sectionTextData;
   const shopUrl = "/shop";
   return (
     <>
